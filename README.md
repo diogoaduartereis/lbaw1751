@@ -1,3 +1,3 @@
 # LBAW51
 
-This is a repo for LBAW
+This is a repository for LBAW
