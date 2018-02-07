@@ -13,59 +13,59 @@ Our main goal (and motivation) is to solve people's questions by providing a con
 	
 ## Main Features
 ### Authentication
-  - Log In
-  - Sign Up
-  - Log Out
-  - Secure Authentication
+ - Log In
+ - Sign Up
+ - Log Out
+ - Secure Authentication
 ### Management
-  - Profile editing
-  - Profile picture
-  - Password changing
-  - Account closure
-  - User bans by system Administrator
-  - User timeout by system Administrator
-  - User profile edits by system Administrator
+ - Profile editing
+ - Profile picture
+ - Password changing
+ - Account closure
+ - User bans by system Administrator
+ - User timeout by system Administrator
+ - User profile edits by system Administrator
 ### Q&A Systems
-  - Submitting questions
-  - Submitting answers
-  - Commenting
-  - Voting on questions and answers (+1/-1)
-  - Deleting questions thread as question poster or System Administrator
-  - Deleting answer as answer poster or System Administrator
-  - Deleting comment as comment poster or System Administrator
-  - Marking answers as correct as question poster or System Administrator
-  - Closing thread as questions poster or System Administrator
-  - Adding Tags to the Thread as question poster or System Administrator
+ - Submitting questions
+ - Submitting answers
+ - Commenting
+ - Voting on questions and answers (+1/-1)
+ - Deleting questions thread as question poster or System Administrator
+ - Deleting answer as answer poster or System Administrator
+ - Deleting comment as comment poster or System Administrator
+ - Marking answers as correct as question poster or System Administrator
+ - Closing thread as questions poster or System Administrator
+ - Adding Tags to the Thread as question poster or System Administrator
 ### User profiles
-  - Adding a public description
-  - Having a score based on question and answer score
-  - List of archived questions
-  - List of active questions
-  - List of Answers
+ - Adding a public description
+ - Having a score based on question and answer score
+ - List of archived questions
+ - List of active questions
+ - List of Answers
 ### Questions
-  - Public score
-  - Public Date of post
-  - Editing question as question poster
-  - Public Number of Views
-  - Public username of poster
-  - Public Comments
+ - Public score
+ - Public Date of post
+ - Editing question as question poster
+ - Public Number of Views
+ - Public username of poster
+ - Public Comments
 ### Answer
-  - Public score
-  - Public comments
-  - Public date of post
-  - Public username of poster
-  - Editing answer as answer poster
+ - Public score
+ - Public comments
+ - Public date of post
+ - Public username of poster
+ - Editing answer as answer poster
 ### Search Engine
-  - Searching by question name
-  - Searching by question Tags
-  - Searching by question score
-  - Searching by question poster score
-  - Searching by mix of previous search methods
+ - Searching by question name
+ - Searching by question Tags
+ - Searching by question score
+ - Searching by question poster score
+ - Searching by mix of previous search methods
 ### Technical
-  - Responsive CSS design
-  - Secure environment
-  - Fast and efficient environment
-  - Pleasing environment
+ - Responsive CSS design
+ - Secure environment
+ - Fast and efficient environment
+ - Pleasing environment
 ## User Profiles
  ### Visitor
   User with read only permissions. He can only read posts (questions, answers and comments) but cannot 
