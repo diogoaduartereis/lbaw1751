@@ -13,11 +13,11 @@ Our main goal (and motivation) is to solve people's questions by providing a con
 	
 ## Main Features
 
- ### Authentication
-  - Log In
-  - Sign Up
-  - Log Out
-  - Secure Authentication
+  ### Authentication
+   - Log In
+   - Sign Up
+   - Log Out
+   - Secure Authentication
   
   ### Management
    - Profile editing
