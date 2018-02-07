@@ -11,9 +11,9 @@ Our main goal (and motivation) is to solve people's questions by providing a con
 	The thematic of the forum will be about software development (programming).
 
 	
-##Main Features
+## Main Features
 
- Authentication
+ ### Authentication
   - Log In
   - Sign Up
   - Log Out
