@@ -13,13 +13,13 @@ Our main goal (and motivation) is to solve people's questions by providing a con
 	
 ## Main Features
 
- ### Authentication
+### Authentication
   - Log In
   - Sign Up
   - Log Out
   - Secure Authentication
   
- ### Management
+### Management
   - Profile editing
   - Profile picture
   - Password changing
@@ -28,7 +28,7 @@ Our main goal (and motivation) is to solve people's questions by providing a con
   - User timeout by system Administrator
   - User profile edits by system Administrator
 
- ### Q&A Systems
+### Q&A Systems
   - Submitting questions
   - Submitting answers
   - Commenting
@@ -40,14 +40,14 @@ Our main goal (and motivation) is to solve people's questions by providing a con
   - Closing thread as questions poster or System Administrator
   - Adding Tags to the Thread as question poster or System Administrator
 
- ### User profiles
+### User profiles
   - Adding a public description
   - Having a score based on question and answer score
   - List of archived questions
   - List of active questions
   - List of Answers
 
- ### Questions
+### Questions
   - Public score
   - Public Date of post
   - Editing question as question poster
@@ -55,21 +55,21 @@ Our main goal (and motivation) is to solve people's questions by providing a con
   - Public username of poster
   - Public Comments
 
- ### Answer
+### Answer
   - Public score
   - Public comments
   - Public date of post
   - Public username of poster
   - Editing answer as answer poster
 
- ### Search Engine
+### Search Engine
   - Searching by question name
   - Searching by question Tags
   - Searching by question score
   - Searching by question poster score
   - Searching by mix of previous search methods
 
- ### Technical
+### Technical
   - Responsive CSS design
   - Secure environment
   - Fast and efficient environment
