@@ -11,12 +11,12 @@ Our main goal (and motivation) is to solve people's questions by providing a con
 	The thematic of the forum will be about software development (programming).
 
 	
-## Main Features
-  ### Authentication
-    - Log In
-    - Sign Up
-    - Log Out
-    - Secure Authentication
+##Main Features
+ Authentication
+  - Log In
+  - Sign Up
+  - Log Out
+  - Secure Authentication
   
    ### Management
     - Profile editing
