@@ -12,6 +12,7 @@ Our main goal (and motivation) is to solve people's questions by providing a con
 
 	
 ##Main Features
+
  Authentication
   - Log In
   - Sign Up
