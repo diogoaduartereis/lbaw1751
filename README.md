@@ -46,13 +46,13 @@ Our main goal (and motivation) is to solve people's questions by providing a con
  - List of active questions
  - List of Answers
 
-   ### Questions
-    - Public score
-    - Public Date of post
-    - Editing question as question poster
-    - Public Number of Views
-    - Public username of poster
-    - Public Comments
+### Questions
+ - Public score
+ - Public Date of post
+ - Editing question as question poster
+ - Public Number of Views
+ - Public username of poster
+ - Public Comments
 
 ### Answer
  - Public score
