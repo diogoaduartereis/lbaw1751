@@ -91,7 +91,7 @@ Inherits the functionalities from Authenticated. Moreover, is responsible for th
 ***
  
 ###  GROUP1751, 12/02/2018
- Davide Henrique Fernandes da Costa, up201503995@fe.up.pt
- Dinis Filipe da Silva Trigo, up201504196@fe.up.pt
- Diogo Afonso Duarte Reis, up201505472@fe.up.pt
- Tiago José Sousa Magalhães, up201607931@fe.up.pt
+ - Davide Henrique Fernandes da Costa, up201503995@fe.up.pt
+ - Dinis Filipe da Silva Trigo, up201504196@fe.up.pt
+ - Diogo Afonso Duarte Reis, up201505472@fe.up.pt
+ - Tiago José Sousa Magalhães, up201607931@fe.up.pt
