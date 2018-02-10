@@ -1,14 +1,16 @@
 # A1: Collaborative Q&A
 
 ## Goals, Motivation, Business Context and Environment
-Our main goal (and motivation) is to solve people's questions by providing a connection between those who need help and those that 
- have the knowledge. The website will work like a forum where the users who need help can post questions (by creating a new thread in
- the forum). To post a question, a user must be registered to the forum. The question will be listed in the forum for whoever has
- knowledge to answer them. To answer a question, a user must be registered to the forum.
-	It is possible to view questions and answers to a question (forum thread) even without being registered.
-	The forum is also aimed to provide information to people that don't know it and may end up visiting it by searching for a 
-  specific question on a search engine. They can quickly and easily find the solution to their problem.
-	The thematic of the forum will be about software development (programming).
+Our main goal (and motivation) is to solve people's questions by providing a connection between 
+those who need help and those that have the knowledge. The website will work like a forum where 
+the users who need help can post questions (by creating a new thread). To post a question, a user 
+must be registered. The questions will be listed in the Q&A platform for whoever has knowledge to 
+answer them. To answer a question, a user must be registered as well.
+It is possible to view questions and answers even without being registered.
+The Q&A platform is also aimed to provide information to people that don't know it and may end up 
+visiting it by searching for a specific question on a search engine. They can quickly and easily 
+find the solution to their problem.
+	The thematic of the Q&A platform will be about software development (programming).
 
 	
 ## Main Features
@@ -81,7 +83,7 @@ User with read only permissions. He can only read posts (questions, answers and 
 ### Banned
 Cannot authenticate, so post and vote permissions are not granted. He is only able to view the remaining time of his ban. He cannot logout.
 ### Authenticated
-Moreover, user can add, vote posts and mark their own as solved in the forum. He has a profile, with a rating to his questions and answers. He can logout.
+User that can read as well as add, vote posts and mark their own as solved in the Q&A platform. He has a profile, with a rating to his questions and answers. He can logout.
 ### Administrator
 Inherits the functionalities from Authenticated. Moreover, is responsible for the management of users and for some specific supervisory and moderation functions. Operations like banning users, deleting posts, closing posts, marking posts as solved, moving posts between categories, etc. He can logout.
 	
