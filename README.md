@@ -1,4 +1,4 @@
-# A1: Collaborative Q&A
+# A1: Code Home
 
 ## Goals, Motivation, Business Context and Environment
 Our main goal (and motivation) is to solve people's questions by providing a connection between 
@@ -90,6 +90,7 @@ Inherits the functionalities from Authenticated. Moreover, is responsible for th
 	
 ***
 ## Revision history
+ - Added title to the platform.
 ***
  
 ###  GROUP1751, 12/02/2018
