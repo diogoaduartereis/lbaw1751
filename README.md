@@ -1,4 +1,5 @@
-# A1: Code Home
+# Code Home
+# A1: Project presentation
 
 ## Goals, Motivation, Business Context and Environment
 Our main goal (and motivation) is to solve people's questions by providing a connection between 
