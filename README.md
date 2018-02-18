@@ -93,6 +93,9 @@ Inherits the functionalities from Authenticated. Moreover, is responsible for th
 ## Revision history
  - Added title to the platform. 19-02-2018
 ***
+
+# A2: Actors and User Stories
+As lbaw1751_a2.pdf in the repository.
  
 ###  GROUP1751, 12/02/2018
  - Davide Henrique Fernandes da Costa, up201503995@fe.up.pt
