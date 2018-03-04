@@ -2,8 +2,8 @@
 
 @media (min-width: 1600px) {
     body { 
-        zoom: 1.5; 
-        -moz-transform: scale(1.5); 
+        zoom: 1.2; 
+        -moz-transform: scale(1.2); 
         -moz-transform-origin: 0 0;
     }
 
