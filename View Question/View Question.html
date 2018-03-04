@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap Login &amp; Register Templates</title>
+
+    <link rel="stylesheet" href="../assets/css/View Question.css">
+    <link href="../assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../assets/css/bootstrap.css" rel="stylesheet">
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+    <link href="../assets/css/bars.css" rel="stylesheet">
+    <link href="../assets/css/common.css" rel="stylesheet">
+    <link href="../assets/css/viewQuestions.css" rel="stylesheet">
+
+    <script src="../assets/js/jquery-1.11.1.min.js"></script>
+    <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../assets/js/jquery.min.js"></script>
+    <script src="../assets/js/popper.min.js"></script>
+
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.25.0/codemirror.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.6.0/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css"
+    />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.6.0/css/froala_style.min.css" rel="stylesheet" type="text/css"
+    />
+    <script src="../assets/js/Froala HTML Editor.js"></script>
+
+
+</head>
+
+<body>
+
+    <div id="wrap" class="wrapper">
+        <nav id="sidebar" style="position:fixed;" class="nav flex-column bg-dark collapse multi-collapse">
+            <br>
+            <div class="row mx-auto">
+            </div>
+            <div id="UserArea" style="height:10%;">
+                <div>
+                    <div class="row mx-auto">
+                        <hr>
+                        <div class="col-sm-12" id="usernameSec">
+                            <div class="row mx-auto">
+                                <div class="col-12" style="max-height:100%;">
+                                    <div class="row">
+                                        <div clas="col-12">
+                                            <p class="h5">
+                                                Username
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mx-auto">
+                                <div clas="col-12">
+                                    <p>
+                                    </p>
+                                    <div class="text-success" style="margin-top:-2vh;margin-left:2vw;">
+                                        <i class="fas fa-plus"></i>150 Points</div>
+                                    <p></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr style="padding-bottom:1vh;">
+
+            <!-- Sidebar Links -->
+            <ul class="list-unstyled">
+                <li class="active">
+                    <a href="../View Profile/View Profile.html">
+                        <i class="fas fa-user"></i> Profile</a>
+                </li>
+                <li>
+                    <!-- Link with dropdown items -->
+                    <a id="sidebarDropdown2Button" href="#homeSubmenu2" data-target="#homeSubmenu2" data-toggle="collapse" aria-expanded="false">
+                        <i class="fas fa-archive"></i> Active Questions
+                        <span class="badge badge-pill badge-primary">3</span>
+                        <i id="arrowDown" class="fas fa-angle-down"></i>
+                    </a>
+                    <ul class="collapse list-unstyled" id="homeSubmenu2">
+                        <li>
+                            <a href="./View Question.html">
+                                <i class="far fa-envelope"></i> Question 1</a>
+                        </li>
+                        <li>
+                            <a href="./View Question.html">
+                                <i class="far fa-envelope"></i> Question 2</a>
+                        </li>
+                        <li>
+                            <a href="./View Question.html">
+                                <i class="far fa-envelope"></i> Question 3</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="active">
+                    <a href="../admin/admin.html">
+                        <i class="fas fa-cogs"></i> Administration</a>
+                </li>
+                <li class="active">
+                    <a href="#">
+                        <i class="fas fa-sign-out-alt"></i> Sign Out</a>
+                </li>
+            </ul>
+            <hr>
+        </nav>
+        <div id="content">
+            <nav id="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+                <a class="navbar-brand" href="#">
+                    <button id="sidebarCollapse" class="btn border-0 rounded bg-transparent" data-toggle="collapse" data-target="#sidebar" data-parent="#navbar"
+                        aria-expanded="false" aria-controls="sidebar">
+                        <img class="img-responsive" src="../assets/img/users/user-default.png" id="profPic2" width="30" height="30">
+                    </button>
+                    <a class="navbar-brand" href="../index.html" style="padding-top: 13px;">
+                        CodeHome
+                    </a>
+                </a>
+                <button id="buttonToggler" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mx-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="../index.html">
+                                <i class="fas fa-home"></i> Home</a>
+
+
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="../index.html">
+                                <i class="fas fa-fire"></i> Hot</a>
+
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="../index.html">
+                                <i class="far fa-clock"></i> New</a>
+
+                        </li>
+                        <li class="nav-item active dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">
+                                <i class="fas fa-tags"></i> Tags
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item text-dark" href="../index.html">
+                                    <i class="fas fa-tag"></i> Tag1</a>
+
+                                <a class="dropdown-item text-dark" href="../index.html">
+                                    <i class="fas fa-tag"></i> Tag2</a>
+
+                                <a class="dropdown-item text-dark" href="../index.html">
+                                    <i class="fas fa-tag"></i> Tag3</a>
+
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <br>
+            <div id="containerID">
+                <div id="contentID">
+                    <section id="classContainerID" class="container">
+                        <div class="row clearfix">
+                            <div class="col-md-12 column">
+                                <div class="panel panel-default">
+
+                                    <section class="row panel-body">
+                                        <section class="col-md-9">
+                                            <h2>
+                                                <i class="fa fa-smile-o"></i> Whats the name of the element of this website?</h2>
+                                             Hi, I'm wondering whats the name of the element that appaers in this website:
+                                            Startupbus Im talking about the images that remain static in the back and change
+                                            everytime a new section is reached. Is there a framework that does this? Thank
+                                            you for helping
+                                        </section>
+
+                                        <section id="user-description" class="col-md-3 ">
+                                            <div class="card border-dark">
+                                                <h5 class="card-header border-dark" id="non-mobile-poster-name">
+                                                    <a href="../View Profile/View Profile.html">
+                                                        <i class="fa fa-cricle"></i>MOHAMMAD SHARIFI
+                                                    </a>
+                                                </h5>
+                                                <div class="card-block border-dark">
+                                                    <div class="d-flex flex-row justify-content-between">
+                                                        <figure>
+                                                            <img class="img img-responsive" src="http://www.webdesignforums.net/img/wdf_avatar.jpg" alt="Mohammad Sharifi's avatar">
+                                                        </figure>
+                                                        <div id="mobile-poster-name">
+                                                            <a href="../View Profile/View Profile.html">
+                                                                <i class="fa fa-cricle"></i>MOHAMMAD SHARIFI
+                                                            </a>
+                                                        </div>
+                                                        <div id="postID" class="d-flex flex-column">
+                                                            <p class="text-dark">
+                                                                <b class="text-dark font-weight-bold">Posts:</b> 785</p>
+                                                            <p class="text-dark">
+                                                                <b class="text-dark font-weight-bold">plus:</b> +89</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div style="font-size:4em;" class="text-secondary">
+
+
+                                                <a href="#" style="color: inherit;text-decoration: none;">
+                                                    <i id="upvoteArr" class="fas fa-caret-up text-secondary">
+                                                    </i>
+                                                </a>
+                                                <span itemprop="upvoteCount" class="vote-count-post ">0</span>
+                                                <a href="#" style="color: inherit;text-decoration: none;">
+                                                    <i id="downvoteArr" class="fas fa-caret-down text-secondary">
+                                                    </i>
+                                                </a>
+                                            </div>
+
+                                        </section>
+
+
+
+                                        <div class="panel-footer">
+                                            <div>
+                                                <div class="btn-group btn-group-sm " role="group" aria-label="Basic example">
+                                                    <button type="button" class="btn btn-outline-primary">
+                                                        <i class="fas fa-comment"></i> Reply</button>
+                                                    <button type="button" class="btn btn-outline-danger">
+                                                        <i class="fas fa-flag"></i> Report</button>
+                                                    <button type="button" class="btn btn-outline-danger">
+                                                        <i class="fas fa-trash"></i> Remove</button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </section>
+
+                                    <div class="panel-heading">
+                                        <section class="panel-title">
+                                            <section class="pull-left" id="id">
+                                                <h2>Responses</h2>
+                                            </section>
+                                        </section>
+                                    </div>
+                                
+                                    <br>
+
+                                    <section class="row panel-body">
+                                        <section class="col-md-9">
+                                            <p>
+                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut tempore error, quos quo asperiores saepe, provident rem, vero
+                                                commodi esse quod optio autem. Deleniti tempora veniam velit aperiam consectetur
+                                                libero!
+                                            </p>
+                                        </section>
+
+                                        <section id="user-description" class="col-md-3 ">
+                                            <div class="card border-dark">
+                                                <h5 class="card-header border-dark" id="non-mobile-poster-name">
+                                                    <a href="../View Profile/View Profile.html">
+                                                        <i class="fa fa-cricle"></i>MOHAMMAD SHARIFI
+                                                    </a>
+                                                </h5>
+                                                <div class="card-block border-dark">
+                                                    <div class="d-flex flex-row justify-content-between">
+                                                        <figure>
+                                                            <img class="img img-responsive" src="http://www.webdesignforums.net/img/wdf_avatar.jpg" alt="Mohammad Sharifi's avatar">
+                                                        </figure>
+                                                        <div id="mobile-poster-name">
+                                                            <i class="fa fa-cricle"></i>MOHAMMAD SHARIFI
+                                                        </div>
+                                                        <div id="postID" class="d-flex flex-column">
+                                                            <p class="text-dark">
+                                                                <b class="text-dark font-weight-bold">Posts:</b> 785</p>
+                                                            <p class="text-dark">
+                                                                <b class="text-dark font-weight-bold">plus:</b> +89</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div style="font-size:4em;" class="text-secondary">
+
+
+                                                <a href="#" style="color: inherit;text-decoration: none;">
+                                                    <i id="upvoteArr" class="fas fa-caret-up text-secondary">
+                                                    </i>
+                                                </a>
+                                                <span itemprop="upvoteCount" class="vote-count-post ">0</span>
+                                                <a href="#" style="color: inherit;text-decoration: none;">
+                                                    <i id="downvoteArr" class="fas fa-caret-down text-secondary">
+                                                    </i>
+                                                </a>
+                                            </div>
+
+                                        </section>
+
+                                    </section>
+
+
+                                    <section class="row panel-body">
+                                        <section class="col-md-9">
+                                            <p>
+                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut tempore error, quos quo asperiores saepe, provident rem, vero
+                                                commodi esse quod optio autem. Deleniti tempora veniam velit aperiam consectetur
+                                                libero!
+                                            </p>
+                                        </section>
+
+                                        <section id="user-description" class="col-md-3 ">
+                                            <div class="card border-dark">
+                                                <h5 class="card-header border-dark" id="non-mobile-poster-name">
+                                                    <div class="row">
+                                                        <i class="fa fa-cricle"></i>MOHAMMAD SHARIFI
+                                                    </div>
+                                                </h5>
+                                                <div class="card-block border-dark">
+                                                    <div class="d-flex flex-row justify-content-between">
+                                                        <figure>
+                                                            <img class="img img-responsive" src="http://www.webdesignforums.net/img/wdf_avatar.jpg" alt="Mohammad Sharifi's avatar">
+                                                        </figure>
+                                                        <div id="mobile-poster-name">
+                                                            <i class="fa fa-cricle"></i>MOHAMMAD SHARIFI
+                                                        </div>
+                                                        <div id="postID" class="d-flex flex-column">
+                                                            <p class="text-dark">
+                                                                <b class="text-dark font-weight-bold">Posts:</b> 785</p>
+                                                            <p class="text-dark">
+                                                                <b class="text-dark font-weight-bold">plus:</b> +89</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div style="font-size:4em;" class="text-secondary">
+
+
+                                                <a href="#" style="color: inherit;text-decoration: none;">
+                                                    <i id="upvoteArr" class="fas fa-caret-up text-secondary">
+                                                    </i>
+                                                </a>
+                                                <span itemprop="upvoteCount" class="vote-count-post ">0</span>
+                                                <a href="#" style="color: inherit;text-decoration: none;">
+                                                    <i id="downvoteArr" class="fas fa-caret-down text-secondary">
+                                                    </i>
+                                                </a>
+                                            </div>
+
+                                        </section>
+
+
+
+
+
+                                    </section>
+
+
+                                    <section class="row panel-body">
+                                        <section class="col-md-9">
+                                            <p>
+                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut tempore error, quos quo asperiores saepe, provident rem, vero
+                                                commodi esse quod optio autem. Deleniti tempora veniam velit aperiam consectetur
+                                                libero!
+                                            </p>
+                                        </section>
+
+                                        <section id="user-description" class="col-md-3 ">
+                                            <div class="card border-dark">
+                                                <h5 class="card-header border-dark" id="non-mobile-poster-name">
+                                                    <div class="row">
+                                                        <i class="fa fa-cricle"></i>MOHAMMAD SHARIFI
+                                                    </div>
+                                                </h5>
+                                                <div class="card-block border-dark">
+                                                    <div class="d-flex flex-row justify-content-between">
+                                                        <figure>
+                                                            <img class="img img-responsive" src="http://www.webdesignforums.net/img/wdf_avatar.jpg" alt="Mohammad Sharifi's avatar">
+                                                        </figure>
+                                                        <div id="mobile-poster-name">
+                                                            <i class="fa fa-cricle"></i>MOHAMMAD SHARIFI
+                                                        </div>
+                                                        <div id="postID" class="d-flex flex-column">
+                                                            <p class="text-dark">
+                                                                <b class="text-dark font-weight-bold">Posts:</b> 785</p>
+                                                            <p class="text-dark">
+                                                                <b class="text-dark font-weight-bold">plus:</b> +89</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div style="font-size:4em;" class="text-secondary">
+
+
+                                                <a href="#" style="color: inherit;text-decoration: none;">
+                                                    <i id="upvoteArr" class="fas fa-caret-up text-secondary">
+                                                    </i>
+                                                </a>
+                                                <span itemprop="upvoteCount" class="vote-count-post ">0</span>
+                                                <a href="#" style="color: inherit;text-decoration: none;">
+                                                    <i id="downvoteArr" class="fas fa-caret-down text-secondary">
+                                                    </i>
+                                                </a>
+                                            </div>
+
+                                        </section>
+
+
+
+
+
+                                    </section>
+
+
+                                    <section class="row panel-body">
+                                        <section class="col-md-9">
+                                            <p>
+                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut tempore error, quos quo asperiores saepe, provident rem, vero
+                                                commodi esse quod optio autem. Deleniti tempora veniam velit aperiam consectetur
+                                                libero!
+                                            </p>
+                                        </section>
+
+                                        <section id="user-description" class="col-md-3 ">
+                                            <div class="card border-dark">
+                                                <h5 class="card-header border-dark" id="non-mobile-poster-name">
+                                                    <div class="row">
+                                                        <i class="fa fa-cricle"></i>MOHAMMAD SHARIFI
+                                                    </div>
+                                                </h5>
+                                                <div class="card-block border-dark">
+                                                    <div class="d-flex flex-row justify-content-between">
+                                                        <figure>
+                                                            <img class="img img-responsive" src="http://www.webdesignforums.net/img/wdf_avatar.jpg" alt="Mohammad Sharifi's avatar">
+                                                        </figure>
+                                                        <div id="mobile-poster-name">
+                                                            <i class="fa fa-cricle"></i>MOHAMMAD SHARIFI
+                                                        </div>
+                                                        <div id="postID" class="d-flex flex-column">
+                                                            <p class="text-dark">
+                                                                <b class="text-dark font-weight-bold">Posts:</b> 785</p>
+                                                            <p class="text-dark">
+                                                                <b class="text-dark font-weight-bold">plus:</b> +89</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div style="font-size:4em;" class="text-secondary">
+
+
+                                                <a href="#" style="color: inherit;text-decoration: none;">
+                                                    <i id="upvoteArr" class="fas fa-caret-up text-secondary">
+                                                    </i>
+                                                </a>
+                                                <span itemprop="upvoteCount" class="vote-count-post ">0</span>
+                                                <a href="#" style="color: inherit;text-decoration: none;">
+                                                    <i id="downvoteArr" class="fas fa-caret-down text-secondary">
+                                                    </i>
+                                                </a>
+                                            </div>
+
+                                        </section>
+
+
+
+
+
+                                    </section>
+
+
+
+
+                                </div>
+
+
+
+
+
+                            </div>
+
+                            <br>
+                            <br>
+
+
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="description" style="font-size: 150%">
+                                    Reply to this Question</label>
+
+                                <textarea name="message" id="froala-editor" class="form-control" rows="15" cols="25" required="required" placeholder="Message">                            </textarea>
+                                <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+                                <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.25.0/codemirror.min.js"></script>
+                                <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.25.0/mode/xml/xml.min.js"></script>
+                                <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.6.0//js/froala_editor.pkgd.min.js"></script>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <button type="submit" class="btn btn-primary pull-right" id="btnSubmitQuestion">
+                                Post Reply</button>
+                        </div>
+                </div>
+            </div>
+            </section>
+        </div>
+    </div>
+    </div>
+    </div>
+
+    <script>
+        $('#upvoteArr').mouseover(function () {
+            $("#upvoteArr").removeClass('text-secondary');
+            $("#upvoteArr").addClass('text-success');
+        })
+        $('#upvoteArr').mouseleave(function () {
+            $("#upvoteArr").addClass('text-secondary');
+            $("#upvoteArr").removeClass('text-success');
+        })
+
+
+        $('#downvoteArr').mouseover(function () {
+            $("#downvoteArr").removeClass('text-secondary');
+            $("#downvoteArr").addClass('text-danger');
+        })
+        $('#downvoteArr').mouseleave(function () {
+            $("#downvoteArr").addClass('text-secondary');
+            $("#downvoteArr").removeClass('text-danger');
+        })
+    </script>
+
+    <!-- Bars -->
+    <script src="../assets/js/bars.js"></script>
+</body>
+
+</html>

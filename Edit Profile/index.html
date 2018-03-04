@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Bootstrap Login &amp; Register Templates</title>
+
+        <link href="../assets/bootstrap/css/bootstrap.min.css" rel="stylesheet"> 
+        <link href="../assets/css/bootstrap.css" rel="stylesheet">
+        <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+        <link href="../assets/css/bars.css" rel="stylesheet">
+        <link href="../assets/css/common.css" rel="stylesheet">
+        <link href="../assets/css/admin.css" rel="stylesheet">
+
+        <script src="../assets/js/jquery-1.11.1.min.js"></script>
+        <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
+        <script src="../assets/js/jquery.min.js"></script>
+        <script src="../assets/js/popper.min.js"></script>
+
+    </head>
+
+    <body>
+        <div id="wrap" class="wrapper">
+            <nav id="sidebar" style="position:fixed;" class="nav flex-column bg-dark collapse multi-collapse">
+                <br>
+                <div class="row mx-auto">
+                </div>
+                <div id="UserArea" style="height:10%;">
+                    <div>
+                        <div class="row mx-auto">
+                            <hr>
+                            <div class="col-sm-12" id="usernameSec">
+                                <div class="row mx-auto">
+                                    <div class="col-12" style="max-height:100%;">
+                                        <div class="row">
+                                            <div clas="col-12">
+                                                <p class="h5">
+                                                    Username
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mx-auto">
+                                    <div clas="col-12">
+                                        <p>
+                                        </p>
+                                        <div class="text-success" style="margin-top:-2vh;margin-left:2vw;">
+                                            <i class="fas fa-plus"></i>150 Points</div>
+                                        <p></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr style="padding-bottom:1vh;">
+
+                <!-- Sidebar Links -->
+                <ul class="list-unstyled">
+                    <li class="active">
+                            <a href="../View Profile/View Profile.html">
+                            <i class="fas fa-user"></i> Profile</a>
+                    </li>
+                    <li>
+                        <!-- Link with dropdown items -->
+                        <a id="sidebarDropdown2Button" href="#homeSubmenu2" data-target="#homeSubmenu2" data-toggle="collapse" aria-expanded="false">
+                            <i class="fas fa-archive"></i> Active Questions
+                            <span class="badge badge-pill badge-primary">3</span>
+                            <i id="arrowDown" class="fas fa-angle-down"></i>
+                        </a>
+                        <ul class="collapse list-unstyled" id="homeSubmenu2">
+                            <li>
+                                <a href="#">
+                                    <i class="far fa-envelope"></i> Question 1</a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="far fa-envelope"></i> Question 2</a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="far fa-envelope"></i> Question 3</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="active">
+                            <a href="../admin/admin.html">
+                                <i class="fas fa-cogs"></i> Administration</a>
+                        </li>
+                    <li class="active">
+                        <a href="#">
+                            <i class="fas fa-sign-out-alt"></i> Sign Out</a>
+                    </li>
+                </ul>
+                <hr>
+            </nav>
+            <div id="content">
+                <nav id="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+                        <button id="sidebarCollapse" class="btn border-0 rounded bg-transparent" data-toggle="collapse" data-target="#sidebar" data-parent="#navbar"
+                                aria-expanded="false" aria-controls="sidebar">
+                            <img class="img-responsive" src="../assets/img/users/user-default.png" id="profPic2" width="30" height="30">
+                        </button>
+                        <a class="navbar-brand" href="../index.html" style="padding-top: 13px;">  
+                            CodeHome
+                        </a>
+                    <button id ="buttonToggler" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav mx-auto">
+                            <li class="nav-item active">
+                                    <a class="nav-link" href="../index.html">
+                                    <i class="fas fa-home"></i> Home</a>
+
+
+                            </li>
+                            <li class="nav-item active">
+                                <a class="nav-link" href="#">
+                                    <i class="fas fa-fire"></i> Hot</a>
+
+                            </li>
+                            <li class="nav-item active">
+                                <a class="nav-link" href="#">
+                                    <i class="far fa-clock"></i> New</a>
+
+                            </li>
+                            <li class="nav-item active dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+                                   aria-expanded="false">
+                                    <i class="fas fa-tags"></i> Tags
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item text-dark" href="#">
+                                        <i class="fas fa-tag"></i> Tag1</a>
+
+                                    <a class="dropdown-item text-dark" href="#">
+                                        <i class="fas fa-tag"></i> Tag2</a>
+
+                                    <a class="dropdown-item text-dark" href="#">
+                                        <i class="fas fa-tag"></i> Tag3</a>
+
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+
+                <div id = "containerID">
+                    <div id = "contentID">
+                        <div id ="jumbotronID" class="jumbotron jumbotron-sm">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-sm-12 col-lg-12">
+                                        <h1 id ="titleID" class="h1 text-primary">
+                                            Edit Profile </h1>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="classContainerID" class="container">
+
+                            <div class="row">
+                                <div class="col-sm-9 personal-info">
+                                    <h3>Personal info</h3>
+
+                                    <form class="form-horizontal" role="form">
+                                        <div class="form-group">
+                                            <div class="text-center">
+                                                <img src="../assets/img/team/Tiago Magalhães.jpg" class="avatar" alt="avatar">
+                                                <h5>Upload a different photo</h5>
+                                                <input type="file" class="form-control hidden">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">Name:</label>
+                                            <div class="col-sm-8">
+                                                <input class="form-control" type="text" value="Jane">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">Email:</label>
+                                            <div class="col-sm-8">
+                                                <input class="form-control" type="text" value="janesemail@gmail.com">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">Username:</label>
+                                            <div class="col-sm-8">
+                                                <input class="form-control" type="text" value="janeuser">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">Description:</label>
+                                            <div class="col-sm-8">
+                                                <textarea name="form-about-yourself" placeholder="Description" class="form-about-yourself form-control" id="form-about-yourself"
+                                                          style="resize: none"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">Password:</label>
+                                            <div class="col-sm-8">
+                                                <input class="form-control" type="password" value="11111122333">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">Confirm password:</label>
+                                            <div class="col-sm-8">
+                                                <input class="form-control" type="password" value="11111122333">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label"></label>
+                                            <div class="col-sm-8">
+                                                <input type="button" class="btn btn-primary" value="Save Changes">
+                                                <span></span>
+                                                <input type="reset" class="btn btn-default" value="Cancel">
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <script src="../assets/js/bars.js"></script>
+
+                </body>
+
+                </html>

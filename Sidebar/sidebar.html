@@ -1,0 +1,77 @@
+<nav id="sidebar" class="nav flex-column bg-dark collapse multi-collapse">
+    <br>
+    <div class="row mx-auto">
+        <div class="col-5">
+            <button id="sidebarCollapse2" class="btn btn-outline-primary" data-toggle="collapse" data-target="#sidebar" data-parent="#navbar" aria-expanded="false" aria-controls="sidebar">
+                <i class="fas fa-eye-slash"></i> Hide Sidebar
+            </button>
+        </div>
+    </div>
+    <div id="UserArea" style="height:10%;">
+        <div>
+            <div class="row mx-auto">
+                <div class="col-sm-12" id="usernameSec">
+                    <div class="row mx-auto">
+                        <div class="col-12" style="max-height:100%;">
+                            <div class="row">
+                                <div clas="col-12">
+                                    <p class="h5">
+                                        Username
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mx-auto">
+                        <div clas="col-12">
+                            <p>
+                            </p><div class="text-success" style="margin-top:-2vh;margin-left:2vw;">
+                                <i class="fas fa-plus"></i>150 Points</div>
+                            <p></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr style="padding-bottom:1vh;">
+
+    <!-- Sidebar Links -->
+    <ul class="list-unstyled">
+        <li class="active">
+            <a href="#">
+                <i class="fas fa-user"></i> Profile</a>
+        </li>
+        <li>
+            <!-- Link with dropdown items -->
+            <a id="sidebarDropdown2Button" href="#homeSubmenu2" data-target="#homeSubmenu2" data-toggle="collapse" aria-expanded="false">
+                <i class="fas fa-archive"></i> Active Questions
+                <span class="badge badge-pill badge-primary">3</span>
+                <i id="arrowDown" class="fas fa-angle-down"></i>
+            </a>
+            <ul class="collapse list-unstyled" id="homeSubmenu2">
+                <li>
+                    <a href="#">
+                        <i class="far fa-envelope"></i> Question 1</a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="far fa-envelope"></i> Question 2</a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="far fa-envelope"></i> Question 3</a>
+                </li>
+            </ul>
+        </li>
+        <li class="active">
+            <a href="#">
+                <i class="fas fa-cogs"></i> Settings</a>
+        </li>
+        <li class="active">
+            <a href="#">
+                <i class="fas fa-sign-out-alt"></i> Sign Out</a>
+        </li>
+    </ul>
+    <hr>
+</nav>
