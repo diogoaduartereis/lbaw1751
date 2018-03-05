@@ -5,7 +5,7 @@
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        
+
         <link rel="stylesheet" href="./assets/bootstrap/css/bootstrap-homepage.css">
         <link href="./assets/bootstrap/css/bootstrap.min.css" rel="stylesheet"> 
         <link href="./assets/css/bootstrap.css" rel="stylesheet">
@@ -23,33 +23,87 @@
 
     <body>
 
-            <nav id="sidebar" style = "position:fixed;" class="nav flex-column bg-dark collapse multi-collapse">
-                    <br>
-                    <div class="row mx-auto">
-                    </div>
-
-    
-                    <!-- Sidebar Links -->
-                    <ul class="list-unstyled">
-                        <li class="active">
-                            <a href="./login/index.html">
-                                <i class="fas fa-user"></i> Log in</a>
-                        </li>
-                        <li class="active">
-                            <a href="./register/index.html">
-                                <i class="fas fa-cogs"></i> Register</a>
-                        </li>
-                    </ul>
-                    <hr>
-                </nav>
-
         <div id="wrap" class="wrapper">
+            <nav id="sidebar" style = "position:fixed;" class="nav flex-column bg-dark collapse multi-collapse">
+                <br>
+                <div class="row mx-auto">
+                </div>
+                <div id="UserArea" style="height:10%;">
+                    <div>
+                        <div class="row mx-auto">
+                                <hr>
+                            <div class="col-sm-12" id="usernameSec">
+                                <div class="row mx-auto">
+                                    <div class="col-12" style="max-height:100%;">
+                                        <div class="row">
+                                            <div clas="col-12">
+                                                <p class="h5">
+                                                    Username
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mx-auto">
+                                    <div clas="col-12">
+                                        <p>
+                                        <div class="text-success" style="margin-top:-2vh;margin-left:2vw;">
+                                            <i class="fas fa-plus"></i>150 Points</div>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr style="padding-bottom:1vh;">
+
+                <!-- Sidebar Links -->
+                <ul class="list-unstyled">
+                    <li class="active">
+                        <a href="./View Profile/View Profile.html">
+                            <i class="fas fa-user"></i> Profile</a>
+                    </li>
+                    <li>
+                        <!-- Link with dropdown items -->
+                        <a id="sidebarDropdown2Button" href="#homeSubmenu2" data-target="#homeSubmenu2" data-toggle="collapse" aria-expanded="false">
+                            <i class="fas fa-archive"></i> Active Questions
+                            <span class="badge badge-pill badge-primary">3</span>
+                            <i id="arrowDown" class="fas fa-angle-down"></i>
+                        </a>
+                        <ul class="collapse list-unstyled" id="homeSubmenu2">
+                            <li>
+                                <a href="./View Question/View Question.html">
+                                    <i class="far fa-envelope"></i> Question 1</a>
+                            </li>
+                            <li>
+                                <a href="./View Question/View Question.html">
+                                    <i class="far fa-envelope"></i> Question 2</a>
+                            </li>
+                            <li>
+                                <a href="./View Question/View Question.html">
+                                    <i class="far fa-envelope"></i> Question 3</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="active">
+                        <a href="#">
+                            <i class="fas fa-cogs"></i> Administration</a>
+                    </li>
+                    <li class="active">
+                        <a href="not logged homepage.html">
+                            <i class="fas fa-sign-out-alt"></i> Sign Out</a>
+                    </li>
+                </ul>
+                <hr>
+            </nav>
             <div id="content">
                 <nav id="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
-                        <button id="sidebarCollapse" class="btn border-0 rounded bg-transparent" data-toggle="collapse" data-target="#sidebar" data-parent="#navbar"
-                        aria-expanded="false" aria-controls="sidebar">
-                    <img class="img-responsive" width="30" height="30" src="./assets/img/users/user-default.png" id="profPic2">
-                </button>
+                    
+                    <button id="sidebarCollapse" class="btn border-0 rounded bg-transparent" data-toggle="collapse" data-target="#sidebar" data-parent="#navbar"
+                            aria-expanded="false" aria-controls="sidebar">
+                        <img class="img-responsive" width="30" height="30" src="./assets/img/users/user-default.png" id="profPic2">
+                    </button>
                     <a class="navbar-brand" href="./index.html">
                     CodeHome
                 </a>
@@ -152,6 +206,8 @@
                                     <input type="text" class="form-control border-dark" aria-label="Text input with segmented dropdown button" data-toggle="tooltip"
                                            data-placement="bottom" title="Search For Questions. Use the # before a word to add a tag search to your question.">
                                     <button type="button" class="btn btn-outline-dark">Search</button>
+
+                                   <a href="./Post question page/Post question.html"> <button type="button" class="btn btn-primary" style="margin-left:1vw;">Post New Question</button></a>
                                 </div>
                             </div>
                         </div>
@@ -212,7 +268,7 @@
                                         <div class="card-footer border-dark">
                                             <div class="btn-group btn-group-sm " role="group" aria-label="Basic example">
                                                 <button type="button" class="btn btn-outline-primary">
-                                                    <a href="./View Question/View Question.html" style="text-decoration:none;">
+                                                    <a href="#" style="text-decoration:none;">
                                                         <i class="fas fa-comment"></i> Reply</button>
     
                                                 <button type="button" class="btn btn-outline-danger">
@@ -275,7 +331,7 @@
                                             <div class="card-footer border-dark">
                                                 <div class="btn-group btn-group-sm " role="group" aria-label="Basic example">
                                                     <button type="button" class="btn btn-outline-primary">
-                                                        <a href="./View Question/View Question.html" style="text-decoration:none;">
+                                                        <a href="#" style="text-decoration:none;">
                                                             <i class="fas fa-comment"></i> Reply</button>
         
                                                     <button type="button" class="btn btn-outline-danger">
@@ -338,7 +394,7 @@
                                                 <div class="card-footer border-dark">
                                                     <div class="btn-group btn-group-sm " role="group" aria-label="Basic example">
                                                         <button type="button" class="btn btn-outline-primary">
-                                                            <a href="./View Question/View Question.html" style="text-decoration:none;">
+                                                            <a href="#" style="text-decoration:none;">
                                                                 <i class="fas fa-comment"></i> Reply</button>
             
                                                         <button type="button" class="btn btn-outline-danger">
