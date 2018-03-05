@@ -22,6 +22,10 @@ setInterval(function () {
         $('#containerID').removeClass('active');
         windowSize = false;
     }
+    if ($(window).width() <= 992)
+        $('#navbarSupportedContent').removeClass("d-flex justify-content-end");
+    else
+        $('#navbarSupportedContent').addClass("d-flex justify-content-end");
 }, 30);
 
 $('#buttonToggler').on('click', function () {

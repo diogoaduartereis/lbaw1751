@@ -21,10 +21,6 @@
     <script src="../assets/js/jquery.min.js"></script>
     <script src="../assets/js/popper.min.js"></script>
 
-
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"
-    />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.25.0/codemirror.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.6.0/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css"
     />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.6.0/css/froala_style.min.css" rel="stylesheet" type="text/css"
@@ -105,7 +101,7 @@
                         <i class="fas fa-cogs"></i> Administration</a>
                 </li>
                 <li class="active">
-                    <a href="#">
+                    <a href="../not logged homepage.html">
                         <i class="fas fa-sign-out-alt"></i> Sign Out</a>
                 </li>
             </ul>
@@ -113,57 +109,69 @@
         </nav>
         <div id="content">
             <nav id="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
-                <a class="navbar-brand" href="#">
-                    <button id="sidebarCollapse" class="btn border-0 rounded bg-transparent" data-toggle="collapse" data-target="#sidebar" data-parent="#navbar"
+                    
+                <button id="sidebarCollapse" class="btn border-0 rounded bg-transparent" data-toggle="collapse" data-target="#sidebar" data-parent="#navbar"
                         aria-expanded="false" aria-controls="sidebar">
-                        <img class="img-responsive" src="../assets/img/users/user-default.png" id="profPic2" width="30" height="30">
-                    </button>
-                    <a class="navbar-brand" href="../index.html" style="padding-top: 13px;">
-                        CodeHome
-                    </a>
-                </a>
-                <button id="buttonToggler" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+                    <img class="img-responsive" width="30" height="30" src="../assets/img/users/user-default.png" id="profPic2">
                 </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mx-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="../index.html">
-                                <i class="fas fa-home"></i> Home</a>
-
-
-                        </li>
-                        <li class="nav-item active">
-                            <a class="nav-link" href="../index.html">
-                                <i class="fas fa-fire"></i> Hot</a>
-
-                        </li>
-                        <li class="nav-item active">
-                            <a class="nav-link" href="../index.html">
-                                <i class="far fa-clock"></i> New</a>
-
-                        </li>
-                        <li class="nav-item active dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
-                                aria-expanded="false">
-                                <i class="fas fa-tags"></i> Tags
+                <a class="navbar-brand" href="../index.html">
+                CodeHome
+            </a>
+            <button id ="buttonToggler" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <div>
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">
+                            <i class="fas fa-fire"></i> Hot</a>
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">
+                            <i class="far fa-clock"></i> New</a>
+                        </a>
+                    </li>
+                    <li class="nav-item active dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+                           aria-expanded="false">
+                            <i class="fas fa-tags"></i> Tags
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item text-dark" href="#">
+                                <i class="fas fa-tag"></i> Tag1</a>
                             </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item text-dark" href="../index.html">
-                                    <i class="fas fa-tag"></i> Tag1</a>
-
-                                <a class="dropdown-item text-dark" href="../index.html">
-                                    <i class="fas fa-tag"></i> Tag2</a>
-
-                                <a class="dropdown-item text-dark" href="../index.html">
-                                    <i class="fas fa-tag"></i> Tag3</a>
-
-                            </div>
+                            <a class="dropdown-item text-dark" href="#">
+                                <i class="fas fa-tag"></i> Tag2</a>
+                            </a>
+                            <a class="dropdown-item text-dark" href="#">
+                                <i class="fas fa-tag"></i> Tag3</a>
+                            </a>
+                        </div>
+                    </li>
+                    <li class="nav-item active items-align-right">
+                            <a href="../about/about.html" class="nav-link" href="#">
+                                About</a>
+                            </a>
                         </li>
-                    </ul>
-                </div>
-            </nav>
+
+                        <li class="nav-item active">
+                                <a href="../contacts/index.html" class="nav-link" href="#">
+                                    Contact</a>
+                                </a>
+                            </li>
+
+                            <li class="nav-item active">
+                                    <a href="../FAQ/faq.html" class="nav-link" href="#">
+                                     FAQ</a>
+                                    </a>
+                                </li>
+                </ul>
+            
+            </div></div>
+        </nav>
             <br>
             <div id="containerID">
                 <div id="contentID">
@@ -175,28 +183,25 @@
                                     <section class="row panel-body">
                                         <section class="col-md-9">
                                             <h2>
-                                                <i class="fa fa-smile-o"></i> Whats the name of the element of this website?</h2>
-                                             Hi, I'm wondering whats the name of the element that appaers in this website:
-                                            Startupbus Im talking about the images that remain static in the back and change
-                                            everytime a new section is reached. Is there a framework that does this? Thank
-                                            you for helping
+                                                <i class="fa fa-smile-o"></i> Question Tittle</h2>
+                                             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aperiam accusantium facilis cum deserunt atque ex aliquid, distinctio nobis suscipit error illum sequi optio repellat doloribus tenetur pariatur consequuntur ratione expedita.
                                         </section>
 
                                         <section id="user-description" class="col-md-3 ">
                                             <div class="card border-dark">
                                                 <h5 class="card-header border-dark" id="non-mobile-poster-name">
                                                     <a href="../View Profile/View Profile.html">
-                                                        <i class="fa fa-cricle"></i>MOHAMMAD SHARIFI
+                                                        <i class="fa fa-cricle"></i>Code Homer
                                                     </a>
                                                 </h5>
                                                 <div class="card-block border-dark">
                                                     <div class="d-flex flex-row justify-content-between">
                                                         <figure>
-                                                            <img class="img img-responsive" src="http://www.webdesignforums.net/img/wdf_avatar.jpg" alt="Mohammad Sharifi's avatar">
+                                                            <img class="img img-responsive" src="randomImage.jpg" alt="Code Homer's avatar">
                                                         </figure>
                                                         <div id="mobile-poster-name">
                                                             <a href="../View Profile/View Profile.html">
-                                                                <i class="fa fa-cricle"></i>MOHAMMAD SHARIFI
+                                                                <i class="fa fa-cricle"></i>Code Homer
                                                             </a>
                                                         </div>
                                                         <div id="postID" class="d-flex flex-column">
@@ -264,16 +269,16 @@
                                             <div class="card border-dark">
                                                 <h5 class="card-header border-dark" id="non-mobile-poster-name">
                                                     <a href="../View Profile/View Profile.html">
-                                                        <i class="fa fa-cricle"></i>MOHAMMAD SHARIFI
+                                                        <i class="fa fa-cricle"></i>Code Homer
                                                     </a>
                                                 </h5>
                                                 <div class="card-block border-dark">
                                                     <div class="d-flex flex-row justify-content-between">
                                                         <figure>
-                                                            <img class="img img-responsive" src="http://www.webdesignforums.net/img/wdf_avatar.jpg" alt="Mohammad Sharifi's avatar">
+                                                            <img class="img img-responsive" src="randomImage.jpg" alt="Code Homer's avatar">
                                                         </figure>
                                                         <div id="mobile-poster-name">
-                                                            <i class="fa fa-cricle"></i>MOHAMMAD SHARIFI
+                                                            <i class="fa fa-cricle"></i>Code Homer
                                                         </div>
                                                         <div id="postID" class="d-flex flex-column">
                                                             <p class="text-dark">
@@ -316,72 +321,16 @@
                                             <div class="card border-dark">
                                                 <h5 class="card-header border-dark" id="non-mobile-poster-name">
                                                     <div class="row">
-                                                        <i class="fa fa-cricle"></i>MOHAMMAD SHARIFI
+                                                        <i class="fa fa-cricle"></i>Code Homer
                                                     </div>
                                                 </h5>
                                                 <div class="card-block border-dark">
                                                     <div class="d-flex flex-row justify-content-between">
                                                         <figure>
-                                                            <img class="img img-responsive" src="http://www.webdesignforums.net/img/wdf_avatar.jpg" alt="Mohammad Sharifi's avatar">
+                                                            <img class="img img-responsive" src="randomImage.jpg" alt="Code Homer's avatar">
                                                         </figure>
                                                         <div id="mobile-poster-name">
-                                                            <i class="fa fa-cricle"></i>MOHAMMAD SHARIFI
-                                                        </div>
-                                                        <div id="postID" class="d-flex flex-column">
-                                                            <p class="text-dark">
-                                                                <b class="text-dark font-weight-bold">Posts:</b> 785</p>
-                                                            <p class="text-dark">
-                                                                <b class="text-dark font-weight-bold">plus:</b> +89</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div style="font-size:4em;" class="text-secondary">
-
-
-                                                <a href="#" style="color: inherit;text-decoration: none;">
-                                                    <i id="upvoteArr" class="fas fa-caret-up text-secondary">
-                                                    </i>
-                                                </a>
-                                                <span itemprop="upvoteCount" class="vote-count-post ">0</span>
-                                                <a href="#" style="color: inherit;text-decoration: none;">
-                                                    <i id="downvoteArr" class="fas fa-caret-down text-secondary">
-                                                    </i>
-                                                </a>
-                                            </div>
-
-                                        </section>
-
-
-
-
-
-                                    </section>
-
-
-                                    <section class="row panel-body">
-                                        <section class="col-md-9">
-                                            <p>
-                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut tempore error, quos quo asperiores saepe, provident rem, vero
-                                                commodi esse quod optio autem. Deleniti tempora veniam velit aperiam consectetur
-                                                libero!
-                                            </p>
-                                        </section>
-
-                                        <section id="user-description" class="col-md-3 ">
-                                            <div class="card border-dark">
-                                                <h5 class="card-header border-dark" id="non-mobile-poster-name">
-                                                    <div class="row">
-                                                        <i class="fa fa-cricle"></i>MOHAMMAD SHARIFI
-                                                    </div>
-                                                </h5>
-                                                <div class="card-block border-dark">
-                                                    <div class="d-flex flex-row justify-content-between">
-                                                        <figure>
-                                                            <img class="img img-responsive" src="http://www.webdesignforums.net/img/wdf_avatar.jpg" alt="Mohammad Sharifi's avatar">
-                                                        </figure>
-                                                        <div id="mobile-poster-name">
-                                                            <i class="fa fa-cricle"></i>MOHAMMAD SHARIFI
+                                                            <i class="fa fa-cricle"></i>Code Homer
                                                         </div>
                                                         <div id="postID" class="d-flex flex-column">
                                                             <p class="text-dark">
@@ -428,16 +377,72 @@
                                             <div class="card border-dark">
                                                 <h5 class="card-header border-dark" id="non-mobile-poster-name">
                                                     <div class="row">
-                                                        <i class="fa fa-cricle"></i>MOHAMMAD SHARIFI
+                                                        <i class="fa fa-cricle"></i>Code Homer
                                                     </div>
                                                 </h5>
                                                 <div class="card-block border-dark">
                                                     <div class="d-flex flex-row justify-content-between">
                                                         <figure>
-                                                            <img class="img img-responsive" src="http://www.webdesignforums.net/img/wdf_avatar.jpg" alt="Mohammad Sharifi's avatar">
+                                                            <img class="img img-responsive" src="randomImage.jpg" alt="Code Homer's avatar">
                                                         </figure>
                                                         <div id="mobile-poster-name">
-                                                            <i class="fa fa-cricle"></i>MOHAMMAD SHARIFI
+                                                            <i class="fa fa-cricle"></i>Code Homer
+                                                        </div>
+                                                        <div id="postID" class="d-flex flex-column">
+                                                            <p class="text-dark">
+                                                                <b class="text-dark font-weight-bold">Posts:</b> 785</p>
+                                                            <p class="text-dark">
+                                                                <b class="text-dark font-weight-bold">plus:</b> +89</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div style="font-size:4em;" class="text-secondary">
+
+
+                                                <a href="#" style="color: inherit;text-decoration: none;">
+                                                    <i id="upvoteArr" class="fas fa-caret-up text-secondary">
+                                                    </i>
+                                                </a>
+                                                <span itemprop="upvoteCount" class="vote-count-post ">0</span>
+                                                <a href="#" style="color: inherit;text-decoration: none;">
+                                                    <i id="downvoteArr" class="fas fa-caret-down text-secondary">
+                                                    </i>
+                                                </a>
+                                            </div>
+
+                                        </section>
+
+
+
+
+
+                                    </section>
+
+
+                                    <section class="row panel-body">
+                                        <section class="col-md-9">
+                                            <p>
+                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut tempore error, quos quo asperiores saepe, provident rem, vero
+                                                commodi esse quod optio autem. Deleniti tempora veniam velit aperiam consectetur
+                                                libero!
+                                            </p>
+                                        </section>
+
+                                        <section id="user-description" class="col-md-3 ">
+                                            <div class="card border-dark">
+                                                <h5 class="card-header border-dark" id="non-mobile-poster-name">
+                                                    <div class="row">
+                                                        <i class="fa fa-cricle"></i>Code Homer
+                                                    </div>
+                                                </h5>
+                                                <div class="card-block border-dark">
+                                                    <div class="d-flex flex-row justify-content-between">
+                                                        <figure>
+                                                            <img class="img img-responsive" src="randomImage.jpg" alt="Code Homer's avatar">
+                                                        </figure>
+                                                        <div id="mobile-poster-name">
+                                                            <i class="fa fa-cricle"></i>Code Homer
                                                         </div>
                                                         <div id="postID" class="d-flex flex-column">
                                                             <p class="text-dark">
@@ -499,7 +504,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-12">
+                        <div class="col-md-12" style="padding-bottom:70px;">
                             <button type="submit" class="btn btn-primary pull-right" id="btnSubmitQuestion">
                                 Post Reply</button>
                         </div>

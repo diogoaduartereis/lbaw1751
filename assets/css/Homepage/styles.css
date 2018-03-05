@@ -1,10 +1,15 @@
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
 
+#searchInputForm{
+    padding-top: 10px;
+}
+
+
 @media (min-width: 1600px) {
-    body { 
-        zoom: 1.2; 
-        -moz-transform: scale(1.2); 
-        -moz-transform-origin: 0 0;
+
+    #contentID{
+
+        padding-left: 8vw;
     }
 
     #classContainerID
@@ -148,10 +153,14 @@ body {
 
 p {
     font-family: 'Poppins', sans-serif;
-    font-size: 1.1em;
+    font-size: 1.5em;
     font-weight: 300;
     line-height: 1.7em;
     color: #999; }
+
+blockquote {
+    font-size: 1.3em;
+    }
 
 a, a:hover, a:focus {
     color: inherit;
