@@ -33,7 +33,7 @@
 <body>
 
     <div id="wrap" class="wrapper">
-        <nav id="sidebar" style="position:fixed;" class="nav flex-column bg-dark collapse multi-collapse">
+        <nav id="sidebar" style="position:fixed;z-index:10;" class="nav flex-column bg-dark collapse multi-collapse">
             <br>
             <div class="row mx-auto">
             </div>
@@ -46,20 +46,19 @@
                                 <div class="col-12" style="max-height:100%;">
                                     <div class="row">
                                         <div clas="col-12">
-                                            <p class="h5">
-                                                Username
-                                            </p>
+                                            <h4>
+                                                Programmer_123
+                                            </h4>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="row mx-auto">
                                 <div clas="col-12">
-                                    <p>
-                                    </p>
-                                    <div class="text-success" style="margin-top:-2vh;margin-left:2vw;">
-                                        <i class="fas fa-plus"></i>150 Points</div>
-                                    <p></p>
+                                    <h5>
+                                        <div class="text-success" style="margin-left:2vw;">
+                                            <i class="fas fa-plus"></i>150 Points</div>
+                                        </h5>
                                 </div>
                             </div>
                         </div>
@@ -69,7 +68,7 @@
             <hr style="padding-bottom:1vh;">
 
             <!-- Sidebar Links -->
-            <ul class="list-unstyled">
+            <ul id = "sidebarElementsID" class="list-unstyled">
                 <li class="active">
                     <a href="../View Profile/View Profile.html">
                         <i class="fas fa-user"></i> Profile</a>
@@ -100,77 +99,96 @@
                     <a href="../admin/admin.html">
                         <i class="fas fa-cogs"></i> Administration</a>
                 </li>
-                <li class="active">
-                    <a href="../index.html">
-                        <i class="fas fa-sign-out-alt"></i> Sign Out</a>
+                <hr>
+                <li id="signOutID" class="active">
+                    <a style="margin-left:1%; width:98%;" href="./index.html" class="btn rounded-0 border border-dark btn-default btn-lg">
+                        <span class="glyphicon glyphicon-log-out"></span> Log out
+                      </a>
                 </li>
             </ul>
-            <hr>
         </nav>
         <div id="content">
-            <nav id="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+            <nav style="width:100%;" id="navbar" class="navbar rounded-0 navbar-expand-lg navbar-dark bg-dark sticky-top">
                     
-                <button id="sidebarCollapse" class="btn border-0 rounded bg-transparent" data-toggle="collapse" data-target="#sidebar" data-parent="#navbar"
+                <button id="sidebarCollapse" class="btn border-0 bg-transparent" data-toggle="collapse" data-target="#sidebar" data-parent="#navbar"
                         aria-expanded="false" aria-controls="sidebar">
-                    <img class="img-responsive" width="30" height="30" src="../assets/img/users/user-default.png" id="profPic2">
+                    <img class="img-responsive rounded-circle" width="30" height="30" src="randomImage.jpg" id="profPic2">
                 </button>
                 <a class="navbar-brand" href="../index logged in.html">
-                CodeHome
+                    <b>
+                        Code<i class="fas fa-home"></i>ome </b>
+                </a>
             </a>
-            <button id ="buttonToggler" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+
+            <button id="buttonToggler" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarAsideContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <div>
-                <ul class="navbar-nav mx-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">
-                            <i class="fas fa-fire"></i> Hot</a>
-                        </a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">
-                            <i class="far fa-clock"></i> New</a>
-                        </a>
-                    </li>
-                    <li class="nav-item active dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
-                           aria-expanded="false">
-                            <i class="fas fa-tags"></i> Tags
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item text-dark" href="#">
-                                <i class="fas fa-tag"></i> Tag1</a>
+            
+            <button id="buttonTogglerCategories" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarPopularContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <b> Categories <i class="fas fa-angle-down"></i> </b>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarPopularContent">
+                <div>
+                    <ul class="navbar-nav mx-auto">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#">
+                                <i class="fas fa-fire"></i> Hot</a>
                             </a>
-                            <a class="dropdown-item text-dark" href="#">
-                                <i class="fas fa-tag"></i> Tag2</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <i class="far fa-clock"></i> New</a>
                             </a>
-                            <a class="dropdown-item text-dark" href="#">
-                                <i class="fas fa-tag"></i> Tag3</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">
+                                <i class="fas fa-tags"></i> Tags
                             </a>
-                        </div>
-                    </li>
-                    <li class="nav-item active items-align-right">
-                            <a href="../about/about.html" class="nav-link" href="#">
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item text-dark" href="#">
+                                    <i class="fas fa-tag"></i> C++</a>
+
+                                <a class="dropdown-item text-dark" href="#">
+                                    <i class="fas fa-tag"></i> Java</a>
+
+                                <a class="dropdown-item text-dark" href="#">
+                                    <i class="fas fa-tag"></i> JS</a>
+
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="collapse navbar-collapse justify-content-end" id="navbarAsideContent">
+                <div>
+                    <ul class="navbar-nav mx-auto">
+
+                        <li class="nav-item items-align-right">
+                            <a href="./about/about.html" class="nav-link" href="#">
                                 About</a>
                             </a>
                         </li>
 
-                        <li class="nav-item active">
-                                <a href="../contacts/index.html" class="nav-link" href="#">
-                                    Contact</a>
-                                </a>
-                            </li>
+                        <li class="nav-item">
+                            <a href="./contacts/index.html" class="nav-link" href="#">
+                                Contact</a>
+                            </a>
+                        </li>
 
-                            <li class="nav-item active">
-                                    <a href="../FAQ/faq.html" class="nav-link" href="#">
-                                     FAQ</a>
-                                    </a>
-                                </li>
-                </ul>
-            
-            </div></div>
+                        <li class="nav-item">
+                            <a href="./FAQ/faq.html" class="nav-link" href="#">
+                                FAQ</a>
+                            </a>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
         </nav>
             <br>
             <div id="containerID">
@@ -179,19 +197,17 @@
                         <div class="row clearfix">
                             <div class="col-md-12 column">
                                 <div class="panel panel-default">
-
                                     <section class="row panel-body">
                                         <section class="col-md-9">
                                             <h2>
-                                                <i class="fa fa-smile-o"></i> Question Tittle</h2>
+                                                <i class="fa fa-smile-o"></i> Java vs C++</h2>
                                              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aperiam accusantium facilis cum deserunt atque ex aliquid, distinctio nobis suscipit error illum sequi optio repellat doloribus tenetur pariatur consequuntur ratione expedita.
                                         </section>
-
                                         <section id="user-description" class="col-md-3 ">
                                             <div class="card border-dark">
                                                 <h5 class="card-header border-dark" id="non-mobile-poster-name">
                                                     <a href="../View Profile/View Profile.html">
-                                                        <i class="fa fa-cricle"></i>Code Homer
+                                                        <i class="fa fa-cricle"></i>Programmer_123
                                                     </a>
                                                 </h5>
                                                 <div class="card-block border-dark">
@@ -201,7 +217,7 @@
                                                         </figure>
                                                         <div id="mobile-poster-name">
                                                             <a href="../View Profile/View Profile.html">
-                                                                <i class="fa fa-cricle"></i>Code Homer
+                                                                <i class="fa fa-cricle"></i>Programmer_123
                                                             </a>
                                                         </div>
                                                         <div id="postID" class="d-flex flex-column">
@@ -214,23 +230,17 @@
                                                 </div>
                                             </div>
                                             <div style="font-size:4em;" class="text-secondary">
-
-
                                                 <a href="#" style="color: inherit;text-decoration: none;">
-                                                    <i id="upvoteArr" class="fas fa-caret-up text-secondary">
+                                                    <i id="upvoteArr" class="fas fa-caret-up text-secondary voteUp">
                                                     </i>
                                                 </a>
                                                 <span itemprop="upvoteCount" class="vote-count-post ">0</span>
                                                 <a href="#" style="color: inherit;text-decoration: none;">
-                                                    <i id="downvoteArr" class="fas fa-caret-down text-secondary">
+                                                    <i id="downvoteArr" class="fas fa-caret-down text-secondary voteDown">
                                                     </i>
                                                 </a>
                                             </div>
-
                                         </section>
-
-
-
                                         <div class="panel-footer">
                                             <div>
                                                 <div class="btn-group btn-group-sm " role="group" aria-label="Basic example">
@@ -243,9 +253,7 @@
                                                 </div>
                                             </div>
                                         </div>
-
                                     </section>
-
                                     <div class="panel-heading">
                                         <section class="panel-title">
                                             <section class="pull-left" id="id">
@@ -253,9 +261,7 @@
                                             </section>
                                         </section>
                                     </div>
-                                
                                     <br>
-
                                     <section class="row panel-body">
                                         <section class="col-md-9">
                                             <p>
@@ -264,7 +270,6 @@
                                                 libero!
                                             </p>
                                         </section>
-
                                         <section id="user-description" class="col-md-3 ">
                                             <div class="card border-dark">
                                                 <h5 class="card-header border-dark" id="non-mobile-poster-name">
@@ -290,8 +295,6 @@
                                                 </div>
                                             </div>
                                             <div style="font-size:4em;" class="text-secondary">
-
-
                                                 <a href="#" style="color: inherit;text-decoration: none;">
                                                     <i id="upvoteArr" class="fas fa-caret-up text-secondary">
                                                     </i>
@@ -302,12 +305,8 @@
                                                     </i>
                                                 </a>
                                             </div>
-
                                         </section>
-
                                     </section>
-
-
                                     <section class="row panel-body">
                                         <section class="col-md-9">
                                             <p>
@@ -316,7 +315,6 @@
                                                 libero!
                                             </p>
                                         </section>
-
                                         <section id="user-description" class="col-md-3 ">
                                             <div class="card border-dark">
                                                 <h5 class="card-header border-dark" id="non-mobile-poster-name">
@@ -342,8 +340,6 @@
                                                 </div>
                                             </div>
                                             <div style="font-size:4em;" class="text-secondary">
-
-
                                                 <a href="#" style="color: inherit;text-decoration: none;">
                                                     <i id="upvoteArr" class="fas fa-caret-up text-secondary">
                                                     </i>
@@ -354,16 +350,8 @@
                                                     </i>
                                                 </a>
                                             </div>
-
                                         </section>
-
-
-
-
-
                                     </section>
-
-
                                     <section class="row panel-body">
                                         <section class="col-md-9">
                                             <p>
@@ -372,7 +360,6 @@
                                                 libero!
                                             </p>
                                         </section>
-
                                         <section id="user-description" class="col-md-3 ">
                                             <div class="card border-dark">
                                                 <h5 class="card-header border-dark" id="non-mobile-poster-name">
@@ -398,8 +385,6 @@
                                                 </div>
                                             </div>
                                             <div style="font-size:4em;" class="text-secondary">
-
-
                                                 <a href="#" style="color: inherit;text-decoration: none;">
                                                     <i id="upvoteArr" class="fas fa-caret-up text-secondary">
                                                     </i>
@@ -410,16 +395,8 @@
                                                     </i>
                                                 </a>
                                             </div>
-
                                         </section>
-
-
-
-
-
                                     </section>
-
-
                                     <section class="row panel-body">
                                         <section class="col-md-9">
                                             <p>
@@ -428,7 +405,6 @@
                                                 libero!
                                             </p>
                                         </section>
-
                                         <section id="user-description" class="col-md-3 ">
                                             <div class="card border-dark">
                                                 <h5 class="card-header border-dark" id="non-mobile-poster-name">
@@ -454,8 +430,6 @@
                                                 </div>
                                             </div>
                                             <div style="font-size:4em;" class="text-secondary">
-
-
                                                 <a href="#" style="color: inherit;text-decoration: none;">
                                                     <i id="upvoteArr" class="fas fa-caret-up text-secondary">
                                                     </i>
@@ -466,30 +440,12 @@
                                                     </i>
                                                 </a>
                                             </div>
-
                                         </section>
-
-
-
-
-
                                     </section>
-
-
-
-
                                 </div>
-
-
-
-
-
                             </div>
-
                             <br>
                             <br>
-
-
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
@@ -517,7 +473,7 @@
     </div>
 
     <script>
-        $('#upvoteArr').mouseover(function () {
+        $('upvoteArr').mouseover(function () {
             $("#upvoteArr").removeClass('text-secondary');
             $("#upvoteArr").addClass('text-success');
         })

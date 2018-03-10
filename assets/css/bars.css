@@ -1,6 +1,7 @@
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
 
 @media (min-width: 1200px) {
+
     #sidebar 
     {
         min-width:15vw;
@@ -8,9 +9,21 @@
     }
 
 }
+a.navbar-brand
+{
+    padding-left:20px; 
+    padding-top: 11px; 
+    font-size:140%;
+}
 
 
 @media (min-width: 768px) {
+    
+    #signOutID
+    {
+       padding-top:130%;
+    }
+
     .grid-divider {
         position: relative;
         padding: 0; }
@@ -218,6 +231,46 @@ ul ul a {
     #sidebar ul.components {
         /*padding-top: 45px;*/ 
     } 
+}
+
+@media (max-width: 480px) {
+
+
+    div#classContainerID.container
+    {
+        width:120%;
+        margin-left:-13%;
+    }
+
+    div#questions
+    {
+        margin-left:20px;
+    }
+
+    #searchInputForm
+    {
+        margin-left:6.2%;
+        margin-top:2%;
+        margin-bottom:-2%;
+    }
+
+    #buttonTogglerCategories
+    {
+        margin-top:1%;
+        height:5%;
+    }
+
+    #sidebar
+    {
+        margin-top:20%;
+        font-size:110%;
+        line-height:1.6;
+    }
+
+    #signOutID
+    {
+        padding-top:75%;
+    }
 }
 
 

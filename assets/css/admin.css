@@ -85,6 +85,10 @@ h2
 
 @media (min-width: 1301px)
 {
+    #sidebarElementsID
+    {
+        font-size:130%;
+    }
     
     #teamPhotos
     {
@@ -174,6 +178,10 @@ h2
 
 @media (min-width: 992px) and (max-width:1300px)
 {
+    #sidebarElementsID
+    {
+        font-size:130%;
+    }
 
     div#searchForm
     {

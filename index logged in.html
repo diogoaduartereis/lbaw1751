@@ -1,276 +1,296 @@
 <html class="no-js" lang="en">
 
-    <head>
-        <title>Bootstrap 4 Layout</title>
-        <meta charset="utf-8">
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <title>Bootstrap 4 Layout</title>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-        <link rel="stylesheet" href="./assets/bootstrap/css/bootstrap-homepage.css">
-        <link href="./assets/bootstrap/css/bootstrap.min.css" rel="stylesheet"> 
-        <link href="./assets/css/bootstrap.css" rel="stylesheet">
-        <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
-        <link href="./assets/css/bars.css" rel="stylesheet">
-        <link href="./assets/css/common.css" rel="stylesheet">
-        <link href="./assets/css/admin.css" rel="stylesheet">
-        <link rel="stylesheet" href="./assets/css/Homepage/styles.css">
+    <link rel="stylesheet" href="./assets/bootstrap/css/bootstrap-homepage.css">
+    <link href="./assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="./assets/css/bootstrap.css" rel="stylesheet">
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+    <link href="./assets/css/bars.css" rel="stylesheet">
+    <link href="./assets/css/common.css" rel="stylesheet">
+    <link href="./assets/css/Homepage/styles.css" rel="stylesheet">
 
-        <script src="./assets/js/jquery-1.11.1.min.js"></script>
-        <script src="./assets/bootstrap/js/bootstrap.min.js"></script>
-        <script src="./assets/js/jquery.min.js"></script>
-        <script src="./assets/js/popper.min.js"></script>
-    </head>
+    <script src="./assets/js/jquery-1.11.1.min.js"></script>
+    <script src="./assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="./assets/js/jquery.min.js"></script>
+    <script src="./assets/js/popper.min.js"></script>
+</head>
 
-    <body>
+<body>
 
-        <div id="wrap" class="wrapper">
-            <nav id="sidebar" style = "position:fixed;" class="nav flex-column bg-dark collapse multi-collapse">
-                <br>
-                <div class="row mx-auto">
-                </div>
-                <div id="UserArea" style="height:10%;">
-                    <div>
-                        <div class="row mx-auto">
-                                <hr>
-                            <div class="col-sm-12" id="usernameSec">
-                                <div class="row mx-auto">
-                                    <div class="col-12" style="max-height:100%;">
-                                        <div class="row">
-                                            <div clas="col-12">
-                                                <p class="h5">
-                                                    Username
-                                                </p>
-                                            </div>
+    <div id="wrap" class="wrapper">
+        <nav id="sidebar" style="position:fixed;z-index:10;" class="nav flex-column bg-dark collapse multi-collapse">
+            <br>
+            <div class="row mx-auto">
+            </div>
+            <div id="UserArea" style="height:10%;">
+                <div>
+                    <div class="row mx-auto">
+                        <hr>
+                        <div class="col-sm-12" id="usernameSec">
+                            <div class="row mx-auto">
+                                <div class="col-12" style="max-height:100%;">
+                                    <div class="row">
+                                        <div clas="col-12">
+                                            <h4>
+                                                Programmer_123
+                                            </h4>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row mx-auto">
-                                    <div clas="col-12">
-                                        <p>
-                                        <div class="text-success" style="margin-top:-2vh;margin-left:2vw;">
+                            </div>
+                            <div class="row mx-auto">
+                                <div clas="col-12">
+                                    <h5>
+                                        <div class="text-success" style="margin-left:2vw;">
                                             <i class="fas fa-plus"></i>150 Points</div>
-                                        </p>
-                                    </div>
+                                        </h5>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <hr style="padding-bottom:1vh;">
+            </div>
+            <hr style="padding-bottom:1vh;">
 
-                <!-- Sidebar Links -->
-                <ul class="list-unstyled">
-                    <li class="active">
-                        <a href="./View Profile/View Profile.html">
-                            <i class="fas fa-user"></i> Profile</a>
-                    </li>
-                    <li>
-                        <!-- Link with dropdown items -->
-                        <a id="sidebarDropdown2Button" href="#homeSubmenu2" data-target="#homeSubmenu2" data-toggle="collapse" aria-expanded="false">
-                            <i class="fas fa-archive"></i> Active Questions
-                            <span class="badge badge-pill badge-primary">3</span>
-                            <i id="arrowDown" class="fas fa-angle-down"></i>
-                        </a>
-                        <ul class="collapse list-unstyled" id="homeSubmenu2">
-                            <li>
-                                <a href="./View Question/View Question.html">
-                                    <i class="far fa-envelope"></i> Question 1</a>
+            <!-- Sidebar Links -->
+            <ul id = "sidebarElementsID" class="list-unstyled">
+                <li class="active">
+                    <a href="./View Profile/View Profile.html">
+                        <i class="fas fa-user"></i> Profile</a>
+                </li>
+                <li>
+                    <!-- Link with dropdown items -->
+                    <a id="sidebarDropdown2Button" href="#homeSubmenu2" data-target="#homeSubmenu2" data-toggle="collapse" aria-expanded="false">
+                        <i class="fas fa-archive"></i> Active Questions
+                        <span class="badge badge-pill badge-primary">3</span>
+                        <i id="arrowDown" class="fas fa-angle-down"></i>
+                    </a>
+                    <ul class="collapse list-unstyled" id="homeSubmenu2">
+                        <li>
+                            <a href="./View Question/View Question.html">
+                                <i class="far fa-envelope"></i> Java vs C++</a>
+                        </li>
+                        <li>
+                            <a href="./View Question/View Question.html">
+                                <i class="far fa-envelope"></i> Passing string by reference</a>
+                        </li>
+                        <li>
+                            <a href="./View Question/View Question.html">
+                                <i class="far fa-envelope"></i> JVM Thrash collector</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="active">
+                    <a href="./admin/admin.html">
+                        <i class="fas fa-cogs"></i> Administration</a>
+                </li>
+                <hr>
+                <li id="signOutID" class="active">
+                    <a style="margin-left:1%; width:98%;" href="./index.html" class="btn rounded-0 border border-dark btn-default btn-lg">
+                        <span class="glyphicon glyphicon-log-out"></span> Log out
+                      </a>
+                </li>
+            </ul>
+        </nav>
+        <div id="content">
+            <nav style="width:100%;" id="navbar" class="navbar rounded-0 navbar-expand-lg navbar-dark bg-dark sticky-top">
+
+                <button id="sidebarCollapse" class="btn border-0 bg-transparent" data-toggle="collapse" data-target="#sidebar" data-parent="#navbar"
+                    aria-expanded="false" aria-controls="sidebar">
+                    <img class="img-responsive rounded-circle" width="30" height="30" src="./View Question/randomImage.jpg" id="profPic2">
+                </button>
+                <a class="navbar-brand" href="./index.html">
+                    <b>
+                        Code<i class="fas fa-home"></i>ome </b>
+                </a>
+
+                <button id="buttonToggler" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarAsideContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+                
+                <button id="buttonTogglerCategories" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarPopularContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <b> Categories <i class="fas fa-angle-down"></i> </b>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarPopularContent">
+                    <div>
+                        <ul class="navbar-nav mx-auto">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#">
+                                    <i class="fas fa-fire"></i> Hot</a>
+                                </a>
                             </li>
-                            <li>
-                                <a href="./View Question/View Question.html">
-                                    <i class="far fa-envelope"></i> Question 2</a>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    <i class="far fa-clock"></i> New</a>
+                                </a>
                             </li>
-                            <li>
-                                <a href="./View Question/View Question.html">
-                                    <i class="far fa-envelope"></i> Question 3</a>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">
+                                    <i class="fas fa-tags"></i> Tags
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item text-dark" href="#">
+                                        <i class="fas fa-tag"></i> C++</a>
+
+                                    <a class="dropdown-item text-dark" href="#">
+                                        <i class="fas fa-tag"></i> Java</a>
+
+                                    <a class="dropdown-item text-dark" href="#">
+                                        <i class="fas fa-tag"></i> JS</a>
+
+                                </div>
                             </li>
                         </ul>
-                    </li>
-                    <li class="active">
-                        <a href="#">
-                            <i class="fas fa-cogs"></i> Administration</a>
-                    </li>
-                    <li class="active">
-                        <a href="not logged homepage.html">
-                            <i class="fas fa-sign-out-alt"></i> Sign Out</a>
-                    </li>
-                </ul>
-                <hr>
-            </nav>
-            <div id="content">
-                <nav id="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
-                    
-                    <button id="sidebarCollapse" class="btn border-0 rounded bg-transparent" data-toggle="collapse" data-target="#sidebar" data-parent="#navbar"
-                            aria-expanded="false" aria-controls="sidebar">
-                        <img class="img-responsive" width="30" height="30" src="./assets/img/users/user-default.png" id="profPic2">
-                    </button>
-                    <a class="navbar-brand" href="./index.html">
-                    CodeHome
-                </a>
-                <button id ="buttonToggler" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <div>
-                    <ul class="navbar-nav mx-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="#">
-                                <i class="fas fa-fire"></i> Hot</a>
-                            </a>
-                        </li>
-                        <li class="nav-item active">
-                            <a class="nav-link" href="#">
-                                <i class="far fa-clock"></i> New</a>
-                            </a>
-                        </li>
-                        <li class="nav-item active dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
-                               aria-expanded="false">
-                                <i class="fas fa-tags"></i> Tags
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item text-dark" href="#">
-                                    <i class="fas fa-tag"></i> Tag1</a>
-                                </a>
-                                <a class="dropdown-item text-dark" href="#">
-                                    <i class="fas fa-tag"></i> Tag2</a>
-                                </a>
-                                <a class="dropdown-item text-dark" href="#">
-                                    <i class="fas fa-tag"></i> Tag3</a>
-                                </a>
-                            </div>
-                        </li>
-                        <li class="nav-item active items-align-right">
+                    </div>
+                </div>
+
+                <div class="collapse navbar-collapse justify-content-end" id="navbarAsideContent">
+                    <div>
+                        <ul class="navbar-nav mx-auto">
+
+                            <li class="nav-item items-align-right">
                                 <a href="./about/about.html" class="nav-link" href="#">
                                     About</a>
                                 </a>
                             </li>
 
-                            <li class="nav-item active">
-                                    <a href="./contacts/index.html" class="nav-link" href="#">
-                                        Contact</a>
-                                    </a>
-                                </li>
+                            <li class="nav-item">
+                                <a href="./contacts/index.html" class="nav-link" href="#">
+                                    Contact</a>
+                                </a>
+                            </li>
 
-                                <li class="nav-item active">
-                                        <a href="./FAQ/faq.html" class="nav-link" href="#">
-                                         FAQ</a>
-                                        </a>
-                                    </li>
-                    </ul>
-                
-                </div></div>
-            </nav>
+                            <li class="nav-item">
+                                <a href="./FAQ/faq.html" class="nav-link" href="#">
+                                    FAQ</a>
+                                </a>
+                            </li>
+                        </ul>
 
-                <div id = "containerID">
-                    <div id = "contentID">
-                            <div id="classContainerID" class="container">
-                <div class="row">
-                    <div id="searchInputForm" class="col-12">
-                        <div class="row" id="searchInput">
-                            <div class="col-8 mx-auto" style="margin-left:10vw;">
-                                <div class="input-group mb-3 mx-auto">
-                                    <div class="input-group-prepend">
-                                        <button type="button" class="btn btn-outline-dark dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true"
-                                                aria-expanded="false">
-                                            <span class="sr-only">Sort Methods</span>Sort By
-                                        </button>
-                                        <ul class="dropdown-menu text-dark">
-                                            <li>
-                                                <a href="#" class="small" data-value="option1" tabIndex="-1">
-                                                    <div class="checkbox">
-                                                        <label>
-                                                            <input type="checkbox">
-                                                            <span class="checkbox-material">
-                                                                <span class="check"></span>
-                                                            </span> Question Points
-                                                        </label>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="small" data-value="option1" tabIndex="-1">
-                                                    <div class="checkbox">
-                                                        <label>
-                                                            <input type="checkbox">
-                                                            <span class="checkbox-material">
-                                                                <span class="check"></span>
-                                                            </span> Poster Points
-                                                        </label>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <input type="text" class="form-control border-dark" aria-label="Text input with segmented dropdown button" data-toggle="tooltip"
-                                           data-placement="bottom" title="Search For Questions. Use the # before a word to add a tag search to your question.">
-                                    <button type="button" class="btn btn-outline-dark">Search</button>
-
-                                   <a href="./Post question page/Post question.html"> <button type="button" class="btn btn-primary" style="margin-left:1vw;">Post New Question</button></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-1">
                     </div>
                 </div>
-                <br>
-                <div id="Questions">
-                        <br>
+            </nav>
+
+            <div id="containerID">
+                <div id="contentID">
+                    <div id="classContainerID" class="container">
                         <div class="row">
-                            <div class="col-12">
-                                <div class="col-11 mx-auto">
-                                    <div class="card border-dark">
-                                        <h5 class="card-header border-dark">
-                                            <div class="row">
-                                                <div class="col-6">
-                                                    <a href="./View Question/View Question.html">Question Name</a>
-                                                    <a href="#" style="color: inherit;text-decoration: none;padding-left:10px;" data-toggle="tooltip" data-placement="bottom"
-                                                       title="Upvote Question">
-                                                        <i id="upvoteArr" class="fas fa-caret-up">
-                                                        </i>
-                                                    </a>
-                                                    <a href="#" style="color: inherit;text-decoration: none;" data-toggle="tooltip" data-placement="top" title="Downvote Question">
-                                                        <i id="downvoteArr" class="fas fa-caret-down">
-                                                        </i>
-                                                    </a>
-                                                </div>
-                                                <div class="col-6 text-right">
-    
-                                                    <div class="text-success">
-                                                        <i class="fas fa-plus"></i>150 Points</div>
-    
-                                                </div>
+                            <div id="searchInputForm" class="col-12">
+                                <div class="row" id="searchInput">
+                                    <div class="col-8 mx-auto" style="margin-left:10vw;">
+                                        <div class="input-group mb-3 mx-auto">
+                                            <div class="input-group-prepend">
+                                                <button type="button" class="btn btn-outline-dark dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true"
+                                                    aria-expanded="false">
+                                                    <span class="sr-only">Sort Methods</span>Sort By
+                                                </button>
+                                                <ul class="dropdown-menu text-dark">
+                                                    <li>
+                                                        <a href="#" class="small" data-value="option1" tabIndex="-1">
+                                                            <div class="checkbox">
+                                                                <label>
+                                                                    <input type="checkbox">
+                                                                    <span class="checkbox-material">
+                                                                        <span class="check"></span>
+                                                                    </span> Question Points
+                                                                </label>
+                                                            </div>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#" class="small" data-value="option1" tabIndex="-1">
+                                                            <div class="checkbox">
+                                                                <label>
+                                                                    <input type="checkbox">
+                                                                    <span class="checkbox-material">
+                                                                        <span class="check"></span>
+                                                                    </span> Poster Points
+                                                                </label>
+                                                            </div>
+                                                        </a>
+                                                    </li>
+                                                </ul>
                                             </div>
-                                        </h5>
+                                            <input type="text" class="form-control border-dark" aria-label="Text input with segmented dropdown button" data-toggle="tooltip"
+                                                data-placement="bottom" title="Search For Questions. Use the # before a word to add a tag search to your question.">
+                                            <button type="button" class="btn btn-outline-dark">Search</button>
+
+                                            <a href="./Post question page/Post question.html">
+                                                <button id="postQuestionButton" type="button" class="btn btn-primary">Post New Question</button>
+                                            </a>
                                         </div>
-                                        <div class="card-block border-dark">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-1">
+                            </div>
+                        </div>
+                        <br>
+                        <div id="Questions">
+                            <br>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="col-11 mx-auto">
+                                        <div class="card border">
+                                            <h5 class="card-header border">
+                                                <div class="row">
+                                                    <div class="col-9">
+                                                        <a href="./View Question/View Question.html"> <b> Is java better than c++ or the other way around? </b></a>
+                                                        <a href="#" style="color: inherit;text-decoration: none;padding-left:10px;" data-toggle="tooltip" data-placement="bottom"
+                                                            title="Upvote Question">
+                                                            <i id="upvoteArr" class="fas fa-caret-up">
+                                                            </i>
+                                                        </a>
+                                                        <a href="#" style="color: inherit;text-decoration: none;" data-toggle="tooltip" data-placement="top" title="Downvote Question">
+                                                            <i id="downvoteArr" class="fas fa-caret-down">
+                                                            </i>
+                                                        </a>
+                                                    </div>
+                                                    <div class="col-3 text-right">
+        
+                                                        <div class="text-success">
+                                                            <i class="fas fa-plus"></i>150 Points</div>
+        
+                                                    </div>
+                                                </div>
+                                            </h5>
+                                        </div>
+                                        <div class="card-block border">
                                             <h4 class="card-title"></h4>
                                             <div class="row mx-auto">
                                                 <div class="col-12" style="font-size: 0.9rem;">
-                                                    <p class="card-text text-dark">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis itaque,
-                                                        possimus voluptatibus optio nisi odit nulla, saepe eligendi corporis iusto
-                                                        excepturi ipsa. Fuga sed quasi vitae harum totam numquam officiis?</p>
-                                                    <blockquote>
-                                                        Username 500 Points
-                                                    </blockquote>
+                                                    <h5 class="card-text text-dark">I'm trying to includes some files in my html file, but i'm having trouble doing
+                                                        so, can anyone help?</h5>
+                                                    <br>
+                                                    <div class="sticky-right">
+                                                        <h6 style="font-size:1.2em; color: rgb(0, 153, 255);">By: <a href="./View Profile/View Profile.html">DiogoReis</a> (45 Points)</h6>
+                                                    </div>
+                                                    <br>
                                                     <h6>Tags:
-                                                        <a href="#" class="badge badge-pill badge-primary">Tag1</a>
-                                                        <a href="#" class="badge badge-pill badge-primary">Tag2</a>
-                                                        <a href="#" class="badge badge-pill badge-primary">Tag3</a>
+                                                        <a href="#" class="badge badge-pill badge-primary">Java</a>
+                                                        <a href="#" class="badge badge-pill badge-primary">C++</a>
+                                                        <a href="#" class="badge badge-pill badge-primary">Big O</a>
                                                     </h6>
                                                 </div>
                                             </div>
                                             <br>
                                         </div>
-                                        <div class="card-footer border-dark">
+                                        <div class="card-footer border-bottom border-top-0 border-dark">
                                             <div class="btn-group btn-group-sm " role="group" aria-label="Basic example">
                                                 <button type="button" class="btn btn-outline-primary">
-                                                    <a href="#" style="text-decoration:none;">
+                                                    <a href="./View Question/View Question.html" style="text-decoration:none;">
                                                         <i class="fas fa-comment"></i> Reply</button>
-    
+        
                                                 <button type="button" class="btn btn-outline-danger">
                                                     <i class="fas fa-flag"></i> Report</button>
                                                 <button type="button" class="btn btn-outline-danger">
@@ -280,18 +300,18 @@
                                     </div>
                                 </div>
                             </div>
-
+        
                             <br>
                             <div class="row">
                                 <div class="col-12">
                                     <div class="col-11 mx-auto">
-                                        <div class="card border-dark">
-                                            <h5 class="card-header border-dark">
+                                        <div class="card border">
+                                            <h5 class="card-header border">
                                                 <div class="row">
-                                                    <div class="col-6">
-                                                        <a href="./View Question/View Question.html">Question Name</a>
+                                                    <div class="col-9">
+                                                        <a href="./View Question/View Question.html"> <b> How to include files in html? </b></a>
                                                         <a href="#" style="color: inherit;text-decoration: none;padding-left:10px;" data-toggle="tooltip" data-placement="bottom"
-                                                           title="Upvote Question">
+                                                            title="Upvote Question">
                                                             <i id="upvoteArr" class="fas fa-caret-up">
                                                             </i>
                                                         </a>
@@ -300,7 +320,72 @@
                                                             </i>
                                                         </a>
                                                     </div>
-                                                    <div class="col-6 text-right">
+                                                    <div class="col-3 text-right">
+        
+                                                        <div class="text-success">
+                                                            <i class="fas fa-plus"></i>0 Points</div>
+        
+                                                    </div>
+                                                </div>
+                                            </h5>
+                                        </div>
+                                        <div class="card-block border">
+                                            <h4 class="card-title"></h4>
+                                            <div class="row mx-auto">
+                                                <div class="col-12" style="font-size: 0.9rem;">
+                                                    <h5 class="card-text text-dark">I'm trying to includes some files in my html file, but i'm having trouble doing
+                                                        so, can anyone help?</h5>
+                                                    <br>
+                                                    <div class="sticky-right">
+                                                        <h6 style="font-size:1.2em; color: rgb(0, 153, 255);">By: <a href="./View Profile/View Profile.html">DiogoReis</a> (45 Points)</h6>
+                                                    </div>
+                                                    <br>
+                                                    <h6>Tags:
+                                                        <a href="#" class="badge badge-pill badge-primary">HTML</a>
+                                                        <a href="#" class="badge badge-pill badge-primary">WEB</a>
+                                                        <a href="#" class="badge badge-pill badge-primary">JS</a>
+                                                    </h6>
+                                                </div>
+                                            </div>
+                                            <br>
+                                        </div>
+                                        <div class="card-footer border-bottom border-top-0 border-dark">
+                                            <div class="btn-group btn-group-sm " role="group" aria-label="Basic example">
+                                                <button type="button" class="btn btn-outline-primary">
+                                                    <a href="./View Question/View Question.html" style="text-decoration:none;">
+                                                        <i class="fas fa-comment"></i> Reply</button>
+        
+                                                <button type="button" class="btn btn-outline-danger">
+                                                    <i class="fas fa-flag"></i> Report</button>
+                                                <button type="button" class="btn btn-outline-danger">
+                                                    <i class="fas fa-trash"></i> Remove</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+        
+                            <br>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="col-11 mx-auto">
+                                        <div class="card border">
+                                            <h5 class="card-header border">
+                                                <div class="row">
+                                                    <div class="col-9">
+                                                        <a href="./View Question/View Question.html"> <b> How can I find the maximum amount of available RAM to a process?
+                                                            </b></a>
+                                                        <a href="#" style="color: inherit;text-decoration: none;padding-left:10px;" data-toggle="tooltip" data-placement="bottom"
+                                                            title="Upvote Question">
+                                                            <i id="upvoteArr" class="fas fa-caret-up">
+                                                            </i>
+                                                        </a>
+                                                        <a href="#" style="color: inherit;text-decoration: none;" data-toggle="tooltip" data-placement="top" title="Downvote Question">
+                                                            <i id="downvoteArr" class="fas fa-caret-down">
+                                                            </i>
+                                                        </a>
+                                                    </div>
+                                                    <div class="col-3 text-right">
         
                                                         <div class="text-success">
                                                             <i class="fas fa-plus"></i>150 Points</div>
@@ -308,160 +393,99 @@
                                                     </div>
                                                 </div>
                                             </h5>
-                                            </div>
-                                            <div class="card-block border-dark">
-                                                <h4 class="card-title"></h4>
-                                                <div class="row mx-auto">
-                                                    <div class="col-12" style="font-size: 0.9rem;">
-                                                        <p class="card-text text-dark">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis itaque,
-                                                            possimus voluptatibus optio nisi odit nulla, saepe eligendi corporis iusto
-                                                            excepturi ipsa. Fuga sed quasi vitae harum totam numquam officiis?</p>
-                                                        <blockquote>
-                                                            Username 500 Points
-                                                        </blockquote>
-                                                        <h6>Tags:
-                                                            <a href="#" class="badge badge-pill badge-primary">Tag1</a>
-                                                            <a href="#" class="badge badge-pill badge-primary">Tag2</a>
-                                                            <a href="#" class="badge badge-pill badge-primary">Tag3</a>
-                                                        </h6>
-                                                    </div>
+                                        </div>
+                                        <div class="card-block border">
+                                            <h4 class="card-title"></h4>
+                                            <div class="row mx-auto">
+                                                <div class="col-12" style="font-size: 0.9rem;">
+                                                    <h5 class="card-text text-dark">Note this is not a duplicate of How to get the size of available system memory?. 
+                                                        The answers to that question suggest adding a reference to Microsoft .VisualBasic .Devices .ComputerInfo .TotalPhysicalMemory or using WMI or Performance Counters which are all Windows only APIs. 
+                                                        I require a cross-platform solution I can use in .NET Core.</h5>
+                                                        <br>
+                                                        <div class="sticky-right">
+                                                            <h6 style="font-size:1.2em; color: rgb(0, 153, 255);">By: <a href="./View Profile/View Profile.html">DiogoReis</a> (45 Points)</h6>
+                                                        </div>
+                                                        <br>
+                                                    <h6>Tags:
+                                                        <a href="#" class="badge badge-pill badge-primary">OS</a>
+                                                        <a href="#" class="badge badge-pill badge-primary">Memory</a>
+                                                        <a href="#" class="badge badge-pill badge-primary">Heap</a>
+                                                    </h6>
                                                 </div>
-                                                <br>
                                             </div>
-                                            <div class="card-footer border-dark">
-                                                <div class="btn-group btn-group-sm " role="group" aria-label="Basic example">
-                                                    <button type="button" class="btn btn-outline-primary">
-                                                        <a href="#" style="text-decoration:none;">
-                                                            <i class="fas fa-comment"></i> Reply</button>
+                                            <br>
+                                        </div>
+                                        <div class="card-footer border-bottom border-top-0 border-dark">
+                                            <div class="btn-group btn-group-sm " role="group" aria-label="Basic example">
+                                                <button type="button" class="btn btn-outline-primary">
+                                                    <a href="./View Question/View Question.html" style="text-decoration:none;">
+                                                        <i class="fas fa-comment"></i> Reply</button>
         
-                                                    <button type="button" class="btn btn-outline-danger">
-                                                        <i class="fas fa-flag"></i> Report</button>
-                                                    <button type="button" class="btn btn-outline-danger">
-                                                        <i class="fas fa-trash"></i> Remove</button>
-                                                </div>
+                                                <button type="button" class="btn btn-outline-danger">
+                                                    <i class="fas fa-flag"></i> Report</button>
+                                                <button type="button" class="btn btn-outline-danger">
+                                                    <i class="fas fa-trash"></i> Remove</button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-
-                                <br>
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class="col-11 mx-auto">
-                                            <div class="card border-dark">
-                                                <h5 class="card-header border-dark">
-                                                    <div class="row">
-                                                        <div class="col-6">
-                                                            <a href="./View Question/View Question.html">Question Name</a>
-                                                            <a href="#" style="color: inherit;text-decoration: none;padding-left:10px;" data-toggle="tooltip" data-placement="bottom"
-                                                               title="Upvote Question">
-                                                                <i id="upvoteArr" class="fas fa-caret-up">
-                                                                </i>
-                                                            </a>
-                                                            <a href="#" style="color: inherit;text-decoration: none;" data-toggle="tooltip" data-placement="top" title="Downvote Question">
-                                                                <i id="downvoteArr" class="fas fa-caret-down">
-                                                                </i>
-                                                            </a>
-                                                        </div>
-                                                        <div class="col-6 text-right">
-            
-                                                            <div class="text-success">
-                                                                <i class="fas fa-plus"></i>150 Points</div>
-            
-                                                        </div>
-                                                    </div>
-                                                </h5>
-                                                </div>
-                                                <div class="card-block border-dark">
-                                                    <h4 class="card-title"></h4>
-                                                    <div class="row mx-auto">
-                                                        <div class="col-12" style="font-size: 0.9rem;">
-                                                            <p class="card-text text-dark">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis itaque,
-                                                                possimus voluptatibus optio nisi odit nulla, saepe eligendi corporis iusto
-                                                                excepturi ipsa. Fuga sed quasi vitae harum totam numquam officiis?</p>
-                                                            <blockquote>
-                                                                Username 500 Points
-                                                            </blockquote>
-                                                            <h6>Tags:
-                                                                <a href="#" class="badge badge-pill badge-primary">Tag1</a>
-                                                                <a href="#" class="badge badge-pill badge-primary">Tag2</a>
-                                                                <a href="#" class="badge badge-pill badge-primary">Tag3</a>
-                                                            </h6>
-                                                        </div>
-                                                    </div>
-                                                    <br>
-                                                </div>
-                                                <div class="card-footer border-dark">
-                                                    <div class="btn-group btn-group-sm " role="group" aria-label="Basic example">
-                                                        <button type="button" class="btn btn-outline-primary">
-                                                            <a href="#" style="text-decoration:none;">
-                                                                <i class="fas fa-comment"></i> Reply</button>
-            
-                                                        <button type="button" class="btn btn-outline-danger">
-                                                            <i class="fas fa-flag"></i> Report</button>
-                                                        <button type="button" class="btn btn-outline-danger">
-                                                            <i class="fas fa-trash"></i> Remove</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                            </div>
+                        </div>
+                        <br>
                     </div>
-                    <br>
-                </div>
                 </div>
             </div>
-            
-        <script>
+
+            <script>
 
 
-            $('#upvoteArr').mouseover(function () {
-                $("#upvoteArr").removeClass('text-secondary');
-                $("#upvoteArr").addClass('text-success');
-            })
-            $('#upvoteArr').mouseleave(function () {
-                $("#upvoteArr").addClass('text-secondary');
-                $("#upvoteArr").removeClass('text-success');
-            })
+                $('#upvoteArr').mouseover(function () {
+                    $("#upvoteArr").removeClass('text-secondary');
+                    $("#upvoteArr").addClass('text-success');
+                })
+                $('#upvoteArr').mouseleave(function () {
+                    $("#upvoteArr").addClass('text-secondary');
+                    $("#upvoteArr").removeClass('text-success');
+                })
 
 
-            $('#downvoteArr').mouseover(function () {
-                $("#downvoteArr").removeClass('text-secondary');
-                $("#downvoteArr").addClass('text-danger');
-            })
-            $('#downvoteArr').mouseleave(function () {
-                $("#downvoteArr").addClass('text-secondary');
-                $("#downvoteArr").removeClass('text-danger');
-            })
+                $('#downvoteArr').mouseover(function () {
+                    $("#downvoteArr").removeClass('text-secondary');
+                    $("#downvoteArr").addClass('text-danger');
+                })
+                $('#downvoteArr').mouseleave(function () {
+                    $("#downvoteArr").addClass('text-secondary');
+                    $("#downvoteArr").removeClass('text-danger');
+                })
 
-            var options = [];
+                var options = [];
 
-            $('.dropdown-menu a').on('click', function (event) {
+                $('.dropdown-menu a').on('click', function (event) {
 
-                var $target = $(event.currentTarget),
+                    var $target = $(event.currentTarget),
                         val = $target.attr('data-value'),
                         $inp = $target.find('input'),
                         idx;
 
-                if ((idx = options.indexOf(val)) > -1) {
-                    options.splice(idx, 1);
-                    setTimeout(function () {
-                        $inp.prop('checked', false)
-                    }, 0);
-                } else {
-                    options.push(val);
-                    setTimeout(function () {
-                        $inp.prop('checked', true)
-                    }, 0);
-                }
+                    if ((idx = options.indexOf(val)) > -1) {
+                        options.splice(idx, 1);
+                        setTimeout(function () {
+                            $inp.prop('checked', false)
+                        }, 0);
+                    } else {
+                        options.push(val);
+                        setTimeout(function () {
+                            $inp.prop('checked', true)
+                        }, 0);
+                    }
 
-                $(event.target).blur();
+                    $(event.target).blur();
 
-                return false;
-            });
+                    return false;
+                });
 
-        </script>
-   <script src="./assets/js/bars.js"></script>
-    </body>
+            </script>
+            <script src="./assets/js/bars.js"></script>
+</body>
 
 </html>

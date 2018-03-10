@@ -1,166 +1,3 @@
-
-/*
-@media (max-width:1060px)
-{
-    #contentID
-    {
-      margin-left:160px;
-      margin-right:0px;
-      font-size:90%;
-    }
-
-    #sidebar
-    {
-        min-width:18.2vw;
-        max-width:18.2vw;
-    }
-}*/
-
-#imagesID
-{
-    width:92%;
-}
-
-#sidebar
-{
-    height:100%;
-}
-
-#sidebar.margin
-{
-    margin-top:250px;
-}
-
-.navbar
-{
-    margin-bottom:0px;
-}
-
-@media (min-width: 1301px)
-{
-
-    #usernameSec
-    {
-        padding-top:10px;
-    }
-
-
-    #sidebar
-    {
-        min-width:17.2vw;
-        max-width:17.2vw;
-        transition:0.3s;
-    }
-
-    #containerID
-    {
-        margin-left:70px;
-        transition:0.3s;
-    }
-
-    #contentID
-    {
-        width:92%;
-        margin-left:14vw;
-        transition:0.3s;
-    }
-
-    #containerID.inactive
-    {
-        margin-left:-140px;
-        transition:0.3s;
-    }
-}
-
-@media (min-width: 992px) and (max-width:1300px)
-{
-
-    #usernameSec
-    {
-        padding-top:0px;
-    }
-
-    #sidebar
-    {
-        min-width:18.2vw;
-        max-width:18.2vw;
-    }
-
-    #containerID
-    {
-        margin-left:50px;
-        transition:0.3s;
-        width:92%;
-    }
-
-    #contentID
-    {
-        width:95%;
-        margin-left:14vw;
-        transition:0.3s;
-    }
-
-    #containerID.inactive
-    {
-        margin-left:-100px;
-        transition:0.3s;
-    }
-}
-
-@media (max-width: 991px) {
-
-    #usernameSec
-    {
-        padding-top:0px;
-    }
-
-
-    #sidebar
-    {
-        min-width:18.2vw;
-    }
-
-    #containerID
-    {
-        margin-left:50px;
-        transition:0.3s;
-        width:92%;
-    }
-
-    #contentID
-    {
-        width:95%;
-        margin-left:14vw;
-    }
-
-    #containerID.inactive
-    {
-        margin-left:-100px;
-        transition:0.3s;
-    }
-}
-
-
-@media (max-width: 810px) {
-    #contentID
-    {
-        width:95%;
-    }   
-
-    #containerID.inactive
-    {
-        width:92%;
-        margin-left:100px;
-        transition:0.3s;
-    }
-
-    #containerID.inactive
-    {
-        margin-left:-100px;
-        transition:0.3s;
-    }
-}
-
 @media (max-width: 768px) {
     #containerID.inactive
     {
@@ -183,6 +20,7 @@
     {
         display:none;
     }
+
 }
 
 @media (max-width: 480px) {
@@ -194,7 +32,14 @@
 
     #contentID
     {
-        width:95vw;
+        width:85vw;
+        margin-left:18vw;
+    }
+
+    #jumbotronID.active
+    {
+        margin-left:-37vw;
+        margin-top:-5vh;
     }
 }
 

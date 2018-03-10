@@ -40,6 +40,11 @@ dd{
 }
 
 @media (min-width: 768px) {
+    #sidebarElementsID
+    {
+        font-size:130%;
+    }
+
     #mobile-poster-name
     {
         display:none;
