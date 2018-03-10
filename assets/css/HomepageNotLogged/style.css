@@ -1,0 +1,39 @@
+@import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+
+@media (min-width: 1600px) {
+    div#classContainerID.container
+    {
+        width:100%;
+        margin-left:20%;
+    }
+}
+
+
+@media (min-width: 768px) and (max-width:1599px){
+    div#classContainerID.container
+    {
+        width:100%;
+        margin-left:8%;
+    }
+}
+
+@media (max-width: 480px) {
+
+    #searchInputForm
+    {
+        margin-left:6.2%;
+        margin-top:2%;
+        margin-bottom:-2%;
+    }
+
+    div#classContainerID.container
+    {
+        width:130%;
+        margin-left:-23%;
+    }
+
+    div#questions
+    {
+        margin-left:20px;
+    }
+}
