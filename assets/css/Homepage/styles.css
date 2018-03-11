@@ -181,8 +181,8 @@ a, a:hover, a:focus {
     transition: all 0.3s; }
 
 #sidebar {
-    min-width: 18vw;
-    max-width: 18vw;
+    min-width: 18.2vw;
+    max-width: 18.2vw;
     min-height: 100vh;
     background: #7386D5;
     color: #fff;
