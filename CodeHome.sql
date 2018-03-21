@@ -1,6 +1,6 @@
 CREATE TABLE "User" (
     id              SERIAL CONSTRAINT userPK PRIMARY KEY,
-    username        TEXT NOT NULL,
+    username        TEXT NOT NULL UNIQUE,
     type            TEXT NOT NULL DEFAULT 'REGULAR',
     pass_token      TEXT NOT NULL,
     auth_type       INTEGER NOT NULL,
