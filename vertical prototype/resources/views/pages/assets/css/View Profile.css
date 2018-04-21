@@ -1,0 +1,13 @@
+.breadcrumb {
+    padding: 5px 15px !important;
+}
+
+#accordion .card .card-header {
+    padding: 5px 15px !important;
+}
+
+@media screen and (max-width:768px) {
+    .card {
+        margin-bottom: 1rem !important;
+    }
+}
