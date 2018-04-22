@@ -110,6 +110,12 @@
             {
                 btn.onclick = function()
                 {
+                    var loggedIn = {{ auth()->check() ? 'true' : 'false' }};
+                    if (loggedIn) 
+                    {
+                        window.location = "/";
+                        return;
+                    }
                     //Clear server message
                 let serverMsg = document.getElementById('errorMsgFromServer');
                 if (serverMsg != null)

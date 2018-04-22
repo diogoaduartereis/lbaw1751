@@ -18,7 +18,6 @@
     </head>
 
     <body style="background: rgba(223, 220, 220, 0.842);">
-
         <!-- Top content -->
         <div class="top-content">
 
@@ -49,7 +48,7 @@
                                     </div>
                                 </div>
                                 <div class="form-bottom ">
-                            <form action="/login" method="post">
+                            <form onsubmit="return checkAuth();" action = "/login" method="post">
                                     {!! csrf_field() !!}
                                     <div class="form-group">
                                         <label class="sr-only " for="form-username">Username</label>
@@ -63,7 +62,8 @@
                                     @if($errors->any())
                                         <h4 style = "color:red; text-align:center">{{$errors->first()}}</h4>
                                     @endif
-                                    <button type="submit" class="btn btn-lg center-block btn-primary" style="background:#007bff;">Sign in!</button>
+                                    <a id="submitBtn" class="btn btn-lg center-block btn-primary" style="background:#007bff; ">Sign in!</a>
+                                            <button id="submitform" type="submit" hidden="true"></button>
                             </form>
 
                                     <div class="register-link ">
@@ -82,6 +82,21 @@
 
 
         <!-- Javascript -->
+        <script type="text/javascript"> 
+
+            let btn = document.getElementById('submitBtn');
+            if(btn!=null)
+            {
+                btn.onclick = function()
+                {
+                    var loggedIn = {{ auth()->check() ? 'true' : 'false' }};
+                    if (loggedIn) 
+                        window.location = "/";
+                    else
+                        document.getElementById('submitform').click();
+                }
+            }
+        </script>
         <script src="../assets/js/jquery-1.11.1.min.js "></script>
         <script src="../assets/bootstrap/js/bootstrap.min.js "></script>
         <script src="../assets/js/jquery.backstretch.min.js "></script>

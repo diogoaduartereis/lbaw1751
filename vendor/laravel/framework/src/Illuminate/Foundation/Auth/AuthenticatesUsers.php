@@ -44,7 +44,7 @@ trait AuthenticatesUsers
         if($user != null)
         {
             if($user->state == 'BANNED')
-                return  Redirect('/login')->withErrors("Your account has been banned!");
+                return Redirect('/login')->withErrors("Your account has been banned!");
         }
 
         if ($this->attemptLogin($request)) {
