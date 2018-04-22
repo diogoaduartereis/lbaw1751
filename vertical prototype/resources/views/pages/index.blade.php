@@ -70,10 +70,7 @@
                                                                data-placement="bottom" title="Search For Questions. Use the # before a word to add a tag search to your question.">
                                                         <button type="button submit" class="btn btn-outline-dark">Search</button>
                                                         
-                                                    </form>
-                                                        <a href="./Post question page/Post question.php">
-                                                            <button id="postQuestionButton" type="button" class="btn btn-primary">Post New Question</button>
-                                                        </a>
+                                                    </form>    
                                     </div>
                                 </div>
                             </div>
