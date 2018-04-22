@@ -19,7 +19,6 @@
     </head>
 
     <body style="background: rgba(223, 220, 220, 0.842);">
-        <script src="verifyInputs.js"></script>
         <!-- Top content -->
 
         <div class="top-content">
@@ -45,25 +44,22 @@
                                 <div class="form-top">
                                     <div class="form-top-left">
                                         <h3>Sign up now</h3>
-                                        <p id="logmsg">Fill in the form below to get instant access:</p>
+                                        <p>Fill in the form below to get instant access:</p>
                                     </div>
                                     <div class="form-top-right">
                                         <i class="fas fa-pencil-alt"></i>
                                     </div>
                                 </div>
-
                                 <div class="form-bottom" >
                                     <form action="/register" method="POST">
                                         {!! csrf_field() !!}
-                                    <!--<form role="form" action="../index logged in.php" method="post" class="registration-form">-->
-
                                     <div class="form-group">
                                         <label class="sr-only" for="form-username">First name</label>
                                         <input  type="text" name="username" placeholder="Username..." class="form-username form-control" id="username">
                                     </div>
                                     <div class="form-group">
                                         <label class="sr-only" for="form-email">Email</label>
-                                        <input  type="email" name="email" placeholder="Email..." class="form-email form-control" id="email">
+                                        <input name="email" placeholder="Email..." id="email" class="form-email form-control" style="height:50px;" type="email">
                                     </div>
                                     <div class="form-group">
                                         <label class="sr-only" for="form-about-yourself">About yourself</label>
@@ -72,21 +68,23 @@
                                     <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                                         <label class="sr-only" for="form-password">Last name</label>
                                         <input type="password" name="password" placeholder="Password..." class="form-password form-control" id="password">
-                                        @if ($errors->has('password'))
-                                            <span class="help-block">
-                                                <strong>{{ $errors->first('password') }}</strong>
-                                            </span>
-                                        @endif
                                     </div>
                                     <div class="form-group">
                                         <label class="sr-only" for="form-confirm-password">Last name</label>
                                         <input type="password" name="password_confirmation" placeholder="Confirm Password..." class="form-confirm-password form-control"
                                                id="confirm-password">
                                     </div>
-                                    <a id="submitBtn" class="btn btn-lg center-block btn-primary" style="background:#007bff;">Register</a>
+                                    <h4 id="logmsg" style="text-align:center;"></h4>
+                                    @if($errors->any())
+                                        <h4 id="errorMsgFromServer" style = "color:red; text-align:center;">{{$errors->first()}}</h4>
+                                    @endif
+                                    @if ($errors->has('password'))
+                                        <h4 id="errorMsgFromServer" style = "color:red; text-align:center;">{{ $errors->first('password') }}</h4>
+                                    @endif
+                                    <h4 style = "color:red; text-align:center;">{{ $errors->first('password') }}</h4>
+                                    <a id="submitBtn" class="btn btn-lg center-block btn-primary" style="background:#007bff; ">Register</a>
                                             <button id="submitform" type="submit" hidden="true"></button>
                                     </form>
-                                    <!--  </form> -->
                                     <div class="login-link">
                                         <h3>
                                             <a href="./login">Login here </a>
@@ -112,8 +110,10 @@
             {
                 btn.onclick = function()
                 {
-                    //let username = document.getElementById('username').value;
-                    //let email = document.getElementById('email').value;
+                    //Clear server message
+                let serverMsg = document.getElementById('errorMsgFromServer');
+                if (serverMsg != null)
+                    serverMsg.innerText = "";
                     let password = document.getElementById('password').value;
                     let passwrodConfirme = document.getElementById('confirm-password').value;
                     var regexPW = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z!$%^&*_@#~?\\d]{8,72}$");

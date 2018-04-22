@@ -28,12 +28,16 @@
 
     <body>
         <div id="wrap" class="wrapper">
-            @include('pages.sidebar')
-            <div id="content">
-
-               @include('pages.navbar logged in') 
-
-
+        @if(Auth::check())
+        @include('pages.sidebar')
+        @endif
+        <div id="content">
+        @if(Auth::check())
+        @include('pages.navbar logged in')
+        @else
+        @include('pages.navbar')
+        @endif
+        <div id = "containerID">
                 <div id="contentID">
                     <div id ="jumbotronID" class="jumbotron jumbotron-sm">
                         <div class="container">
@@ -101,7 +105,7 @@
                 </div>
 
             </div>
-
+            </div>
             <script src="../assets/js/bars.js"></script>
 
 

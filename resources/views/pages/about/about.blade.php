@@ -46,11 +46,15 @@
     <body>
 
         <div id="wrap" class="wrapper">
-
+            @if(Auth::check())
             @include('pages.sidebar')
-
+            @endif
             <div id="content">
+                @if(Auth::check())
                 @include('pages.navbar logged in')
+                @else
+                @include('pages.navbar')
+                @endif
 
                 <div id = "containerID">
                     <div id = "contentID">

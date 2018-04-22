@@ -57,11 +57,13 @@
                                         <b class="text-dark font-weight-bold">Email:</b> {{$user[0]->email}} </p>
                                     <p class="text-dark">
                                         <b class="text-dark font-weight-bold">Description:</b>  {{$user[0]->description}} </p>
+                                        @if(Auth::user()->id == $user[0]->id)
                                     <a href="{{url('users/'.$user[0]->id.'/edit')}}"><button style="background:#007bff; margin:5px 5px;" class="btn btn-primary col-md-6">Edit Profile</button></a>
                                     <form action="{{url('users/'.$user[0]->id.'/delete')}}" method="post">
                                         {{csrf_field()}}
                                         <button style="margin:5px 5px;" class="btn btn-danger col-md-6">Delete Profile</button>
                                     </form>
+                                    @endif
                                 </div>
                             </section>
                             <br>
