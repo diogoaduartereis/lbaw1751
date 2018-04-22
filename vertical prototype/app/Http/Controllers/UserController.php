@@ -111,7 +111,7 @@ class UserController extends Controller
             return back()->withErrors(['msg' => "You only have permission to delete your own profile."]);
         try
         {
-            DB::table('users')->where('id', $id)->update(['state' => 'UNACTIVE']);
+            DB::table('users')->where('id', $id)->update(['state' => 'INACTIVE']);
             //$user = DB::table('"User"')->select('id, password')->where('username', '=', $username)->get();
             //$user = DB::select('SELECT id,password FROM "User" WHERE username=$1',[$username]);
         }

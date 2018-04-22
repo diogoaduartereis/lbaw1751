@@ -37,7 +37,7 @@
         @else
         @include('pages.navbar')
         @endif
-
+        <div id = "containerID">
                 <div id="contentID">
                     <div id ="jumbotronID" class="jumbotron jumbotron-sm">
                         <div class="container">
@@ -105,7 +105,7 @@
                 </div>
 
             </div>
-
+            </div>
             <script src="../assets/js/bars.js"></script>
 
 

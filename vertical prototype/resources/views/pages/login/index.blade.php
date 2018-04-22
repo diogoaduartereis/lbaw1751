@@ -41,9 +41,6 @@
                             <div class="form-box" style="border: solid grey 1px;">
                                 <div class=" form-top ">
                                     <div class="form-top-left ">
-                                            @if($errors->any())
-                                            <h4 style = "color:red;">{{$errors->first()}}</h4>
-                                            @endif
                                         <h3>Login to our site</h3>
                                         <p>Enter username and password to log in:</p>
                                     </div>
@@ -54,7 +51,6 @@
                                 <div class="form-bottom ">
                             <form action="/login" method="post">
                                     {!! csrf_field() !!}
-                                    <!-- <form role="form" action="../index logged in.php" method="post" class="login-form "> -->
                                     <div class="form-group">
                                         <label class="sr-only " for="form-username">Username</label>
                                         <input type="text" name="username" placeholder="Username... " class="form-username form-control " id="form-username">
@@ -64,8 +60,10 @@
                                         <input type="password" name="pass_token" placeholder="Password...
                                                " class="form-password form-control" id="form-password">
                                     </div>
+                                    @if($errors->any())
+                                        <h4 style = "color:red; text-align:center">{{$errors->first()}}</h4>
+                                    @endif
                                     <button type="submit" class="btn btn-lg center-block btn-primary" style="background:#007bff;">Sign in!</button>
-                                    <!--</form>-->
                             </form>
 
                                     <div class="register-link ">

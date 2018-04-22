@@ -39,6 +39,14 @@ trait AuthenticatesUsers
             return $this->sendLockoutResponse($request);
         }
 
+        //check for banned
+        $user = \App\User::where('username', $request->username)->first();
+        if($user != null)
+        {
+            if($user->state == 'BANNED')
+                return  Redirect('/login')->withErrors("Your account has been banned!");
+        }
+
         if ($this->attemptLogin($request)) {
             return $this->sendLoginResponse($request);
         }
@@ -86,7 +94,7 @@ trait AuthenticatesUsers
      */
     protected function credentials(Request $request)
     {
-        return $request->only($this->username(), 'pass_token');
+        return array_merge($request->only($this->username(), 'pass_token'), ['state' => 'ACTIVE']);
     }
 
     /**
