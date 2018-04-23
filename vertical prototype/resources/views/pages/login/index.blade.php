@@ -48,7 +48,7 @@
                                     </div>
                                 </div>
                                 <div class="form-bottom ">
-                            <form onsubmit="return checkAuth();" action = "/login" method="post">
+                            <form action = "/login" method="post">
                                     {!! csrf_field() !!}
                                     <div class="form-group">
                                         <label class="sr-only " for="form-username">Username</label>
