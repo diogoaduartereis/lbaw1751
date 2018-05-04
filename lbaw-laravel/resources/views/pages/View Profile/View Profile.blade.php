@@ -89,7 +89,7 @@
                                             @foreach ($userActivePosts as $activePost)
                                                 <tr>
                                                     <td>
-                                                        <a href= {{"questions/".$activePost->id}}> {{$activePost->title}} </a>
+                                                        <a href= {{"/questions/".$activePost->id}}> {{$activePost->title}} </a>
                                                     </td>
                                                     <td> 
                                                         <?php
@@ -125,7 +125,7 @@
                                             @foreach ($userClosedPosts as $closedPost)
                                                 <tr>
                                                     <td>
-                                                        <a href= {{"questions/".$closedPost->id}}> {{$closedPost->title}} </a>
+                                                        <a href= {{"/questions/".$closedPost->id}}> {{$closedPost->title}} </a>
                                                     </td>
                                                     <td> 
                                                         <?php

@@ -63,7 +63,7 @@
                 ?>
                 @foreach ($userActivePosts as $activePost)
                     <li>
-                        <a href= {{"questions/".$activePost->id}}> 
+                        <a href= {{"/questions/".$activePost->id}}> 
                             <i class="far fa-envelope"></i> {{$activePost->title}} </a>
                     </li>
                 @endforeach  
