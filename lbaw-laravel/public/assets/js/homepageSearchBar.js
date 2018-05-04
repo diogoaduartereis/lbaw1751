@@ -1,3 +1,8 @@
+function arrayContains(needle, arraystack)
+{
+    return (arraystack.indexOf(needle) > -1);
+}
+
 function addTagToSearchBar(tag)
 {
     let searchBar = document.getElementById("questionSearchBar");
@@ -6,6 +11,7 @@ function addTagToSearchBar(tag)
         spaceIfNeeded = "";
     else if(searchBar.value[searchBar.value.length - 1] != " ")
         spaceIfNeeded = " ";
-    searchBar.value = searchBar.value + spaceIfNeeded + "#" + tag;
-    console.log(tag);
+    let searchTextArr = searchBar.value.split(" ");
+    if (!arrayContains("#" + tag, searchTextArr))
+        searchBar.value = searchBar.value + spaceIfNeeded + "#" + tag;
 }
