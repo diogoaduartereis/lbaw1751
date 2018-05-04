@@ -220,6 +220,43 @@ class PostController extends Controller
         return "error";
     }
 
+    public function delete(Request $request, $postId)
+    {
+        if(!Auth::check())
+            return redirect("/");
+
+        $question = DB::table("question")->select("postid")->where('postid', $postId)->first();
+        if($question != null)
+            deleteQuestion($postId);
+
+        $answer = DB::table("answer")->select("postid")->where('postid', $postId)->first();
+        if($answer != null)
+            deleteAnswer($postId);
+
+    }
+
+    public function deleteQuestion($postId)
+    {
+        DB::transaction(function() use($postId)
+        {
+            DB::table("post")->where('postid', $postId)->update(array('isvisible'=>false));
+            DB::table("postvote")->where('postid', $postId)->delete();
+            
+            $answersToQuestion = DB::table("post")->select("postid")->where('questionid', $postId)->get();
+            foreach($answersToQuestion as $answer)
+                deleteAnswer($answer->postid);
+        });
+    }
+
+    public function deleteAnswer($postId)
+    {
+        DB::transaction(function() use($postId)
+        {
+            DB::table("post")->where('postid', $postId)->update(array('isvisible'=>false));
+            DB::table("postvote")->where('postid', $postId)->delete();
+        });
+    }
+
     //todo: end
 
     /**
