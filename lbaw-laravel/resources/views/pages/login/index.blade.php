@@ -85,6 +85,8 @@
 
         <!-- Javascript -->
         <script type="text/javascript">
+		
+
 
             function onSignIn(googleUser) {
                 // Useful data for your client-side scripts:
@@ -109,7 +111,7 @@
                     headers: {
                         'X-CSRF-Token':'{{csrf_token()}}',
                     },
-                    url: '{{url("/register")}}',
+                    url: '{{url("/login")}}',
                     type: 'POST',
                     dataType: 'JSON',
                     data: {
@@ -123,7 +125,7 @@
                     complete: function (response) {
                         console.log(response);
                         if(response.responseText=='valid') {
-                            document.getElementById('back').click();
+                            //document.getElementById('back').click();
                         }
                     }
 
