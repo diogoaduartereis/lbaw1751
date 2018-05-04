@@ -50,7 +50,7 @@ Route::get('post/{id}','PostController@index');
 Route::post('poster','PostController@test');
 
 //Delete Posts
-Route::post('post/{id}','PostController@delete');
+Route::post('post/{id}/delete','PostController@delete');
 
 //Post new Question
 Route::get('postNewQuestion', 'PostController@postQuestionPage');
