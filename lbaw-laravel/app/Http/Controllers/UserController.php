@@ -138,29 +138,22 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        if(Auth::check())
+        $user = \App\User::where('id', $id)->get();
+        if($user == null || count($user) != 0)
         {
-            $user = \App\User::where('id', $id)->get();
-            if($user == null)
-                return redirect('/');  
-            if(count($user) != 0)
-            {
-                $maxNumberPostsToShow = 8;
-                $postsTitles = array();
-                $userClosedPosts = DB::select('SELECT id, title, date FROM Post JOIN Question ON Post.id=Question.postID
-                    WHERE posterID=:posterID AND isClosed=true ORDER BY date DESC', ['posterID' => $id]);
-                $userClosedPosts = array_slice($userClosedPosts, 0, $maxNumberPostsToShow);
-                $userActivePosts = DB::select('SELECT id, title, date FROM Post JOIN Question ON Post.id=Question.postID
-                    WHERE posterID=:posterID AND isClosed=false ORDER BY date DESC', ['posterID' => $id]);
-                $userActivePosts = array_slice($userActivePosts, 0, $maxNumberPostsToShow);
+            $maxNumberPostsToShow = 8;
+            $postsTitles = array();
+            $userClosedPosts = DB::select('SELECT id, title, date FROM Post JOIN Question ON Post.id=Question.postID
+                WHERE posterID=:posterID AND isClosed=true ORDER BY date DESC', ['posterID' => $id]);
+            $userClosedPosts = array_slice($userClosedPosts, 0, $maxNumberPostsToShow);
+            $userActivePosts = DB::select('SELECT id, title, date FROM Post JOIN Question ON Post.id=Question.postID
+                WHERE posterID=:posterID AND isClosed=false ORDER BY date DESC', ['posterID' => $id]);
+            $userActivePosts = array_slice($userActivePosts, 0, $maxNumberPostsToShow);
 
-                return view('pages.View Profile.View Profile', ['user' => $user, 'userActivePosts' => $userActivePosts, 
-                    'userClosedPosts' => $userClosedPosts]);
-            }
-            return redirect('/');
+            return view('pages.View Profile.View Profile', ['user' => $user, 'userActivePosts' => $userActivePosts, 
+                'userClosedPosts' => $userClosedPosts]);
         }
-        else //if is not a session defined
-            return redirect('/');
+        return redirect('/');
     }
 
     /**

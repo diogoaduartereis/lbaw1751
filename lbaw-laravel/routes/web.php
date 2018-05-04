@@ -49,6 +49,9 @@ Route::post('users/{id}/delete','UserController@deleteUser');
 Route::get('post/{id}','PostController@index');
 Route::post('poster','PostController@test');
 
+//Delete Posts
+Route::post('post/{id}','PostController@delete');
+
 //Post new Question
 Route::get('postNewQuestion', 'PostController@postQuestionPage');
 Route::post('postNewQuestion', 'PostController@postQuestion');

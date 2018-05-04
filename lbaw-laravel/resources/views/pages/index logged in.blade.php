@@ -156,7 +156,6 @@
                                             </div>
                                         </div>
                                     </div>
-    
                                     @endforeach
 
                 <script src="./assets/js/voteInPost.js"></script>
