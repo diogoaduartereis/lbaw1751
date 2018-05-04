@@ -131,7 +131,7 @@
                                                     @if (sizeof($questions_tags[$question->question_id]) != 0)
                                                     <h6>Tags:
                                                     @foreach ($questions_tags[$question->question_id] as $tag)
-                                                        <a href="#" onclick="addTagToSearchBar('stuff')" class="badge badge-pill badge-primary">{{$tag->tag_name}}</a>
+                                                        <a href="#" onclick="addTagToSearchBar('{{$tag->tag_name}}')" class="badge badge-pill badge-primary">{{$tag->tag_name}}</a>
                                                     @endforeach
                                                     </h6>
                                                     @endif
