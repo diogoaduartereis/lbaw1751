@@ -220,31 +220,30 @@ class PostController extends Controller
         return "error";
     }
 
-    public function delete(Request $request, $postId)
+    public function delete($postId)
     {
         if(!Auth::check())
-            return redirect("/");
+            return "error";
 
         $question = DB::table("question")->select("postid")->where('postid', $postId)->first();
         if($question != null)
-            deleteQuestion($postId);
+            PostController::deleteQuestion($postId);
 
         $answer = DB::table("answer")->select("postid")->where('postid', $postId)->first();
         if($answer != null)
-            deleteAnswer($postId);
-
+            PostController::deleteAnswer($postId);
     }
 
     public function deleteQuestion($postId)
     {
         DB::transaction(function() use($postId)
         {
-            DB::table("post")->where('postid', $postId)->update(array('isvisible'=>false));
+            DB::table("post")->where('id', $postId)->update(array('isvisible'=>false));
             DB::table("postvote")->where('postid', $postId)->delete();
             
-            $answersToQuestion = DB::table("post")->select("postid")->where('questionid', $postId)->get();
+            $answersToQuestion = DB::table("answer")->select("postid")->where('questionid', $postId)->get();
             foreach($answersToQuestion as $answer)
-                deleteAnswer($answer->postid);
+                PostController::deleteAnswer($answer->postid);
         });
     }
 
@@ -252,7 +251,7 @@ class PostController extends Controller
     {
         DB::transaction(function() use($postId)
         {
-            DB::table("post")->where('postid', $postId)->update(array('isvisible'=>false));
+            DB::table("post")->where('id', $postId)->update(array('isvisible'=>false));
             DB::table("postvote")->where('postid', $postId)->delete();
         });
     }
