@@ -25,7 +25,9 @@
                         <p class="text-dark">
                             <b class="text-dark font-weight-bold">Posts:</b>{{$questionUserCounter['posts']}}</p>
                         <p class="text-dark">
-                            <b class="text-dark font-weight-bold">Points:</b>{{$questionUserCounter['points']}}</p>
+                            <b class="text-dark font-weight-bold">Points:</b>
+                            <span id="pointsOfUser{{Auth::user()->id}}" >{{Auth::user()->points}}</span>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -34,29 +36,29 @@
         @if(Auth::check())
             
                 <?php if($questionVoteValue == null || $questionVoteValue < 0): ?>
-                <i style="cursor:pointer;" id="upvoteArr--1" onclick="return voteInPostQuestionPage({{$questionElements->post_id}}, 1)" onmouseover="return arrowToGreen(this)" 
-                    onmouseleave="return arrowToDefault(this)" class="far fa-arrow-alt-circle-up voteUp">
+                <i style="cursor:pointer;" id="upvoteArr-{{$questionElements->post_id}}" onclick="return upvotePost(this, {{$questionElements->post_id}}, {{$questionVoteValue}})"
+                    onmouseover="return arrowToGreen(this)" onmouseleave="return arrowToDefault(this)" class="far fa-arrow-alt-circle-up voteUp">
                 </i>
 
                 <?php elseif($questionVoteValue > 0): ?>
-                <i style="cursor:pointer;" id="upvoteArr--1" onclick="return voteInPostQuestionPage({{$questionElements->post_id}}, 1)" onmouseover="" 
-                    onmouseleave="" class="far fa-arrow-alt-circle-up voteUp text-success">
+                <i style="cursor:pointer;" id="upvoteArr-{{$questionElements->post_id}}" onclick="return upvotePost(this, {{$questionElements->post_id}}, {{$questionVoteValue}})" 
+                    onmouseover="" onmouseleave="" class="far fa-arrow-alt-circle-up voteUp text-success">
                 </i>
                 <?php endif;?>
 
             
         @endif
-            <span id="questionVotes" itemprop="upvoteCount" class="vote-count-post ">{{$questionElements->points}} Points</span>
+            <span id="upvoteCount-{{$questionElements->post_id}}" itemprop="upvoteCount-{{$questionElements->post_id}}" class="vote-count-post ">{{$questionElements->points}} Points</span>
         @if(Auth::check())
 
             <?php if($questionVoteValue == null || $questionVoteValue > 0): ?>
-                <i style="cursor:pointer;" id="downvoteArr--1" onclick="return voteInPostQuestionPage({{$questionElements->post_id}}, -1)" onmouseover="return arrowToRed(this)" 
-                    onmouseleave="return arrowToDefault(this)" class="far fa-arrow-alt-circle-down voteDown text-secondary">
+                <i style="cursor:pointer;" id="downvoteArr-{{$questionElements->post_id}}" onclick="return downvotePost(this,{{$questionElements->post_id}},{{$questionVoteValue}})" 
+                    onmouseover="return arrowToRed(this)" onmouseleave="return arrowToDefault(this)" class="far fa-arrow-alt-circle-down voteDown text-secondary">
                 </i>
 
             <?php elseif($questionVoteValue < 0): ?>
-                <i style="cursor:pointer;" id="downvoteArr--1" onclick="return voteInPostQuestionPage({{$questionElements->post_id}}, -1)" onmouseover="" 
-                    onmouseleave="" class="far fa-arrow-alt-circle-down voteDown text-secondary text-danger">
+                <i style="cursor:pointer;" id="downvoteArr-{{$questionElements->post_id}}" onclick="return downvotePost(this,{{$questionElements->post_id}},{{$questionVoteValue}})"
+                    onmouseover="" onmouseleave="" class="far fa-arrow-alt-circle-down voteDown text-secondary text-danger">
                 </i>
             <?php endif;?>
 

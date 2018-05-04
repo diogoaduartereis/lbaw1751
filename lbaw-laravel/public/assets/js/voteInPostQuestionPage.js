@@ -1,7 +1,5 @@
 'use strict'
 
-let postId;
-
 function voteInPostQuestionPage(postId, voteValue)
 {
     //get csrf token

@@ -54,7 +54,7 @@
                                     <div class="panel panel-default border border-dark">
                                     <script src="../assets/js/encodeForAjax.js"></script>                                    
                                     <script src="../assets/js/voteInPostQuestionPage.js"></script>
-                                    <p id="csrf-token" style:"display: none" hidden >{{csrf_token()}}</p>
+                                    <p id="csrf-token" style:"display: none;" hidden >{{csrf_token()}}</p>
                                     <?php
                                         $questionVoteValue = null;
                                         for($j = 0; $j < sizeof($postVotes); $j++)
