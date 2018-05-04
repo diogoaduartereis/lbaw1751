@@ -1,0 +1,762 @@
+/* CSS used here will be applied after bootstrap.css */
+.fa-heart{
+    color:#e74c3c;
+}
+[class^="fa fa-star"]{
+    color:#f1c40f;
+}
+.fa-quote-right{
+    font-size:.5em;
+}
+section.panel-title{
+    padding:25px;
+    padding-top:0;
+}
+#user-description{
+    height:100%;
+    margin:0 auto;
+    text-align:center;
+}
+figure img{
+    display :inline !important;
+}
+h4.online:before{
+    background-color:green;
+    height:10px;
+    width:10px;
+    border: 2px solid #11f464;
+}
+dt{
+    text-align:left !important; 
+    width:37% !important;
+}
+dd{
+    margin-left:2% !important;
+}
+
+.panel-footer{
+    width:100%;
+    min-height:40px;
+}
+
+@media (min-width: 768px) {
+    #sidebarElementsID
+    {
+        font-size:130%;
+    }
+
+    #mobile-poster-name
+    {
+        display:none;
+    }
+
+    #user-description{
+        border-left:2px solid #444;
+    }
+}
+
+@media (max-width: 768px) {
+    #non-mobile-poster-name
+    {
+        display:none;
+    }
+}
+
+#img#img-responsive
+{
+    padding-left: 2%;
+}
+
+/*
+@media (max-width:1060px)
+{
+    #contentID
+    {
+      margin-left:160px;
+      margin-right:0px;
+      font-size:90%;
+    }
+
+    #sidebar
+    {
+        min-width:18.2vw;
+        max-width:18.2vw;
+    }
+}*/
+
+#subject
+{
+    height:105%;
+}
+
+#imagesID
+{
+    width:100%;
+}
+
+#sidebar
+{
+    height:100%;
+}
+
+#sidebar.margin
+{
+    margin-top:250px;
+}
+
+.navbar
+{
+    margin-bottom:0px;
+}
+
+#titleID
+{
+    font-size:250%;
+}
+
+h2
+{
+    font-size:150%;
+}
+
+#testeID
+{
+    transition: all 0.3s;
+}
+
+#usernameSec
+{
+    padding-top:0px;
+}
+
+#teamSection
+{
+    margin-top:-50px;
+}
+
+h5#non-mobile-poster-name
+{
+    padding-left:20px;
+}
+
+#postID
+{
+    margin-right:10px;
+}
+
+figure
+{
+    margin:0px;
+}
+
+
+@media (min-width: 1801px)
+{
+    #contentID
+    {
+        width:100%;
+        margin-left:10vw;
+        transition:0.3s;
+    }
+
+    #jumbotronID
+    {
+        padding-right:100px;
+        width:130%;
+        margin-left:-50px;
+    }
+
+    #titleID
+    {
+        padding-left:40px;
+    }
+
+    div#searchForm
+    {
+        width:0%;
+        padding-left:0px;
+    }
+
+    input#userName
+    {
+        width:150px;
+    }
+
+    #searchFormID
+    {
+        width:100px;
+        margin-left: -10px;
+    }
+
+    #classContainerID.active
+    {
+        margin-left:16vw;
+        transition: 0.3s;
+    }
+
+    #classContainerID
+    {
+        margin-left:40px;
+        transition: 0.3s;
+    }
+
+    #titleID
+    {
+        margin-left:20px;
+    }
+
+
+    #jumbotronID
+    {
+        width:100%;
+        margin-left:0px;
+    }
+
+    #jumbotronID.active
+    {
+        width:200%;
+        margin-left:-80px;
+    }
+
+    #sidebar
+    {
+        min-width:17.2vw;
+        max-width:17.2vw;
+        transition:0.3s;
+    }
+
+    #containerID
+    {
+        margin-left:15vw;
+        transition:0.3s;
+    }
+
+    #containerID.inactive
+    {
+        margin-left:-140px;
+        transition:0.3s;
+    }
+}
+
+
+@media (min-width: 1301px) and (max-width: 1800px)
+{
+
+    #teamPhotos
+    {
+        margin-left:-50px;
+        width:90%;
+    }
+
+    div#searchForm
+    {
+        width:0%;
+        padding-left:0px;
+    }
+
+    input#userName
+    {
+        width:150px;
+    }
+
+    #searchFormID
+    {
+        width:550px;
+        margin-left: -90px;
+    }
+
+    #titleID.active
+    {
+        margin-left:100px;
+    }
+
+
+    #classContainerID.active
+    {
+        margin-left:40px;
+        transition: 0.3s;
+    }
+
+    #classContainerID
+    {
+        margin-left:40px;
+        transition: 0.3s;
+    }
+
+    #titleID
+    {
+        margin-left:20px;
+    }
+
+
+    #jumbotronID
+    {
+        width:100%;
+        margin-left:0px;
+    }
+
+    #jumbotronID.active
+    {
+        width:200%;
+        margin-left:-80px;
+    }
+
+    #sidebar
+    {
+        min-width:17.2vw;
+        max-width:17.2vw;
+        transition:0.3s;
+    }
+
+    #containerID
+    {
+        margin-left:40px;
+        transition:0.3s;
+    }
+
+    #contentID
+    {
+        width:80%;
+        margin-left:14vw;
+        transition:0.3s;
+    }
+
+    #containerID.inactive
+    {
+        margin-left:-140px;
+        transition:0.3s;
+    }
+}
+
+@media (min-width: 992px) and (max-width:1300px)
+{
+
+    div#searchForm
+    {
+        width:0%;
+        padding-left:0px;
+    }
+
+    input#userName
+    {
+        width:150px;
+    }
+
+    #searchFormID
+    {
+        width:550px;
+        margin-left: -90px;
+    }
+
+    #titleID.active
+    {
+        margin-left:100px;
+    }
+
+    #classContainerID.active
+    {
+        margin-left:40px;
+        transition: 0.3s;
+    }
+
+    #classContainerID
+    {
+        margin-left:40px;
+        transition: 0.3s;
+    }
+
+    #titleID
+    {
+        margin-left:20px;
+    }
+
+    #usernameSec
+    {
+        padding-top:0px;
+    }
+
+    #jumbotronID
+    {
+        width:110%;
+        margin-left:0px;
+    }
+
+    #jumbotronID.active
+    {
+        width:200%;
+        margin-left:-80px;
+    }
+
+    #sidebar
+    {
+        min-width:18.2vw;
+        max-width:18.2vw;
+    }
+
+    #containerID
+    {
+        margin-left:40px;
+        transition:0.3s;
+    }
+
+    #contentID
+    {
+        width:80%;
+        margin-left:14vw;
+        transition:0.3s;
+    }
+
+    #containerID.inactive
+    {
+        margin-left:-140px;
+        transition:0.3s;
+    }
+}
+
+@media (max-width: 991px) {
+
+
+
+    div#searchForm
+    {
+        width:0%;
+        padding-left:0px;
+    }
+
+    input#userName
+    {
+        width:150px;
+    }
+
+    #searchFormID
+    {
+        width:480px;
+        margin-left: -90px;
+    }
+
+    #usernameSec
+    {
+        padding-top:0px;
+    }
+
+    #titleID.active
+    {
+        margin-left:100px;
+    }
+
+    #classContainerID.active
+    {
+        margin-left:40px;
+    }
+
+    #classContainerID
+    {
+        margin-left:40px;
+    }
+
+    #titleID
+    {
+        margin-left:20px;
+    }
+
+    #jumbotronID
+    {
+        width:110%;
+        margin-left:0px;
+    }
+
+    #jumbotronID.active
+    {
+        width:200%;
+        margin-left:-80px;
+    }
+
+    #sidebar
+    {
+        min-width:18.2vw;
+    }
+
+    #containerID
+    {
+        margin-left:30px;
+
+    }
+
+    #contentID
+    {
+        width:80%;
+        margin-left:14vw;
+    }
+
+    #containerID.inactive
+    {
+        margin-left:-100px;
+    }
+}
+
+/*
+@media (max-width: 810px) {
+    div#searchForm
+    {
+        width:0%;
+        padding-left:0px;
+    }
+    
+    input#userName
+    {
+        width:150px;
+    }
+
+    #searchFormID
+    {
+        width:480px;
+        margin-left: -90px;
+    }
+
+    #contentID
+    {
+        width:95%;
+    }   
+
+    #containerID.inactive
+    {
+        width:92%;
+        margin-left:100px;
+        transition:0.3s;
+    }
+
+    #containerID.inactive
+    {
+        margin-left:-100px;
+        transition:0.3s;
+    }
+}*/
+
+@media (max-width: 769px) {
+
+    #mobile-poster-name
+    {
+        padding-top:9%;
+    }
+
+    #postID
+    {
+        padding-top:4%;
+    }
+
+    div#searchForm
+    {
+        width:0%;
+        padding-left:0px;
+    }
+
+    input#userName
+    {
+        width:150px;
+    }
+
+    #searchFormID
+    {
+        width:480px;
+        margin-left: 0px;
+    }
+
+    #titleID.active
+    {
+        margin-left:90px;
+    }
+
+    #containerID.inactive
+    {
+        width:80vw;
+        margin-left:-40px;
+    }
+
+    #jumbotronID
+    {
+        margin-left:-50px;
+    }
+
+    #classContainerID
+    {
+        padding-left:0px;
+        width:100vw;
+    }
+
+    #searchForm
+    {
+        padding-left:30%;
+    }
+
+    #sidebar
+    {
+        min-width:100vw;
+        max-width:100vw;
+    }
+
+
+
+    #contentID
+    {
+        width:102vw;
+    }
+
+    #containerID.active
+    {
+        display:none;
+    }
+}
+
+
+@media (min-width: 469px) and (max-width: 577px)
+{
+    #titleID.active
+    {
+        margin-left:56px;
+    }
+
+    div#searchForm
+    {
+        width:0%;
+        padding-left:0px;
+    }
+
+    input#userName
+    {
+        width:150px;
+    }
+
+    #searchFormID
+    {
+        width:90vw;
+    }
+
+    #titleID
+    {
+        padding-left:90px;
+        font-size:180%;
+    }
+
+    #jumbotronID
+    {
+        margin-left:-50px;
+    }
+
+    #containerID.inactive
+    {
+        width:80vw;
+        margin-left:-10px;
+    }
+
+    #contentID
+    {
+        width:105vw;
+        margin-left:-30px;
+    }
+
+    #classContainerID
+    {
+        padding-left:50px;
+    }
+}
+
+@media (max-width: 480px) {
+    div#searchForm
+    {
+        width:0%;
+        padding-left:0px;
+    }
+
+    #titleID.active
+    {
+        margin-left:56px;
+    }
+
+
+    input#userName
+    {
+        width:150px;
+    }
+
+    #searchFormID
+    {
+        width:90vw;
+    }
+
+    #titleID
+    {
+        padding-left:90px;
+        font-size:180%;
+    }
+
+    #jumbotronID
+    {
+        margin-left:-50px;
+    }
+
+    #containerID.inactive
+    {
+        width:80vw;
+        margin-left:-10px;
+    }
+
+    #contentID
+    {
+        width:105vw;
+        margin-left:-30px;
+    }
+
+    #classContainerID
+    {
+        padding-left:50px;
+    }
+}
+
+@media (max-width: 340px) {
+
+    #titleID.active
+    {
+        margin-left:56px;
+    }
+
+
+    div#searchForm
+    {
+        width:0%;
+        padding-left:0px;
+    }
+
+    input#userName
+    {
+        width:150px;
+    }
+
+    #searchFormID
+    {
+        width:90vw;
+    }
+
+    #titleID
+    {
+        padding-left:90px;
+        font-size:180%;
+    }
+
+
+    #containerID.inactive
+    {
+        width:80vw;
+        margin-left:-20px;
+    }
+
+    #contentID
+    {
+        width:105vw;
+        margin-left:-30px;
+    }
+
+    #jumbotronID
+    {
+        margin-left:-50px;
+    }
+}

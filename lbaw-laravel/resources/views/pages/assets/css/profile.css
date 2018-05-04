@@ -1,0 +1,13 @@
+@media (max-width: 480px) {
+    #contentID
+    {
+        width:100%;
+        margin-left:10%;
+    }
+
+    #jumbotronID.active
+    {
+        margin-left:-47vw;
+        margin-top:-40px;
+    }
+}
