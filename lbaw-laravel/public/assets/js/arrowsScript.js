@@ -1,4 +1,4 @@
-
+'use strict'
 
 var page = $("html, body");
 page.on("scroll mousedown wheel DOMMouseScroll mousewheel keyup touchmove", function(){
@@ -18,7 +18,10 @@ $("#replyButton").click(function(e) {
    return false; 
 });
 
-function downvotePost(object, index, voteValue)
+var postId;
+var valueOfVote;
+
+function downvotePost(object, index, previousVoteValue, voteValue)
 {
     if(voteValue == null || voteValue >= 0)
     {
@@ -31,6 +34,10 @@ function downvotePost(object, index, voteValue)
         $('#'+object.id).attr('onmouseover','');
         $('#'+object.id).attr('onmouseleave','');
         object.classList.add('text-danger');
+
+        postId = index;
+        valueOfVote = voteValue; //user for later user in ajax response
+        voteInPostQuestionPage(postId, -1);
     }
     else if(voteValue != null && voteValue < 0)
     {
@@ -39,10 +46,14 @@ function downvotePost(object, index, voteValue)
         $('#'+object.id).attr('onmouseleave','arrowToDefault(this)');
         object.classList.remove('text-danger');
         object.classList.add('text-secondary');
+
+        postId = index;
+        valueOfVote = voteValue; //user for later user in ajax response
+        voteInPostQuestionPage(postId, 1);
     }
 }
 
-function upvotePost(object,index, voteValue)
+function upvotePost(object, index, voteValue)
 {
     if(voteValue == null || voteValue <= 0)
     {
@@ -56,6 +67,10 @@ function upvotePost(object,index, voteValue)
         $('#'+object.id).attr('onmouseover','');
         $('#'+object.id).attr('onmouseleave','');
         object.classList.add('text-success');
+
+        postId = index;
+        valueOfVote = voteValue; //user for later user in ajax response
+        voteInPostQuestionPage(postId, 1);
     }
     else if(voteValue != null && voteValue > 0)
     {
@@ -64,6 +79,10 @@ function upvotePost(object,index, voteValue)
         $('#'+object.id).attr('onmouseleave','arrowToDefault(this)');
         object.classList.remove('text-success');
         object.classList.add('text-secondary');
+
+        postId = index;
+        valueOfVote = voteValue; //user for later user in ajax response
+        voteInPostQuestionPage(postId, -1);
     }
 }
 
@@ -88,3 +107,30 @@ function arrowToDefault(object)
     object.classList.remove('TRUE');
     object.classList.add('FALSE');
 } 
+
+
+function voteInPostQuestionPage(postId, voteValue)
+{
+    //get csrf token
+    let csrfToken = document.getElementById("csrf-token").innerHTML;
+
+    //add the new item to the database using AJAX
+    let ajaxRequest = new XMLHttpRequest();
+    ajaxRequest.addEventListener("load", voteIntroducedInDatabase);
+    ajaxRequest.open("POST", "../post/"+ postId +"/vote", true);
+    ajaxRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    ajaxRequest.setRequestHeader("X-CSRF-Token", csrfToken);
+    ajaxRequest.send(encodeForAjax({voteValue: voteValue}));
+}
+
+// Handler for ajax response received
+function voteIntroducedInDatabase()
+{
+    if (this.responseText == "error" || this.responseText == "already voted")
+        return;
+
+    //new post points inner html
+    let newPointsValue = Number(responseText);
+    let newPointsInnerHTML = newPointsValue + " Points";
+    document.getElementById("upvoteCount-" + postId).innerHTML = newPointsInnerHTML;
+}

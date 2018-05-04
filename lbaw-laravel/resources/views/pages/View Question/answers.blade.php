@@ -21,9 +21,9 @@
                     </div>
                     <div style="width:150%; margin-top:5%; margin-right:6%;" id="postID" class="d-flex flex-column">
                         <p class="text-dark">
-                            <b class="text-dark font-weight-bold">Posts:</b> {{$answerUserCounter[$i]['posts']}}</p>
+                            <b class="text-dark font-weight-bold">Posts:</b>{{$answerUserCounter[$i]['posts']}}</p>
                         <p class="text-dark">
-                            <b class="text-dark font-weight-bold">Points:</b> {{$answerUserCounter[$i]['points']}}</p>
+                            <b id="pointsOfPost{{$answersElements[$i]->post_id}}" class="text-dark font-weight-bold">Points:</b>{{$answerUserCounter[$i]['points']}}</p>
                     </div>
                 </div>
             </div>
@@ -32,30 +32,30 @@
         @if(Auth::check())
             
                 <?php if($voteValue == null || $voteValue < 0): ?>
-                <i style="cursor:pointer;" id="upvoteArr-{{$i}}" onclick="return upvotePost(this, {{$i}}, {{$voteValue}})" onmouseover="return arrowToGreen(this)" onmouseleave="return arrowToDefault(this)" 
-                    class="far fa-arrow-alt-circle-up voteUp">
+                <i style="cursor:pointer;" id="upvoteArr-{{$answersElements[$i]->post_id}}" onclick="return upvotePost(this, {{$answersElements[$i]->post_id}}, {{$voteValue}})" 
+                    onmouseover="return arrowToGreen(this)" onmouseleave="return arrowToDefault(this)" class="far fa-arrow-alt-circle-up voteUp">
                 </i>
 
                 <?php elseif($voteValue > 0): ?>
-                <i style="cursor:pointer;" id="upvoteArr-{{$i}}" onclick="return upvotePost(this,{{$i}}, {{$voteValue}})" onmouseover="" onmouseleave="" 
-                    class="far fa-arrow-alt-circle-up voteUp text-success">
+                <i style="cursor:pointer;" id="upvoteArr-{{$answersElements[$i]->post_id}}" onclick="return upvotePost(this, {{$answersElements[$i]->post_id}}, {{$voteValue}})"
+                    onmouseover="" onmouseleave="" class="far fa-arrow-alt-circle-up voteUp text-success">
                 </i>
                 <?php endif;?>
 
             
         @endif
-            <span itemprop="upvoteCount" class="vote-count-post ">{{$answersElements[$i]->points}} Points</span>
+            <span id="upvoteCount-{{$answersElements[$i]->post_id}}" itemprop="upvoteCount-{{$answersElements[$i]->post_id}}" class="vote-count-post ">{{$answersElements[$i]->points}} Points</span>
         @if(Auth::check())
            
 
             <?php if($voteValue == null || $voteValue > 0): ?>
-                <i style="cursor:pointer;" id="downvoteArr-{{$i}}" onclick="return downvotePost(this,{{$i}},{{$voteValue}})" onmouseover="return arrowToRed(this)" onmouseleave="return arrowToDefault(this)" 
-                    class="far fa-arrow-alt-circle-down voteDown text-secondary">
+                <i style="cursor:pointer;" id="downvoteArr-{{$answersElements[$i]->post_id}}" onclick="return downvotePost(this,{{$answersElements[$i]->post_id}},{{$voteValue}})" 
+                    onmouseover="return arrowToRed(this)" onmouseleave="return arrowToDefault(this)" class="far fa-arrow-alt-circle-down voteDown text-secondary">
                 </i>
 
             <?php elseif($voteValue < 0): ?>
-                <i style="cursor:pointer;" id="downvoteArr-{{$i}}" onclick="return downvotePost(this,{{$i}},{{$voteValue}})" onmouseover="" onmouseleave="" 
-                    class="far fa-arrow-alt-circle-down voteDown text-secondary text-danger">
+                <i style="cursor:pointer;" id="downvoteArr-{{$answersElements[$i]->post_id}}" onclick="return downvotePost(this,{{$answersElements[$i]->post_id}},{{$voteValue}})" 
+                    onmouseover="" onmouseleave="" class="far fa-arrow-alt-circle-down voteDown text-secondary text-danger">
                 </i>
             <?php endif;?>
 

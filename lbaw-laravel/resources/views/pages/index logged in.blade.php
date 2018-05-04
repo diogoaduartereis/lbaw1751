@@ -114,13 +114,8 @@
                                                     <i id="downvoteArr-{{$question->question_id}}" class="fas fa-caret-down downvoteArr" onclick="voteInPost(event, -1)"></i>
                                                 </a>
                                             </div>
-                                            <div class="col-3 text-right">
-                                                <div id="points-{{$question->question_id}}" class="text-success">
-                                                    <i class="fas fa-plus" style="padding-right:5px;"></i>
-                                                    <b class="text-success">{{$question->question_points}} Points</b>
-                                                </div>
-                                            </div>
-                                                </div>
+                                            @include('pages.showQuestionPoints')
+                                         </div>
                                             </h5>
                                         </div>
                                         <div class="card-block border">
