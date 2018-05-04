@@ -142,13 +142,15 @@
                                                 <div class="card-footer border-bottom border-top-0 border-dark">
                                                     <div class="btn-group btn-group-sm " role="group" aria-label="Basic example">
                                                         <button onclick="window.location.href='/questions/{{$question->question_id}}#replyDiv'" type="button" class="btn btn-outline-primary">
-                                                            <a href="./View Question/View Question.php" style="text-decoration:none;">
-                                                                <i class="fas fa-comment"></i> Reply</button>
-    
+                                                        <a href="./View Question/View Question.php" style="text-decoration:none;">
+                                                            <i class="fas fa-comment"></i> Reply</button>
                                                         <button type="button" class="btn btn-outline-danger">
                                                             <i class="fas fa-flag"></i> Report</button>
-                                                        <button type="button" class="btn btn-outline-danger">
-                                                            <i class="fas fa-trash"></i> Remove</button>
+                                                        @if(Auth::user()->type == "ADMIN" || Auth::user()->id == $question->poster_id)
+                                                            <button type="button" class="btn btn-outline-danger">
+                                                                <i class="fas fa-trash"></i> Remove
+                                                            </button>
+                                                        @endif
                                                     </div>
                                                 </div>
                                             </div>
