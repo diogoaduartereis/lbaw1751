@@ -13,5 +13,5 @@ function addTagToSearchBar(tag)
         spaceIfNeeded = " ";
     let searchTextArr = searchBar.value.split(" ");
     if (!arrayContains("#" + tag, searchTextArr))
-        searchBar.value = searchBar.value + spaceIfNeeded + "#" + tag;
+        searchBar.value = searchBar.value + spaceIfNeeded + "#" + tag + " ";
 }
