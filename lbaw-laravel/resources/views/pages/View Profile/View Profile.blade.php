@@ -100,9 +100,9 @@
                                                     </td>
                                                     <td>
                                                         @if(Auth::user()->id == $user[0]->id || DB::select('SELECT type FROM users WHERE id=:id', ['id' => Auth::user()->id])[0]->type == "ADMIN")
-                                                            <form action="{{url("questions/".$activePost->id."/close")}}" method="POST">
+                                                            <form id="goToQuestionForm" action="{{url("questions/".$activePost->id."/close")}}" method="POST">
                                                                 {{ csrf_field() }}
-                                                                <a> <input type="submit" value="Close Question" /> </a>
+                                                                <a href="#" onclick="document.getElementById('goToQuestionForm').submit()" style="font-weight: 650;">Close Question</a>
                                                             </form>
                                                         @endif
                                                     </td>
