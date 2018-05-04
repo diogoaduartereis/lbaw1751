@@ -70,7 +70,7 @@
                                                                 </li>
                                                             </ul>
                                                         </div>
-                                                        <input type="text" name="data" class="form-control border-dark" aria-label="Text input with segmented dropdown button" data-toggle="tooltip"
+                                                        <input id="questionSearchBar" type="text" name="data" class="form-control border-dark" aria-label="Text input with segmented dropdown button" data-toggle="tooltip"
                                                                data-placement="bottom" title="Search For Questions. Use the # before a word to add a tag search to your question.">
                                                         <button type="button submit" class="btn btn-outline-dark">Search</button>
                                                         
