@@ -145,7 +145,8 @@
                                                     <div class="btn-group btn-group-sm " role="group" aria-label="Basic example">
                                                         <button onclick="window.location.href='/questions/{{$question->question_id}}#replyDiv'" type="button" class="btn btn-outline-primary">
                                                             <a href="./View Question/View Question.php" style="text-decoration:none;">
-                                                            <i class="fas fa-comment"></i> Reply
+                                                                <i class="fas fa-comment"></i> Reply 
+                                                            </a>
                                                         </button>
                                                         <button type="button" class="btn btn-outline-danger">
                                                             <i class="fas fa-flag"></i> Report
