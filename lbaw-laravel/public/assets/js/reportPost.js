@@ -22,6 +22,21 @@ function reportPost(event, postId)
 // Handler for ajax response received
 function reponseArrived()
 {
-    console.log(this.responseText);
-    console.log("chegou");
+    let resultMessageElement = document.getElementById('resultMessage');
+    if (this.responseText == "success")
+    {
+        resultMessageElement.innerHTML = 'Report submitted successfully.';
+        resultMessageElement.style.color = "green";
+    }
+    else if (this.responseText == "already reported")
+    {
+        resultMessageElement.innerHTML = 'You have already submitted a report to that question. You have to wait until the report is processed to be able to submit another report to the same question.'
+        resultMessageElement.style.color = "red";
+    }   
+    else
+    {
+        resultMessageElement.innerHTML = 'There has been an unknown error while trying to process your request, please try again later';
+        resultMessageElement.style.color = "red";
+    }
+    resultMessageElement.style.display = "block";
 }

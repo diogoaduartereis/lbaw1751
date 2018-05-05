@@ -51,8 +51,8 @@
                                 </div>
                             </div>
                         </div>
-
                         <div id="classContainerID" class="container">
+                        <h4 id="resultMessage" style="display:none; text-align:left"></h4>
                             <div class="row">
                                 <div class="col-md-8">
                                     <div class="well well-sm">
