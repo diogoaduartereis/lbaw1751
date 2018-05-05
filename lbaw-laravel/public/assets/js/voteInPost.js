@@ -1,11 +1,13 @@
  'use strict'
 
 let postId;
+let voteValue;
 
-function voteInPost(event, voteValue)
+function voteInPost(event, vote)
 {
     //get target element id
     let elementVoteId = event.target.id;
+    voteValue = vote;
 
     //get post id
     let dashIndex = elementVoteId.indexOf("-");
@@ -33,8 +35,10 @@ function voteIntroducedInDatabase()
     let newPointsValue = Number(this.responseText);
     let newPointsInnerHTML = newPointsValue + " Points";
 
+    //set new post points
     let pointsElementId = "points-" + postId;
     document.getElementById(pointsElementId).children[1].innerHTML = newPointsInnerHTML;
+    //alter style to match curr points
     if(newPointsValue < 0)
     {
         document.getElementById(pointsElementId).children[0].className = "fas fa-minus";
@@ -47,4 +51,19 @@ function voteIntroducedInDatabase()
         document.getElementById(pointsElementId).children[0].style.cssText = "padding-right:5px;";
         document.getElementById(pointsElementId).children[1].className = "text-sucess";
     }
+
+
+    //alter post poster points
+    let userPointsInnerHTML = document.getElementById("post"+ postId +"PosterPoints").innerHTML;
+    let lhsIndex = userPointsInnerHTML.indexOf("(") + 1;
+    let rhsIndex = userPointsInnerHTML.indexOf(" Points");
+    let currUserPoints = Number(userPointsInnerHTML.substring(lhsIndex, rhsIndex));
+    let newUserPoints = currUserPoints + voteValue;
+    let newInnerHTML = replaceRange(userPointsInnerHTML, lhsIndex, rhsIndex, newUserPoints);
+    document.getElementById("post"+ postId +"PosterPoints").innerHTML = newInnerHTML;
+}
+
+function replaceRange(string, start, end, substitute) 
+{
+    return string.substring(0, start) + substitute + string.substring(end);
 }

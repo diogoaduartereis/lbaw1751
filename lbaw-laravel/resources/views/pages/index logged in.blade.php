@@ -127,7 +127,11 @@
                                                 <h5 class="card-text text-dark">{{$question->content}}</h5>
                                                     <br>
                                                     <div class="sticky-right">
-                                                        <h6 style="font-size:1.2em; color: rgb(0, 153, 255);">By: <a href="./users/{{$question->poster_id}}">{{$question->username}}</a> ({{$question->poster_points}} Points)</h6>
+                                                        <h6 id="post{{$question->question_id}}PosterPoints" style="font-size:1.2em; color: rgb(0, 153, 255);">
+                                                            By: 
+                                                            <a href="./users/{{$question->poster_id}}">{{$question->username}}</a> 
+                                                            ({{$question->poster_points}} Points)
+                                                        </h6>
                                                     </div>
                                                     <br>
                                                     @if (sizeof($questions_tags[$question->question_id]) != 0)
