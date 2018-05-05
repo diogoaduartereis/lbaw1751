@@ -6,7 +6,8 @@ use Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-
+use Google_Client;
+use GuzzleHttp;
 
 class LoginController extends Controller
 {
@@ -49,15 +50,26 @@ class LoginController extends Controller
 
     /**
      * Handle a login request to the application.
-     *
-     * @param  \Illuminate\Http\Request  $request
+     ** @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Http\JsonResponse
      */
     public function login(Request $request)
     {
-
         if($request->ajax())
         {
+            $uid=null;
+            $id_token = mb_convert_encoding($request->password, 'UTF-8', 'UTF-8');
+            $id = '914898849502-lcpd3q2madh2duv6banqs6ds5mue0fni';
+            $client = new Google_Client(['client_id' => $id]);
+            $client->setAuthConfig('secrets.json');
+            $client->setDeveloperKey("AIzaSyBNhAuavpQaq9F5n9ZPa8-GZJHyGAvE4xE");
+            $client->setHttpClient(new GuzzleHttp\Client(['verify' => false]));
+            $payload = $client->verifyIdToken($id_token);
+            if ($payload) {
+                $uid = $payload['sub'];
+            } else {
+                return "nay";
+            }
             $user = null;
             try {
                 $user = \App\User::where([
@@ -77,15 +89,13 @@ class LoginController extends Controller
                     $ck = \App\User::where([
                         ['username', '=', username]])->first();
                 }
-
                 $user = new \App\User();
-                $user->username=$username;;
-                $user->pass_token = Hash::make($request->password, [
-                    'rounds' => 12
-                ]);
+                $user->username=$username;
+                $user->pass_token = $uid;
                 $user->email = $request->email;
                 $user->auth_type = 1;
                 $user->save();
+
                 Auth::login($user);
                 return 'valid';
             }else{
@@ -93,10 +103,10 @@ class LoginController extends Controller
                 {
                     return 'invalid';
                 }
-                //need to modify this to use the google validation but cant do it atm
-                //if (!Hash::check($request->password, $user->pass_token)) {
-                //    return 'invalid';
-                //}
+                if($uid!=$user->pass_token)
+                {
+                    return 'invalid';
+                }
             }
             Auth::login($user);
             return 'valid';
