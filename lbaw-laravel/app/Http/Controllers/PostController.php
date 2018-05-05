@@ -256,7 +256,7 @@ class PostController extends Controller
         });
     }
 
-    public function postVote(Request $request, $postID)
+    public function reportPost(Request $request, $postID)
     {
         $newReporterId = Auth::user()->id;
         $reason = $request->reportReason;

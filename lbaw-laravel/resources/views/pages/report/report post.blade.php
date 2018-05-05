@@ -21,11 +21,13 @@
         <script src="../../assets/js/jquery.min.js"></script>
         <script src="../../assets/js/popper.min.js"></script>
 
+        <script src="../../assets/js/encodeForAjax.js"></script>
         <script src="../../assets/js/reportPost.js"></script>
     </head>
 
     <body>
 
+    <p id="csrf-token" style:"display: none" hidden >{{csrf_token()}}</p>
         <div id="wrap" class="wrapper">
         @if(Auth::check())
         @include('pages.sidebar')
@@ -54,7 +56,6 @@
                             <div class="row">
                                 <div class="col-md-8">
                                     <div class="well well-sm">
-                                        <form>
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="form-group">
@@ -68,7 +69,6 @@
                                                         Report Post</button>
                                                 </div>
                                             </div>
-                                        </form>
                                     </div>
                                 </div>
                                 <hr>
