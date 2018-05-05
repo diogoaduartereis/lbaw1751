@@ -63,7 +63,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-md-12">
-                                                    <button onclick="window.location.href='/post/{{$id}}/report'" type="submit" class="btn btn-primary pull-right" id="btnContactUs">
+                                                    <button onclick="reportPost(event, {{$id}})" type="submit" class="btn btn-primary pull-right" id="btnContactUs">
                                                         Report Post</button>
                                                 </div>
                                             </div>

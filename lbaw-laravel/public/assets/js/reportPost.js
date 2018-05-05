@@ -2,8 +2,10 @@
 
 let contactId;
 
-function reportPost(event, reportReason)
+function reportPost(event, postId)
 {
+    let messageTextInput = document.getElementById('message');
+    let reportReason = messageTextInput.value;
     //get target element id
     let element = event.target.id;
 
@@ -18,7 +20,7 @@ function reportPost(event, reportReason)
     //add the new item to the database using AJAX
     let ajaxRequest = new XMLHttpRequest();
     ajaxRequest.addEventListener("load", reponseArrived);
-    ajaxRequest.open("POST", "contacts/"+ contactId +"/markAsProcessed", true);
+    ajaxRequest.open("POST", "/report/post/" + postId, true);
     ajaxRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     ajaxRequest.setRequestHeader("X-CSRF-Token", csrfToken);
     ajaxRequest.send();
