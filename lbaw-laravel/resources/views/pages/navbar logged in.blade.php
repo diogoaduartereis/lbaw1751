@@ -49,6 +49,11 @@
 
                     </div>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="{{url('/tags')}}">
+                        <i class="fas fa-tag"></i> All Tags</a>
+                    </a>
+                </li>
             </ul>
         </div>
     </div>

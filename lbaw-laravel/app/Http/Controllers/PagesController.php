@@ -113,7 +113,7 @@ class PagesController extends Controller
     public function tags()
     {
         $tags = \App\Tag::all();
-        return $tags;
+        return view('pages.Tags.tags',['tags'=>$tags]);
     }
 
     public function reportPost($id)
