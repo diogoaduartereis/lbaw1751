@@ -75,6 +75,11 @@ class PagesController extends Controller
         return view('pages.Post question page.index');
     }
 
+    public function admin()
+    {
+        return view('pages.admin.index');
+    }
+
     public function tags()
     {
         $tags = \App\Tag::all();

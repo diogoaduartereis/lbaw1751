@@ -26,7 +26,7 @@
                             <b class="text-dark font-weight-bold">Posts:</b>{{$questionUserCounter['posts']}}</p>
                         <p class="text-dark">
                             <b class="text-dark font-weight-bold">Points:</b>
-                            <span id="pointsOfUser{{Auth::user()->id}}" >{{Auth::user()->points}}</span>
+                            <span id="post{{$questionElements->post_id}}PosterPoints">{{$questionElements->userPoints}}</span>
                         </p>
                     </div>
                 </div>
@@ -78,9 +78,10 @@
                     <button type="button" class="btn btn-outline-danger">
                         <i class="fas fa-flag"></i> Report</button>
                     
-                    <?php if(Auth::check() && Auth::user()->id == $questionElements->posterid): ?>
-                    <button type="button" class="btn btn-outline-danger">
-                        <i class="fas fa-trash"></i> Remove</button>
+                    <?php if((Auth::check() && Auth::user()->id == $questionElements->posterid) || Auth::user()->type == "ADMIN"): ?>
+                        <button id="deleteQuestionButton-{{$questionElements->post_id}}" type="button" onclick="return deleteQuestionInQuestionPage(event);" class="btn btn-outline-danger">
+                            <i class="fas fa-trash"></i> Remove
+                        </button>
                     <?php endif; ?>
                 </div>
             </div>

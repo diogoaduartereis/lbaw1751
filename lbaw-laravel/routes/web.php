@@ -22,6 +22,7 @@ Route::get('','PagesController@frontpage');
 Route::get('faq','PagesController@faq');
 Route::get('contacts','PagesController@contacts');
 Route::get('404','PagesController@error404');
+Route::get('admin','PagesController@admin');
 
 /*//Register
 Route::get('register','PagesController@register');

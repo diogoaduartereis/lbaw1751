@@ -93,11 +93,11 @@
                             </div>
                             <br>
                             <div id="Questions">
-                            <p id="questions-csrf-token" style:"display: none" hidden >{{csrf_token()}}</p>      
+                            <p id="csrf-token" style:"display: none" hidden >{{csrf_token()}}</p>      
                             <br>
     
                             <script src="./assets/js/deletePost.js"></script>
-                            <p id="deleteQuestion-csrf-token" style:"display: none" hidden >{{csrf_token()}}</p>  
+                            <p id="csrf-token" style:"display: none" hidden >{{csrf_token()}}</p>  
                             @foreach ($questions as $question)
                             <div id="question-{{$question->question_id}}" class="row">
                                         <div class="col-12">
@@ -127,7 +127,11 @@
                                                 <h5 class="card-text text-dark">{{$question->content}}</h5>
                                                     <br>
                                                     <div class="sticky-right">
-                                                        <h6 style="font-size:1.2em; color: rgb(0, 153, 255);">By: <a href="./users/{{$question->poster_id}}">{{$question->username}}</a> ({{$question->poster_points}} Points)</h6>
+                                                        <h6 id="post{{$question->question_id}}PosterPoints" style="font-size:1.2em; color: rgb(0, 153, 255);">
+                                                            By: 
+                                                            <a href="./users/{{$question->poster_id}}">{{$question->username}}</a> 
+                                                            ({{$question->poster_points}} Points)
+                                                        </h6>
                                                     </div>
                                                     <br>
                                                     @if (sizeof($questions_tags[$question->question_id]) != 0)
@@ -145,7 +149,8 @@
                                                     <div class="btn-group btn-group-sm " role="group" aria-label="Basic example">
                                                         <button onclick="window.location.href='/questions/{{$question->question_id}}#replyDiv'" type="button" class="btn btn-outline-primary">
                                                             <a href="./View Question/View Question.php" style="text-decoration:none;">
-                                                            <i class="fas fa-comment"></i> Reply
+                                                                <i class="fas fa-comment"></i> Reply 
+                                                            </a>
                                                         </button>
                                                         <button type="button" class="btn btn-outline-danger">
                                                             <i class="fas fa-flag"></i> Report

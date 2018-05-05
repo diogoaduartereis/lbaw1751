@@ -85,7 +85,7 @@
                     </div>
                     <br>
                     <div id="Questions">
-                    <p id="questions-csrf-token" style:"display: none" hidden >{{csrf_token()}}</p>      
+                    <p id="csrf-token" style:"display: none" hidden >{{csrf_token()}}</p>      
                         <br>
 
                         @foreach ($questions as $question)
@@ -95,18 +95,10 @@
                                         <div class="card border">
                                         <h5 class="card-header border">
                                             <div class="row">
-                                            <div class="col-9">
-                                            <a href="./questions/{{$question->question_id}}"> <b> {{$question->title}} </b></a>
-                                                <a href="#" style="color: inherit;text-decoration: none;padding-left:10px;" data-toggle="tooltip" data-placement="bottom"
-                                               title="Upvote Question">
-                                                <i id="upvoteArr-{{$question->question_id}}" class="fas fa-caret-up upvoteArr" onclick="voteInPost(event, 1)">
-                                                </i>
-                                            </a>
-                                            <a href="#" style="color: inherit;text-decoration: none;" data-toggle="tooltip" data-placement="top" title="Downvote Question">
-                                                <i id="downvoteArr-{{$question->question_id}}" class="fas fa-caret-down downvoteArr" onclick="voteInPost(event, -1)"></i>
-                                            </a>
-                                        </div>
-                                        @include('pages.showQuestionPoints')
+                                                <div class="col-9">
+                                                    <a href="./questions/{{$question->question_id}}"> <b> {{$question->title}} </b></a> 
+                                                </div>
+                                                @include('pages.showQuestionPoints')
                                             </div>
                                         </h5>
                                     </div>

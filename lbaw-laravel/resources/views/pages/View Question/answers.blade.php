@@ -1,4 +1,4 @@
-<section id="idProvider" name="idProvider-0" class="row panel-body">
+<section id="answer-{{$answersElements[$i]->post_id}}" class="row panel-body">
     <section class="col-md-9">
         <p>
             {{$answersElements[$i]->content}}
@@ -23,7 +23,8 @@
                         <p class="text-dark">
                             <b class="text-dark font-weight-bold">Posts:</b>{{$answerUserCounter[$i]['posts']}}</p>
                         <p class="text-dark">
-                            <b id="pointsOfPost{{$answersElements[$i]->post_id}}" class="text-dark font-weight-bold">Points:</b>{{$answerUserCounter[$i]['points']}}</p>
+                            <b class="text-dark font-weight-bold">Points:</b>
+                            <span id="post{{$answersElements[$i]->post_id}}PosterPoints">{{$answerUserCounter[$i]['points']}}</span>
                     </div>
                 </div>
             </div>
@@ -73,8 +74,8 @@
                 <button type="button" class="btn btn-outline-danger">
                     <i class="fas fa-flag"></i> Report</button>
 
-                <?php if(Auth::check() && Auth::user()->id == $answersElements[$i]->posterid): ?>
-                    <button type="button" class="btn btn-outline-danger">
+                <?php if((Auth::check() && Auth::user()->id == $answersElements[$i]->posterid) || Auth::user()->type == "ADMIN"): ?>
+                    <button id="deleteAnswerButton-{{$answersElements[$i]->post_id}}" type="button" onclick="return deleteAnswer(event);" class="btn btn-outline-danger">
                         <i class="fas fa-trash"></i> Remove</button>
                 <?php endif; ?>
                 
@@ -85,6 +86,6 @@
 </section>
 
 
-<script src="../assets/js/arrowsScript.js"></script>
+<script src="../assets/js/voteInPostQuestionPage.js"></script>
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
