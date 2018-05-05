@@ -256,6 +256,25 @@ class PostController extends Controller
         });
     }
 
+    public function reportPost($postID)
+    {
+        $newReporterId = Auth::user()->id;
+        DB::transaction(function() use($postId)
+        {
+            $reportAlreadyExistant = DB::table("postreport")->select('date')->where('postid', '=', $postID)->where('reporterid', '=', $newReporterId)->first();
+            if ($reportAlreadyExistant)
+               return "error";
+            
+            DB::table("postreport")->insert([
+                'postid' => $postID,
+                'reporterid' => $newReporterId,
+                'date'  => now()
+            ]);
+            foreach($answersToQuestion as $answer)
+                PostController::deleteAnswer($answer->postid);
+        });
+    }
+
     //todo: end
 
     /**
