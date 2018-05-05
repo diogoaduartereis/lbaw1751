@@ -3,7 +3,7 @@
 
     <head>
 
-        <meta charset="utf-8">
+        <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Bootstrap Login &amp; Register Templates</title>
@@ -125,7 +125,7 @@
                     complete: function (response) {
                         console.log(response);
                         if(response.responseText=='valid') {
-                            //document.getElementById('back').click();
+                            document.getElementById('back').click();
                         }
                     }
 
