@@ -16,11 +16,12 @@ function reportPost(event, postId)
     ajaxRequest.open("POST", "/post/" + postId + "/report", true);
     ajaxRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     ajaxRequest.setRequestHeader("X-CSRF-Token", csrfToken);
-    ajaxRequest.send();
+    ajaxRequest.send(encodeForAjax({reportReason: reportReason}));
 }
 
 // Handler for ajax response received
 function reponseArrived()
 {
+    console.log(this.responseText);
     console.log("chegou");
 }
