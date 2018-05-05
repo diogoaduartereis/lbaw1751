@@ -78,7 +78,7 @@
                     <button type="button" class="btn btn-outline-danger">
                         <i class="fas fa-flag"></i> Report</button>
                     
-                    <?php if(Auth::check() && Auth::user()->id == $questionElements->posterid): ?>
+                    <?php if((Auth::check() && Auth::user()->id == $questionElements->posterid) || Auth::user()->type == "ADMIN"): ?>
                     <button type="button" class="btn btn-outline-danger">
                         <i class="fas fa-trash"></i> Remove</button>
                     <?php endif; ?>
