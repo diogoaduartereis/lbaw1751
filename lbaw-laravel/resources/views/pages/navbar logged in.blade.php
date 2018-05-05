@@ -2,7 +2,7 @@
 
     <button id="sidebarCollapse" class="btn border-0 bg-transparent" data-toggle="collapse" data-target="#sidebar" data-parent="#navbar"
             aria-expanded="false" aria-controls="sidebar">
-        <img class="img-responsive rounded-circle" width="30" height="30" src="../assets/img/users/{{Auth::user()->img_path}}" id="profPic2">
+        <img class="img-responsive rounded-circle" width="30" height="30" src="/assets/img/users/{{Auth::user()->img_path}}" id="profPic2">
     </button>
     <a class="navbar-brand" href="/">
         <b>
