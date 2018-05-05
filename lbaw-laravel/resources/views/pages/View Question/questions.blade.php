@@ -26,7 +26,7 @@
                             <b class="text-dark font-weight-bold">Posts:</b>{{$questionUserCounter['posts']}}</p>
                         <p class="text-dark">
                             <b class="text-dark font-weight-bold">Points:</b>
-                            <span id="pointsOfUser{{Auth::user()->id}}" >{{Auth::user()->points}}</span>
+                            <span id="post{{$questionElements->post_id}}PosterPoints">{{$questionElements->userPoints}}</span>
                         </p>
                     </div>
                 </div>

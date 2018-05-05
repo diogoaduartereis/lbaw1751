@@ -23,7 +23,8 @@
                         <p class="text-dark">
                             <b class="text-dark font-weight-bold">Posts:</b>{{$answerUserCounter[$i]['posts']}}</p>
                         <p class="text-dark">
-                            <b id="pointsOfPost{{$answersElements[$i]->post_id}}" class="text-dark font-weight-bold">Points:</b>{{$answerUserCounter[$i]['points']}}</p>
+                            <b class="text-dark font-weight-bold">Points:</b>
+                            <span id="post{{$answersElements[$i]->post_id}}PosterPoints">{{$answerUserCounter[$i]['points']}}</span>
                     </div>
                 </div>
             </div>

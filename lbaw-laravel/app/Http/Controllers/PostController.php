@@ -96,7 +96,7 @@ class PostController extends Controller
 
     public function showQuestionPage($id)
     {
-        $questionElements = DB::table('post')->select('users.*','post.id as post_id', 'post.posterid', 'post.content',
+        $questionElements = DB::table('post')->select('users.points as userPoints', 'users.*', 'post.id as post_id', 'post.posterid', 'post.content',
                                             'post.date','post.isvisible','post.points', 'question.*')
                                             ->join('users', DB::raw('post.posterid'), '=',DB::raw('users.id'))
                                             ->join('question', DB::raw('post.id'), '=', DB::raw('question.postid'))

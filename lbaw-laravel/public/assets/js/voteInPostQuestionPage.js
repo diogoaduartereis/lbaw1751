@@ -18,12 +18,15 @@ $("#replyButton").click(function(e) {
    return false; 
 });
 
-var postId;
-var valueOfVote;
+var postId; //user for later user in ajax response
+var voteValue; //user for later user in ajax response
 
-function downvotePost(object, index, voteValue)
+function downvotePost(object, index, vote)
 {
-    if(voteValue == null || voteValue >= 0)
+    //user for later user in ajax response
+    postId = index;
+
+    if(vote == null || vote >= 0)
     {
         $('#upvoteArr-' + index).removeClass('text-success');
         $('#upvoteArr-' + index).attr('onclick','return upvotePost(this,' + index +',0)');
@@ -35,11 +38,10 @@ function downvotePost(object, index, voteValue)
         $('#'+object.id).attr('onmouseleave','');
         object.classList.add('text-danger');
 
-        postId = index;
-        valueOfVote = voteValue; //user for later user in ajax response
-        voteInPostQuestionPage(postId, -1);
+        voteValue = -1;
+        voteInPostQuestionPage(postId, voteValue);
     }
-    else if(voteValue != null && voteValue < 0)
+    else if(vote != null && vote < 0)
     {
         $('#'+object.id).attr('onclick','return downvotePost(this,' + index +',0)');
         $('#'+object.id).attr('onmouseover','arrowToRed(this)');
@@ -47,15 +49,17 @@ function downvotePost(object, index, voteValue)
         object.classList.remove('text-danger');
         object.classList.add('text-secondary');
 
-        postId = index;
-        valueOfVote = voteValue; //user for later user in ajax response
-        voteInPostQuestionPage(postId, 1);
+        voteValue = 1;
+        voteInPostQuestionPage(postId, voteValue);
     }
 }
 
-function upvotePost(object, index, voteValue)
+function upvotePost(object, index, vote)
 {
-    if(voteValue == null || voteValue <= 0)
+     //user for later user in ajax response
+     postId = index;
+
+    if(vote == null || vote <= 0)
     {
         $('#downvoteArr-' + index).removeClass('text-danger');
         $('#downvoteArr-' + index).attr('onclick','return downvotePost(this,' + index +',0)');
@@ -68,11 +72,10 @@ function upvotePost(object, index, voteValue)
         $('#'+object.id).attr('onmouseleave','');
         object.classList.add('text-success');
 
-        postId = index;
-        valueOfVote = voteValue; //user for later user in ajax response
-        voteInPostQuestionPage(postId, 1);
+        voteValue = 1;
+        voteInPostQuestionPage(postId, voteValue);
     }
-    else if(voteValue != null && voteValue > 0)
+    else if(vote != null && vote > 0)
     {
         $('#'+object.id).attr('onclick','return upvotePost(this,' + index +',0)');
         $('#'+object.id).attr('onmouseover','arrowToGreen(this)');
@@ -80,9 +83,8 @@ function upvotePost(object, index, voteValue)
         object.classList.remove('text-success');
         object.classList.add('text-secondary');
 
-        postId = index;
-        valueOfVote = voteValue; //user for later user in ajax response
-        voteInPostQuestionPage(postId, -1);
+        voteValue = -1;
+        voteInPostQuestionPage(postId, voteValue);
     }
 }
 
@@ -133,4 +135,9 @@ function voteIntroducedInDatabase()
     let newPointsValue = Number(this.responseText);
     let newPointsInnerHTML = newPointsValue + " Points";
     document.getElementById("upvoteCount-" + postId).innerHTML = newPointsInnerHTML;
+
+    //alter user points
+    let currUserPoints = Number(document.getElementById("post" + postId + "PosterPoints").innerHTML);
+    let newUserPoints = currUserPoints + voteValue;
+    document.getElementById("post" + postId + "PosterPoints").innerHTML = newUserPoints;
 }
