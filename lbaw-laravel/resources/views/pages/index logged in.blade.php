@@ -152,7 +152,7 @@
                                                                 <i class="fas fa-comment"></i> Reply 
                                                             </a>
                                                         </button>
-                                                        <button onclick="window.location.href='/post/{{$question->question_id}}/report'" type="button" class="btn btn-outline-danger">
+                                                        <button onclick="window.location.href='/report/post/{{$question->question_id}}'" type="button" class="btn btn-outline-danger">
                                                             <i class="fas fa-flag"></i> Report
                                                         </button>
                                                         @if(Auth::user()->type == "ADMIN" || Auth::user()->id == $question->poster_id)
