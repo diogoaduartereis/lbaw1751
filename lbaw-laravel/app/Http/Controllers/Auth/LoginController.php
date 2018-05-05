@@ -58,13 +58,18 @@ class LoginController extends Controller
         if($request->ajax())
         {
             $uid=null;
-            $id_token = mb_convert_encoding($request->password, 'UTF-8', 'UTF-8');
+            $id_token =iconv('ASCII', 'UTF-8', $request->password);
             $id = '914898849502-lcpd3q2madh2duv6banqs6ds5mue0fni';
             $client = new Google_Client(['client_id' => $id]);
             $client->setAuthConfig('secrets.json');
             $client->setDeveloperKey("AIzaSyBNhAuavpQaq9F5n9ZPa8-GZJHyGAvE4xE");
             $client->setHttpClient(new GuzzleHttp\Client(['verify' => false]));
-            $payload = $client->verifyIdToken($id_token);
+            try {
+                $payload = $client->verifyIdToken($id_token);
+            }catch (\InvalidArgumentException $e)
+            {
+                return "args";
+            }
             if ($payload) {
                 $uid = $payload['sub'];
             } else {

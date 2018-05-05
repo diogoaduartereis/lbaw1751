@@ -83,17 +83,19 @@
                             <span class="glyphicon glyphicon-log-out"></span>Logout
             </a>
 
-            <form id="logout-form" onclick="signOut();" action="/logout" method="POST" style="display: none;">
+            <form id="logout-form" action="/logout" method="POST" style="display: none;">
                 {{ csrf_field() }}
+                <button hidden="true" type="submit"></button>
             </form>
         </li>
     </ul>
+    <script src="https://apis.google.com/js/platform.js"></script>
     <script>
-        async function signOut() {
-            var auth2 = gapi.auth2.getAuthInstance();
-            auth2.signOut().then(function () {
-                console.log('User signed out.');
-            });
+
+        function signOut() {
+
+
         }
+        window.onload = signOut();
     </script>
 </nav>
