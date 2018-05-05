@@ -259,7 +259,7 @@ class PostController extends Controller
     public function reportPost($postID)
     {
         $newReporterId = Auth::user()->id;
-        DB::transaction(function() use($postId)
+        DB::transaction(function() use($postID)
         {
             $reportAlreadyExistant = DB::table("postreport")->select('date')->where('postid', '=', $postID)->where('reporterid', '=', $newReporterId)->first();
             if ($reportAlreadyExistant)
