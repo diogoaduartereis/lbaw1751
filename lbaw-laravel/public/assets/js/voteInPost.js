@@ -35,4 +35,16 @@ function voteIntroducedInDatabase()
 
     let pointsElementId = "points-" + postId;
     document.getElementById(pointsElementId).children[1].innerHTML = newPointsInnerHTML;
+    if(newPointsValue < 0)
+    {
+        document.getElementById(pointsElementId).children[0].className = "fas fa-minus";
+        document.getElementById(pointsElementId).children[0].style.cssText = "padding-right:5px; color:red;";
+        document.getElementById(pointsElementId).children[1].className = "text-danger";
+    }
+    else
+    {
+        document.getElementById(pointsElementId).children[0].className = "fas fa-plus";
+        document.getElementById(pointsElementId).children[0].style.cssText = "padding-right:5px;";
+        document.getElementById(pointsElementId).children[1].className = "text-sucess";
+    }
 }
