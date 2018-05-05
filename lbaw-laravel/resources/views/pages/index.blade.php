@@ -36,40 +36,36 @@
                         <div id="searchInputForm" class="col-12">
                             <div class="row" id="searchInput">
                                 <div class="col-8 mx-auto" style="margin-left:10vw;">
-                                    <div class="input-group mb-3 mx-auto">
-                                                <form action="{{ url('/poster') }}" method="post">
-                                                        <div class="input-group-prepend">
-                                                            <button type="button" class="btn btn-outline-dark dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true"
-                                                                    aria-expanded="false">
-                                                                <span class="sr-only">Sort Methods</span>Sort By
-                                                            </button>
-                                                            <ul class="dropdown-menu text-dark">
-                                                                <li>
-                                                                    <a href="#" class="small" data-value="option1" tabIndex="-1">
-                                                                        <div class="checkbox">
-                                                                            <label>
-                                                                                <input type="checkbox">
-                                                                                <span class="checkbox-material">
-                                                                                    <span class="check"></span>
-                                                                                </span> Question Points
-                                                                            </label>
-                                                                        </div>
-                                                                    </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="#" class="small" data-value="option1" tabIndex="-1">
-                                                                        <div class="checkbox">
-                                                                            <label>
-                                                                                <input type="checkbox">
-                                                                                <span class="checkbox-material">
-                                                                                    <span class="check"></span>
-                                                                                </span> Poster Points
-                                                                            </label>
-                                                                        </div>
-                                                                    </a>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
+                                    <form action="{{ url('/poster') }}" method="post">
+									<div class="input-group mb-3 mx-auto">
+									{{ csrf_field() }}
+                                                
+                                                                                                        <div class="btn-group">
+													<button type="button" class="btn btn-default dropdown-toggle border-dark" data-toggle="dropdown"><span class="glyphicon glyphicon-cog"></span> Search Filters </button>
+													<ul class="dropdown-menu">
+													   <li>
+														   <label class="dropdown-menu-item checkbox">
+															   <input type="checkbox" />
+															   <span class="glyphicon glyphicon-unchecked"></span>
+															   Poster Points
+														   </label>
+													   </li>
+													   <li>
+														   <label class="dropdown-menu-item checkbox">
+															   <input type="checkbox" />
+															   <span class="glyphicon glyphicon-unchecked"></span>
+															   Post Points
+														   </label>
+													   </li>
+													   <li>
+														   <label class="dropdown-menu-item checkbox">
+															   <input type="checkbox" />
+															   <span class="glyphicon glyphicon-unchecked"></span>
+															   Post Date
+														   </label>
+													   </li> 
+													</ul>
+												 </div>
                                                         <input id="questionSearchBar" type="text" name="data" class="form-control border-dark" aria-label="Text input with segmented dropdown button" data-toggle="tooltip"
                                                                data-placement="bottom" title="Search For Questions. Use the # before a word to add a tag search to your question.">
                                                         <button type="button submit" class="btn btn-outline-dark">Search</button>
@@ -149,31 +145,24 @@
                         $("#downvoteArr").removeClass('text-danger');
                     })
 
-                    var options = [];
-
-                    $('.dropdown-menu a').on('click', function (event) {
-
-                        var $target = $(event.currentTarget),
-                                val = $target.attr('data-value'),
-                                $inp = $target.find('input'),
-                                idx;
-
-                        if ((idx = options.indexOf(val)) > -1) {
-                            options.splice(idx, 1);
-                            setTimeout(function () {
-                                $inp.prop('checked', false)
-                            }, 0);
-                        } else {
-                            options.push(val);
-                            setTimeout(function () {
-                                $inp.prop('checked', true)
-                            }, 0);
-                        }
-
-                        $(event.target).blur();
-
-                        return false;
-                    });
+                    $(function(){
+						$( '.dropdown-menu li' ).on( 'click', function( event ) {
+							var $checkbox = $(this).find('.checkbox');
+							if (!$checkbox.length) {
+								return;
+							}
+							var $input = $checkbox.find('input');
+							var $icon = $checkbox.find('span.glyphicon');
+							if ($input.is(':checked')) {
+								$input.prop('checked',false);
+								$icon.removeClass('glyphicon-check').addClass('glyphicon-unchecked')
+							} else {
+								$input.prop('checked',true);
+								$icon.removeClass('glyphicon-unchecked').addClass('glyphicon-check')
+							}
+							return false;
+						}); 
+					});
 
                 </script>
                 <script src="./assets/js/bars.js"></script>
