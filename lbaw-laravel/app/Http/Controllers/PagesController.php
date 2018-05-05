@@ -115,4 +115,9 @@ class PagesController extends Controller
         $tags = \App\Tag::all();
         return $tags;
     }
+
+    public function reportPost()
+    {
+        return view('pages.report.report post.blade.php');
+    }
 }

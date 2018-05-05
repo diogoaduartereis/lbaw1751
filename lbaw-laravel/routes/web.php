@@ -69,6 +69,11 @@ Route::post('questions/{id}/close', 'PostController@closeQuestion');
 //Post Vote
 Route::post('post/{id}/vote', 'PostController@postVote');
 
+//Get Report Post Page
+Route::get('report/post/{id}', 'PagesController@reportPost');
+
+//Report Post
+Route::get('post/{id}/report', 'PostController@reportPost');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
