@@ -42,8 +42,8 @@
                                 <div class="row">
                                     <div class="col-sm-12 col-lg-12">
                                         <h1 id ="titleID" class="h1 text-primary">
-                                            Contact us
-                                            <small>Feel free to contact us</small> </h1>
+                                            Report Post
+                                            <small>Feel free to report a post if you think it does not complain with the rules</small> </h1>
                                     </div>
                                 </div>
                             </div>
@@ -55,31 +55,7 @@
                                     <div class="well well-sm">
                                         <form>
                                             <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="name">
-                                                            Name</label>
-                                                        <input type="text" class="form-control" id="name" placeholder="Enter name" required="required" />
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="email">
-                                                            Email Address</label>
-                                                        <div class="input-group">
-                                                            <input type="email" class="form-control" id="email" placeholder="Enter email" required="required" />
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="subject">
-                                                            Subject</label>
-                                                        <select id="subject" name="subject" class="form-control" required="required">
-                                                            <option value="na" selected="">Choose One:</option>
-                                                            <option value="service">General Customer Service</option>
-                                                            <option value="suggestions">Suggestions</option>
-                                                            <option value="product">Product Support</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
+                                                <div class="col-md-12">
                                                     <div class="form-group">
                                                         <label for="name">
                                                             Message</label>
@@ -88,7 +64,7 @@
                                                 </div>
                                                 <div class="col-md-12">
                                                     <button type="submit" class="btn btn-primary pull-right" id="btnContactUs">
-                                                        Send Message</button>
+                                                        Report Post</button>
                                                 </div>
                                             </div>
                                         </form>
@@ -96,26 +72,7 @@
                                 </div>
                                 <hr>
 
-                                <div class="col-md-4">
-                                    <form>
-                                        <legend>
-                                            <span class="fas fa-globe"></span> Our office</legend>
-                                        <address>
-                                            <strong>Faculdade de Engenharia da Universidade do Porto</strong>
-                                            <br>Rua Dr. Roberto Frias, s/n 4200-465 Porto PORTUGAL
-                                            <br>
-                                            <abbr title="Phone">
-                                                Phone:</abbr>
-                                            (+351) 22 508 14 00
-                                        </address>
-                                        <address>
-                                            <strong>Email</strong>
-                                            <br>
-                                            <a href="mailto:#"> feup@fe.up.pt</a>
-                                        </address>
-
-                                    </form>
-                                </div>
+                                
                             </div>
                         </div>
                     </div>
