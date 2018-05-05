@@ -20,7 +20,7 @@ function reportPost(event, postId)
     //add the new item to the database using AJAX
     let ajaxRequest = new XMLHttpRequest();
     ajaxRequest.addEventListener("load", reponseArrived);
-    ajaxRequest.open("POST", "/report/post/" + postId, true);
+    ajaxRequest.open("POST", "/post/" + postId + "/report", true);
     ajaxRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     ajaxRequest.setRequestHeader("X-CSRF-Token", csrfToken);
     ajaxRequest.send();
@@ -29,6 +29,7 @@ function reportPost(event, postId)
 // Handler for ajax response received
 function reponseArrived()
 {
+    console.log("chegou");
     if (this.responseText != "")
         return;
 
