@@ -260,11 +260,11 @@ class PostController extends Controller
     {
         $newReporterId = Auth::user()->id;
         $reason = $request->reportReason;
-        DB::transaction(function() use($postID, $newReporterId, $reason)
+        return DB::transaction(function() use($postID, $newReporterId, $reason)
         {
             $reportAlreadyExistant = DB::table("postreport")->select('date')->where('postid', '=', $postID)->where('reporterid', '=', $newReporterId)->first();
             if ($reportAlreadyExistant)
-               return "error";
+               return "already reported";
             
             DB::table("postreport")->insert([
                 'postid' => $postID,
@@ -272,10 +272,8 @@ class PostController extends Controller
                 'reason' => $reason,
                 'date'  => now()
             ]);
-            foreach($answersToQuestion as $answer)
-                PostController::deleteAnswer($answer->postid);
+            return "success";
         });
-        return "success";
     }
 
     //todo: end
