@@ -69,6 +69,8 @@ Route::post('questions/{id}/close', 'PostController@closeQuestion');
 //Post Vote
 Route::post('post/{id}/vote', 'PostController@postVote');
 
+//Report Post
+Route::post('post/{id}/report', 'PostController@postReport');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
