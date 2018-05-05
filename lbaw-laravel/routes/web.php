@@ -20,7 +20,6 @@ Route::get('/', function () {
 Route::get('about','PagesController@about');
 Route::get('','PagesController@frontpage');
 Route::get('faq','PagesController@faq');
-Route::get('contacts','PagesController@contacts');
 Route::get('404','PagesController@error404');
 Route::get('admin','PagesController@admin');
 
@@ -79,6 +78,12 @@ Route::get('test', function() {
 
 //Tags
 Route::get('tags','PagesController@tags');
+
+
+//Contacts
+Route::get('contacts','PagesController@contacts');
+Route::get('contactsList','PagesController@contactsList');
+Route::post('contacts/{id}/markAsProcessed','PagesController@markContactAsProcessed');
 
 //Auth::routes();
 
