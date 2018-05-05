@@ -54,7 +54,6 @@
                             <div class="row">
                                 <div class="col-md-8">
                                     <div class="well well-sm">
-                                        <form>
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="form-group">
@@ -68,7 +67,6 @@
                                                         Report Post</button>
                                                 </div>
                                             </div>
-                                        </form>
                                     </div>
                                 </div>
                                 <hr>
