@@ -14,7 +14,7 @@ function voteInPost(event, vote)
     postId = elementVoteId.substring(dashIndex + 1);
 
     //get csrf token
-    let csrfToken = document.getElementById("questions-csrf-token").innerHTML;
+    let csrfToken = document.getElementById("csrf-token").innerHTML;
 
     //add the new item to the database using AJAX
     let ajaxRequest = new XMLHttpRequest();

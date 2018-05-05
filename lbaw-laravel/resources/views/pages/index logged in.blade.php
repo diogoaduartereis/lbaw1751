@@ -93,11 +93,11 @@
                             </div>
                             <br>
                             <div id="Questions">
-                            <p id="questions-csrf-token" style:"display: none" hidden >{{csrf_token()}}</p>      
+                            <p id="csrf-token" style:"display: none" hidden >{{csrf_token()}}</p>      
                             <br>
     
                             <script src="./assets/js/deletePost.js"></script>
-                            <p id="deleteQuestion-csrf-token" style:"display: none" hidden >{{csrf_token()}}</p>  
+                            <p id="csrf-token" style:"display: none" hidden >{{csrf_token()}}</p>  
                             @foreach ($questions as $question)
                             <div id="question-{{$question->question_id}}" class="row">
                                         <div class="col-12">

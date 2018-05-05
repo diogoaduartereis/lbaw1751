@@ -1,4 +1,4 @@
-<section id="idProvider" name="idProvider-0" class="row panel-body">
+<section id="answer-{{$answersElements[$i]->post_id}}" class="row panel-body">
     <section class="col-md-9">
         <p>
             {{$answersElements[$i]->content}}
@@ -74,8 +74,8 @@
                 <button type="button" class="btn btn-outline-danger">
                     <i class="fas fa-flag"></i> Report</button>
 
-                <?php if(Auth::check() && Auth::user()->id == $answersElements[$i]->posterid): ?>
-                    <button type="button" class="btn btn-outline-danger">
+                <?php if((Auth::check() && Auth::user()->id == $answersElements[$i]->posterid) || Auth::user()->type == "ADMIN"): ?>
+                    <button id="deleteAnswerButton-{{$answersElements[$i]->post_id}}" type="button" onclick="return deleteAnswer(event);" class="btn btn-outline-danger">
                         <i class="fas fa-trash"></i> Remove</button>
                 <?php endif; ?>
                 

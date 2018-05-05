@@ -54,6 +54,7 @@
                                     <div class="panel panel-default border border-dark">
                                     <script src="../assets/js/encodeForAjax.js"></script>                                    
                                     <script src="../assets/js/voteInPostQuestionPage.js"></script>
+                                    <script src="/assets/js/deletePost.js"></script>
                                     <p id="csrf-token" style:"display: none;" hidden >{{csrf_token()}}</p>
                                     <?php
                                         $questionVoteValue = null;
@@ -62,7 +63,7 @@
                                             if($questionElements->post_id == $postVotes[$j]->postid)
                                                 $questionVoteValue = $postVotes[$j]->value;
                                         }
-                                    ?>    
+                                    ?>   
 
                                     @include('pages.View Question.questions')
 

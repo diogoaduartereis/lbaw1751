@@ -79,8 +79,9 @@
                         <i class="fas fa-flag"></i> Report</button>
                     
                     <?php if((Auth::check() && Auth::user()->id == $questionElements->posterid) || Auth::user()->type == "ADMIN"): ?>
-                    <button type="button" class="btn btn-outline-danger">
-                        <i class="fas fa-trash"></i> Remove</button>
+                        <button id="deleteQuestionButton-{{$questionElements->post_id}}" type="button" onclick="return deleteQuestionInQuestionPage(event);" class="btn btn-outline-danger">
+                            <i class="fas fa-trash"></i> Remove
+                        </button>
                     <?php endif; ?>
                 </div>
             </div>

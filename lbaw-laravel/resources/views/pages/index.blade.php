@@ -85,7 +85,7 @@
                     </div>
                     <br>
                     <div id="Questions">
-                    <p id="questions-csrf-token" style:"display: none" hidden >{{csrf_token()}}</p>      
+                    <p id="csrf-token" style:"display: none" hidden >{{csrf_token()}}</p>      
                         <br>
 
                         @foreach ($questions as $question)
