@@ -130,6 +130,38 @@ class UserController extends Controller
         return redirect('');
     }
 
+    public function banUserForm($id)
+    {
+        if(Auth::check() && Auth::user()->type == "ADMIN")
+        {
+            $user = DB::table('users')->select('id', 'username')->where('id', $id)->first();
+            return view('pages.ban.banUser', ['user' => $user]);
+        } 
+
+        return redirect()->back();
+    }
+
+    public function banUserAction(Request $request, $id)
+    {
+        if(empty($id))
+            return back()->withErrors(['msg' => "Id is empty"]);
+        if (Auth::user()->type != "ADMIN")
+            return back()->withErrors(['msg' => "You dont have permission to ban users."]);
+        try
+        {
+            DB::table('baninfo')->insert(['duration' => $username, 'pass_token' => password_hash($password, PASSWORD_BCRYPT), 
+                'auth_type' => 0, 'email' => $email, 'description' => $description]);
+            DB::table('users')->where('id', $id)->update(['state' => 'BANNED']);
+        }
+        catch(\Illuminate\Database\QueryException $e)
+        {
+            return back()->withErrors(['msg' => "User doesn't exist"]);
+        }
+
+        return redirect()->back();
+    }
+
+
     /**
      * Display the specified resource.
      *
@@ -181,8 +213,6 @@ class UserController extends Controller
             return view('pages.Edit Profile.index', ['user' => $user[0]]);
         else
             return redirect('404');
-
-    
     }
 
     /**

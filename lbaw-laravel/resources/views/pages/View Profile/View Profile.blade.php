@@ -37,10 +37,7 @@
                 <div id="containerID">
                     <div id="contentID">
                         <div id="classContainerID" class="container">
-
-
                             <br>
-
                             <section class="row">
                                 <div id="photoSideID" class="col-md-6 text-center pb-3">
                                     <h1 class="text-center"></h1>
@@ -60,12 +57,15 @@
                                         <b class="text-dark font-weight-bold">Points:</b>  {{$user[0]->points}} </p>
 
                                     @if($user != null && count($user) > 0)
-                                        @if(Auth::user()->id == $user[0]->id || DB::select('SELECT type FROM users WHERE id=:id', ['id' => Auth::user()->id])[0]->type == "ADMIN")
+                                        @if(Auth::user()->id == $user[0]->id || Auth::user()->type == "ADMIN")
                                             <a href="{{url('users/'.$user[0]->id.'/edit')}}"><button style="background:#007bff; margin:5px 5px;" class="btn btn-primary col-md-6">Edit Profile</button></a>
                                             <form id="deleteForm" action="{{url('users/'.$user[0]->id.'/delete')}}" method="post">
                                                 {{csrf_field()}}
                                                 <button style="margin:5px 5px;" class="btn btn-danger col-md-6" onclick="confirmDelete(event)">Delete Profile</button>
                                             </form>
+                                        @endif
+                                        @if(Auth::user()->type == "ADMIN")
+                                            <button style="margin:5px 5px;" class="btn btn-danger col-md-6" onclick="goToBanForm(event, {{Auth::user()->id}})">Ban user</button>
                                         @endif
                                     @endif 
                                 </div>
@@ -159,6 +159,12 @@
                             button.innerText = "Delete Profile";
                             button.setAttribute("onclick", "confirmDelete(event)");
                         }, 3000);
+                    }
+
+                    function goToBanForm(event, userId)
+                    {
+                        event.preventDefault();
+                        window.location.href = "./" + userId + "/ban";
                     }
                  </script>
 

@@ -45,6 +45,10 @@ Route::post('users/{id}/edit','UserController@editProfile');
 //Delete profile
 Route::post('users/{id}/delete','UserController@deleteUser');
 
+//Ban user
+Route::get('users/{id}/ban','UserController@banUserForm');
+Route::post('users/{id}/ban','UserController@banUserAction');
+
 //Posts
 Route::get('post/{id}','PostController@index');
 Route::post('poster','PostController@test');
@@ -83,7 +87,6 @@ Route::get('test', function() {
 
 //Tags
 Route::get('tags','PagesController@tags');
-
 
 //Contacts
 Route::get('contacts','PagesController@contacts');
