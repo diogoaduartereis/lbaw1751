@@ -20,7 +20,6 @@ Route::get('/', function () {
 Route::get('about','PagesController@about');
 Route::get('','PagesController@frontpage');
 Route::get('faq','PagesController@faq');
-Route::get('contacts','PagesController@contacts');
 Route::get('404','PagesController@error404');
 Route::get('admin','PagesController@admin');
 
@@ -46,6 +45,10 @@ Route::post('users/{id}/edit','UserController@editProfile');
 //Delete profile
 Route::post('users/{id}/delete','UserController@deleteUser');
 
+//Ban user
+Route::get('users/{id}/ban','UserController@banUserForm');
+Route::post('users/{id}/ban','UserController@banUserAction');
+
 //Posts
 Route::get('post/{id}','PostController@index');
 Route::post('poster','PostController@test');
@@ -70,6 +73,11 @@ Route::post('questions/{id}/close', 'PostController@closeQuestion');
 //Post Vote
 Route::post('post/{id}/vote', 'PostController@postVote');
 
+//Get Report Post Page
+Route::get('report/post/{id}', 'PagesController@reportPost');
+
+//Report Post
+Route::post('post/{id}/report', 'PostController@reportPost');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
@@ -79,6 +87,11 @@ Route::get('test', function() {
 
 //Tags
 Route::get('tags','PagesController@tags');
+
+//Contacts
+Route::get('contacts','PagesController@contacts');
+Route::get('contactsList','PagesController@contactsList');
+Route::post('contacts/{id}/markAsProcessed','PagesController@markContactAsProcessed');
 
 //Auth::routes();
 
