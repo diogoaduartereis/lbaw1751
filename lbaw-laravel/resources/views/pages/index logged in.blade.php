@@ -107,12 +107,12 @@
                                                 <div class="row">
                                                 <div class="col-9">
                                                 <a href="./questions/{{$question->question_id}}"> <b> {{$question->title}} </b></a>
-                                                <a href="#" style="color: inherit;text-decoration: none;padding-left:10px;" data-toggle="tooltip" data-placement="bottom"
+                                                <a style="color: inherit;text-decoration: none;padding-left:10px;" data-toggle="tooltip" data-placement="bottom"
                                                    title="Upvote Question">
                                                     <i id="upvoteArr-{{$question->question_id}}" class="fas fa-caret-up upvoteArr" onclick="voteInPost(event, 1)">
                                                     </i>
                                                 </a>
-                                                <a href="#" style="color: inherit;text-decoration: none;" data-toggle="tooltip" data-placement="top" title="Downvote Question">
+                                                <a style="color: inherit;text-decoration: none;" data-toggle="tooltip" data-placement="top" title="Downvote Question">
                                                     <i id="downvoteArr-{{$question->question_id}}" class="fas fa-caret-down downvoteArr" onclick="voteInPost(event, -1)"></i>
                                                 </a>
                                             </div>
@@ -137,7 +137,7 @@
                                                     @if (sizeof($questions_tags[$question->question_id]) != 0)
                                                     <h6>Tags:
                                                     @foreach ($questions_tags[$question->question_id] as $tag)
-                                                        <a href="#" onclick="addTagToSearchBar('{{$tag->tag_name}}')" class="badge badge-pill badge-primary">{{$tag->tag_name}}</a>
+                                                        <a onclick="addTagToSearchBar('{{$tag->tag_name}}')" class="badge badge-pill badge-primary">{{$tag->tag_name}}</a>
                                                     @endforeach
                                                     </h6>
                                                     @endif

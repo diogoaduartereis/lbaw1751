@@ -77,7 +77,7 @@ Route::post('post/{id}/vote', 'PostController@postVote');
 Route::get('report/post/{id}', 'PagesController@reportPost');
 
 //Report Post
-Route::get('post/{id}/report', 'PostController@reportPost');
+Route::post('post/{id}/report', 'PostController@reportPost');
 
 Route::get('/home', 'HomeController@index')->name('home');
 

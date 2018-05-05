@@ -116,8 +116,8 @@ class PagesController extends Controller
         return $tags;
     }
 
-    public function reportPost()
+    public function reportPost($id)
     {
-        return view('pages.report.report post.blade.php');
+        return view('pages.report.report post', ['id' => $id]);
     }
 }
