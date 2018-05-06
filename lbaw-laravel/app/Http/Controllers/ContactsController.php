@@ -8,6 +8,15 @@ use Illuminate\Support\Facades\Auth;
 
 class ContactsController extends Controller
 {
+    public function getAvailableSubjects()
+    {
+        $subjectsArr = DB::table("subject")->select('name')->get();
+        if (!$subjectsArr)
+            return "error";
+        else
+            return $subjectsArr;
+    }
+
     public function submitContactRequest(Request $request)
     {
         $ret = DB::transaction(function() use($request)
