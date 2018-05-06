@@ -52,8 +52,8 @@
                         <div id="classContainerID" class="container">
                             <div class="row">
                                 <div class="col-md-8">
-                                            @if (\Session::has('resultMessage'))
-                                                @if (\Session::get('resultMessage') == "success")
+                                            @if (Session::has('resultMessage'))
+                                                @if (Session::get('resultMessage') == "success")
                                                 <h4 id="resultMessage" style="text-align:left">
                                                 Contact request submitted successfully. Thanks for your feedback. We'll get back to you ASAP!
                                                 </h4>
