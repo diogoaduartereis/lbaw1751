@@ -45,9 +45,9 @@ class ContactsController extends Controller
         //it does not send any DB server information to the user, thus not exposing something about and make it vulnerable to a certain attack
         //the user friendly message displaying is then handled by the view
         if ($ret == "success")
-            return redirect()->back()->with('resultMessage', ['success']);   
+            return redirect()->back()->with('resultMessage', 'success');   
         else
-            return redirect()->back()->with('resultMessage', ['error']);   
+            return redirect()->back()->with('resultMessage', 'error');   
     }
 
     public function contacts()
