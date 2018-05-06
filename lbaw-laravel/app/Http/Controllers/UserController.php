@@ -308,7 +308,7 @@ class UserController extends Controller
         return $num;
     }
 
-    public static function getXBestActiveQuestions($numOfQuestionsToRetrieve)
+    public static function getSelfXBestActiveQuestions($numOfQuestionsToRetrieve)
     {
                             //get some user active posts
                             $userActivePosts = DB::select('SELECT id, title, date, points FROM Post JOIN Question ON Post.id=Question.postID

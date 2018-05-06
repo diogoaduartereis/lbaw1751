@@ -1,7 +1,7 @@
 <?php
     use \App\Http\Controllers\UserController;
 
-    $userActivePosts = UserController::getXBestActiveQuestions(5);
+    $userActivePosts = UserController::getSelfXBestActiveQuestions(5);
     $numberOfActiveQuestions = sizeof($userActivePosts);
 ?>
 
