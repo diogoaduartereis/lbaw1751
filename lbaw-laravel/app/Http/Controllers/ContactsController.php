@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class ContactsController extends Controller
 {
-    public function storeContactRequest(Request $request)
+    public function submitContactRequest(Request $request)
     {
         $ret = DB::transaction(function() use($request)
         {
