@@ -49,6 +49,9 @@ Route::post('users/{id}/delete','UserController@deleteUser');
 Route::get('users/{id}/ban','UserController@banUserForm');
 Route::post('users/{id}/ban','UserController@banUserAction');
 
+//UnBan user
+Route::post('users/{id}/unban','UserController@unbanUserAction');
+
 //Posts
 Route::get('post/{id}','PostController@index');
 Route::post('poster','PostController@test');
@@ -89,10 +92,10 @@ Route::get('test', function() {
 Route::get('tags','PagesController@tags');
 
 //Contacts
-Route::get('contacts','PagesController@contacts');
+Route::get('contacts','ContactsController@contacts');
 Route::post('contacts/submit','ContactsController@submitContactRequest');
-Route::get('contactsList','PagesController@contactsList');
-Route::post('contacts/{id}/markAsProcessed','PagesController@markContactAsProcessed');
+Route::get('contactsList','ContactsController@contactsList');
+Route::post('contacts/{id}/markAsProcessed','ContactsController@markContactAsProcessed');
 
 //Auth::routes();
 

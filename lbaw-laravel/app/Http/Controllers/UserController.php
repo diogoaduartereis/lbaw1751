@@ -146,19 +146,56 @@ class UserController extends Controller
         if(empty($id))
             return back()->withErrors(['msg' => "Id is empty"]);
         if (Auth::user()->type != "ADMIN")
-            return back()->withErrors(['msg' => "You dont have permission to ban users."]);
+            return redirect('/');
+        if (Auth::user()->id == $id)
+            return back()->withErrors(['msg' => "You can not ban yourself!"]);  
+  
         try
         {
-            DB::table('baninfo')->insert(['duration' => $username, 'pass_token' => password_hash($password, PASSWORD_BCRYPT), 
-                'auth_type' => 0, 'email' => $email, 'description' => $description]);
-            DB::table('users')->where('id', $id)->update(['state' => 'BANNED']);
+            if(trim($request->descriptionMessage) == "")
+                return back()->withErrors(['msg' => "Description must be filled!"]);
+            $endDate;
+            $durationInDays;
+            if($request->isPermanent == "Yes")
+            {
+                $endDate = null;
+                $durationInDays = null;
+            }
+            else if(strtotime($request->endOfBanDate) > strtotime(date("Y/m/d")))
+            {
+                $endDate = $request->endOfBanDate;
+                $durationInDays = (strtotime($endDate) - strtotime(date("Y/m/d"))) / 86400;
+            }
+            else
+                return back()->withErrors(['msg' => "Ban must be either permanent or higher than 1 day!"]);
+
+            DB::transaction(function () use($durationInDays, $request, $id, $endDate)
+            {
+                DB::table('baninfo')->insert(['duration' =>  $durationInDays, 'description' => $request->descriptionMessage, 
+                    'ispermanent' => $request->isPermanent, 'enddate' => $endDate, 'userid' => $id, 'adminid' => Auth::user()->id]);
+                DB::table('users')->where('id', $id)->update(['state' => 'BANNED']);     
+            });             
         }
         catch(\Illuminate\Database\QueryException $e)
         {
-            return back()->withErrors(['msg' => "User doesn't exist"]);
+            return back()->withErrors(['msg' => "Error inserting ban in database"]);
         }
+  
+        return redirect('users/' . $id); 
+    }
 
-        return redirect()->back();
+    public function unbanUserAction(Request $request, $userId)
+    {
+        if(!Auth::check())
+            return "error" ;
+        if (Auth::user()->type != "ADMIN")
+            return "error" ;
+        if (Auth::user()->id == $userId)
+            return "error" ;
+
+        DB::table('users')->where('id', $userId)->update(['state' => 'ACTIVE']);     
+               
+        return "";
     }
 
 

@@ -34,6 +34,7 @@
 
                 @include('pages.navbar logged in') 
 
+                <p id="csrf-token" style:"display: none" hidden >{{csrf_token()}}</p>  
                 <div id="containerID">
                     <div id="contentID">
                         <div id="classContainerID" class="container">
@@ -65,7 +66,10 @@
                                             </form>
                                         @endif
                                         @if(Auth::user()->type == "ADMIN")
-                                            <button style="margin:5px 5px;" class="btn btn-danger col-md-6" onclick="goToBanForm(event, {{Auth::user()->id}})">Ban user</button>
+                                            <button style="margin:5px 5px;" class="btn btn-danger col-md-6" onclick="goToBanForm(event, {{$user[0]->id}})">Ban user</button>
+                                        @endif
+                                        @if($user[0]->state == "BANNED")
+                                            <button id="unbanButton" style="margin:5px 5px;" class="btn btn-success col-md-6" onclick="confirmUnban(event, {{$user[0]->id}});">Unban user</button>
                                         @endif
                                     @endif 
                                 </div>
@@ -165,6 +169,45 @@
                     {
                         event.preventDefault();
                         window.location.href = "./" + userId + "/ban";
+                    }
+
+                    
+                    function confirmUnban(event, userId)
+                    {
+                        event.preventDefault();
+                        let button = event.target;
+                        button.innerText = "Confirm Unban";
+                        button.setAttribute("onclick", "unbanUser(event," + userId + ")");
+                        setTimeout(function deleteDefaultValue()
+                        {
+                            button.innerText = "Unban user";
+                            button.setAttribute("onclick", "confirmUnban(event,"+ userId + ")");
+                        }, 3000);
+                    }
+
+                    function unbanUser(event, userId)
+                    {
+                        event.preventDefault();
+
+                        //get csrf token
+                        let csrfToken = document.getElementById("csrf-token").innerHTML;
+
+                        //add the new item to the database using AJAX
+                        let ajaxRequest = new XMLHttpRequest();
+                        ajaxRequest.addEventListener("load", responseArrived);
+                        ajaxRequest.open("POST", "/users/" + userId + "/unban", true);
+                        ajaxRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                        ajaxRequest.setRequestHeader("X-CSRF-Token", csrfToken);
+                        ajaxRequest.send();
+                    }
+
+                    // Handler for ajax response received
+                    function responseArrived()
+                    {
+                        if (this.responseText != "")
+                            return;
+
+                        document.getElementById("unbanButton").remove(); 
                     }
                  </script>
 

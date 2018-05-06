@@ -39,7 +39,38 @@ class ContactsController extends Controller
             return redirect()->back()->with('resultMessage', ['error']);   
     }
 
-    
+    public function contacts()
+    {
+        return view('pages.contacts.contacts');
+    }
+
+    public function contactsList()
+    {
+        if(Auth::check() && Auth::user()->type == "ADMIN")
+        {
+            $contacts = DB::table('contact')
+            ->join('users', 'contact.userid', '=', 'users.id')
+            ->join('subject', 'contact.subjectid', '=', 'subject.subjectid')
+            ->select('contact.id', 'username', 'message', 'date', 'userid', 'subject.name as subject')
+            ->where('processed', '=', 'false')
+            ->orderBy('date', 'asc')->take(5)->get();
+            return view('pages.contacts.contactsList', ['contacts' => $contacts]);
+        }
+        else
+            return redirect()->back();
+    }
+
+    public function markContactAsProcessed($contactId)
+    {
+        if(Auth::check() && Auth::user()->type == "ADMIN")
+        {
+            DB::table("contact")->where('id', $contactId)->update(array('processed'=>true));
+            return "";
+        }
+        else
+            return redirect()->back();
+    }
+
     /**
      * Display a listing of the resource.
      *
