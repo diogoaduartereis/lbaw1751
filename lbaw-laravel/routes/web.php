@@ -49,6 +49,9 @@ Route::post('users/{id}/delete','UserController@deleteUser');
 Route::get('users/{id}/ban','UserController@banUserForm');
 Route::post('users/{id}/ban','UserController@banUserAction');
 
+//UnBan user
+Route::post('users/{id}/unban','UserController@unbanUserAction');
+
 //Posts
 Route::get('post/{id}','PostController@index');
 Route::post('poster','PostController@test');

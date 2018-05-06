@@ -53,7 +53,7 @@
                             <div class="row">
                                 <div class="col-md-8">
                                     <div class="well well-sm">
-                                        <form id="banForm" action="/users/{{Auth::user()->id}}/ban" method="post">
+                                        <form id="banForm" action="/users/{{$user->id}}/ban" method="post">
                                             {{csrf_field()}}
                                             <div class="row">
                                                 <div class="col-md-6">

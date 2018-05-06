@@ -184,6 +184,20 @@ class UserController extends Controller
         return redirect('users/' . $id); 
     }
 
+    public function unbanUserAction(Request $request, $userId)
+    {
+        if(!Auth::check())
+            return "error" ;
+        if (Auth::user()->type != "ADMIN")
+            return "error" ;
+        if (Auth::user()->id == $userId)
+            return "error" ;
+
+        DB::table('users')->where('id', $userId)->update(['state' => 'ACTIVE']);     
+               
+        return "";
+    }
+
 
     /**
      * Display the specified resource.
