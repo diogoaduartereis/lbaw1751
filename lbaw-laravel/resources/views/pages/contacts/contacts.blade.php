@@ -55,6 +55,17 @@
                                     <div class="well well-sm">
                                         <form>
                                             <div class="row">
+                                            @if (isset($resultMessage))
+                                                @if ($resultMessage == "success")
+                                                <h4 id="resultMessage" style="display:none; text-align:left">
+                                                Contact request submitted successfully. Thanks for your feedback. We'll get back to you ASAP!
+                                                </h4>
+                                                @else
+                                                <h4 id="resultMessage" style="display:none; text-align:left">
+                                                Seems like there has been a problem processing your request. Please try again later, your feedback is really important for us.
+                                                </h4>
+                                                @endif
+                                            @endif
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="name">
