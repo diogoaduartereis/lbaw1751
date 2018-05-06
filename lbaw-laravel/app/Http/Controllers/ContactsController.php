@@ -19,13 +19,13 @@ class ContactsController extends Controller
 
     public function submitContactRequest(Request $request)
     {
-        $ret = DB::transaction(function() use($request)
+        $name = $request->name;
+        $email = $request->email;
+        $subject = $request->subject;
+        $message = $request->message;
+        $reason = $request->reportReason;
+        $ret = DB::transaction(function() use($name,$email, $subject,$message,$reason)
         {
-            $name = $request->name;
-            $email = $request->email;
-            $subject = $request->subject;
-            $message = $request->message;
-            $reason = $request->reportReason;
             $subjectFromDB = DB::table("subject")->select('subjectid')->where('name', '=', $subject)->first();
             if (!$subjectFromDB)
                 return "error";
