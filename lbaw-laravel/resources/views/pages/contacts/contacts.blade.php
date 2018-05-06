@@ -52,21 +52,21 @@
                         <div id="classContainerID" class="container">
                             <div class="row">
                                 <div class="col-md-8">
-                                    <div class="well well-sm">
-                                        <form action="/contacts/submit" method="post">
-                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                            <div class="row">
-                                            @if (isset($resultMessage))
-                                                @if ($resultMessage == "success")
-                                                <h4 id="resultMessage" style="display:none; text-align:left">
+                                            @if (\Session::has('resultMessage'))
+                                                @if (\Session::get('resultMessage') == "success")
+                                                <h4 id="resultMessage" style="text-align:left">
                                                 Contact request submitted successfully. Thanks for your feedback. We'll get back to you ASAP!
                                                 </h4>
                                                 @else
-                                                <h4 id="resultMessage" style="display:none; text-align:left">
+                                                <h4 id="resultMessage" style="text-align:left">
                                                 Seems like there has been a problem processing your request. Please try again later, your feedback is really important for us.
                                                 </h4>
                                                 @endif
                                             @endif
+                                    <div class="well well-sm">
+                                        <form action="/contacts/submit" method="post">
+                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                            <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="name">
