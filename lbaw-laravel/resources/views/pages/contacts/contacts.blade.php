@@ -75,13 +75,13 @@ use \App\Http\Controllers\ContactsController;
                                                     <div class="form-group">
                                                         <label for="name">
                                                             Name</label>
-                                                        <input type="text" class="form-control" id="name" placeholder="Enter name" required="required" />
+                                                        <input name="name" type="text" class="form-control" id="name" placeholder="Enter name" required="required" />
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="email">
                                                             Email Address</label>
                                                         <div class="input-group">
-                                                            <input type="email" class="form-control" id="email" placeholder="Enter email" required="required" />
+                                                            <input name="email" type="email" class="form-control" id="email" placeholder="Enter email" required="required" />
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
