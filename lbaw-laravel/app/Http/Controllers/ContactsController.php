@@ -17,7 +17,7 @@ class ContactsController extends Controller
             $subject = $request->subject;
             $message = $request->message;
             $reason = $request->reportReason;
-            $subjectFromDB = DB::table("subject")->select('id')->where('name', '=', $subject)->first();
+            $subjectFromDB = DB::table("subject")->select('subjectid')->where('name', '=', $subject)->first();
             if (!$subjectFromDB)
                 return "error";
             $subjectid = $subjectFromDB->subjectid;
