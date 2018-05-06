@@ -53,7 +53,8 @@
                             <div class="row">
                                 <div class="col-md-8">
                                     <div class="well well-sm">
-                                        <form>
+                                        <form action="/contacts/submit" method="post">
+                                            <p id="csrf-token" style:"display: none" hidden >{{csrf_token()}}</p>
                                             <div class="row">
                                             @if (isset($resultMessage))
                                                 @if ($resultMessage == "success")
