@@ -19,7 +19,10 @@ class UserController extends Controller
     {
        
     }
-
+    public function getCurrentPoints()
+    {
+        return Auth::user()->points;
+    }
     /**
      * Login a user to the system.
      *
