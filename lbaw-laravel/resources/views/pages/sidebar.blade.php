@@ -6,7 +6,7 @@
                     $userActivePosts = array_slice($userActivePosts, 0, 5); //get 5 post with best pontuation
 
     use \App\Http\Controllers\UserController;
-    $numberOfActiveQuesitons = UserController::getNumberOfActiveQuestions();
+    $numberOfActiveQuestions = UserController::getNumberOfActiveQuestions();
 ?>
 
 <nav id="sidebar" style="position:fixed;z-index:10;" class="nav flex-column bg-dark collapse multi-collapse">
@@ -63,7 +63,7 @@
             <a id="sidebarDropdown2Button" href="#homeSubmenu2" data-target="#homeSubmenu2" data-toggle="collapse" aria-expanded="false">
                 <i class="fas fa-archive"></i> Active Questions
                 
-                <span class="badge badge-pill badge-primary">{{$numberOfActiveQuesitons}}</span>
+                <span class="badge badge-pill badge-primary">{{$numberOfActiveQuestions}}</span>
                 <i id="arrowDown" class="fas fa-angle-down"></i>
             </a>
             <ul class="collapse list-unstyled" id="homeSubmenu2">
