@@ -147,6 +147,8 @@ class UserController extends Controller
             return back()->withErrors(['msg' => "Id is empty"]);
         if (Auth::user()->type != "ADMIN")
             return redirect('/');
+        if (Auth::user()->id == $id)
+            return back()->withErrors(['msg' => "You can not ban yourself!"]);  
   
         try
         {
@@ -167,9 +169,12 @@ class UserController extends Controller
             else
                 return back()->withErrors(['msg' => "Ban must be either permanent or higher than 1 day!"]);
 
-            DB::table('baninfo')->insert(['duration' =>  $durationInDays, 'description' => $request->descriptionMessage, 'ispermanent' => $request->isPermanent, 
-                'enddate' => $endDate, 'userid' => $id, 'adminid' => Auth::user()->id]);
-            DB::table('users')->where('id', $id)->update(['state' => 'BANNED']);                  
+            DB::transaction(function () use($durationInDays, $request, $id, $endDate)
+            {
+                DB::table('baninfo')->insert(['duration' =>  $durationInDays, 'description' => $request->descriptionMessage, 
+                    'ispermanent' => $request->isPermanent, 'enddate' => $endDate, 'userid' => $id, 'adminid' => Auth::user()->id]);
+                DB::table('users')->where('id', $id)->update(['state' => 'BANNED']);     
+            });             
         }
         catch(\Illuminate\Database\QueryException $e)
         {
