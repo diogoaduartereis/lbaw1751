@@ -24,7 +24,25 @@ class ContactsController extends Controller
         $subject = $request->subject;
         $message = $request->message;
         $reason = $request->reportReason;
-        $ret = DB::transaction(function() use($name,$email, $subject,$message,$reason)
+        $error = false;
+        if (empty($name))
+            $error = true;
+        
+           if (empty($email))
+           $error = true;
+        
+           if (empty($subject))
+           $error = true;
+        
+           if (empty($message))
+           $error = true;
+        
+
+            if ($error)
+            return redirect()->back()->with('resultMessage', 'error');   
+        
+        
+        $ret = DB::transaction(function() use($name,$email, $subject,$message)
         {
             $subjectFromDB = DB::table("subject")->select('subjectid')->where('name', '=', $subject)->first();
             if (!$subjectFromDB)
