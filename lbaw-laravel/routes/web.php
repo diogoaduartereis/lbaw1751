@@ -35,6 +35,9 @@ Route::get('login','PagesController@login');
 
 Route::get('register','PagesController@register');
 
+//Get user points
+Route::get('userself/getPoints','UserController@getCurrentPoints');
+
 //View Profile
 Route::get('users/{id}', 'UserController@show');
 
