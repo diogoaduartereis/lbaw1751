@@ -96,6 +96,7 @@ Route::get('tags','PagesController@tags');
 
 //Contacts
 Route::get('contacts','ContactsController@contacts');
+Route::get('contacts/getAvailableSubjects','ContactsController@getAvailableSubjects');
 Route::post('contacts/submit','ContactsController@submitContactRequest');
 Route::get('contactsList','ContactsController@contactsList');
 Route::post('contacts/{id}/markAsProcessed','ContactsController@markContactAsProcessed');

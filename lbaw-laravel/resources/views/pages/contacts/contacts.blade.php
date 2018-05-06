@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿<?php
+use \App\Http\Controllers\ContactsController;
+?>
+
+<!DOCTYPE html>
 <html lang="en">
 
     <head>
@@ -83,11 +87,14 @@
                                                     <div class="form-group">
                                                         <label for="subject">
                                                             Subject</label>
+                                                            <?php
+                                                            $availableSubjects = ContactsController::getAvailableSubjects();
+                                                            ?>
                                                         <select id="subject" name="subject" class="form-control" required="required">
                                                             <option value="na" selected="">Choose One:</option>
-                                                            <option value="service">General Customer Service</option>
-                                                            <option value="suggestions">Suggestions</option>
-                                                            <option value="product">Product Support</option>
+                                                        @foreach ($availableSubjects as $availableSubject)
+                                                            <option value="{{$availableSubject->name}}">{{$availableSubject->name}}</option>
+                                                            @endforeach
                                                         </select>
                                                     </div>
                                                 </div>

@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 
 class ContactsController extends Controller
 {
-    public function getAvailableSubjects()
+    public static function getAvailableSubjects()
     {
         $subjectsArr = DB::table("subject")->select('name')->get();
         if (!$subjectsArr)
