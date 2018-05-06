@@ -65,7 +65,7 @@
                                             </form>
                                         @endif
                                         @if(Auth::user()->type == "ADMIN")
-                                            <button style="margin:5px 5px;" class="btn btn-danger col-md-6" onclick="goToBanForm(event, {{Auth::user()->id}})">Ban user</button>
+                                            <button style="margin:5px 5px;" class="btn btn-danger col-md-6" onclick="goToBanForm(event, {{$user[0]->id}})">Ban user</button>
                                         @endif
                                     @endif 
                                 </div>

@@ -53,18 +53,19 @@
                             <div class="row">
                                 <div class="col-md-8">
                                     <div class="well well-sm">
-                                        <form>
+                                        <form id="banForm" action="/users/{{Auth::user()->id}}/ban" method="post">
+                                            {{csrf_field()}}
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="endOfBanDate">
                                                             End of ban</label>
-                                                        <input type="date" class="form-control" id="endOfBanDate" required="required" />
+                                                        <input type="date" name="endOfBanDate" class="form-control" id="endOfBanDate"/>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="Permanent">
                                                             Permanent</label>
-                                                        <select size="1" id="Permanent" name="Permanent" class="form-control" required="required">
+                                                        <select size="1" id="Permanent" name="isPermanent" class="form-control">
                                                             <option value="Yes">Yes</option>
                                                             <option value="No" selected>No</option>
                                                         </select>
@@ -74,12 +75,18 @@
                                                     <div class="form-group">
                                                         <label for="name">
                                                             Description</label>
-                                                        <textarea name="message" id="message" class="form-control" rows="7" cols="25" required="required" placeholder="Message" style="resize: none;"></textarea>
+                                                        <textarea name="descriptionMessage" id="descriptionMessage" class="form-control" rows="7" cols="25" required="required" placeholder="Message" style="resize: none;"></textarea>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-12">
-                                                    <button type="submit" class="btn btn-danger pull-right" id="Ban User">
-                                                        Ban User</button>
+                                                <div id="formBottom" class="col-md-12">
+                                                    <button id="banUserButton" class="btn btn-danger pull-right" onclick="submitIfCorrect(event);">
+                                                        Ban User
+                                                    </button>
+                                                    <p id="errorParagraph" style="color:red;">
+                                                        @if($errors -> has("msg"))
+                                                            {{$errors -> first("msg")}}
+                                                        @endif
+                                                    </p>
                                                 </div>
                                             </div>
                                         </form>
@@ -93,9 +100,41 @@
                 <script src="/assets/js/bars.js"></script>
                 
                 <script>
-                    var today = new Date().toISOString().split('T')[0];
+                    let today = new Date().toISOString().split('T')[0];
                     document.getElementById("endOfBanDate").setAttribute('min', today);
                     document.getElementById("endOfBanDate").setAttribute('value', today);
+
+                    function submitIfCorrect()
+                    {
+                        event.preventDefault();
+
+                        let isPermanentElement = document.getElementById("Permanent");
+                        let isPermanent = isPermanentElement.options[isPermanentElement.selectedIndex].value;
+                        if(isPermanent == "No")
+                        {
+                            if(document.getElementById("endOfBanDate").value <= today)
+                            {
+                                let errorParagraph = document.getElementById("errorParagraph");
+                                if(errorParagraph.innerHTML != "")
+                                    errorParagraph.innerHTML.innerHTML = '';
+
+                                errorParagraph.innerHTML = "Ban must be either permanent or higher than 1 day!";
+                                return;
+                            }
+                        }
+
+                        if(document.getElementById("descriptionMessage").value.trim() == "")
+                        {
+                            let errorParagraph = document.getElementById("errorParagraph");
+                            if(errorParagraph.innerHTML != "")
+                                    errorParagraph.innerHTML.innerHTML = '';
+
+                            errorParagraph.innerHTML = "Description must be filled!";
+                            return;
+                        }
+
+                        document.getElementById("banForm").submit();
+                    }
                 </script>
                     
                 </body>
