@@ -1,12 +1,8 @@
 <?php
-
-                    //get some user active posts
-                    $userActivePosts = DB::select('SELECT id, title, date, points FROM Post JOIN Question ON Post.id=Question.postID
-                        WHERE posterID=:posterID AND isClosed=false ORDER BY points DESC', ['posterID' => Auth::user()->id]);
-                    $userActivePosts = array_slice($userActivePosts, 0, 5); //get 5 post with best pontuation
-
     use \App\Http\Controllers\UserController;
-    $numberOfActiveQuestions = UserController::getNumberOfActiveQuestions();
+
+    $userActivePosts = UserController::getXBestActiveQuestions(5);
+    $numberOfActiveQuestions = sizeof($userActivePosts);
 ?>
 
 <nav id="sidebar" style="position:fixed;z-index:10;" class="nav flex-column bg-dark collapse multi-collapse">
