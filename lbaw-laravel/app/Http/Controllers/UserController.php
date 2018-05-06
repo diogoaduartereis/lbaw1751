@@ -19,7 +19,7 @@ class UserController extends Controller
     {
        
     }
-    public function getCurrentPoints()
+    public function getSelfCurrentPoints()
     {
         return Auth::user()->points;
     }
