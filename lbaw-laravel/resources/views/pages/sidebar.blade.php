@@ -1,3 +1,8 @@
+<?php
+    use \App\Http\Controllers\UserController;
+    $numberOfActiveQuesitons = UserController::getNumberOfActiveQuestions();
+?>
+
 <nav id="sidebar" style="position:fixed;z-index:10;" class="nav flex-column bg-dark collapse multi-collapse">
     <br>
     <div class="row mx-auto">
@@ -51,7 +56,8 @@
             <!-- Link with dropdown items -->
             <a id="sidebarDropdown2Button" href="#homeSubmenu2" data-target="#homeSubmenu2" data-toggle="collapse" aria-expanded="false">
                 <i class="fas fa-archive"></i> Active Questions
-                <span class="badge badge-pill badge-primary">3</span>
+                
+                <span class="badge badge-pill badge-primary">{{$numberOfActiveQuesitons}}</span>
                 <i id="arrowDown" class="fas fa-angle-down"></i>
             </a>
             <ul class="collapse list-unstyled" id="homeSubmenu2">
