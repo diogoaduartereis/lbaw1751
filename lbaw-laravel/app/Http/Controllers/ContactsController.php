@@ -30,12 +30,14 @@ class ContactsController extends Controller
             if (!$subjectFromDB)
                 return "error";
             $subjectid = $subjectFromDB->subjectid;
-            
-            DB::table("postreport")->insert([
+            $usrid = null;
+            if (Auth::check())
+                $usrid = Auth::user()->id;
+            DB::table("contact")->insert([
                 'message' => $message,
                 'date' => now(),
-                'userID' => Auth::user()->id,
-                'subjectID' => $subjectid
+                'userid' => $usrid,
+                'subjectid' => $subjectid
             ]);
             return "success";
         });
