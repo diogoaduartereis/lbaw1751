@@ -92,10 +92,10 @@ Route::get('test', function() {
 Route::get('tags','PagesController@tags');
 
 //Contacts
-Route::get('contacts','PagesController@contacts');
+Route::get('contacts','ContactsController@contacts');
 Route::post('contacts/submit','ContactsController@submitContactRequest');
-Route::get('contactsList','PagesController@contactsList');
-Route::post('contacts/{id}/markAsProcessed','PagesController@markContactAsProcessed');
+Route::get('contactsList','ContactsController@contactsList');
+Route::post('contacts/{id}/markAsProcessed','ContactsController@markContactAsProcessed');
 
 //Auth::routes();
 
