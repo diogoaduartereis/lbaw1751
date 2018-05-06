@@ -49,8 +49,7 @@ function downvotePost(object, index, vote)
         object.classList.remove('text-danger');
         object.classList.add('text-secondary');
 
-        voteValue = 1;
-        voteInPostQuestionPage(postId, voteValue);
+        deleteVoteQuestionPage(postId);
     }
 }
 
@@ -83,8 +82,7 @@ function upvotePost(object, index, vote)
         object.classList.remove('text-success');
         object.classList.add('text-secondary');
 
-        voteValue = -1;
-        voteInPostQuestionPage(postId, voteValue);
+        deleteVoteQuestionPage(postId);
     }
 }
 
@@ -135,6 +133,39 @@ function voteIntroducedInDatabase()
     let newPointsValue = Number(this.responseText);
     let newPointsInnerHTML = newPointsValue + " Points";
     document.getElementById("upvoteCount-" + postId).innerHTML = newPointsInnerHTML;
+
+    //alter user points
+    let currUserPoints = Number(document.getElementById("post" + postId + "PosterPoints").innerHTML);
+    let newUserPoints = currUserPoints + voteValue;
+    document.getElementById("post" + postId + "PosterPoints").innerHTML = newUserPoints;
+}
+
+function deleteVoteQuestionPage(postId)
+{
+    //get csrf token
+    let csrfToken = document.getElementById("csrf-token").innerHTML;
+
+    //add the new item to the database using AJAX
+    let ajaxRequest = new XMLHttpRequest();
+    ajaxRequest.addEventListener("load", voteDeletedOffDatabase);
+    ajaxRequest.open("POST", "../post/"+ postId +"/deletevote", true);
+    ajaxRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    ajaxRequest.setRequestHeader("X-CSRF-Token", csrfToken);
+    ajaxRequest.send();
+}
+
+// Handler for ajax response received
+function voteDeletedOffDatabase()
+{
+    console.log(this.responseText);
+    if (this.responseText == "error" || this.responseText == "already canceled vote")
+        return;
+
+    //new post points inner html
+    let newPointsValue = Number(this.responseText);
+    let newPointsInnerHTML = newPointsValue + " Points";
+    document.getElementById("upvoteCount-" + postId).innerHTML = newPointsInnerHTML;
+
 
     //alter user points
     let currUserPoints = Number(document.getElementById("post" + postId + "PosterPoints").innerHTML);

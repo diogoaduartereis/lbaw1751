@@ -76,6 +76,9 @@ Route::post('questions/{id}/close', 'PostController@closeQuestion');
 //Post Vote
 Route::post('post/{id}/vote', 'PostController@postVote');
 
+//Delete Vote
+Route::post('post/{id}/deletevote', 'PostController@deleteVote');
+
 //Get Report Post Page
 Route::get('report/post/{id}', 'PagesController@reportPost');
 

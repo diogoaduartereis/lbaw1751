@@ -220,6 +220,19 @@ class PostController extends Controller
         return "error";
     }
 
+    public function deleteVote(Request $request, $postId)
+    {
+        if(Auth::check())
+        {
+            DB::table("postvote")->where('postid', '=', $postId)->delete();
+
+            $postAtualPoints = DB::table("post")->select("points")->where('id', $postId)->first();
+            return $postAtualPoints->points;
+        }
+
+        return "error";
+    }
+
     public function delete($postId)
     {
         if(!Auth::check())
