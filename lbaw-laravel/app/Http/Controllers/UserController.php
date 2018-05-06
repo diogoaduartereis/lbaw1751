@@ -296,6 +296,15 @@ class UserController extends Controller
         return redirect('');
     }
 
+    public static function getNumberOfActiveQuestions()
+    {
+        $num = DB::table('post')
+                        ->select('points')
+                        ->where('posterid', '=', Auth::user()->id)
+                        ->count();
+        return $num;
+    }
+
     /**
      * Update the specified resource in storage.
      *
