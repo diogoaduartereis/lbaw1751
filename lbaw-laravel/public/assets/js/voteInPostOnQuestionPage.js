@@ -49,6 +49,7 @@ function downvotePost(object, index, vote)
         object.classList.remove('text-danger');
         object.classList.add('text-secondary');
 
+        voteValue = +1;
         deleteVoteQuestionPage(postId);
     }
 }
@@ -82,6 +83,7 @@ function upvotePost(object, index, vote)
         object.classList.remove('text-success');
         object.classList.add('text-secondary');
 
+        voteValue = -1;
         deleteVoteQuestionPage(postId);
     }
 }
@@ -169,7 +171,7 @@ function voteDeletedOffDatabase()
 
     //alter user points
     let currUserPoints = Number(document.getElementById("post" + postId + "PosterPoints").innerHTML);
-    let newUserPoints = currUserPoints - voteValue;
+    let newUserPoints = currUserPoints + voteValue;
     document.getElementById("post" + postId + "PosterPoints").innerHTML = newUserPoints;
     updateUserPointsInSideBar();
 }
