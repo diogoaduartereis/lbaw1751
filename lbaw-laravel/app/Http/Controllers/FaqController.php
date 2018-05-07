@@ -12,7 +12,7 @@ class FaqController extends Controller
 {
     public static function getAllFaqs()
     {
-        $faqs = DB::table('faqentry')->select('question', 'answer')->get();
+        $faqs = DB::table('faqentry')->select('name as category_name', 'question', 'answer')->get();
         //for security purposes, do not return DB error information to the user possibly gibing 
         if ($faqs)
             return $faqs;
