@@ -158,7 +158,6 @@ function deleteVoteQuestionPage(postId)
 // Handler for ajax response received
 function voteDeletedOffDatabase()
 {
-    console.log(this.responseText);
     if (this.responseText == "error" || this.responseText == "already canceled vote")
         return;
 
