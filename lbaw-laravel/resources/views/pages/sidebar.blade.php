@@ -27,7 +27,7 @@
                     </div>
                     <div class="row mx-auto">
                         <div clas="col-12">
-                            <h5>
+                            <h5 id="userPointsArea">
                                 @if(Auth::user()->points > -1)
                                     <div class="text-success" style="margin-left:2vw;"> 
                                         <i class="fas fa-plus" style="padding-right: 3px;"></i>
