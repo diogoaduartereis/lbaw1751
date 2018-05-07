@@ -21,7 +21,12 @@ class UserController extends Controller
     }
     public function getSelfCurrentPoints()
     {
-        return Auth::user()->points;
+        $userPoints = Auth::user()->points;
+        //for security purposes, do not return DB error information to the user possibly gibing 
+        if ($userPoints)
+            return $userPoints;
+        else
+            return "error";
     }
     /**
      * Login a user to the system.
