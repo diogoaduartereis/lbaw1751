@@ -5,6 +5,8 @@
     $numberOfActiveQuestions = sizeof($userActivePosts);
 ?>
 
+<script src="/assets/js/updateUserPointsInSideBar.js"></script>
+
 <nav id="sidebar" style="position:fixed;z-index:10;" class="nav flex-column bg-dark collapse multi-collapse">
     <br>
     <div class="row mx-auto">

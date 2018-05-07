@@ -138,6 +138,7 @@ function voteIntroducedInDatabase()
     let currUserPoints = Number(document.getElementById("post" + postId + "PosterPoints").innerHTML);
     let newUserPoints = currUserPoints + voteValue;
     document.getElementById("post" + postId + "PosterPoints").innerHTML = newUserPoints;
+    updateUserPointsInSideBar();
 }
 
 function deleteVoteQuestionPage(postId)
@@ -171,4 +172,5 @@ function voteDeletedOffDatabase()
     let currUserPoints = Number(document.getElementById("post" + postId + "PosterPoints").innerHTML);
     let newUserPoints = currUserPoints + voteValue;
     document.getElementById("post" + postId + "PosterPoints").innerHTML = newUserPoints;
+    updateUserPointsInSideBar();
 }
