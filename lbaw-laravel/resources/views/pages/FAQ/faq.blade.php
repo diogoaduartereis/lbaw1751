@@ -62,10 +62,39 @@
                                                 Seems like there has been a problem processing your request. Please try again later.
                                                 </h4>
                         @else
-                            @foreach ($faqs as $faq)
+                            @foreach ($faqs as $faqCat => $faq)
 
 
                             
+
+                            <div class="faqHeader text-primary">
+                            <h3>{{$faqCat}}</h3>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div id="accordion">
+                                    <div class="card">
+                                        <div class="card-header" id="headingOne">
+                                            <h5 class="mb-0">
+                                                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                                    {{$faq->question}}
+                                                </button>
+                                            </h5>
+                                        </div>
+                                        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                                            <div class="card-body">
+                                                {{$faq->answer}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+
+
+
 
 
                             @endforeach
