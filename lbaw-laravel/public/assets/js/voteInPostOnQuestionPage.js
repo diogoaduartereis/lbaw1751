@@ -39,7 +39,7 @@ function downvotePost(object, index, vote)
         object.classList.add('text-danger');
 
         voteValue = -1;
-        voteInPostQuestionPage(postId, voteValue);
+        voteInPostOnQuestionPage(postId, voteValue);
     }
     else if(vote != null && vote < 0)
     {
@@ -72,7 +72,7 @@ function upvotePost(object, index, vote)
         object.classList.add('text-success');
 
         voteValue = 1;
-        voteInPostQuestionPage(postId, voteValue);
+        voteInPostOnQuestionPage(postId, voteValue);
     }
     else if(vote != null && vote > 0)
     {
@@ -109,7 +109,7 @@ function arrowToDefault(object)
 } 
 
 
-function voteInPostQuestionPage(postId, voteValue)
+function voteInPostOnQuestionPage(postId, voteValue)
 {
     //get csrf token
     let csrfToken = document.getElementById("csrf-token").innerHTML;
