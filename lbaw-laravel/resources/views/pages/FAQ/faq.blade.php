@@ -1,4 +1,11 @@
-﻿<!DOCTYPE html>
+﻿<?php
+    use \App\Http\Controllers\FaqController;
+
+    $faqs = FaqController::getAllFaqs();
+?>
+
+
+<!DOCTYPE html>
 <html lang="en">
 
     <head>
@@ -50,6 +57,19 @@
                         </div>
                     </div>
                     <div id="classContainerID" class="container">
+                        @if ($faqs == "error")
+                        <h4 id="resultMessage" style="text-align:left">
+                                                Seems like there has been a problem processing your request. Please try again later.
+                                                </h4>
+                        @else
+                            @foreach ($faqs as $faq)
+
+
+                            
+
+
+                            @endforeach
+                        @endif
                         <div class="faqHeader text-primary">
                             <h3>General Questions</h3>
                         </div>
