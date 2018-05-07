@@ -169,7 +169,7 @@ function voteDeletedOffDatabase()
 
     //alter user points
     let currUserPoints = Number(document.getElementById("post" + postId + "PosterPoints").innerHTML);
-    let newUserPoints = currUserPoints + voteValue;
+    let newUserPoints = currUserPoints - voteValue;
     document.getElementById("post" + postId + "PosterPoints").innerHTML = newUserPoints;
     updateUserPointsInSideBar();
 }
