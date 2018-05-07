@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Redirect;
+use Hash;
+use DB;
+use Auth;
 
 class FaqController extends Controller
 {
