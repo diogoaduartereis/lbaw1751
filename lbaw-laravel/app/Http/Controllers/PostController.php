@@ -202,29 +202,23 @@ class PostController extends Controller
                
             if(count($postValueFromPreviousVote) != 0)
             {
+               
                 if($postValueFromPreviousVote->value == $voteValue)
-                    return "already voted";
-
-                DB::table("postvote")->where('postid', $postId)->where('posterid', $loggedUserId)->delete();
+                {
+                    DB::table("postvote")->where('postid', $postId)->where('posterid', $loggedUserId)->delete();
+                    $postAtualPoints = DB::table("post")->select("points")->where('id', $postId)->first();
+                    return $postAtualPoints->points;
+                }
+                    
+                DB::table("postvote")->where('postid', $postId)->where('posterid', $loggedUserId)->update(['value' => $voteValue]);
+                $postAtualPoints = DB::table("post")->select("points")->where('id', $postId)->first();
+                return $postAtualPoints->points;
             }
             else
             {
                 DB::table("postvote")->insert(['postid' => intval($postId), 'posterid' => intval($loggedUserId), 
                     'value' => intval($voteValue)]);
             }
-
-            $postAtualPoints = DB::table("post")->select("points")->where('id', $postId)->first();
-            return $postAtualPoints->points;
-        }
-
-        return "error";
-    }
-
-    public function deleteVote(Request $request, $postId)
-    {
-        if(Auth::check())
-        {
-            DB::table("postvote")->where('postid', '=', $postId)->delete();
 
             $postAtualPoints = DB::table("post")->select("points")->where('id', $postId)->first();
             return $postAtualPoints->points;

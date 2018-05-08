@@ -46,7 +46,9 @@
                                     <div class="col-sm-12 col-lg-12">
                                         <h1 id ="titleID" class="h1 text-primary">
                                             Report Post
-                                            <small>Feel free to report a post if you think it does not complain with the rules</small> </h1>
+                                            <br>
+                                            <small>Feel free to report a post if you think it does not complain with the rules</small> 
+                                        </h1>
                                     </div>
                                 </div>
                             </div>
@@ -71,9 +73,6 @@
                                             </div>
                                     </div>
                                 </div>
-                                <hr>
-
-                                
                             </div>
                         </div>
                     </div>

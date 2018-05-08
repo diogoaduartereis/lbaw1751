@@ -1,5 +1,3 @@
-
-
 function updateUserPointsInSideBar()
 {
     //get csrf token
