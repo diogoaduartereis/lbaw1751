@@ -108,6 +108,8 @@
                             @endforeach
                                 </div>
                                 </section>
+                                <br>
+                                <br>
                                 @endforeach
                         </div>
                     </div>
