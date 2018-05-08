@@ -21,17 +21,17 @@ function updatedUserPointsArrived()
     let newInnerHtml;
     //console.log(newUserPoints);
     if (newUserPoints > -1)
-        newInnerHtml = ```<div class="text-success" style="margin-left:2vw;"> 
-                            <i class="fas fa-plus" style="padding-right: 3px;"></i> ```
+        newInnerHtml = `<div class="text-success" style="margin-left:2vw;"> 
+                            <i class="fas fa-plus" style="padding-right: 3px;"></i> `
                             + newUserPoints +
-                        ``` Points
-                        </div> ```;
+                        ` Points
+                        </div> `;
     else
-        newInnerHtml = ```<div class="text-danger" style="margin-left:2vw;"> 
+        newInnerHtml = `<div class="text-danger" style="margin-left:2vw;"> 
                             <i class="fas fa-minus" style="padding-right: 3px; color:red"></i>
-                            ``` + newUserPoints + ``` Points
+                            ` + newUserPoints + ` Points
                         </div>
-                    ```;
+                    `;
                     //console.log(newInnerHtml);
     userPointsArea.innerHTML = newInnerHtml;
 
