@@ -88,46 +88,27 @@
 
                             <br> <br>
 
+                            @foreach($teams as $teamName => $teamMembers)
+
+
                             <section id = "teamSection" class="pb-3">
-                                <h2 class="my-3">Our Team</h2>
+                                <h2 class="my-3">{{$teamName}}</h2>
                                 <div id = "teamPhotos" class="row text-center pb-3">
+                                
+                            @foreach($teamMembers as $teamMember)
                                     <div class="col-md-3 d-flex justify-content-center">
                                         <div class="card text-center" style="width: 14rem;">
                                             <img class="card-img-top img-fluid" src="../assets/img/team/Davide Costa.jpg" alt="dfg">
                                             <div class="card-body">
-                                                <h5 class="card-title">Davide Costa</h5>
-                                                <p class="card-text">MIEIC Student</p>
+                                                <h5 class="card-title">{{$teamMember->name}}</h5>
+                                                <p class="card-text">{{$teamMember->title}}</p>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-3 d-flex justify-content-center">
-                                        <div class="card" style="width: 14rem;">
-                                            <img class="card-img-top img-fluid" src="../assets/img/team/Dinis Trigo.jpg" alt="fcm">
-                                            <div class="card-body">
-                                                <h5 class="card-title">Dinis Silva</h5>
-                                                <p class="card-text">MIEIC Student</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3 d-flex justify-content-center">
-                                        <div class="card text-center" style="width: 14rem;">
-                                            <img class="card-img-top img-fluid" src="../assets/img/team/Diogo Reis.jpg" alt="dfg">
-                                            <div class="card-body">
-                                                <h5 class="card-title">Diogo Reis</h5>
-                                                <p class="card-text">MIEIC Student</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3 d-flex justify-content-center">
-                                        <div class="card text-center" style="width: 14rem;">
-                                            <img class="card-img-top img-fluid" src="../assets/img/team/Tiago Magalhães.jpg" alt="dfg">
-                                            <div class="card-body">
-                                                <h5 class="card-title">Tiago Magalhães</h5>
-                                                <p class="card-text">MIEIC Student</p>
-                                            </div>
-                                        </div>
-                                    </div>
+                            @endforeach
                                 </div>
+                                </section>
+                                @endforeach
                         </div>
                     </div>
                 </div>
