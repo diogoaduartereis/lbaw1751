@@ -21,7 +21,8 @@ class TeamController extends Controller
                             ->join('teamtoteammember',  'team.id', '=', 'teamtoteammember.teamid')
                             ->join('teammember', 'teamtoteammember.teammemberid', '=', 'teammember.id')
                             ->select('teammember.name', 'teammember.email', 'teammember.title', 'img_path')
-                            ->where('team.name', '=', $teamName->name);
+                            ->where('team.name', '=', $teamName->name)
+                            ->get();
             if (!$teamMembers)
                 return "error";
             $teams[$teamName->name] = $teamMembers;
