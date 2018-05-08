@@ -1,4 +1,10 @@
-﻿<!DOCTYPE html>
+﻿<?php
+    use \App\Http\Controllers\TeamController;
+
+    $teams = TeamController::getMapWithAllTeamsToMembers();
+?>
+
+<!DOCTYPE html>
 <html lang="en">
 
     <head>
