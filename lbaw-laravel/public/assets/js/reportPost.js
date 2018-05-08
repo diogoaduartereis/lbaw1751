@@ -30,7 +30,7 @@ function reponseArrived()
     }
     else if (this.responseText == "already reported")
     {
-        resultMessageElement.innerHTML = 'You have already submitted a report to that question. You have to wait until the report is processed to be able to submit another report to the same question.'
+        resultMessageElement.innerHTML = 'You have already submitted a report to that post. You have to wait until the report is processed to be able to submit another report to the same question.'
         resultMessageElement.style.color = "red";
     }   
     else
