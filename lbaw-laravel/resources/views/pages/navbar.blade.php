@@ -1,3 +1,9 @@
+<?php
+    use \App\Http\Controllers\TagController;
+
+    $tags = TagController::getFirstXTags(10);
+?>
+
 <nav style="width:100%;" id="navbar" class="navbar rounded-0 navbar-expand-lg navbar-dark bg-dark sticky-top">
     <a style="color:white;" href="{{url('login')}}"> Sign In </a>
 </button>
@@ -39,12 +45,15 @@
                     <i class="fas fa-tags"></i> Tags
                 </a>
                 <div class="dropdown-menu bg-light" aria-labelledby="navbarDropdown">
+                    @if ($tags == "error")
                     <a class="dropdown-item text-dark" href="#">
-                        <i class="fas fa-tag"></i> C++</a>
+                        <i class="fas fa-tag"></i> Sorry, it was not possible to load tags from DB server.</a>
+                    @else
+                    @foreach($tags as $tag)
                     <a class="dropdown-item text-dark" href="#">
-                        <i class="fas fa-tag"></i> Java</a>
-                    <a class="dropdown-item text-dark" href="#">
-                        <i class="fas fa-tag"></i> JS</a>
+                        <i class="fas fa-tag"></i> {{$tag->name}}</a>
+                    @endforeach
+                    @endif
                 </div>
             </li>
             <li class="nav-item">
