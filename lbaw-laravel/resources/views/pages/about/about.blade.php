@@ -114,7 +114,7 @@
                                     </div>
                                     <div class="col-md-3 d-flex justify-content-center">
                                         <div class="card text-center" style="width: 14rem;">
-                                            <img class="card-img-top img-fluid" src="../assets/img/team/Tiago Magalhães.jpg" alt="dfg">
+                                            <img class="card-img-top img-fluid" src="../assets/img/team/Tiago Magalhaes.jpg" alt="dfg">
                                             <div class="card-body">
                                                 <h5 class="card-title">Tiago Magalhães</h5>
                                                 <p class="card-text">MIEIC Student</p>
