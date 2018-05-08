@@ -11,7 +11,7 @@ use Auth;
 
 class TeamController extends Controller
 {
-    public function getMapWithAllTeamsToMembers()
+    public static function getMapWithAllTeamsToMembers()
     {
         $teams = array();
         $teamsNames = DB::table('team')->select('name')->get();
