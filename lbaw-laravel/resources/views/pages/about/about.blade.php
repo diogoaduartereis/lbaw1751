@@ -74,9 +74,13 @@
                                 </div>
                             </div>
                         </div>
-
                         <div id="classContainerID" class="container">
 
+                        @if ($teams == "error")
+                        <h4 id="resultMessage" style="text-align:left">
+                                                Seems like there has been a problem processing your request. Please try again later.
+                                                </h4>
+                        @else
                             <section class="py-3">
                                 <div class="row">
                                     <div id ="testeID" class="col-md-12">
@@ -111,6 +115,7 @@
                                 <br>
                                 <br>
                                 @endforeach
+                                @endif
                         </div>
                     </div>
                 </div>
