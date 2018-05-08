@@ -2,6 +2,7 @@
     use \App\Http\Controllers\FaqController;
 
     $faqs = FaqController::getAllFaqs();
+    $i = 0; //this counter will be used to give ids to the collapsable divs so that the collapse button can affect the correct div
 ?>
 
 
@@ -77,12 +78,12 @@
                                     <div class="card">
                                         <div class="card-header" id="headingOne">
                                             <h5 class="mb-0">
-                                                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                                <button class="btn btn-link" data-toggle="collapse" data-target="#collapse{{$i}}" aria-expanded="false" aria-controls="collapse{{$i}}">
                                                     {{$faq->question}}
                                                 </button>
                                             </h5>
                                         </div>
-                                        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                                        <div id="collapse{{$i}}" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
                                             <div class="card-body">
                                                 {{$faq->answer}}
                                             </div>
@@ -91,6 +92,7 @@
                                 </div>
                             </div>
                         </div>
+                        <?php $i++; ?>
                         @endforeach
                         <br>
                         <br>
