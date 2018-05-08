@@ -98,7 +98,7 @@
                             @foreach($teamMembers as $teamMember)
                                     <div class="col-md-3 d-flex justify-content-center">
                                         <div class="card text-center" style="width: 14rem;">
-                                            <img class="card-img-top img-fluid" src="../assets/img/team/Davide Costa.jpg" alt="dfg">
+                                            <img class="card-img-top img-fluid" src="../assets/img/team/{{$teamMember->img_path}}" alt="dfg">
                                             <div class="card-body">
                                                 <h5 class="card-title">{{$teamMember->name}}</h5>
                                                 <p class="card-text">{{$teamMember->title}}</p>
