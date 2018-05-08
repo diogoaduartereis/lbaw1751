@@ -22,7 +22,7 @@ class TagController extends Controller
         return json_encode($ret);
     }
 
-    public function getFirstXTags($numberOfTags)
+    public static function getFirstXTags($numberOfTags)
     {
         $tags = DB::table('tag')
                         ->select('name')
