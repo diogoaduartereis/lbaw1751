@@ -64,10 +64,6 @@
                                                 </h4>
                         @else
                             @foreach ($faqs as $faqCat => $faqArr)
-
-
-                            
-
                             <div class="faqHeader text-primary">
                             <h3>{{$faqCat}}</h3>
                         </div>
@@ -96,67 +92,9 @@
                         @endforeach
                         <br>
                         <br>
-
-
-
-
-
                             @endforeach
                         @endif
-                        <div class="faqHeader text-primary">
-                            <h3>General Questions</h3>
-                        </div>
-                        <div class="row">
-                            <div class="col-12">
-                                <div id="accordion">
-                                    <div class="card">
-                                        <div class="card-header" id="headingOne">
-                                            <h5 class="mb-0">
-                                                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                                                    Is account registration required?
-                                                </button>
-                                            </h5>
-                                        </div>
-                                        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-                                            <div class="card-body">
-                                                Account registration at
-                                                <strong>Code Home</strong> is only required if you want to post or responde to questions.
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <br>
-                        <br>
-                        <div class="faqHeader text-primary">
-                            <h3>Community Members</h3>
-                        </div>
-                        <div class="row">
-                            <div class="col-12">
-                                <div id="accordion2">
-                                    <div class="card">
-                                        <div class="card-header" id="headingOne2">
-                                            <h5 class="mb-0">
-                                                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne22" aria-expanded="true" aria-controls="collapseOne22">
-                                                    How to avoid being banned?
-                                                </button>
-                                            </h5>
-                                        </div>
-                                        <div id="collapseOne22" class="collapse" aria-labelledby="headingOne2" data-parent="#accordion2">
-                                            <div class="card-body">
-                                                Respect other users.
-                                                <br> Respond only when you have knowldge about the theme
-                                                <br> Bump is only allowed after 48 hours with no response
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+                        
             </div>
             </div>
             <script src="../assets/js/bars.js"></script>
