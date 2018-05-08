@@ -20,7 +20,7 @@ class TeamController extends Controller
             $teamMembers = DB::table('team')
                             ->join('teamtoteammember',  'team.id', '=', 'teamtoteammember.teamid')
                             ->join('teammember', 'teamtoteammember.teammemberid', '=', 'teammember.id')
-                            ->select('teammember.name as member_name')
+                            ->select('teammember.name', 'teammember.email', 'teammember.title', 'img_path')
                             ->where('team.name', '=', $teamName->name);
             if (!$teamMembers)
                 return "error";
