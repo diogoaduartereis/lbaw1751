@@ -28,6 +28,11 @@ function downvotePost(object, index, vote)
 
     if(vote == null || vote >= 0)
     {
+        if($('#upvoteArr-' + index).hasClass('text-success'))
+            var userPointsUpdater = -2;
+        else
+            var userPointsUpdater = -1;
+
         $('#upvoteArr-' + index).removeClass('text-success');
         $('#upvoteArr-' + index).attr('onclick','return upvotePost(this,' + index +',0)');
         $('#upvoteArr-' + index).attr('onmouseover','arrowToGreen(this)');
@@ -39,6 +44,8 @@ function downvotePost(object, index, vote)
         object.classList.add('text-danger');
 
         voteValue = -1;
+        updateUserPoints(postId, userPointsUpdater);
+        updatePostPoints(postId, userPointsUpdater);
         voteInPostOnQuestionPage(postId, voteValue);
     }
     else if(vote != null && vote < 0)
@@ -49,8 +56,11 @@ function downvotePost(object, index, vote)
         object.classList.remove('text-danger');
         object.classList.add('text-secondary');
 
-        voteValue = +1;
-        deleteVoteQuestionPage(postId);
+        voteValue = -1;
+        userPointsUpdater = 1;
+        updateUserPoints(postId, userPointsUpdater);
+        updatePostPoints(postId, userPointsUpdater);
+        voteInPostOnQuestionPage(postId, voteValue);
     }
 }
 
@@ -61,6 +71,11 @@ function upvotePost(object, index, vote)
 
     if(vote == null || vote <= 0)
     {
+        if($('#downvoteArr-' + index).hasClass('text-danger'))
+            var userPointsUpdater = 2;
+        else
+            var userPointsUpdater = 1;
+
         $('#downvoteArr-' + index).removeClass('text-danger');
         $('#downvoteArr-' + index).attr('onclick','return downvotePost(this,' + index +',0)');
         $('#downvoteArr-' + index).attr('onmouseover','arrowToRed(this)');
@@ -71,8 +86,10 @@ function upvotePost(object, index, vote)
         $('#'+object.id).attr('onmouseover','');
         $('#'+object.id).attr('onmouseleave','');
         object.classList.add('text-success');
-
+        
         voteValue = 1;
+        updateUserPoints(postId, userPointsUpdater);
+        updatePostPoints(postId, userPointsUpdater);
         voteInPostOnQuestionPage(postId, voteValue);
     }
     else if(vote != null && vote > 0)
@@ -83,8 +100,11 @@ function upvotePost(object, index, vote)
         object.classList.remove('text-success');
         object.classList.add('text-secondary');
 
-        voteValue = -1;
-        deleteVoteQuestionPage(postId);
+        voteValue = 1;
+        userPointsUpdater = -1;
+        updateUserPoints(postId, userPointsUpdater);
+        updatePostPoints(postId, userPointsUpdater);
+        voteInPostOnQuestionPage(postId, voteValue);
     }
 }
 
@@ -128,50 +148,36 @@ function voteInPostOnQuestionPage(postId, voteValue)
 // Handler for ajax response received
 function voteIntroducedInDatabase()
 {
-    if (this.responseText == "error" || this.responseText == "already voted")
+    if (this.responseText == "error")
+    {
+        alert("There was an error processing your vote. Please refresh and try again");
         return;
+    }
 
     //new post points inner html
-    let newPointsValue = Number(this.responseText);
+   /* let newPointsValue = Number(this.responseText);
     let newPointsInnerHTML = newPointsValue + " Points";
     document.getElementById("upvoteCount-" + postId).innerHTML = newPointsInnerHTML;
 
     //alter user points
-    let currUserPoints = Number(document.getElementById("post" + postId + "PosterPoints").innerHTML);
+  /*  let currUserPoints = Number(document.getElementById("post" + postId + "PosterPoints").innerHTML);
     let newUserPoints = currUserPoints + voteValue;
-    document.getElementById("post" + postId + "PosterPoints").innerHTML = newUserPoints;
+    document.getElementById("post" + postId + "PosterPoints").innerHTML = newUserPoints;*/
     updateUserPointsInSideBar();
 }
 
-function deleteVoteQuestionPage(postId)
+function updatePostPoints(postId, voteValue)
 {
-    //get csrf token
-    let csrfToken = document.getElementById("csrf-token").innerHTML;
 
-    //add the new item to the database using AJAX
-    let ajaxRequest = new XMLHttpRequest();
-    ajaxRequest.addEventListener("load", voteDeletedOffDatabase);
-    ajaxRequest.open("POST", "../post/"+ postId +"/deletevote", true);
-    ajaxRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    ajaxRequest.setRequestHeader("X-CSRF-Token", csrfToken);
-    ajaxRequest.send();
-}
-
-// Handler for ajax response received
-function voteDeletedOffDatabase()
-{
-    if (this.responseText == "error" || this.responseText == "already canceled vote")
-        return;
-
-    //new post points inner html
-    let newPointsValue = Number(this.responseText);
-    let newPointsInnerHTML = newPointsValue + " Points";
+    let oldPoints = document.getElementById("upvoteCount-" + postId).innerHTML;
+    let oldPointsValue = Number(oldPoints.substring(0, oldPoints.indexOf('Points')));
+    let newPointsInnerHTML = oldPointsValue + voteValue + " Points";
     document.getElementById("upvoteCount-" + postId).innerHTML = newPointsInnerHTML;
+}
 
-
-    //alter user points
+function updateUserPoints(postId, voteValue)
+{
     let currUserPoints = Number(document.getElementById("post" + postId + "PosterPoints").innerHTML);
     let newUserPoints = currUserPoints + voteValue;
     document.getElementById("post" + postId + "PosterPoints").innerHTML = newUserPoints;
-    updateUserPointsInSideBar();
 }
