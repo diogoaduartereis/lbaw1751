@@ -15,11 +15,9 @@ function updateUserPointsInSideBar()
 
 function updatedUserPointsArrived()
 {
-    //console.log(this);
     let newUserPoints = parseInt(this.responseText);
     let userPointsArea = document.getElementById('userPointsArea');
     let newInnerHtml;
-    //console.log(newUserPoints);
     if (newUserPoints > -1)
         newInnerHtml = `<div class="text-success" style="margin-left:2vw;"> 
                             <i class="fas fa-plus" style="padding-right: 3px;"></i> `
@@ -32,7 +30,5 @@ function updatedUserPointsArrived()
                             ` + newUserPoints + ` Points
                         </div>
                     `;
-                    //console.log(newInnerHtml);
     userPointsArea.innerHTML = newInnerHtml;
-
 }
