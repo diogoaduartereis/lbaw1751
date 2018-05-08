@@ -18,8 +18,8 @@ class FaqController extends Controller
         foreach ($faqCats as $faqCat)
         {
             $currFaq = DB::table('faqentry')->select('question', 'answer')
-                            ->join('category', 'category.id', '=', 'faqentry.category')
-                            ->where('category')->get();
+                            ->join('faqcategory', 'faqcategory.id', '=', 'faqentry.category')
+                            ->where('faqcategory.name', '=', $faqCat->name)->get();
             if (!$currFaq)
                 return "error";
             $faqMap[$faqCat->name] = $currFaq;
