@@ -62,7 +62,7 @@
                                                 Seems like there has been a problem processing your request. Please try again later.
                                                 </h4>
                         @else
-                            @foreach ($faqs as $faqCat => $faq)
+                            @foreach ($faqs as $faqCat => $faqArr)
 
 
                             
@@ -70,6 +70,7 @@
                             <div class="faqHeader text-primary">
                             <h3>{{$faqCat}}</h3>
                         </div>
+                        @foreach ($faqArr as $faq)
                         <div class="row">
                             <div class="col-12">
                                 <div id="accordion">
@@ -90,6 +91,7 @@
                                 </div>
                             </div>
                         </div>
+                        @endforeach
                         <br>
                         <br>
 
