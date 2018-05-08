@@ -59,7 +59,7 @@
 
         @if(Auth::user()->type == 'ADMIN')
         <li class="active">
-            <a href="/admin">
+            <a href= {{"/admin"}}>
                 <i class="fas fa-cogs"></i> Administration</a>
         </li>
         @endif

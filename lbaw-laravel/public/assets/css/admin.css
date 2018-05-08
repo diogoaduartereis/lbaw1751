@@ -52,6 +52,11 @@ h2
 
 @media (min-width: 1800px)
 {
+    #usersTable
+    {
+        margin-left:10%;
+    }
+
     #jumbotronID
     {
         padding-right:100px;
@@ -85,6 +90,7 @@ h2
 
 @media (min-width: 1301px)
 {
+
     #sidebarElementsID
     {
         font-size:130%;
@@ -178,6 +184,11 @@ h2
 
 @media (min-width: 992px) and (max-width:1300px)
 {
+    #usersTable
+    {
+        margin-left:3%;
+    }
+
     #sidebarElementsID
     {
         font-size:130%;
@@ -267,7 +278,10 @@ h2
 
 @media (max-width: 991px) {
 
-
+    #usersTable
+    {
+        margin-left:-5%;
+    }
 
     div#searchForm
     {
@@ -385,6 +399,7 @@ h2
 }*/
 
 @media (max-width: 769px) {
+
     div#searchForm
     {
         width:0%;
@@ -451,6 +466,7 @@ h2
 
 @media (min-width: 469px) and (max-width: 577px)
 {
+
     #titleID.active
     {
         margin-left:56px;

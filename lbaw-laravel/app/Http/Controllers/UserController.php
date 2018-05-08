@@ -325,6 +325,16 @@ class UserController extends Controller
             return $userActivePosts;
     }
 
+    public static function showAdminPage()
+    {
+        if(Auth::check() && Auth::user()->type == 'ADMIN')
+        {        
+            $users = DB::table('users')->select('*')->where('id', '!=', Auth::user()->id)->orderBy('id', 'asc')->get();
+
+            return view('pages.admin.index', ['users' => $users]);
+        }
+    }
+
     /**
      * Update the specified resource in storage.
      *

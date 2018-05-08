@@ -63,7 +63,21 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row px-3 py-3 table-responsive">
+
+                                <?php 
+                                        $i = 0;
+                                        $itemsPerPage = 10;
+                                        $id = 1;
+                                        $sizeOfUsers = sizeof($users);
+                                        $numberOfPages = ceil ( $sizeOfUsers /  $itemsPerPage);
+
+                                        for($i; $i < $numberOfPages; $i++)
+                                        { 
+                                            
+                                ?>
+
+
+                                <div id= {{$i}} class="row px-3 py-3 table-responsive">
                                     <table class="table">
                                         <thead>
                                             <tr>
@@ -73,116 +87,47 @@
                                                 <th>Actions</th>
                                             </tr>
                                         </thead>
+
                                         <tbody>
-                                            <tr>
-                                                <th scope="row">1</th>
-                                                <td>António Silva</td>
-                                                <td>antonio@mail.com</td>
-                                                <td>
-                                                    <button class="btn btn-danger" type="submit">
-                                                        <i class="fas fa-ban"></i>
-                                                    </button>
-                                                    <button class="btn btn-warning" type="submit">
-                                                        <i class="fas fa-edit" style="color: white"></i>
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">2</th>
-                                                <td>Joana Lima</td>
-                                                <td>joana@mail.com</td>
-                                                <td>
-                                                    <button class="btn btn-danger" type="submit">
-                                                        <i class="fas fa-ban"></i>
-                                                    </button>
-                                                    <button class="btn btn-warning" type="submit">
-                                                        <i class="fas fa-edit" style="color: white"></i>
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">3</th>
-                                                <td>Paulo Teixeira</td>
-                                                <td>paulo@mail.com</td>
-                                                <td>
-                                                    <button class="btn btn-danger" type="submit">
-                                                        <i class="fas fa-ban"></i>
-                                                    </button>
-                                                    <button class="btn btn-warning" type="submit">
-                                                        <i class="fas fa-edit" style="color: white"></i>
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">4</th>
-                                                <td>Rita Alberto</td>
-                                                <td>rita@mail.com</td>
-                                                <td>
-                                                    <button class="btn btn-danger" type="submit">
-                                                        <i class="fas fa-ban"></i>
-                                                    </button>
-                                                    <button class="btn btn-warning" type="submit">
-                                                        <i class="fas fa-edit" style="color: white"></i>
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">5</th>
-                                                <td>Joaquim Santos</td>
-                                                <td>joaquim@mail.com</td>
-                                                <td>
-                                                    <button class="btn btn-danger" type="submit">
-                                                        <i class="fas fa-ban"></i>
-                                                    </button>
-                                                    <button class="btn btn-warning" type="submit">
-                                                        <i class="fas fa-edit" style="color: white"></i>
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">6</th>
-                                                <td>Manuel Teixeira</td>
-                                                <td>manuel@mail.com</td>
-                                                <td>
-                                                    <button class="btn btn-danger" type="submit">
-                                                        <i class="fas fa-ban"></i>
-                                                    </button>
-                                                    <button class="btn btn-warning" type="submit">
-                                                        <i class="fas fa-edit" style="color: white"></i>
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">7</th>
-                                                <td>Rita Abreu</td>
-                                                <td>abreu@mail.com</td>
-                                                <td>
-                                                    <button class="btn btn-danger" type="submit">
-                                                        <i class="fas fa-ban"></i>
-                                                    </button>
-                                                    <button class="btn btn-warning" type="submit">
-                                                        <i class="fas fa-edit" style="color: white"></i>
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">8</th>
-                                                <td>Paulo Pedrosa</td>
-                                                <td>pedrosa@mail.com</td>
-                                                <td>
-                                                    <button class="btn btn-danger" type="submit">
-                                                        <i class="fas fa-ban"></i>
-                                                    </button>
-                                                    <button class="btn btn-warning" type="submit">
-                                                        <i class="fas fa-edit" style="color: white"></i>
-                                                    </button>
-                                                </td>
-                                            </tr>
+
+                                                    <?php 
+
+                                                        for($j = $i*10; $j < $i*10 + $itemsPerPage; $j++)
+                                                        { 
+
+                                                    ?>
+                                                    
+
+
+                                                    <tr>
+                                                        <th scope="row">{{$users[$j]->id}}</th>
+                                                        <td>{{$users[$j]->username}}</td>
+                                                        <td>{{$users[$j]->email}}</td>
+                                                        <td>
+                                                            <button class="btn btn-danger" type="submit">
+                                                                <i class="fas fa-ban"></i>
+                                                            </button>
+                                                            <button class="btn btn-warning" type="submit">
+                                                                <i class="fas fa-edit" style="color: white"></i>
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                </div>
+                                            <?php
+                                                    } 
+                                            ?>
+
                                         </tbody>
                                     </table>
-                                </div>
+                                    </div>
+                                                    
+                                            <?php
+                                                }
+                                            ?>
 
-                                <div class="col-md-6 offset-md-3 d-flex justify-content-center">
+                                
+
+                               <!-- <div class="col-md-6 offset-md-3 d-flex justify-content-center">
                                     <nav aria-label="Table navigation">
                                         <ul class="pagination">
                                             <li class="page-item">
@@ -191,15 +136,19 @@
                                                     <span class="sr-only">Previous</span>
                                                 </a>
                                             </li>
-                                            <li class="page-item">
-                                                <a class="page-link" href="#">1</a>
-                                            </li>
-                                            <li class="page-item">
-                                                <a class="page-link" href="#">2</a>
-                                            </li>
-                                            <li class="page-item">
-                                                <a class="page-link" href="#">3</a>
-                                            </li>
+
+                                            
+                                                @if($j >= $i || $j + 10 <= $i)
+                                                    <li class="page-item active">
+                                                @else
+                                                    <li class="page-item">
+                                                @endif
+
+                                                    <a class="page-link" href="#">{{$j + 1}}</a>
+                                                        
+                                                    </li>
+                                            
+                                           
                                             <li class="page-item">
                                                 <a class="page-link" href="#" aria-label="Next">
                                                     <span aria-hidden="true">»</span>
@@ -208,15 +157,81 @@
                                             </li>
                                         </ul>
                                     </nav>
-                                </div>
+                                </div> !-->
+                                <ul id="pagination-demo" class="pagination-lg pull-right"></ul>
                             </section>
 
-
+                            
 
                         </div>
                     </div>
 
                 </div>
+
+                <style>
+
+                    .container {
+                    margin-top: 20px;
+                    }
+                    .page {
+                    display: none;
+                    }
+                    .page-active {
+                    display: block;
+                    }
+
+                </style>
+
+                <script>
+                    $('#pagination-demo').twbsPagination({
+                    totalPages: 4,
+                    // the current page that show on start
+                    startPage: 0,
+
+                    // maximum visible pages
+                    visiblePages: 4,
+
+                    initiateStartPageClick: true,
+
+                    // template for pagination links
+                    href: false,
+
+                    // variable name in href template for page number
+                    hrefVariable: '{{$i}}',
+
+                    // Text labels
+                    first: 'First',
+                    prev: 'Previous',
+                    next: 'Next',
+                    last: 'Last',
+
+                    // carousel-style pagination
+                    loop: false,
+
+                    // callback function
+                    onPageClick: function (event, page) {
+                        $('.page-active').removeClass('page-active');
+                        $('#page'+page).addClass('page-active');
+                    },
+
+                    // pagination Classes
+                    paginationClass: 'pagination',
+                    nextClass: 'next',
+                    prevClass: 'prev',
+                    lastClass: 'last',
+                    firstClass: 'first',
+                    pageClass: 'page',
+                    activeClass: 'active',
+                    disabledClass: 'disabled'
+
+                    });
+
+                </script>
+
+                <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+                <script src="https://www.solodev.com/assets/pagination/jquery.twbsPagination.js"></script>
+                <script src="paging.js"></script>
 
                 <script src="../assets/js/bars.js"></script>
 
