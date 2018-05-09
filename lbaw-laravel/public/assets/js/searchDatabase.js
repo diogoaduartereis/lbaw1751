@@ -12,7 +12,7 @@ function handleUserSearchInput(event)
         //TODO voltar a por os itens como estavam, para quando o user apaga toda a sua search por exemplo
         return;
     }
-    
+
     //ended flag
     let return_array;
     let ended_str = false;
@@ -101,4 +101,17 @@ function getElementInSearch(element, userInputText, endedSearchString)
     request.open("GET", "../search/getUser" + element + ".php?" +
             encodeForAjax({name: userInputText, endedOption: endedSearchString}), true);
     request.send();
+}
+
+function searchAndReplaceInString(string, expression)
+{
+    let found_expression = false;
+    if (string.toLowerCase().includes(expression))
+    {
+        found_expression = true;
+        string = string.toLowerCase().replace(expression, "");
+    }
+    string = string.trim();
+
+    return [found_expression, string];
 }
