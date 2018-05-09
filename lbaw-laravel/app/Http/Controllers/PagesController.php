@@ -14,6 +14,8 @@ class PagesController extends Controller
     public function frontpage()
     {
         $ret = PostController::getXMostRecentQuestions(5);
+        if ($ret == "error")
+            return abort(404);
         if(Auth::check())
             return view('pages.index logged in', ['questions' => $ret['questions']], ['questions_tags' => $ret['questions_tags']]);
         else
