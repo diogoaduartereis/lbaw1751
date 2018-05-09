@@ -1,6 +1,6 @@
 'use strict'
 
-document.getElementById("searchInput").addEventListener("keyup", handleUserSearchInput);
+document.getElementById("questionSearchBar").addEventListener("keyup", handleUserSearchInput);
 
 function handleUserSearchInput(event)
 {
