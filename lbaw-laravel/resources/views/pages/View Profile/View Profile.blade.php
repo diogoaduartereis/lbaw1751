@@ -66,10 +66,11 @@
                                             </form>
                                         @endif
                                         @if(Auth::user()->type == "ADMIN")
-                                            <button style="margin:5px 5px;" class="btn btn-danger col-md-6" onclick="goToBanForm(event, {{$user[0]->id}})">Ban user</button>
-                                        @endif
-                                        @if($user[0]->state == "BANNED")
-                                            <button id="unbanButton" style="margin:5px 5px;" class="btn btn-success col-md-6" onclick="confirmUnban(event, {{$user[0]->id}});">Unban user</button>
+                                            @if($user[0]->state == "BANNED")
+                                                <button id="unbanButton" style="margin:5px 5px;" class="btn btn-success col-md-6" onclick="confirmUnban(event, {{$user[0]->id}});">Unban user</button>
+                                            @else
+                                                <button style="margin:5px 5px;" class="btn btn-danger col-md-6" onclick="goToBanForm(event, {{$user[0]->id}})">Ban user</button>
+                                            @endif
                                         @endif
                                     @endif 
                                 </div>
@@ -206,8 +207,10 @@
                     {
                         if (this.responseText != "")
                             return;
-
-                        document.getElementById("unbanButton").remove(); 
+                                 
+                        document.getElementById("unbanButton").insertAdjacentHTML('afterend', `<button style="margin:5px 5px;" 
+                            class="btn btn-danger col-md-6" onclick="goToBanForm(event, {{$user[0]->id}})">Ban user</button>;`);
+                        document.getElementById("unbanButton").remove();
                     }
                  </script>
 
