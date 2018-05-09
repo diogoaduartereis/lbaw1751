@@ -128,6 +128,8 @@ $('.dropdown-menu a').on('click', function (event) {
 
     $(event.target).blur();
 
-    console.log(options);
+    let tagName = event.target.childNodes[2].nodeValue;
+    tagName = tagName.substring(1, tagName.length);
+    addTagToSearchBar(tagName);
     return false;
 });

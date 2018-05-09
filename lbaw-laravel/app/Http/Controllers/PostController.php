@@ -103,7 +103,8 @@ class PostController extends Controller
                                             ->where(DB::raw('post.isvisible'), '=', TRUE)
                                             ->where(DB::raw('post.id'), '=', $id)
                                             ->get();
-
+        if (!$questionElements)
+            return "error";
         $answersElements = DB::table('post')->select('users.*','post.id as post_id', 'post.posterid', 'post.content',
                                             'post.date as post_date','post.isvisible','post.points', 'answer.*')
                                             ->join('users', DB::raw('post.posterid'), '=',DB::raw('users.id'))
@@ -113,14 +114,21 @@ class PostController extends Controller
                                             ->orderBy('post_date', 'asc')
                                             ->get();
 
+                                            if (!$answersElements)
+                                                return "error";
         $questionUserCounter = array(
             'posts' => DB::table('post')->where('posterid', '=', $questionElements[0]->id)->count('posterid'),
             'points' => DB::table('users')->where('id', '=', $questionElements[0]->id)->sum('points')
         );
-
+        if (!$questionUserCounter)
+            return "error";
         if(Auth::check())
+{
             $postVotes = DB::table('postvote')->select('*')->where('posterid', '=', Auth::user()->id)->get();
-        else
+            if (!$postVotes)
+                return "error";
+        }
+            else
             $postVotes = null;
 
         $answerUserCounter = array();
@@ -130,11 +138,15 @@ class PostController extends Controller
                 'posts' => DB::table('post')->where('posterid', '=', $answerElements->id)->count('posterid'),
                 'points' => DB::table('users')->where('id', '=', $answerElements->id)->sum('points')
             );
+            if (!$row)
+                return "error";
             array_push($answerUserCounter, $row);
         }
 
         $questionUserPointsCounter = DB::table('post')->where('posterid', '=', $questionElements[0]->id)->count('posterid');
 
+        if (!$questionUserPointsCounter)
+            return "error";
         return view('pages.View Question.index', ['questionElements' => $questionElements[0],
              'answersElements' => $answersElements, 'questionUserCounter' => $questionUserCounter,
              'answerUserCounter' => $answerUserCounter, 'postVotes' => $postVotes
@@ -202,29 +214,23 @@ class PostController extends Controller
                
             if(count($postValueFromPreviousVote) != 0)
             {
+               
                 if($postValueFromPreviousVote->value == $voteValue)
-                    return "already voted";
-
-                DB::table("postvote")->where('postid', $postId)->where('posterid', $loggedUserId)->delete();
+                {
+                    DB::table("postvote")->where('postid', $postId)->where('posterid', $loggedUserId)->delete();
+                    $postAtualPoints = DB::table("post")->select("points")->where('id', $postId)->first();
+                    return $postAtualPoints->points;
+                }
+                    
+                DB::table("postvote")->where('postid', $postId)->where('posterid', $loggedUserId)->update(['value' => $voteValue]);
+                $postAtualPoints = DB::table("post")->select("points")->where('id', $postId)->first();
+                return $postAtualPoints->points;
             }
             else
             {
                 DB::table("postvote")->insert(['postid' => intval($postId), 'posterid' => intval($loggedUserId), 
                     'value' => intval($voteValue)]);
             }
-
-            $postAtualPoints = DB::table("post")->select("points")->where('id', $postId)->first();
-            return $postAtualPoints->points;
-        }
-
-        return "error";
-    }
-
-    public function deleteVote(Request $request, $postId)
-    {
-        if(Auth::check())
-        {
-            DB::table("postvote")->where('postid', '=', $postId)->delete();
 
             $postAtualPoints = DB::table("post")->select("points")->where('id', $postId)->first();
             return $postAtualPoints->points;
@@ -287,6 +293,38 @@ class PostController extends Controller
             ]);
             return "success";
         });
+    }
+
+    public static function getXMostRecentQuestions($numberOfQuestions)
+    {
+        $questions = DB::table('question')
+        ->join('post', 'question.postid' , '=', 'post.id')
+        ->join('users', 'post.posterid', '=', 'users.id')
+        ->select('question.postid as question_id', 'title', 'content', 'post.posterid as poster_id', 'post.points as question_points', 'users.points as poster_points', 'username')
+        ->where('isvisible', '=', 'true')
+        ->orderBy('date', 'desc')->take($numberOfQuestions)->get();
+        if (!$questions)
+            return "error";
+        $questions_tags = array();
+        foreach ($questions as $question)
+        {
+            $tags_arr = array();
+            $tags = DB::table('question')
+                ->join('tagquestion', 'question.postid', '=', 'tagquestion.question_id')
+                ->join('tag', 'tagquestion.tag_id', '=', 'tag.id')
+                ->select('tag.name as tag_name')
+                ->where('question.postid', '=', $question->question_id)
+                ->get();
+            if (!$tags)
+                return "error";
+
+            $questions_tags[$question->question_id] = $tags;
+        }
+
+        $ret = array();
+        $ret['questions'] = $questions;
+        $ret['questions_tags'] = $questions_tags;
+        return $ret;
     }
 
     //todo: end

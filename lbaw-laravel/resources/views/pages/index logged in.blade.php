@@ -1,7 +1,7 @@
 <html class="no-js" lang="en">
 
     <head>
-        <title>Bootstrap 4 Layout</title>
+        <title>Code Home</title>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -147,7 +147,7 @@
                                                                 <i class="fas fa-comment"></i> Reply 
                                                             </a>
                                                         </button>
-                                                        <button onclick="window.location.href='/report/post/{{$question->question_id}}'" type="button" class="btn btn-outline-danger">
+                                                        <button onclick="window.location.href='/report/post/{{$question->question_id}}?last_URL=' + window.location.href" type="button" class="btn btn-outline-danger">
                                                             <i class="fas fa-flag"></i> Report
                                                         </button>
                                                         @if(Auth::user()->type == "ADMIN" || Auth::user()->id == $question->poster_id)

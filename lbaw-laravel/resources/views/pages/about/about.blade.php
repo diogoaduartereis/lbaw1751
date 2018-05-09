@@ -1,4 +1,10 @@
-﻿<!DOCTYPE html>
+﻿<?php
+    use \App\Http\Controllers\TeamController;
+
+    $teams = TeamController::getMapWithAllTeamsToMembers();
+?>
+
+<!DOCTYPE html>
 <html lang="en">
 
     <head>
@@ -68,9 +74,13 @@
                                 </div>
                             </div>
                         </div>
-
                         <div id="classContainerID" class="container">
 
+                        @if ($teams == "error")
+                        <h4 id="resultMessage" style="text-align:left">
+                                                Seems like there has been a problem processing your request. Please try again later.
+                                                </h4>
+                        @else
                             <section class="py-3">
                                 <div class="row">
                                     <div id ="testeID" class="col-md-12">
@@ -82,46 +92,30 @@
 
                             <br> <br>
 
+                            @foreach($teams as $teamName => $teamMembers)
+
+
                             <section id = "teamSection" class="pb-3">
-                                <h2 class="my-3">Our Team</h2>
+                                <h2 class="my-3">{{$teamName}}</h2>
                                 <div id = "teamPhotos" class="row text-center pb-3">
+                                
+                            @foreach($teamMembers as $teamMember)
                                     <div class="col-md-3 d-flex justify-content-center">
                                         <div class="card text-center" style="width: 14rem;">
-                                            <img class="card-img-top img-fluid" src="../assets/img/team/Davide Costa.jpg" alt="dfg">
+                                            <img class="card-img-top img-fluid" src="../assets/img/team/{{$teamMember->img_path}}" alt="dfg">
                                             <div class="card-body">
-                                                <h5 class="card-title">Davide Costa</h5>
-                                                <p class="card-text">MIEIC Student</p>
+                                                <h5 class="card-title">{{$teamMember->name}}</h5>
+                                                <p class="card-text">{{$teamMember->title}}</p>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-3 d-flex justify-content-center">
-                                        <div class="card" style="width: 14rem;">
-                                            <img class="card-img-top img-fluid" src="../assets/img/team/Dinis Trigo.jpg" alt="fcm">
-                                            <div class="card-body">
-                                                <h5 class="card-title">Dinis Silva</h5>
-                                                <p class="card-text">MIEIC Student</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3 d-flex justify-content-center">
-                                        <div class="card text-center" style="width: 14rem;">
-                                            <img class="card-img-top img-fluid" src="../assets/img/team/Diogo Reis.jpg" alt="dfg">
-                                            <div class="card-body">
-                                                <h5 class="card-title">Diogo Reis</h5>
-                                                <p class="card-text">MIEIC Student</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3 d-flex justify-content-center">
-                                        <div class="card text-center" style="width: 14rem;">
-                                            <img class="card-img-top img-fluid" src="../assets/img/team/Tiago Magalhães.jpg" alt="dfg">
-                                            <div class="card-body">
-                                                <h5 class="card-title">Tiago Magalhães</h5>
-                                                <p class="card-text">MIEIC Student</p>
-                                            </div>
-                                        </div>
-                                    </div>
+                            @endforeach
                                 </div>
+                                </section>
+                                <br>
+                                <br>
+                                @endforeach
+                                @endif
                         </div>
                     </div>
                 </div>

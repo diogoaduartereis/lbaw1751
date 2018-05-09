@@ -74,9 +74,10 @@
             
                     <button id="replyButton" type="button" class="btn btn-outline-primary">
                         <i class="fas fa-comment"></i> Reply</button>
-            
-                    <button type="button" class="btn btn-outline-danger">
-                        <i class="fas fa-flag"></i> Report</button>
+
+                    <button onclick="window.location.href='/report/post/{{$questionElements->post_id}}?last_URL=' + window.location.href" type="button" class="btn btn-outline-danger">
+                        <i class="fas fa-flag"></i> Report
+                    </button>
                     
                     <?php if((Auth::check() && Auth::user()->id == $questionElements->posterid) || Auth::user()->type == "ADMIN"): ?>
                         <button id="deleteQuestionButton-{{$questionElements->post_id}}" type="button" onclick="return deleteQuestionInQuestionPage(event);" class="btn btn-outline-danger">
