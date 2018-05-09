@@ -277,6 +277,21 @@ class UserController extends Controller
         $password = $request->input('form-password');
         $password_confirmation = $request->input('form-confirm-password');
 
+        $this->validate($request, [
+            'fileToUpload' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+    
+        if ($request->hasFile('fileToUpload')) {
+            $image = $request->file('fileToUpload');
+            $name = $user_id . ".png";
+            $destinationPath = public_path('/assets/img/users');
+            $image->move($destinationPath, $name);
+            $this->save();
+        
+            return 5;
+        }
+
+
         if(empty($username) || empty($email) || empty($description))
             return redirect()->back()->withErrors(['msg', 'No information can be empty, values must all be filled in.']);
 
