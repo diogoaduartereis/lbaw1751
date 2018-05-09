@@ -71,8 +71,9 @@
     @if(Auth::check())
         <div>
             <div class="btn-group btn-group-sm " role="group" aria-label="Basic example">
-                <button type="button" class="btn btn-outline-danger">
-                    <i class="fas fa-flag"></i> Report</button>
+            <button onclick="window.location.href='/report/post/{{$answersElements[$i]->post_id}}?last_URL=' + window.location.href" type="button" class="btn btn-outline-danger">
+            <i class="fas fa-flag"></i> Report
+        </button>
 
                 <?php if((Auth::check() && Auth::user()->id == $answersElements[$i]->posterid) || Auth::user()->type == "ADMIN"): ?>
                     <button id="deleteAnswerButton-{{$answersElements[$i]->post_id}}" type="button" onclick="return deleteAnswer(event);" class="btn btn-outline-danger">
