@@ -77,7 +77,7 @@
                                 ?>
 
 
-                                <div id= {{$i}} class="row px-3 py-3 table-responsive">
+                                <div id= {{$i}} class="hidden row px-3 py-3 table-responsive">
                                     <table class="table">
                                         <thead>
                                             <tr>
@@ -158,8 +158,35 @@
                                         </ul>
                                     </nav>
                                 </div> !-->
-                                <ul id="pagination-demo" class="pagination-lg pull-right"></ul>
+                                <div class="col-md-6 offset-md-3 d-flex justify-content-center">
+                                    <nav aria-label="Table navigation">
+                                        <ul class="pagination">
+                                            <li class="page-item">
+                                                <a class="page-link" onclick="return previousPage()" aria-label="Previous">
+                                                    <span aria-hidden="true">«</span>
+                                                    <span class="sr-only">Previous</span>
+                                                </a>
+                                            </li>
+                                            @for($t = 0; $t < $numberOfPages; $t++)
+                                            
+                                            <li class="page-item">
+                                                <a id="page-{{$t}}" class="page-link" onclick="return changePage(this, 0,{{$t}}) ">{{$t + 1}}</a>
+                                            </li>
+
+                                            @endfor
+
+                                            <li class="page-item">
+                                                <a class="page-link" onclick="return nextPage()" aria-label="Next">
+                                                    <span aria-hidden="true">»</span>
+                                                    <span class="sr-only">Next</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </div>
+
                             </section>
+
 
                             
 
@@ -183,48 +210,81 @@
                 </style>
 
                 <script>
-                    $('#pagination-demo').twbsPagination({
-                    totalPages: 4,
-                    // the current page that show on start
-                    startPage: 0,
+                $('#0').removeClass('hidden');
+                $('#page-0').parent('li').addClass('active');
 
-                    // maximum visible pages
-                    visiblePages: 4,
 
-                    initiateStartPageClick: true,
+                function changePage(element, previousID, id)
+                {
+                    $('#'+previousID).addClass('hidden');
+                    $('#'+id).removeClass('hidden');
+                    $('#page-'+previousID).parent('li').removeClass('active');
+                    $('#page-'+id).parent('li').addClass('active');
+                    let pageid = element.id.substring(element.id.indexOf('-')+1);
+                    for(var i = 0; i < {{$t}}; i++)
+                    {
+                        $('#page-'+i).attr('onclick', `return changePage(this,` + id + `, this.id.substring(this.id.indexOf('-')+1))`);
+                    }
+                }
 
-                    // template for pagination links
-                    href: false,
+                function nextPage()
+                {
+                    for(var i=0; i < {{$t}}; i++)
+                    {
+                        if(i != {{$t}} - 1)
+                        {
+                            if($('#page-'+ i).parent('li').hasClass('active') && !$('#page-'+ i).parent('li').hasClass('stop'))
+                            {
+                                $('#'+i).addClass('hidden');
+                                $('#'+ Number(i + 1)).removeClass('hidden');
+                                $('#page-'+ Number(i + 1)).parent('li').addClass('active');
+                                $('#page-'+ Number(i + 1)).parent('li').addClass('stop');
+                                $('#page-'+i).parent('li').removeClass('active');
 
-                    // variable name in href template for page number
-                    hrefVariable: '{{$i}}',
+                                for(var j = 0; j < {{$t}}; j++)
+                                {
+                                    $('#page-'+j).attr('onclick', `return changePage(this,` + Number(i + 1) + `, this.id.substring(this.id.indexOf('-')+1))`);
+                                }
+                            }
+                            else if(!$('#page-'+ i).parent('li').hasClass('active'))
+                            { 
+                                $('#'+i).addClass('hidden');
+                                
+                            }
+                            else
+                            {
+                                $('#page-'+ i).parent('li').removeClass('stop');
+                            }
+                        }
+                       
+                    }
+                }
 
-                    // Text labels
-                    first: 'First',
-                    prev: 'Previous',
-                    next: 'Next',
-                    last: 'Last',
+                function previousPage()
+                {
+                    for(var i=0; i < {{$t}}; i++)
+                    {
+                        if(i != 0)
+                        {
+                            if($('#page-'+ i).parent('li').hasClass('active'))
+                            {
+                                $('#'+i).addClass('hidden');
+                                $('#'+ Number(i - 1)).removeClass('hidden');
+                                $('#page-'+ Number(i - 1)).parent('li').addClass('active');
+                                $('#page-'+i).parent('li').removeClass('active');
 
-                    // carousel-style pagination
-                    loop: false,
-
-                    // callback function
-                    onPageClick: function (event, page) {
-                        $('.page-active').removeClass('page-active');
-                        $('#page'+page).addClass('page-active');
-                    },
-
-                    // pagination Classes
-                    paginationClass: 'pagination',
-                    nextClass: 'next',
-                    prevClass: 'prev',
-                    lastClass: 'last',
-                    firstClass: 'first',
-                    pageClass: 'page',
-                    activeClass: 'active',
-                    disabledClass: 'disabled'
-
-                    });
+                                for(var j = 0; j < {{$t}}; j++)
+                                {
+                                    $('#page-'+j).attr('onclick', `return changePage(this,` + Number(i - 1) + `, this.id.substring(this.id.indexOf('-')+1))`);
+                                }
+                            }
+                            else if(!$('#page-'+ i).parent('li').hasClass('active'))
+                            { 
+                                $('#'+i).addClass('hidden');
+                            }
+                        }
+                    }
+                }
 
                 </script>
 
