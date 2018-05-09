@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Controllers\PostController;
 use Session;
 use Auth;
 use DB;
@@ -11,28 +13,11 @@ class PagesController extends Controller
 {
     public function frontpage()
     {
-        $questions = DB::table('question')
-                        ->join('post', 'question.postid' , '=', 'post.id')
-                        ->join('users', 'post.posterid', '=', 'users.id')
-                        ->select('question.postid as question_id', 'title', 'content', 'post.posterid as poster_id', 'post.points as question_points', 'users.points as poster_points', 'username')
-                        ->where('isvisible', '=', 'true')
-                        ->orderBy('date', 'desc')->take(5)->get();
-        $questions_tags = array();
-        foreach ($questions as $question)
-        {
-            $tags_arr = array();
-            $tags = DB::table('question')
-                    ->join('tagquestion', 'question.postid', '=', 'tagquestion.question_id')
-                    ->join('tag', 'tagquestion.tag_id', '=', 'tag.id')
-                    ->select('tag.name as tag_name')
-                    ->where('question.postid', '=', $question->question_id)
-                    ->get();
-            $questions_tags[$question->question_id] = $tags;
-        }
+        $ret = PostController::getXMostRecentQuestions(5);
         if(Auth::check())
-            return view('pages.index logged in', ['questions' => $questions], ['questions_tags' => $questions_tags]);
+            return view('pages.index logged in', ['questions' => $ret['questions']], ['questions_tags' => $ret['questions_tags']]);
         else
-            return view('pages.index', ['questions' => $questions], ['questions_tags' => $questions_tags]);
+            return view('pages.index', ['questions' => $ret['questions']], ['questions_tags' => $ret['questions_tags']]);
     }
 
     public function about()
