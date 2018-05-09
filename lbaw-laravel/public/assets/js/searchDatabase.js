@@ -4,17 +4,15 @@ document.getElementById("questionSearchBar").addEventListener("keyup", handleUse
 
 function handleUserSearchInput(event)
 {
-    let elementsList = document.getElementById('resultsList');
+    let elementsList = document.getElementById('Questions');
     elementsList.innerHTML = ``;
     let userInputText = event.target.value.trim();
     if (userInputText == "")
     {
-        elementsList.style.display = 'none';
+        //TODO voltar a por os itens como estavam, para quando o user apaga toda a sua search por exemplo
         return;
-    } else
-        elementsList.style.display = 'block';
-
-
+    }
+    
     //ended flag
     let return_array;
     let ended_str = false;
