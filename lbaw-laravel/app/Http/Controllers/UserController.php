@@ -276,25 +276,22 @@ class UserController extends Controller
         $description = $request->input('form-about-yourself');
         $password = $request->input('form-password');
         $password_confirmation = $request->input('form-confirm-password');
-
+      
         $this->validate($request, [
-            'fileToUpload' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'fileToUpload' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
-    
-        if ($request->hasFile('fileToUpload')) {
+        $imagePath = "0.png";
+        if ($request->hasFile('fileToUpload')) 
+        {
             $image = $request->file('fileToUpload');
             $name = $user_id . ".png";
             $destinationPath = public_path('/assets/img/users');
             $image->move($destinationPath, $name);
-            $this->save();
-        
-            return 5;
+            $imagePath = $name;
         }
-
 
         if(empty($username) || empty($email) || empty($description))
             return redirect()->back()->withErrors(['msg', 'No information can be empty, values must all be filled in.']);
-
         if($password != $password_confirmation)
             return redirect()->back()->withErrors(['msg', 'Password and password confirmation must be the same.']);
 
@@ -310,13 +307,16 @@ class UserController extends Controller
                 DB::table('users')->where('id', $user_id)->update(['username' => $username, 
                  'pass_token' => password_hash($password, PASSWORD_BCRYPT), 'email' => $email, 'description' => $description]);
             }
+
+            //update profile photo
+            DB::table('users')->where('id', $user_id)->update(['img_path' => $imagePath]);
         }
         catch (\Exception $e)
         {
             return redirect()->back()->withErrors(['msg', 'Error editing profile']);
         }
 
-        return redirect('');
+        return redirect('users/'.$user_id);
     }
 
     public static function getNumberOfActiveQuestions()
