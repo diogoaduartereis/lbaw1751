@@ -50,13 +50,13 @@
                                 <div class="col-sm-9 personal-info">
                                     <h3>Personal info</h3>
 
-                                      <form class="form-horizontal" role="form" action="{{url('users/'.$user->id.'/edit')}}" method="post">
+                                      <form class="form-horizontal" role="form" action="{{url('users/'.$user->id.'/edit')}}" method="post"  enctype="multipart/form-data">
                                         {!! csrf_field() !!}
                                         <div class="form-group">
                                             <div class="text-center">
-                                                <img src="../../assets/img/users/{{$user->img_path}}" class="avatar" alt="avatar">
-                                                <h5><a>Upload a different photo></a></h5
-                                                <input type="file" class="form-control hidden">
+                                                <img src="../../assets/img/users/{{$user->img_path}}" class="avatar" alt="Profile Photo">
+                                                <input type="file" id="profilePhotoInput" class="hidden" name="fileToUpload" id="fileToUpload">
+                                                <h5><a href="#" onclick="uploadProfilePhoto(event)">Upload a different photo></a></h5
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -107,6 +107,17 @@
 
 
                 <script src="../../assets/js/bars.js"></script>
+
+                <script>
+
+                    function uploadProfilePhoto(event)
+                    {
+                        event.preventDefault();
+                        document.getElementById("profilePhotoInput").click();
+                    }
+                
+                
+                </script>
 
                 </body>
 
