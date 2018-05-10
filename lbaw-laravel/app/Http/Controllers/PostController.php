@@ -337,23 +337,19 @@ class PostController extends Controller
         $tagsArray[0] = 'Java';
         $tagsArray[1] = 'C++';
         $tagsArray[2] = 'JS';
+        $dbResultsArray = array();
         foreach($tagsArray as $tag)
         {
-            $results = DB::table('question')
+            $dbResultsArray[$tag] =
+                    DB::table('question')
                         ->join('tagquestion', 'question.postid', '=', 'tagquestion.question_id')
                         ->join('tag', 'tagquestion.tag_id', '=', 'tag.id')
                         ->where('tag.name', '=', $tag)
                         ->select(DB::raw('count(question.postid) as tag_count, question.postid as question_id'))
                         ->groupBy('question.postid')
                         ->get();
-        foreach($results as $result)
-        {
-            echo $result->tag_count;
-            echo $result->question_id;
-            echo "\n";
         }
-        echo "\n";
-    }
+        echo json_encode($dbResultsArray);
         //}
         /*$questions = DB::table('question')
                         ->join('tagquestion', 'question.postid', '=', 'tagquestion.question_id')
