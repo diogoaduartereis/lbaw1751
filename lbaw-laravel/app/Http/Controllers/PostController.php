@@ -327,6 +327,11 @@ class PostController extends Controller
         return $ret;
     }
 
+    public function searchForQuestion(Request $request)
+    {
+        
+    }
+
     //todo: end
 
     /**
