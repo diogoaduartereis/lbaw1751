@@ -363,6 +363,7 @@ class PostController extends Controller
                     ->get();
             }
         }
+        $DBTagResults = $currentDBResults;
 
         $currentDBResults = null;
         foreach($keywordsArray as $keyword)
@@ -387,6 +388,8 @@ class PostController extends Controller
                     ->get();
             }
         }
+        $DBKeywrodsResults = $currentDBResults;
+        
         
         //echo json_encode($dbResultsArray);
         /*$finalResult;
