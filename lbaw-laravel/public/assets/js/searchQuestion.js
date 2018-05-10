@@ -6,6 +6,11 @@ function handleUserSearchInput(event)
 {
     let elementsList = document.getElementById('Questions');
     let userInputText = event.target.value.trim();
+    if (userInputText == "")
+    {
+        //TODO voltar a por os itens como estavam, para quando o user apaga toda a sua search por exemplo
+        return;
+    }
     let keywordsArr = userInputText.split(" ");
     //Get array with tags
     let tagsArr = userInputText.match(/#\S+/g);
@@ -19,13 +24,6 @@ function handleUserSearchInput(event)
     
     console.log(tagsArr);
     console.log(keywordsArr);
-
-
-    if (userInputText == "")
-    {
-        //TODO voltar a por os itens como estavam, para quando o user apaga toda a sua search por exemplo
-        return;
-    }
 
     //ended flag
     let return_array;
