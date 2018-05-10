@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="">
         <meta name="author" content="">
-        <title>MediaLibrary</title>
+        <title>CodeHome - {{$user[0]->username}}</title>
 
         <link href="../../assets/css/admin.css" rel="stylesheet">
         <link href="../../assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
