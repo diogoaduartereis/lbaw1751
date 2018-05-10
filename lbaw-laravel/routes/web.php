@@ -73,6 +73,9 @@ Route::post('postNewQuestion', 'PostController@postQuestion');
 Route::post('tags/searchForTag', 'TagController@searchForTag');
 Route::post('search/question', 'PostController@searchForQuestion');
 
+//Search User
+Route::get('admin/', 'UserController@searchForUser');
+
 //View Question
 Route::get('questions/{id}', 'PostController@showQuestionPage');
 

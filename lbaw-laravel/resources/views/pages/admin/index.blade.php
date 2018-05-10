@@ -6,7 +6,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>CodeHome - Administration</title>
+        <title>Bootstrap Login &amp; Register Templates</title>
 
         <link href="../assets/css/admin.css" rel="stylesheet">
         <link href="../assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -50,15 +50,17 @@
                             <section class="pb-3">
                                 <div class="row">
                                     <div id="searchForm" class="col-md-6 offset-md-3">
-                                        <div id="searchFormID" class="input-group">
-                                            <label for="userName" class="sr-only">Search Users</label>
-                                            <input id="userName" class="form-control" placeholder="Search for users" required="" autofocus="" type="text">
-                                            <div class="input-group-append">
-                                                <button class="btn btn-outline-primary" type="button">
-                                                    <i class="fas fa-search"></i>
-                                                </button>
-                                            </div>
-                                        </div>
+                                        <form action="{{url('admin/')}}" method="GET">
+                                                <div id="searchFormID" class="input-group">
+                                                    <label for="userName" class="sr-only">Search Users</label>
+                                                    <input id="userName" name="username" class="form-control" placeholder="Search for users" required="" autofocus="" type="text">
+                                                    <div class="input-group-append">
+                                                        <button class="btn btn-outline-primary" type="submit">
+                                                            <i class="fas fa-search"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                        </form>
                                     </div>
                                 </div>
 
@@ -69,7 +71,7 @@
                                         $sizeOfUsers = sizeof($users);
                                         $numberOfPages = ceil ( $sizeOfUsers /  $itemsPerPage);
 
-                                        for($i; $i < $numberOfPages; $i++)
+                                        for($i; $i < $numberOfPages && $i < $sizeOfUsers; $i++)
                                         { 
                                             
                                 ?>
@@ -90,7 +92,7 @@
 
                                                     <?php 
 
-                                                        for($j = $i*10; $j < $i*10 + $itemsPerPage; $j++)
+                                                        for($j = $i*10; $j < $i*10 + $itemsPerPage && $j < $sizeOfUsers; $j++)
                                                         { 
 
                                                     ?>
