@@ -363,6 +363,30 @@ class PostController extends Controller
                     ->get();
             }
         }
+
+        $currentDBResults = null;
+        foreach($keywordsArray as $keyword)
+        {
+            $DBTagResults =
+                    DB::table('question')
+                        ->join('post', 'question.postid', '=', 'post.id')
+                        ->where('question.title', 'like', '%' . $keyword . '%')
+                        ->orwhere('post.content', 'like', '%' . $keyword . '%')
+                        ->select(DB::raw('count(question.postid) as keyword_count, question.postid as question_id'))
+                        ->groupBy('question.postid')
+                        ->get();
+            if ($currentDBResults == null)
+                $currentDBResults = $DBTagResults;
+            else
+            {
+                $currentDBResults = 
+                    $DBTagResults
+                    ->join($dbResultsArray)
+                    ->sum('keyword_count')
+                    ->groupBy('postid')
+                    ->get();
+            }
+        }
         
         //echo json_encode($dbResultsArray);
         /*$finalResult;
