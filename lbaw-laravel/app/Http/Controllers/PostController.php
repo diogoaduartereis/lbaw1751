@@ -331,7 +331,26 @@ class PostController extends Controller
     {
         $tags = $request->input('tags');
         $keywords = $request->input('keywords');
-        
+        //foreach($tagsArr as $tag)
+        //{
+            $results = DB::table('question')
+                        ->join('tagquestion', 'question.postid', '=', 'tagquestion.question_id')
+                        ->join('tag', 'tagquestion.tag_id', '=', 'tag.id')
+                        ->where('tag.name', '=', 'Java')
+                        ->select(DB::raw('count(question.postid) as tag_count, question.postid as question_id'))
+                        ->groupBy('question.postid')
+                        ->get();
+        foreach($results as $result)
+        {
+            echo $result->tag_count;
+            echo $result->question_id;
+            echo "\n";
+        }                
+        //}
+        /*$questions = DB::table('question')
+                        ->join('tagquestion', 'question.postid', '=', 'tagquestion.question_id')
+                        ->join('tag', 'tagquestion.tag_id', '=', 'tag.id')
+                        ->whereIn('tag.name', $tags);*/
     }
 
     //todo: end
