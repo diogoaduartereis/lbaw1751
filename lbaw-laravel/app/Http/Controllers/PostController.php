@@ -390,7 +390,12 @@ class PostController extends Controller
         }
         $DBKeywrodsResults = $currentDBResults;
         
-
+        $finalMatches = 
+            $DBTagResults
+            ->join($DBKeywrodsResults)
+            ->sum('keyword_count as keyword_matches')
+            ->groupBy('postid')
+            ->get();
 
         //echo json_encode($dbResultsArray);
         /*$finalResult;
