@@ -11,6 +11,16 @@ use Auth;
 
 class PostController extends Controller
 {
+
+
+    public function reports($id)
+    {
+        if(Auth::user()->type == 'ADMIN') {
+            $ret = \App\PostReport::where('postid', $id)->get();
+            return $ret;
+        }
+    }
+
     /**
      * Display a listing of the resource.
      *
