@@ -329,6 +329,8 @@ class PostController extends Controller
 
     public function searchForQuestion(Request $request)
     {
+        $tags = $request->input('tags');
+        $keywords = $request->input('keywords');
         
     }
 
