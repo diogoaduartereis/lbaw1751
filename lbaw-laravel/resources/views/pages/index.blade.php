@@ -22,7 +22,6 @@
         <script src="./assets/js/jquery.min.js"></script>
         <script src="./assets/js/popper.min.js"></script>
         <script src="./assets/js/homepageSearchBar.js"></script>
-                <script src="./assets/js/searchQuestion.js"></script>
 		
 		<meta name="google-site-verification" content="a30N-kL6X9vHRm5MlZ_OE720T-Vl8rKeKqC8x2_8AmM" />
     </head>
@@ -170,3 +169,4 @@
                 </body>
 
                 </html>
+                <script src="./assets/js/searchQuestion.js"></script>

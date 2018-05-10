@@ -20,7 +20,6 @@
         <script src="./assets/js/popper.min.js"></script>
         <script src="../assets/js/encodeForAjax.js"></script>
                 <script src="./assets/js/homepageSearchBar.js"></script>
-                <script src="./assets/js/searchQuestion.js"></script>
 
         <!-- Google Login -->
         <meta name="google-signin-scope" content="profile email">
@@ -210,3 +209,5 @@
                 </body>
 
                 </html>
+                
+                <script src="./assets/js/searchQuestion.js"></script>
