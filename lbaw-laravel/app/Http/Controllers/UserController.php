@@ -206,6 +206,18 @@ class UserController extends Controller
         return $userId;
     }
 
+    public function searchForUser(Request $request)
+    {
+        if(Auth::check() && Auth::user()->type == "ADMIN")
+        {
+            $username = $request->username;
+            $users = DB::table('users')->select('*')->where('username', 'like', '%'.$username.'%')->get();
+            return view('pages.admin.index', ['users' => $users]);
+        }
+        else
+            return back()->withErrors(['msg' => "You must be an admin"]);
+    }
+
 
     /**
      * Display the specified resource.
@@ -276,10 +288,8 @@ class UserController extends Controller
         $password = $request->input('form-password');
         $password_confirmation = $request->input('form-confirm-password');
       
-        $this->validate($request, [
-            'fileToUpload' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ]);
         $imagePath = "0.png";
+        $this->validate($request, ['fileToUpload' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048']);
         if ($request->hasFile('fileToUpload')) 
         {
             $image = $request->file('fileToUpload');
@@ -290,9 +300,9 @@ class UserController extends Controller
         }
 
         if(empty($username) || empty($email) || empty($description))
-            return redirect()->back()->withErrors(['msg', 'No information can be empty, values must all be filled in.']);
+            return redirect()->back()->withErrors(['No information can be empty, values must all be filled in.']);
         if($password != $password_confirmation)
-            return redirect()->back()->withErrors(['msg', 'Password and password confirmation must be the same.']);
+            return redirect()->back()->withErrors(['Password and password confirmation must be the same.']);
 
         try
         {
@@ -312,7 +322,7 @@ class UserController extends Controller
         }
         catch (\Exception $e)
         {
-            return redirect()->back()->withErrors(['msg', 'Error editing profile']);
+            return redirect()->back()->withErrors(['Error editing profile']);
         }
 
         return redirect('users/'.$user_id);

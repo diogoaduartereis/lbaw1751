@@ -6,7 +6,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>CodeHome - Administration</title>
+        <title>Bootstrap Login &amp; Register Templates</title>
 
         <link href="../assets/css/admin.css" rel="stylesheet">
         <link href="../assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -50,15 +50,17 @@
                             <section class="pb-3">
                                 <div class="row">
                                     <div id="searchForm" class="col-md-6 offset-md-3">
-                                        <div id="searchFormID" class="input-group">
-                                            <label for="userName" class="sr-only">Search Users</label>
-                                            <input id="userName" class="form-control" placeholder="Search for users" required="" autofocus="" type="text">
-                                            <div class="input-group-append">
-                                                <button class="btn btn-outline-primary" type="button">
-                                                    <i class="fas fa-search"></i>
-                                                </button>
-                                            </div>
-                                        </div>
+                                        <form action="{{url('admin/')}}" method="GET">
+                                                <div id="searchFormID" class="input-group">
+                                                    <label for="userName" class="sr-only">Search Users</label>
+                                                    <input id="userName" name="username" class="form-control" placeholder="Search for users" required="" autofocus="" type="text">
+                                                    <div class="input-group-append">
+                                                        <button class="btn btn-outline-primary" type="submit">
+                                                            <i class="fas fa-search"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                        </form>
                                     </div>
                                 </div>
 
@@ -69,7 +71,7 @@
                                         $sizeOfUsers = sizeof($users);
                                         $numberOfPages = ceil ( $sizeOfUsers /  $itemsPerPage);
 
-                                        for($i; $i < $numberOfPages; $i++)
+                                        for($i; $i < $numberOfPages && $i < $sizeOfUsers; $i++)
                                         { 
                                             
                                 ?>
@@ -90,7 +92,7 @@
 
                                                     <?php 
 
-                                                        for($j = $i*10; $j < $i*10 + $itemsPerPage; $j++)
+                                                        for($j = $i*10; $j < $i*10 + $itemsPerPage && $j < $sizeOfUsers; $j++)
                                                         { 
 
                                                     ?>
@@ -108,7 +110,7 @@
                                                                 <i class="fas fa-ban"></i>
                                                             </button>
 
-                                                            <button class="btn btn-warning" title="Warn User" type="submit">
+                                                            <button onclick="return gotoProfile({{$users[$j]->id}})" class="btn btn-warning" title="Warn User" type="submit">
                                                                 <i class="fas fa-edit" style="color: white"></i>
                                                             </button>
                                                         @else
@@ -169,71 +171,9 @@
 
                 </div>
 
-                <style>
-
-                    .container {
-                    margin-top: 20px;
-                    }
-                    .page {
-                    display: none;
-                    }
-                    .page-active {
-                    display: block;
-                    }
-
-                </style>
+                <script src="../assets/js/administration.js"> </script>
 
                 <script>
-
-                function confirmUnban(event, userId)
-                {
-                    event.preventDefault();
-                    let button = event.target;
-                    button.innerText = "Confirm Unban";
-                    button.setAttribute("onclick", "unbanUser(event," + userId + ")");
-                    setTimeout(function deleteDefaultValue()
-                    {
-                        button.innerText = "Unban user";
-                        button.setAttribute("onclick", "confirmUnban(event,"+ userId + ")");
-                    }, 3000);
-                }
-
-                function unbanUser(event, userId)
-                {
-                    event.preventDefault();
-
-                    //get csrf token
-                    let csrfToken = document.getElementById("csrf-token").innerHTML;
-
-                    //add the new item to the database using AJAX
-                    let ajaxRequest = new XMLHttpRequest();
-                    ajaxRequest.addEventListener("load", responseArrived);
-                    ajaxRequest.open("POST", "/users/" + userId + "/unban", true);
-                    ajaxRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                    ajaxRequest.setRequestHeader("X-CSRF-Token", csrfToken);
-                    ajaxRequest.send();
-                }
-
-                function responseArrived()
-                {
-                    if (this.responseText == "")
-                        return;
-                        
-                    let userid = this.responseText;
-
-                    document.getElementById("unbanButton").insertAdjacentHTML('afterend', `<button
-                        class="btn btn-danger" onclick="gotoBanPage(event, userid)"> <i class="fas fa-ban"></i> </button>;`);
-                    document.getElementById("unbanButton").remove();
-                }
-
-                function gotoBanPage(id)
-                {
-                    window.location.href = "./users/" + id + "/ban";
-                }
-
-                $('#0').removeClass('hidden');
-                $('#page-0').parent('li').addClass('active');
-
 
                 function changePage(element, previousID, id)
                 {
