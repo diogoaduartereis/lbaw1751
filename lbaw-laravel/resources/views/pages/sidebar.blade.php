@@ -6,7 +6,7 @@
     if ($userActivePosts == "error")
         $numberOfActiveQuestions = 0;
     else
-        $numberOfActiveQuestions = sizeof($userActivePosts);
+        $numberOfActiveQuestions = count($userActivePosts);
 ?>
 
 <script src="/assets/js/updateUserPointsInSideBar.js"></script>
@@ -77,7 +77,7 @@
                 <i id="arrowDown" class="fas fa-angle-down"></i>
             </a>
             <ul style="width:100%; position:absolute;" class="collapse list-unstyled" id="homeSubmenu2">
-                @if(count($userActivePosts))
+                @if($numberOfActiveQuestions != 0)
                     @foreach ($userActivePosts as $activePost)
                         <li>
                             <a href= {{"/questions/".$activePost->id}}> 
