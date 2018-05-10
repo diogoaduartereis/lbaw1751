@@ -361,7 +361,6 @@ class PostController extends Controller
                         ->join('tagquestion', 'question.postid', '=', 'tagquestion.question_id')
                         ->join('tag', 'tagquestion.tag_id', '=', 'tag.id')
                         ->whereIn('tag.name', $tags);*/
-    }
 
     //todo: end
 
