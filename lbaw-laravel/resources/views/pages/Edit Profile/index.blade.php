@@ -5,7 +5,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Bootstrap Login &amp; Register Templates</title>
+        <title>CodeHome - Edit Your Profile</title>
 
         <link href="../../assets/css/admin.css" rel="stylesheet">
         <link href="../../assets/bootstrap/css/bootstrap.min.css" rel="stylesheet"> 
@@ -56,7 +56,12 @@
                                             <div class="text-center">
                                                 <img src="../../assets/img/users/{{$user->img_path}}" class="avatar" alt="Profile Photo">
                                                 <input type="file" id="profilePhotoInput" class="hidden" name="fileToUpload" id="fileToUpload">
-                                                <h5><a href="#" onclick="uploadProfilePhoto(event)">Upload a different photo></a></h5
+                                                <br><br>
+                                                <h4><a href="#" onclick="uploadProfilePhoto(event)">Upload a different photo</a><h4>
+                                                <br><br>
+                                                @foreach ($errors->all() as $error)
+                                                    <h4 style = "color:red; text-align:center">{{ $error }}</h4>
+                                                @endforeach
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -79,13 +84,13 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-sm-3 control-label">Password:</label>
+                                            <label class="col-sm-3 control-label">New password:</label>
                                             <div class="col-sm-8">
-                                                <input class="form-control" name="form-passworkd" type="password" placeholder="New Password" >
+                                                <input class="form-control" name="form-password" type="password" placeholder="New Password" >
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-sm-3 control-label">Confirm password:</label>
+                                            <label class="col-sm-3 control-label">Confirm new password:</label>
                                             <div class="col-sm-8">
                                                 <input class="form-control" name="form-password-confirm" type="password" placeholder="New Password">
                                             </div>

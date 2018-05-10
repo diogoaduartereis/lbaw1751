@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="">
         <meta name="author" content="">
-        <title>MediaLibrary</title>
+        <title>CodeHome - {{$user[0]->username}}</title>
 
         <link href="../../assets/css/admin.css" rel="stylesheet">
         <link href="../../assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -43,7 +43,11 @@
                                 <div id="photoSideID" class="col-md-6 text-center pb-3">
                                     <h1 class="text-center"></h1>
                                     <br>
-                                    <img class="img-fluid" src="../assets/img/users/{{$user[0]->img_path}}" alt="">
+                                    @if(preg_match('/https:\//', Auth::user()->img_path, $matches, PREG_OFFSET_CAPTURE))
+                                        <img class="img-fluid rounded-circle" src="{{$user[0]->img_path}}" id="profPic2">
+                                    @else
+                                        <img class="img-fluid rounded-circle" src="../assets/img/users/{{$user[0]->img_path}}" alt="">
+                                    @endif
                                 </div>
                                 <div class="col-md-6">
                                     <br>
