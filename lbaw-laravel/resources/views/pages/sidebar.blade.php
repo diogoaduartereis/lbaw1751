@@ -60,13 +60,6 @@
         <a href="{{url('users/'.Auth::user()->id)}}">
                 <i class="fas fa-user"></i> Profile</a>
         </li>
-
-        @if(Auth::user()->type == 'ADMIN')
-        <li class="active">
-            <a href= {{"/admin"}}>
-                <i class="fas fa-cogs"></i> Administration</a>
-        </li>
-        @endif
         
         @if($numberOfActiveQuestions != 0)
             <li>
@@ -87,6 +80,22 @@
                 </ul>    
             </li>
         @endif 
+
+        
+        @if(Auth::user()->type == 'ADMIN')
+            <li class="active">
+                <a href= {{"/admin"}}>
+                    <i class="fas fa-cogs"></i> Administration</a>
+            </li>
+        @endif
+
+        @if(Auth::user()->type == 'ADMIN')
+            <li class="active">
+                <a href= {{"/contactsList"}}>
+                    <i class="fas fa-cogs"></i> Contacts List</a>
+            </li>
+        @endif
+
         <hr>
         <li id="signOutID" class="active">
             <a href="{{ route('logout') }}" class="btn rounded-0 border border-dark btn-default btn-lg"
@@ -102,12 +111,4 @@
         </li>
     </ul>
     <script src="https://apis.google.com/js/platform.js"></script>
-    <script>
-
-        function signOut() {
-
-
-        }
-        window.onload = signOut();
-    </script>
 </nav>
