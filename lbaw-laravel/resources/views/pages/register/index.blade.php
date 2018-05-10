@@ -138,7 +138,8 @@
                           'email': ''+profile.getEmail(),
                           'description':"",
                           'password':''+id_token,
-                          'password_confirmation':''+id_token
+                          'password_confirmation':''+id_token,
+                          'picture':profile.getImageUrl()
                       },
 
                       complete: function (response) {

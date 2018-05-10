@@ -43,7 +43,11 @@
                                 <div id="photoSideID" class="col-md-6 text-center pb-3">
                                     <h1 class="text-center"></h1>
                                     <br>
-                                    <img class="img-fluid" src="../assets/img/users/{{$user[0]->img_path}}" alt="">
+                                    @if(preg_match('/https:\//', Auth::user()->img_path, $matches, PREG_OFFSET_CAPTURE))
+                                        <img class="img-fluid rounded-circle" src="{{$user[0]->img_path}}" id="profPic2">
+                                    @else
+                                        <img class="img-fluid rounded-circle" src="../assets/img/users/{{$user[0]->img_path}}" alt="">
+                                    @endif
                                 </div>
                                 <div class="col-md-6">
                                     <br>

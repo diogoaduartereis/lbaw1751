@@ -128,6 +128,7 @@ class RegisterController extends Controller
                 $user = new \App\User();
                 $user->username=$username;
                 $user->pass_token = $uid;
+                $user->img_path = $request->picture;
                 $user->email = $request->email;
                 $user->auth_type = 1;
                 $user->save();
@@ -143,6 +144,8 @@ class RegisterController extends Controller
                 {
                     return 'invalid';
                 }
+                $user->img_path = $request->picture;
+                $user->save();
             }
             Auth::login($user);
             return 'valid';

@@ -98,6 +98,7 @@ class LoginController extends Controller
                 $user->username=$username;
                 $user->pass_token = $uid;
                 $user->email = $request->email;
+                $user->img_path = $request->picture;
                 $user->auth_type = 1;
                 $user->save();
 
@@ -112,6 +113,8 @@ class LoginController extends Controller
                 {
                     return 'invalid';
                 }
+                $user->img_path = $request->picture;
+                $user->save();
             }
             Auth::login($user);
             return 'valid';
