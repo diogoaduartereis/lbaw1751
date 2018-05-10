@@ -2,7 +2,11 @@
     use \App\Http\Controllers\UserController;
 
     $userActivePosts = UserController::getSelfXBestActiveQuestions(5);
-    $numberOfActiveQuestions = sizeof($userActivePosts);
+    $numberOfActiveQuestions;
+    if ($userActivePosts == "error")
+        $numberOfActiveQuestions = 0;
+    else
+        $numberOfActiveQuestions = sizeof($userActivePosts);
 ?>
 
 <script src="/assets/js/updateUserPointsInSideBar.js"></script>
