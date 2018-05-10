@@ -44,10 +44,8 @@
                                 </div>
                             </div>
                         </div>
-
+                        <p id="csrf-token" style:"display: none" hidden >{{csrf_token()}}</p>  
                         <div id="classContainerID" class="container">
-
-
 
                             <section class="pb-3">
                                 <div class="row">
@@ -66,7 +64,7 @@
 
                                 <?php 
                                         $i = 0;
-                                        $itemsPerPage = 10;
+                                        $itemsPerPage = 15;
                                         $id = 1;
                                         $sizeOfUsers = sizeof($users);
                                         $numberOfPages = ceil ( $sizeOfUsers /  $itemsPerPage);
@@ -104,12 +102,21 @@
                                                         <td>{{$users[$j]->username}}</td>
                                                         <td>{{$users[$j]->email}}</td>
                                                         <td>
-                                                            <button class="btn btn-danger" type="submit">
+
+                                                        @if($users[$j]->state == "ACTIVE")
+                                                            <button class="btn btn-danger" title="Ban User" onclick="return gotoBanPage({{$users[$j]->id}})" type="submit">
                                                                 <i class="fas fa-ban"></i>
                                                             </button>
-                                                            <button class="btn btn-warning" type="submit">
+
+                                                            <button class="btn btn-warning" title="Warn User" type="submit">
                                                                 <i class="fas fa-edit" style="color: white"></i>
                                                             </button>
+                                                        @else
+                                                        <button id="unbanButton" class="btn btn-success " onclick="return confirmUnban(event,{{$users[$j]->id}})" type="submit">
+                                                                <i class="fas fa-check-circle"></i>
+                                                        </button>
+                                                        @endif
+
                                                         </td>
                                                     </tr>
                                                 </div>
@@ -125,39 +132,6 @@
                                                 }
                                             ?>
 
-                                
-
-                               <!-- <div class="col-md-6 offset-md-3 d-flex justify-content-center">
-                                    <nav aria-label="Table navigation">
-                                        <ul class="pagination">
-                                            <li class="page-item">
-                                                <a class="page-link" href="#" aria-label="Previous">
-                                                    <span aria-hidden="true">«</span>
-                                                    <span class="sr-only">Previous</span>
-                                                </a>
-                                            </li>
-
-                                            
-                                                @if($j >= $i || $j + 10 <= $i)
-                                                    <li class="page-item active">
-                                                @else
-                                                    <li class="page-item">
-                                                @endif
-
-                                                    <a class="page-link" href="#">{{$j + 1}}</a>
-                                                        
-                                                    </li>
-                                            
-                                           
-                                            <li class="page-item">
-                                                <a class="page-link" href="#" aria-label="Next">
-                                                    <span aria-hidden="true">»</span>
-                                                    <span class="sr-only">Next</span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </nav>
-                                </div> !-->
                                 <div class="col-md-6 offset-md-3 d-flex justify-content-center">
                                     <nav aria-label="Table navigation">
                                         <ul class="pagination">
@@ -210,6 +184,53 @@
                 </style>
 
                 <script>
+
+                function confirmUnban(event, userId)
+                {
+                    event.preventDefault();
+                    let button = event.target;
+                    button.innerText = "Confirm Unban";
+                    button.setAttribute("onclick", "unbanUser(event," + userId + ")");
+                    setTimeout(function deleteDefaultValue()
+                    {
+                        button.innerText = "Unban user";
+                        button.setAttribute("onclick", "confirmUnban(event,"+ userId + ")");
+                    }, 3000);
+                }
+
+                function unbanUser(event, userId)
+                {
+                    event.preventDefault();
+
+                    //get csrf token
+                    let csrfToken = document.getElementById("csrf-token").innerHTML;
+
+                    //add the new item to the database using AJAX
+                    let ajaxRequest = new XMLHttpRequest();
+                    ajaxRequest.addEventListener("load", responseArrived);
+                    ajaxRequest.open("POST", "/users/" + userId + "/unban", true);
+                    ajaxRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                    ajaxRequest.setRequestHeader("X-CSRF-Token", csrfToken);
+                    ajaxRequest.send();
+                }
+
+                function responseArrived()
+                {
+                    if (this.responseText == "")
+                        return;
+                        
+                    let userid = this.responseText;
+
+                    document.getElementById("unbanButton").insertAdjacentHTML('afterend', `<button
+                        class="btn btn-danger" onclick="gotoBanPage(event, userid)"> <i class="fas fa-ban"></i> </button>;`);
+                    document.getElementById("unbanButton").remove();
+                }
+
+                function gotoBanPage(id)
+                {
+                    window.location.href = "./users/" + id + "/ban";
+                }
+
                 $('#0').removeClass('hidden');
                 $('#page-0').parent('li').addClass('active');
 

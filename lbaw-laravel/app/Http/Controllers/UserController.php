@@ -203,7 +203,7 @@ class UserController extends Controller
 
         DB::table('users')->where('id', $userId)->update(['state' => 'ACTIVE']);     
                
-        return "";
+        return $userId;
     }
 
 
@@ -241,8 +241,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $type = DB::table('users')->select('type')->where('id', '=', $id)->get();
-        if($id != Auth::user()->id && count($type) != 0 && $type[0]->type != 'ADMIN')
+        if($id != Auth::user()->id && Auth::user()->type != "ADMIN")
             return back()->withErrors(['msg' => "You don´t have permission!"]);
         
         try
@@ -251,7 +250,7 @@ class UserController extends Controller
         }
         catch(\Illuminate\Database\QueryException $e)
         {
-            return back()->withErrors(['msg' => "Username doesn't exist!"]);
+            return back()->withErrors(['msg' => "User doesn't exist!"]);
         }
 
         if(count($user)!=0)
@@ -308,8 +307,8 @@ class UserController extends Controller
                  'pass_token' => password_hash($password, PASSWORD_BCRYPT), 'email' => $email, 'description' => $description]);
             }
 
-            //update profile photo
-            DB::table('users')->where('id', $user_id)->update(['img_path' => $imagePath]);
+            if( $imagePath != "0.png")
+                DB::table('users')->where('id', $user_id)->update(['img_path' => $imagePath]);
         }
         catch (\Exception $e)
         {
