@@ -303,6 +303,27 @@ class PostController extends Controller
         ->select('question.postid as question_id', 'title', 'content', 'post.posterid as poster_id', 'post.points as question_points', 'users.points as poster_points', 'username')
         ->where('isvisible', '=', 'true')
         ->orderBy('date', 'desc')->take($numberOfQuestions)->get();
+
+        return PostController::checkQuestionsReturn($questions);
+    }
+
+    
+    public static function getXHotQuestions($numberOfQuestions)
+    {
+        $questions = DB::table('question')
+        ->join('post', 'question.postid' , '=', 'post.id')
+        ->join('users', 'post.posterid', '=', 'users.id')
+        ->select('question.postid as question_id', 'title', 'content', 'post.posterid as poster_id', 'post.points as question_points', 'users.points as poster_points', 'username')
+        ->where('isvisible', '=', 'true')
+        ->orderBy('post.points', 'desc')
+        ->orderBy('date', 'desc')
+        ->take($numberOfQuestions)->get();
+      
+        return PostController::checkQuestionsReturn($questions);
+    }
+
+    public static function checkQuestionsReturn($questions)
+    {
         if (!$questions)
             return "error";
         $questions_tags = array();

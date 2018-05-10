@@ -12,13 +12,9 @@
 */
 
 
-Route::get('/', function () {
-    session()->put('test', 1234);
-    return redirect('');
-});
-
 Route::get('about','PagesController@about');
-Route::get('','PagesController@frontpage');
+Route::get('','PagesController@frontpageNewQuestions');
+Route::get('/hot','PagesController@frontpageHotQuestion');
 Route::get('faq','PagesController@faq');
 Route::get('404','PagesController@error404');
 Route::get('admin','PagesController@admin');
