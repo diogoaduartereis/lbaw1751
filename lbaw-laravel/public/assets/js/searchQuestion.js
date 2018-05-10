@@ -22,9 +22,12 @@ function handleUserSearchInput(event)
     removeHashTagsFromBeggingOfEachTagOnArray(tagsArr);
 
     
-    console.log(tagsArr);
-    console.log(keywordsArr);
+    //console.log(tagsArr);
+    //console.log(keywordsArr);
 
+    let tagsArrEncoded = JSON.stringify(tagsArr);
+    let keywordsArrEncoded = JSON.stringify(keywordsArr);
+    //console.log(JSON.parse(tagsArrEncoded));
 
     //get csrf token
     let csrfToken = document.getElementById("csrf-token").innerHTML;
@@ -34,8 +37,7 @@ function handleUserSearchInput(event)
     ajaxRequest.open("POST", "/search/question", true);
     ajaxRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     ajaxRequest.setRequestHeader("X-CSRF-Token", csrfToken);
-    ajaxRequest.send(encodeForAjax({tags: tagsArr, keywords: keywordsArr}));
-
+    ajaxRequest.send(encodeForAjax({tags: tagsArrEncoded, keywords: keywordsArrEncoded}));
 
     //ended flag
     let return_array;

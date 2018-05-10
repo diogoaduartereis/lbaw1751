@@ -11,6 +11,18 @@ use Auth;
 
 class PostController extends Controller
 {
+
+
+    public function reports($id)
+    {
+        if(Auth::user()->type == 'ADMIN') {
+            $ret = \App\PostReport::where('postid', $id)->get();
+            return $ret;
+        }else{
+            return redirect('404');
+        }
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -352,16 +364,19 @@ class PostController extends Controller
     {
         $tags = $request->input('tags');
         $keywords = $request->input('keywords');
-        $tagsArray = json_decode($tags, true);
-        $keywordsArray = json_decode($keywords, true);
+        $tagsArray = json_decode($tags);
+        $keywordsArray = json_decode($keywords);
+        /*
         $tagsArray = array();
         $tagsArray[0] = 'Java';
         $tagsArray[1] = 'C++';
         $tagsArray[2] = 'JS';
-        $dbResultsArray = array();
+        
+        */
+        $currentDBResults = null;
         foreach($tagsArray as $tag)
         {
-            $dbResultsArray[$tag] =
+            $DBTagResults =
                     DB::table('question')
                         ->join('tagquestion', 'question.postid', '=', 'tagquestion.question_id')
                         ->join('tag', 'tagquestion.tag_id', '=', 'tag.id')
@@ -369,8 +384,53 @@ class PostController extends Controller
                         ->select(DB::raw('count(question.postid) as tag_count, question.postid as question_id'))
                         ->groupBy('question.postid')
                         ->get();
+            if ($currentDBResults == null)
+                $currentDBResults = $DBTagResults;
+            else
+            {
+                $currentDBResults = 
+                    $DBTagResults
+                    ->join($currentDBResults)
+                    ->sum('tag_count as tag_matches')
+                    ->groupBy('postid')
+                    ->get();
+            }
         }
-        echo json_encode($dbResultsArray);
+        $DBTagResults = $currentDBResults;
+
+        $currentDBResults = null;
+        foreach($keywordsArray as $keyword)
+        {
+            $DBTagResults =
+                    DB::table('question')
+                        ->join('post', 'question.postid', '=', 'post.id')
+                        ->where('question.title', 'like', '%' . $keyword . '%')
+                        ->orwhere('post.content', 'like', '%' . $keyword . '%')
+                        ->select(DB::raw('count(question.postid) as keyword_count, question.postid as question_id'))
+                        ->groupBy('question.postid')
+                        ->get();
+            if ($currentDBResults == null)
+                $currentDBResults = $DBTagResults;
+            else
+            {
+                $currentDBResults = 
+                    $DBTagResults
+                    ->join($currentDBResults)
+                    ->sum('keyword_count as keyword_matches')
+                    ->groupBy('postid')
+                    ->get();
+            }
+        }
+        $DBKeywrodsResults = $currentDBResults;
+        
+        $finalMatches = 
+            $DBTagResults
+            ->join($DBKeywrodsResults)
+            ->sum('keyword_count as keyword_matches')
+            ->groupBy('postid')
+            ->get();
+
+        //echo json_encode($dbResultsArray);
         /*$finalResult;
         foreach($dbResultsArray as $db)
         {

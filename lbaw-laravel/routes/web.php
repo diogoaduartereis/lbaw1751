@@ -90,6 +90,9 @@ Route::post('post/{id}/deletevote', 'PostController@deleteVote');
 //Get Report Post Page
 Route::get('report/post/{id}', 'PagesController@reportPost');
 
+//Get Reports Of A Post
+Route::get('/post/{id}/reports','PostController@reports');
+
 //Report Post
 Route::post('post/{id}/report', 'PostController@reportPost');
 
