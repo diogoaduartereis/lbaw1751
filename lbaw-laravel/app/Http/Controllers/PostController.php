@@ -331,13 +331,22 @@ class PostController extends Controller
     {
         $tags = $request->input('tags');
         $keywords = $request->input('keywords');
-        $tagsArray = json_decode($tags, true);
-        $keywordsArray = json_decode($keywords, true);
+        $tagsArray = json_decode($tags);
+        $keywordsArray = json_decode($keywords);
+        /*
         $tagsArray = array();
         $tagsArray[0] = 'Java';
         $tagsArray[1] = 'C++';
         $tagsArray[2] = 'JS';
         $dbResultsArray = array();
+        */
+        echo "tags arr:";
+        print_r($tagsArray);
+        echo "\n";
+        echo "keywordsArray:";
+        print_r($keywordsArray);
+        
+        return;
         foreach($tagsArray as $tag)
         {
             $dbResultsArray[$tag] =
@@ -349,7 +358,7 @@ class PostController extends Controller
                         ->groupBy('question.postid')
                         ->get();
         }
-        echo json_encode($dbResultsArray);
+        //echo json_encode($dbResultsArray);
         /*$finalResult;
         foreach($dbResultsArray as $db)
         {
