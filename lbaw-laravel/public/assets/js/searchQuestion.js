@@ -6,10 +6,21 @@ function handleUserSearchInput(event)
 {
     let elementsList = document.getElementById('Questions');
     let userInputText = event.target.value.trim();
+    let keywordsArr = userInputText.split(" ");
+    //Get array with tags
     let tagsArr = userInputText.match(/#\S+/g);
+
+    //Get array with keyword, i.e., everything except the tags
+    for (let i = 0; i < tagsArr.length; i++)
+        removeStringFromArray(keywordsArr, tagsArr[i]);
+
     removeHashTagsFromBeggingOfEachTagOnArray(tagsArr);
-    console.log(tagsArr);
+
     
+    console.log(tagsArr);
+    console.log(keywordsArr);
+
+
     if (userInputText == "")
     {
         //TODO voltar a por os itens como estavam, para quando o user apaga toda a sua search por exemplo
@@ -82,6 +93,18 @@ function removeHashTagsFromBeggingOfEachTagOnArray(tags)
     for (let i = 0; i < tags.length; i++)
         tags[i] = tags[i].substr(1, tags[i].length);
 }
+
+function removeStringFromArray(arr, what)
+{
+    var found = arr.indexOf(what);
+
+    while (found !== -1)
+    {
+        arr.splice(found, 1);
+        found = arr.indexOf(what);
+    }
+}
+
 
 function getElementInSearch(element, userInputText, endedSearchString)
 {
