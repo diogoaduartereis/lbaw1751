@@ -209,3 +209,5 @@
                 </body>
 
                 </html>
+                
+                <script src="./assets/js/searchQuestion.js"></script>

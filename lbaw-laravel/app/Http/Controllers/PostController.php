@@ -327,6 +327,41 @@ class PostController extends Controller
         return $ret;
     }
 
+    public function searchForQuestion(Request $request)
+    {
+        $tags = $request->input('tags');
+        $keywords = $request->input('keywords');
+        $tagsArray = json_decode($tags, true);
+        $keywordsArray = json_decode($keywords, true);
+        $tagsArray = array();
+        $tagsArray[0] = 'Java';
+        $tagsArray[1] = 'C++';
+        $tagsArray[2] = 'JS';
+        $dbResultsArray = array();
+        foreach($tagsArray as $tag)
+        {
+            $dbResultsArray[$tag] =
+                    DB::table('question')
+                        ->join('tagquestion', 'question.postid', '=', 'tagquestion.question_id')
+                        ->join('tag', 'tagquestion.tag_id', '=', 'tag.id')
+                        ->where('tag.name', '=', $tag)
+                        ->select(DB::raw('count(question.postid) as tag_count, question.postid as question_id'))
+                        ->groupBy('question.postid')
+                        ->get();
+        }
+        echo json_encode($dbResultsArray);
+        $finalResult
+        foreach($dbResultsArray as $db)
+        {
+
+        }
+        //}
+        /*$questions = DB::table('question')
+                        ->join('tagquestion', 'question.postid', '=', 'tagquestion.question_id')
+                        ->join('tag', 'tagquestion.tag_id', '=', 'tag.id')
+                        ->whereIn('tag.name', $tags);*/
+    }
+
     //todo: end
 
     /**

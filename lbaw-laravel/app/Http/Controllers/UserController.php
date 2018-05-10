@@ -203,7 +203,7 @@ class UserController extends Controller
 
         DB::table('users')->where('id', $userId)->update(['state' => 'ACTIVE']);     
                
-        return "";
+        return $userId;
     }
 
 

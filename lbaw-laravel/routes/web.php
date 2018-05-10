@@ -68,7 +68,10 @@ Route::post('post/{id}/delete','PostController@delete');
 //Post new Question
 Route::get('postNewQuestion', 'PostController@postQuestionPage');
 Route::post('postNewQuestion', 'PostController@postQuestion');
+
+//Search
 Route::post('tags/searchForTag', 'TagController@searchForTag');
+Route::post('search/question', 'PostController@searchForQuestion');
 
 //View Question
 Route::get('questions/{id}', 'PostController@showQuestionPage');
