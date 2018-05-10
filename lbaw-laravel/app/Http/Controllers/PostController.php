@@ -357,8 +357,8 @@ class PostController extends Controller
             {
                 $currentDBResults = 
                     $DBTagResults
-                    ->join($dbResultsArray)
-                    ->sum('tag_count')
+                    ->join($currentDBResults)
+                    ->sum('tag_count as tag_matches')
                     ->groupBy('postid')
                     ->get();
             }
@@ -382,15 +382,16 @@ class PostController extends Controller
             {
                 $currentDBResults = 
                     $DBTagResults
-                    ->join($dbResultsArray)
-                    ->sum('keyword_count')
+                    ->join($currentDBResults)
+                    ->sum('keyword_count as keyword_matches')
                     ->groupBy('postid')
                     ->get();
             }
         }
         $DBKeywrodsResults = $currentDBResults;
         
-        
+
+
         //echo json_encode($dbResultsArray);
         /*$finalResult;
         foreach($dbResultsArray as $db)
