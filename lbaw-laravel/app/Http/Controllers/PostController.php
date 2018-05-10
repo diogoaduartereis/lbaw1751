@@ -343,7 +343,7 @@ class PostController extends Controller
         $currentDBResults = null;
         foreach($tagsArray as $tag)
         {
-            $DBTagResults =
+            $retFromDB =
                     DB::table('question')
                         ->join('tagquestion', 'question.postid', '=', 'tagquestion.question_id')
                         ->join('tag', 'tagquestion.tag_id', '=', 'tag.id')
@@ -352,11 +352,11 @@ class PostController extends Controller
                         ->groupBy('question.postid')
                         ->get();
             if ($currentDBResults == null)
-                $currentDBResults = $DBTagResults;
+                $currentDBResults = $retFromDB;
             else
             {
                 $currentDBResults = 
-                    $DBTagResults
+                    $retFromDB
                     ->join($currentDBResults)
                     ->sum('tag_count as tag_matches')
                     ->groupBy('postid')
@@ -368,7 +368,7 @@ class PostController extends Controller
         $currentDBResults = null;
         foreach($keywordsArray as $keyword)
         {
-            $DBTagResults =
+            $retFromDB =
                     DB::table('question')
                         ->join('post', 'question.postid', '=', 'post.id')
                         ->where('question.title', 'like', '%' . $keyword . '%')
@@ -377,11 +377,11 @@ class PostController extends Controller
                         ->groupBy('question.postid')
                         ->get();
             if ($currentDBResults == null)
-                $currentDBResults = $DBTagResults;
+                $currentDBResults = $retFromDB;
             else
             {
                 $currentDBResults = 
-                    $DBTagResults
+                    $retFromDB
                     ->join($currentDBResults)
                     ->sum('keyword_count as keyword_matches')
                     ->groupBy('postid')
