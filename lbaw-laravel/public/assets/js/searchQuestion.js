@@ -5,8 +5,11 @@ document.getElementById("questionSearchBar").addEventListener("keyup", handleUse
 function handleUserSearchInput(event)
 {
     let elementsList = document.getElementById('Questions');
-    elementsList.innerHTML = ``;
     let userInputText = event.target.value.trim();
+    let tagsArr = userInputText.match(/#\S+/g);
+    removeHashTagsFromBeggingOfEachTagOnArray(tagsArr);
+    console.log(tagsArr);
+    
     if (userInputText == "")
     {
         //TODO voltar a por os itens como estavam, para quando o user apaga toda a sua search por exemplo
@@ -72,6 +75,12 @@ function handleUserSearchInput(event)
         getElementInSearch("Lists", userInputText, endedSearchString);
     if (items_search)
         getElementInSearch("Items", userInputText, endedSearchString);
+}
+
+function removeHashTagsFromBeggingOfEachTagOnArray(tags)
+{
+    for (let i = 0; i < tags.length; i++)
+        tags[i] = tags[i].substr(1, tags[i].length);
 }
 
 function getElementInSearch(element, userInputText, endedSearchString)
