@@ -18,6 +18,8 @@ class PostController extends Controller
         if(Auth::user()->type == 'ADMIN') {
             $ret = \App\PostReport::where('postid', $id)->get();
             return $ret;
+        }else{
+            return redirect('404');
         }
     }
 
