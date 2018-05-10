@@ -25,6 +25,18 @@ function handleUserSearchInput(event)
     console.log(tagsArr);
     console.log(keywordsArr);
 
+
+    //get csrf token
+    let csrfToken = document.getElementById("csrf-token").innerHTML;
+
+    let ajaxRequest = new XMLHttpRequest();
+    ajaxRequest.addEventListener("load", searchResultsArrived);
+    ajaxRequest.open("POST", "/search/question", true);
+    ajaxRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    ajaxRequest.setRequestHeader("X-CSRF-Token", csrfToken);
+    ajaxRequest.send(encodeForAjax({tags: tagsArr, keywords: keywordsArr}));
+
+
     //ended flag
     let return_array;
     let ended_str = false;
@@ -103,6 +115,12 @@ function removeStringFromArray(arr, what)
     }
 }
 
+function searchResultsArrived()
+{
+    console.log("searchResultsArrived");
+    console.log(this.responseText);
+    
+}
 
 function getElementInSearch(element, userInputText, endedSearchString)
 {
