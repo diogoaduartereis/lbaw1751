@@ -77,12 +77,14 @@
                 <i id="arrowDown" class="fas fa-angle-down"></i>
             </a>
             <ul style="width:100%; position:absolute;" class="collapse list-unstyled" id="homeSubmenu2">
-                @foreach ($userActivePosts as $activePost)
-                    <li>
-                        <a href= {{"/questions/".$activePost->id}}> 
-                            <i class="far fa-envelope"></i> {{$activePost->title}} </a>
-                    </li>
-                @endforeach  
+                @if(count($userActivePosts))
+                    @foreach ($userActivePosts as $activePost)
+                        <li>
+                            <a href= {{"/questions/".$activePost->id}}> 
+                                <i class="far fa-envelope"></i> {{$activePost->title}} </a>
+                        </li>
+                    @endforeach  
+                @endif    
             </ul>
         </li>
         <hr>
