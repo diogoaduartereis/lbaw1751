@@ -206,6 +206,18 @@ class UserController extends Controller
         return $userId;
     }
 
+    public function searchForUser(Request $request)
+    {
+        if(Auth::check() && Auth::user()->type == "ADMIN")
+        {
+            $username = $request->username;
+            $users = DB::table('users')->select('*')->where('username', 'like', '%'.$username.'%')->get();
+            return view('pages.admin.index', ['users' => $users]);
+        }
+        else
+            return back()->withErrors(['msg' => "You must be an admin"]);
+    }
+
 
     /**
      * Display the specified resource.
