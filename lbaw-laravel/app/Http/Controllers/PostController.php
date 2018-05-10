@@ -338,9 +338,10 @@ class PostController extends Controller
         $tagsArray[0] = 'Java';
         $tagsArray[1] = 'C++';
         $tagsArray[2] = 'JS';
-        $dbResultsArray = array();
-        */
         
+        */
+        $dbResultsArray = array();
+        $currentDBResults = null;
         foreach($tagsArray as $tag)
         {
             $dbResultsArray[$tag] =
@@ -351,7 +352,19 @@ class PostController extends Controller
                         ->select(DB::raw('count(question.postid) as tag_count, question.postid as question_id'))
                         ->groupBy('question.postid')
                         ->get();
+            if ($currentDBResults == null)
+                $currentDBResults = $dbResultsArray[$tag];
+            else
+            {
+                $currentDBResults = 
+                    $dbResultsArray[$tag]
+                    ->join($dbResultsArray)
+                    ->sum('tag_count')
+                    ->groupBy('postid')
+                    ->get();
+            }
         }
+        print_r($dbResultsArray);
         //echo json_encode($dbResultsArray);
         /*$finalResult;
         foreach($dbResultsArray as $db)
