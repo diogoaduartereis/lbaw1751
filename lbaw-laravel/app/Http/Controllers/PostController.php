@@ -350,6 +350,11 @@ class PostController extends Controller
                         ->get();
         }
         echo json_encode($dbResultsArray);
+        $finalResult
+        foreach($dbResultsArray as $db)
+        {
+
+        }
         //}
         /*$questions = DB::table('question')
                         ->join('tagquestion', 'question.postid', '=', 'tagquestion.question_id')
