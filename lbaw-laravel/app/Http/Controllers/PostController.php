@@ -340,13 +340,7 @@ class PostController extends Controller
         $tagsArray[2] = 'JS';
         $dbResultsArray = array();
         */
-        echo "tags arr:";
-        print_r($tagsArray);
-        echo "\n";
-        echo "keywordsArray:";
-        print_r($keywordsArray);
         
-        return;
         foreach($tagsArray as $tag)
         {
             $dbResultsArray[$tag] =
