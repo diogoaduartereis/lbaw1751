@@ -10,16 +10,16 @@ function handleUserSearchInput(event)
     if (userInputText == "")
     {
         defaultQuestionsDiv.hidden = false;
-        defaultQuestionsDiv.style.display = block;
+        defaultQuestionsDiv.style.display = 'block';
         searchedQuestionsDiv.hidden = true;
-        searchedQuestionsDiv.style.display = none;
+        searchedQuestionsDiv.style.display = 'none';
         return;
     }
 
     defaultQuestionsDiv.hidden = true;
-    defaultQuestionsDiv.style.display = none;
+    defaultQuestionsDiv.style.display = 'none';
     searchedQuestionsDiv.hidden = false;
-    searchedQuestionsDiv.style.display = block;
+    searchedQuestionsDiv.style.display = 'block';
     return;
     let keywordsArr = userInputText.split(" ");
     //Get array with tags
