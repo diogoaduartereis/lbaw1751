@@ -388,12 +388,13 @@ class PostController extends Controller
             else
                 $currentDBResults = $currentDBResults->unionAll($retFromDB);
         }
-        echo $currentDBResults->get();
+        /*
         $DBTagResults = 
                         $currentDBResults
                         ->sum('tag_count')
                         ->groupBy('question_id')
                         ->get();
+        */
 
         $currentDBResults = null;
         foreach($keywordsArray as $keyword)
@@ -410,13 +411,13 @@ class PostController extends Controller
             else
                 $currentDBResults = $currentDBResults->unionAll($retFromDB);
         }
-        
+        /*
         $DBKeywrodsResults = 
                         $currentDBResults
                         ->select('*', DB::raw('SUM (keyword_count) as keyword_matches'))
                         ->groupBy('question_id')
                         ->get();
-        
+        */
         $finalMatches = 
             $DBTagResults
             ->join($DBKeywrodsResults)
