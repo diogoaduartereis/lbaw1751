@@ -315,7 +315,9 @@ class PostController extends Controller
         ->join('users', 'post.posterid', '=', 'users.id')
         ->select('question.postid as question_id', 'title', 'content', 'post.posterid as poster_id', 'post.points as question_points', 'users.points as poster_points', 'username')
         ->where('isvisible', '=', 'true')
-        ->orderBy('date', 'desc')->take($numberOfQuestions)->get();
+        ->orderBy('date', 'desc')
+        ->take($numberOfQuestions)
+        ->get();
 
         return PostController::checkQuestionsReturn($questions);
     }
