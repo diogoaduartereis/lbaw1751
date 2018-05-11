@@ -31,16 +31,16 @@
 <div class="collapse navbar-collapse" id="navbarPopularContent">
     <div>
         <ul class="navbar-nav mx-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="#">
+            <li id="hotQuestionsLink" class="nav-item active">
+                <a class="nav-link" href="/hot">
                     <i class="fas fa-fire"></i> Hot</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a id="newQuestionsLink" class="nav-link active" href="/">
                     <i class="far fa-clock"></i> New</a>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+                <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
                    aria-expanded="false">
                     <i class="fas fa-tags"></i> Tags
                 </a>

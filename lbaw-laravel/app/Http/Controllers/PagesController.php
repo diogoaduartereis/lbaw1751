@@ -11,15 +11,26 @@ use DB;
 
 class PagesController extends Controller
 {
-    public function frontpage()
+    public function frontpage($questions)
     {
-        $ret = PostController::getXMostRecentQuestions(5);
-        if ($ret == "error")
+        if ($questions == "error")
             return abort(404);
         if(Auth::check())
-            return view('pages.index logged in', ['questions' => $ret['questions']], ['questions_tags' => $ret['questions_tags']]);
+            return view('pages.index logged in', ['questions' => $questions['questions']], ['questions_tags' => $questions['questions_tags']]);
         else
-            return view('pages.index', ['questions' => $ret['questions']], ['questions_tags' => $ret['questions_tags']]);
+            return view('pages.index', ['questions' => $questions['questions']], ['questions_tags' => $questions['questions_tags']]);
+    }
+
+    public function frontpageNewQuestions() // default
+    {
+        $questions = PostController::getXMostRecentQuestions(5);
+        return PagesController::frontpage($questions);
+    }
+
+    public function frontpageHotQuestion()
+    {
+        $questions = PostController::getXHotQuestions(5);
+        return PagesController::frontpage($questions);
     }
 
     public function about()

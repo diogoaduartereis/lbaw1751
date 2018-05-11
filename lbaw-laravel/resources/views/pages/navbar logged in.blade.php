@@ -1,6 +1,5 @@
 <?php
     use \App\Http\Controllers\TagController;
-
     $tags = TagController::getFirstXTags(10);
 ?>
 
@@ -33,17 +32,17 @@
         <div>
             <ul class="navbar-nav mx-auto">
                 <li class="nav-item">
-                    <a class="nav-link active" href="#">
+                    <a id="hotQuestionsLink" class="nav-link active" href="/hot">
                         <i class="fas fa-fire"></i> Hot</a>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a id="newQuestionsLink" class="nav-link active" href="/">
                         <i class="far fa-clock"></i> New</a>
                     </a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+                    <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
                        aria-expanded="false">
                         <i class="fas fa-tags"></i> Tags
                     </a>
