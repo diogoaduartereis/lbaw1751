@@ -431,7 +431,11 @@ class PostController extends Controller
         {
 
         }*/
-    }
+        if(Auth::check())
+            return view('pages.index logged in_questionsdiv', ['questions' => $questions], ['questions_tags' => $questions_tags]);
+        else
+            return view('pages.index_questionsdiv', ['questions' => $questions], ['questions_tags' => $questions_tags]);
+        }
         //}
         /*$questions = DB::table('question')
                         ->join('tagquestion', 'question.postid', '=', 'tagquestion.question_id')
