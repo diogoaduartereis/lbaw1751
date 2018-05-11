@@ -391,8 +391,8 @@ class PostController extends Controller
         echo $currentDBResults->get();
         $DBTagResults = 
                         $currentDBResults
-                        ->select('*', DB::raw('SUM (tag_count) as tag_matches'))
-                        ->groupBy('postid')
+                        ->sum('tag_count')
+                        ->groupBy('question_id')
                         ->get();
 
         $currentDBResults = null;
@@ -414,7 +414,7 @@ class PostController extends Controller
         $DBKeywrodsResults = 
                         $currentDBResults
                         ->select('*', DB::raw('SUM (keyword_count) as keyword_matches'))
-                        ->groupBy('postid')
+                        ->groupBy('question_id')
                         ->get();
         
         $finalMatches = 
