@@ -161,6 +161,12 @@
                                         </div>
                                     </div>
                                     @endforeach
+                                    </div>
+                                    <div id="QuestionsFromSearch">
+                            <p id="csrf-token" style:"display: none" hidden >{{csrf_token()}}</p>      
+                            <br>
+
+                                    </div>
 
                 <script src="./assets/js/voteInPost.js"></script>
 
