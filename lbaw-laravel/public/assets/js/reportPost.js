@@ -38,7 +38,7 @@ function reponseArrived()
         resultMessageElement.innerHTML = 'There has been an unknown error while trying to process your request, please try again later';
         resultMessageElement.style.color = "red";
     }
-    resultMessageElement.innerHTML += 'You will be automatically redirected to the page you were broswing before this page.'
+    resultMessageElement.innerHTML += ' You will be automatically redirected to the page you were broswing before this page.'
     resultMessageElement.style.display = "block";
     setTimeout(redirectToLastURL, 5000);
 }
