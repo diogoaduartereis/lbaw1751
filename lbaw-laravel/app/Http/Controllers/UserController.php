@@ -134,6 +134,9 @@ class UserController extends Controller
 
     public function logout()
     {
+        if(! Auth::check())
+            return redirect('/');
+            
         Auth::logout();
         return redirect('');
     }
@@ -227,6 +230,9 @@ class UserController extends Controller
      */
     public function show($id)
     {
+        if(! Auth::check())
+            return redirect('/');
+
         $user = \App\User::where('id', $id)->get();
         if($user == null || count($user) != 0)
         {
@@ -339,9 +345,12 @@ class UserController extends Controller
 
     public static function getSelfXBestActiveQuestions($numOfQuestionsToRetrieve)
     {
-                            //get some user active posts
-                            $userActivePosts = DB::select('SELECT id, title, date, points FROM Post JOIN Question ON Post.id=Question.postID
-                            WHERE posterID=:posterID AND isClosed=false ORDER BY points DESC LIMIT ' . $numOfQuestionsToRetrieve, ['posterID' => Auth::user()->id]);
+        if(! Auth::check())
+            return "error";
+
+        //get some user active posts
+        $userActivePosts = DB::select('SELECT id, title, date, points FROM Post JOIN Question ON Post.id=Question.postID
+            WHERE posterID=:posterID AND isClosed=false ORDER BY points DESC LIMIT ' . $numOfQuestionsToRetrieve, ['posterID' => Auth::user()->id]);
         //for security purposes, do not return DB error information to the user possibly gibing 
         if (!$userActivePosts)
             return "error";
