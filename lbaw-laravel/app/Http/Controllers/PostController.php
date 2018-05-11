@@ -382,7 +382,7 @@ class PostController extends Controller
                         ->join('tagquestion', 'question.postid', '=', 'tagquestion.question_id')
                         ->join('tag', 'tagquestion.tag_id', '=', 'tag.id')
                         ->where('tag.name', '=', $tag)
-                        ->select( DB::raw('count(question_id) as tag_count'),'question.postid')
+                        ->select(DB::raw('count(postid) as tag_count'), 'question.postid')
                         ->groupBy('question.postid');
             if ($currentDBResults == null)
                 $currentDBResults = $retFromDB;
@@ -392,9 +392,11 @@ class PostController extends Controller
         echo $currentDBResults->get();
         $DBTagResults = 
                         $currentDBResults
-                        ->select(DB::raw('count(question_id) as tag_count'), 'question.postid')
-                        ->groupBy('question.postid')
+                        ->select(DB::raw('count(question.postid) as tag_count'), 'postid')
+                        ->groupBy('postid')
+                        ->orderBy('postid')
                         ->get();
+                        
         echo "\n";
         echo $DBTagResults;
         return;
