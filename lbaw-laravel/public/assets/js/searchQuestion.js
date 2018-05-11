@@ -4,6 +4,7 @@ document.getElementById("questionSearchBar").addEventListener("keyup", handleUse
 
 function handleUserSearchInput(event)
 {
+    let searchedQuestionsDiv;
     let userInputText = event.target.value.trim();
     if (userInputText == "")
     {
@@ -14,6 +15,7 @@ function handleUserSearchInput(event)
     }
     else
     {
+        searchedQuestionsDiv = document.getElementById('QuestionsFromSearch');
         currentDisplayQuestions.hidden = true;
         currentDisplayQuestions.style.display = none;
     }
