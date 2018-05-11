@@ -308,7 +308,7 @@ class PostController extends Controller
         });
     }
 
-    public static function getXMostRecentQuestions($numberOfQuestions)
+    public static function getXMostRecentQuestions($numberOfQuestions, $firstQuestionOffset = 0)
     {
         $questions = DB::table('question')
         ->join('post', 'question.postid' , '=', 'post.id')
@@ -316,6 +316,7 @@ class PostController extends Controller
         ->select('question.postid as question_id', 'title', 'content', 'post.posterid as poster_id', 'post.points as question_points', 'users.points as poster_points', 'username')
         ->where('isvisible', '=', 'true')
         ->orderBy('date', 'desc')
+        ->skip($firstQuestionOffset)
         ->take($numberOfQuestions)
         ->get();
 
