@@ -13,12 +13,10 @@ function handleUserSearchInput(event)
         currentDisplayQuestions.style.display = block;
         return;
     }
-    else
-    {
-        searchedQuestionsDiv = document.getElementById('QuestionsFromSearch');
-        currentDisplayQuestions.hidden = true;
-        currentDisplayQuestions.style.display = none;
-    }
+    
+    searchedQuestionsDiv = document.getElementById('QuestionsFromSearch');
+    currentDisplayQuestions.hidden = true;
+    currentDisplayQuestions.style.display = none;
     return;
     let keywordsArr = userInputText.split(" ");
     //Get array with tags
