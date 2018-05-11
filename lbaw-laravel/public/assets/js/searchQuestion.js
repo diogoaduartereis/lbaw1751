@@ -20,7 +20,6 @@ function handleUserSearchInput(event)
     defaultQuestionsDiv.style.display = 'none';
     searchedQuestionsDiv.hidden = false;
     searchedQuestionsDiv.style.display = 'block';
-    return;
     let keywordsArr = userInputText.split(" ");
     //Get array with tags
     let tagsArr = userInputText.match(/#\S+/g);

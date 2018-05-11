@@ -382,21 +382,22 @@ class PostController extends Controller
                         ->join('tagquestion', 'question.postid', '=', 'tagquestion.question_id')
                         ->join('tag', 'tagquestion.tag_id', '=', 'tag.id')
                         ->where('tag.name', '=', $tag)
-                        ->select(DB::raw('count(question.postid) as tag_count, question.postid as question_id'))
+                        ->select( DB::raw('count(question_id) as tag_count'),'question.postid')
                         ->groupBy('question.postid');
             if ($currentDBResults == null)
                 $currentDBResults = $retFromDB;
             else
                 $currentDBResults = $currentDBResults->unionAll($retFromDB);
         }
-        /*
+        echo $currentDBResults->get();
         $DBTagResults = 
                         $currentDBResults
-                        ->sum('tag_count')
-                        ->groupBy('question_id')
+                        ->select(DB::raw('count(question_id) as tag_count'), 'question.postid')
+                        ->groupBy('question.postid')
                         ->get();
-        */
-
+        echo "\n";
+        echo $DBTagResults;
+        return;
         $currentDBResults = null;
         foreach($keywordsArray as $keyword)
         {
