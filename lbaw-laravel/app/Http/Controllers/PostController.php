@@ -386,8 +386,9 @@ class PostController extends Controller
             if ($currentDBResults == null)
                 $currentDBResults = $retFromDB;
             else
-                $currentDBResults = $currentDBResults->union($retFromDB);
+                $currentDBResults = $currentDBResults->unionAll($retFromDB);
         }
+        echo $currentDBResults->get();
         $DBTagResults = 
                         $currentDBResults
                         ->select('*', DB::raw('SUM (tag_count) as tag_matches'))
@@ -407,7 +408,7 @@ class PostController extends Controller
             if ($currentDBResults == null)
                 $currentDBResults = $retFromDB;
             else
-                $currentDBResults = $currentDBResults->union($retFromDB);
+                $currentDBResults = $currentDBResults->unionAll($retFromDB);
         }
         
         $DBKeywrodsResults = 
