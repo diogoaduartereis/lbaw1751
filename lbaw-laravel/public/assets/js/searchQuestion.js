@@ -4,10 +4,10 @@ document.getElementById("questionSearchBar").addEventListener("keyup", handleUse
 
 function handleUserSearchInput(event)
 {
-    let currentDisplayQuestions = document.getElementById('Questions');
     let userInputText = event.target.value.trim();
     if (userInputText == "")
     {
+        let defaultQuestionsDiv = document.getElementById('Questions');
         currentDisplayQuestions.hidden = false;
         currentDisplayQuestions.style.display = block;
         return;
