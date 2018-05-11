@@ -382,21 +382,17 @@ class PostController extends Controller
                         ->join('tag', 'tagquestion.tag_id', '=', 'tag.id')
                         ->where('tag.name', '=', $tag)
                         ->select(DB::raw('count(question.postid) as tag_count, question.postid as question_id'))
-                        ->groupBy('question.postid')
-                        ->get();
+                        ->groupBy('question.postid');
             if ($currentDBResults == null)
                 $currentDBResults = $retFromDB;
             else
-            {
-                $currentDBResults = 
-                    $retFromDB
-                    ->join($currentDBResults)
-                    ->sum('tag_count as tag_matches')
-                    ->groupBy('postid')
-                    ->get();
-            }
+                $currentDBResults = $currentDBResults->union($retFromDB);
         }
-        $DBTagResults = $currentDBResults;
+        $DBTagResults = 
+                        $currentDBResults
+                        ->select('*', DB::raw('SUM (tag_count) as tag_matches'))
+                        ->groupBy('postid')
+                        ->get();
 
         $currentDBResults = null;
         foreach($keywordsArray as $keyword)
@@ -407,21 +403,18 @@ class PostController extends Controller
                         ->where('question.title', 'like', '%' . $keyword . '%')
                         ->orwhere('post.content', 'like', '%' . $keyword . '%')
                         ->select(DB::raw('count(question.postid) as keyword_count, question.postid as question_id'))
-                        ->groupBy('question.postid')
-                        ->get();
+                        ->groupBy('question.postid');
             if ($currentDBResults == null)
                 $currentDBResults = $retFromDB;
             else
-            {
-                $currentDBResults = 
-                    $retFromDB
-                    ->join($currentDBResults)
-                    ->sum('keyword_count as keyword_matches')
-                    ->groupBy('postid')
-                    ->get();
-            }
+                $currentDBResults = $currentDBResults->union($retFromDB);
         }
-        $DBKeywrodsResults = $currentDBResults;
+        
+        $DBKeywrodsResults = 
+                        $currentDBResults
+                        ->select('*', DB::raw('SUM (keyword_count) as keyword_matches'))
+                        ->groupBy('postid')
+                        ->get();
         
         $finalMatches = 
             $DBTagResults
