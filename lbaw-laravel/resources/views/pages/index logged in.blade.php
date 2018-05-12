@@ -20,7 +20,8 @@
         <script src="./assets/js/popper.min.js"></script>
         <script src="../assets/js/encodeForAjax.js"></script>
         <script src="./assets/js/homepageSearchBar.js"></script>
-                <script src="./assets/js/infiniteScrolling.js"></script>
+        <script src="./assets/js/infiniteScrolling.js"></script>
+                <script src="./assets/js/ajaxQuestionLoading.js"></script>
 
         <!-- Google Login -->
         <meta name="google-signin-scope" content="profile email">
