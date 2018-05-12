@@ -308,6 +308,16 @@ class PostController extends Controller
         });
     }
 
+    public static function getXMostRecentQuestionsAsHTML($numberOfQuestions, $firstQuestionOffset = 0)
+    {
+        $questions = PostController::getXMostRecentQuestions($numberOfQuestions, $firstQuestionOffset);
+        if(Auth::check())
+            return view('pages.index logged in_questionsdiv', ['questions' => $questions['questions']], ['questions_tags' => $questions['questions_tags']]);
+        else
+            return view('pages.index_questionsdiv', ['questions' => $questions['questions']], ['questions_tags' => $questions['questions_tags']]);
+
+    }
+    
     public static function getXMostRecentQuestions($numberOfQuestions, $firstQuestionOffset = 0)
     {
         $questions = DB::table('question')
@@ -323,7 +333,7 @@ class PostController extends Controller
         return PostController::checkQuestionsReturn($questions);
     }
 
-    
+
     public static function getXHotQuestions($numberOfQuestions)
     {
         $questions = DB::table('question')
