@@ -6,4 +6,18 @@ function loadNextQuestionsFromServer()
      //the div that must be operated, is the QuestionsFromSearchDiv
     if (questionsDiv.hidden == true)
         questionsDiv = document.getElementById('QuestionsFromSearch');
+    
+    let numOfQuestionsToRetrieve = 5;
+    let offset = questionsDiv.childNodes.length - 14; //14 is the number of html inside of the questions div that are not actually questions
+
+    let ajaxRequest = new XMLHttpRequest();
+    ajaxRequest.addEventListener("load", newQuestionsFromServerArrived);
+    ajaxRequest.open("POST", "/getposts/{offset}/{numberOfPosts}", true);
+    ajaxRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    ajaxRequest.send();
+}
+
+function newQuestionsFromServerArrived()
+{
+    
 }
