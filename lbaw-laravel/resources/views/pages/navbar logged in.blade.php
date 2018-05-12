@@ -34,12 +34,20 @@ $tags = TagController::getFirstXTags(10);
         <div>
             <ul class="navbar-nav mx-auto">
                 <li class="nav-item">
-                    <a id="hotQuestionsLink" class="nav-link active" href="/hot">
+	                @if(Request::is('hot'))
+	                    <a id="hotQuestionsLink" class="nav-link active" href="{{url('/hot')}}">
+	                @else 
+	                    <a id="hotQuestionsLink" class="nav-link" href="{{url('/hot')}}">
+	                @endif
                         <i class="fas fa-fire"></i> Hot</a>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a id="newQuestionsLink" class="nav-link" href="/new">
+	                @if(Request::is('new'))
+	                    <a id="newQuestionsLink" class="nav-link" href="{{url('/new')}}">
+	                @else 
+	                    <a id="newQuestionsLink" class="nav-link" href="{{url('/new')}}">
+	                @endif
                         <i class="far fa-clock"></i> New</a>
                     </a>
                 </li>
@@ -62,7 +70,11 @@ $tags = TagController::getFirstXTags(10);
                     </div>
                 </li>
                 <li class="nav-item">
+                @if(Request::is('tags'))
+                    <a class="nav-link active" href="{{url('/tags')}}">
+                @else
                     <a class="nav-link" href="{{url('/tags')}}">
+                @endif
                         <i class="fas fa-tag"></i> All Tags</a>
                     </a>
                 </li>
@@ -78,20 +90,32 @@ $tags = TagController::getFirstXTags(10);
                     <button style="margin-top:7px; margin-right:7px;" id="postQuestionButton" type="button" class="btn btn-primary">Post New Question</button>
                 </a>
 
+                @if(Request::is('about')))
+                <li class="nav-item items-align-right active">
+                @else
                 <li class="nav-item items-align-right">
-                    <a href="{{url('about')}}" class="nav-link" href="#">
+                @endif
+                    <a href="{{url('about')}}" class="nav-link">
                         About</a>
                     </a>
                 </li>
 
+                @if(Request::is('contacts')))
+                <li class="nav-item active">
+                @else 
                 <li class="nav-item">
-                    <a href="{{url('contacts')}}" class="nav-link" href="#">
-                        Contact</a>
+                @endif
+                    <a href="{{url('contacts')}}" class="nav-link">
+                        Contacts</a>
                     </a>
                 </li>
 
+                @if(Request::is('faq')))
+                <li class="nav-item active">
+                @else 
                 <li class="nav-item">
-                    <a href="{{url('faq')}}" class="nav-link" href="#">
+                @endif
+                    <a href="{{url('faq')}}" class="nav-link">
                         FAQ</a>
                     </a>
                 </li>
