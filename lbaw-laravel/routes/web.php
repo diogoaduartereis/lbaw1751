@@ -20,7 +20,7 @@ Route::get('404','PagesController@error404');
 Route::get('admin','PagesController@admin');
 
 //Get First X questions (used for viewing more questions using infinite scrolling)
-Route::post('getposts/{offset}/{numberOfPosts}','PostController@getXMostRecentQuestions');
+Route::get('getposts/{offset}/{numberOfPosts}','PostController@getXMostRecentQuestions');
 
 /*//Register
 Route::get('register','PagesController@register');
