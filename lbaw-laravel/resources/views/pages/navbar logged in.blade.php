@@ -39,12 +39,12 @@ $tags = TagController::getFirstXTags(10);
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a id="newQuestionsLink" class="nav-link active" href="/">
+                    <a id="newQuestionsLink" class="nav-link" href="/">
                         <i class="far fa-clock"></i> New</a>
                     </a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
                        aria-expanded="false">
                         <i class="fas fa-tags"></i> Tags
                     </a>
@@ -62,7 +62,7 @@ $tags = TagController::getFirstXTags(10);
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="{{url('/tags')}}">
+                    <a class="nav-link" href="{{url('/tags')}}">
                         <i class="fas fa-tag"></i> All Tags</a>
                     </a>
                 </li>
