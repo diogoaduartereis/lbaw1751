@@ -68,27 +68,27 @@
                             <h3>{{$faqCat}}</h3>
                         </div>
                         @foreach ($faqArr as $faq)
-                        <div class="row">
-                            <div class="col-12">
-                                <div id="accordion">
-                                    <div class="card">
-                                        <div class="card-header" id="headingOne">
-                                            <h5 class="mb-0">
-                                                <button class="btn btn-link" data-toggle="collapse" data-target="#collapse{{$i}}" aria-expanded="false" aria-controls="collapse{{$i}}">
-                                                    {{$faq->question}}
-                                                </button>
-                                            </h5>
-                                        </div>
-                                        <div id="collapse{{$i}}" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-                                            <div class="card-body">
-                                                {{$faq->answer}}
+                            <div class="row">
+                                <div class="col-12">
+                                    <div id="accordion">
+                                        <div class="card">
+                                            <div class="card-header" id="headingOne">
+                                                <h5 class="mb-0">
+                                                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapse{{$i}}" aria-expanded="false" aria-controls="collapse{{$i}}">
+                                                        {{$faq->question}}
+                                                    </button>
+                                                </h5>
+                                            </div>
+                                            <div id="collapse{{$i}}" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                                                <div class="card-body">
+                                                    {{$faq->answer}}
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <?php $i++; ?>
+                            <?php $i++; ?>
                         @endforeach
                         <br>
                         <br>

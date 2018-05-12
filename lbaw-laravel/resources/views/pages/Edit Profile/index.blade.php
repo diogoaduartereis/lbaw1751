@@ -67,20 +67,20 @@
                                         <div class="form-group">
                                             <label class="col-sm-3 control-label">Username:</label>
                                             <div class="col-sm-8">
-                                            <input class="form-control" type="text" name="form-username" value="{{$user->username}}">
+                                            <input class="form-control" type="text" name="form-username" value="{{$user->username}}" required>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="col-sm-3 control-label">Email:</label>
                                             <div class="col-sm-8">
-                                            <input class="form-control" type="text" name="form-email" value="{{$user->email}}">
+                                            <input class="form-control" type="text" name="form-email" value="{{$user->email}}" required>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="col-sm-3 control-label">Description:</label>
                                             <div class="col-sm-8">
                                                 <textarea name="form-about-yourself" placeholder="Description" class="form-about-yourself form-control" id="form-about-yourself"
-                                                          style="resize: none">{{$user->description}}</textarea>
+                                                          style="resize: none" required>{{$user->description}} </textarea>
                                             </div>
                                         </div>
                                         <div class="form-group">
