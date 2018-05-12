@@ -14,7 +14,7 @@ function loadNextQuestionsFromServer()
     ajaxRequest.addEventListener("load", newQuestionsFromServerArrived);
     ajaxRequest.open("GET", "/getMostRecentPosts", true);
     ajaxRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    ajaxRequest.send();
+    ajaxRequest.send(encodeForAjax({numOfQuestionsToRetrieve: numOfQuestionsToRetrieve, offset: offset}));
 }
 
 function newQuestionsFromServerArrived()

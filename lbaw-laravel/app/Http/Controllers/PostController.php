@@ -308,9 +308,11 @@ class PostController extends Controller
         });
     }
 
-    public static function getXMostRecentQuestionsAsHTML($numberOfQuestions, $firstQuestionOffset = 0)
+    public static function getXMostRecentQuestionsAsHTML(Request $request)
     {
-        $questions = PostController::getXMostRecentQuestions($numberOfQuestions, $firstQuestionOffset);
+        $numberOfQuestions = $request->input('numOfQuestionsToRetrieve');
+        $firstQuestionOffset = $request->input('offset');
+        $questions = PostController::getXMostRecentQuestions($numberOfQuestions, $firstQuestionOffset);        
         if(Auth::check())
             return view('pages.index logged in_questionsdiv', ['questions' => $questions['questions']], ['questions_tags' => $questions['questions_tags']]);
         else
