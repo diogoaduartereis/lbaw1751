@@ -47,59 +47,59 @@
                         </div>  
                         <div id="classContainerID" class="container">
                             <div id="ContactsList">
-                            <br>
-                            @if(count($contacts) == 0)
+                                <br>
+                                @if(count($contacts) == 0)
                                 <h3>
-                                   No contacts to process
+                                    No contacts to process
                                 </h3>
-                            @endif
-                            <script src="./assets/js/markContactAsProcessed.js"></script>
-                            <p id="csrf-token" style:"display: none" hidden >{{csrf_token()}}</p>  
-                            @foreach ($contacts as $contact)
-                            <div id="contact-{{$contact->id}}" class="row contactsDiv">
-                                        <div class="col-12">
-                                            <div class="col-11 mx-auto">
+                                @endif
+                                <script src="./assets/js/markContactAsProcessed.js"></script>
+                                <p id="csrf-token" style:"display: none" hidden >{{csrf_token()}}</p>  
+                                @foreach ($contacts as $contact)
+                                <div id="contact-{{$contact->id}}" class="row contactsDiv">
+                                    <div class="col-12">
+                                        <div class="col-11 mx-auto">
                                             <div class="card border">
-                                            <h5 class="card-header border">
-                                                <div class="row">
-                                                    <div class="col-9">
-                                                        <b> {{$contact->subject}} </b>
+                                                <h5 class="card-header border">
+                                                    <div class="row">
+                                                        <div class="col-9">
+                                                            <b> {{$contact->subject}} </b>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </h5>
-                                        </div>
-                                        <div class="card-block border">
-                                            <h4 class="card-title"></h4>
-                                            <div class="row mx-auto">
-                                                <div class="col-12" style="font-size: 0.9rem;">
-                                                <h5 class="card-text text-dark">{{$contact->message}}</h5>
-                                                    <br>
-                                                    <div class="sticky-right">
-                                                        <h6 style="font-size:1.3em; color: rgb(0, 153, 255);">
-                                                            By: 
-                                                            <a href="./users/{{$contact->userid}}">{{$contact->username}}</a>
-                                                        </h6>
-                                                    </div>
-                                                    <br>
-                                                </div>
+                                                </h5>
                                             </div>
-                                            <br>
-                                        </div>
-                                                <div class="card-footer border-bottom border-top-0 border-dark">
-                                                    <div class="btn-group btn-group-sm " role="group" aria-label="Basic example">
-                                                        <button type="button" onclick="return markContactAsProcessed(event);" class="btn btn-outline-primary">
-                                                            <a id="markContact-{{$contact->id}}AsProcessed" style="text-decoration:none;">
-                                                                <i class="fas fa-check"></i> Mark as Processed 
-                                                            </a>
-                                                        </button>
+                                            <div class="card-block border">
+                                                <h4 class="card-title"></h4>
+                                                <div class="row mx-auto">
+                                                    <div class="col-12" style="font-size: 0.9rem;">
+                                                        <h5 class="card-text text-dark">{{$contact->message}}</h5>
+                                                        <br>
+                                                        <div class="sticky-right">
+                                                            <h6 style="font-size:1.3em; color: rgb(0, 153, 255);">
+                                                                By: 
+                                                                <a href="./users/{{$contact->userid}}">{{$contact->username}}</a>
+                                                            </h6>
+                                                        </div>
+                                                        <br>
                                                     </div>
+                                                </div>
+                                                <br>
+                                            </div>
+                                            <div class="card-footer border-bottom border-top-0 border-dark">
+                                                <div class="btn-group btn-group-sm " role="group" aria-label="Basic example">
+                                                    <button type="button" onclick="return markContactAsProcessed(event);" class="btn btn-outline-primary">
+                                                        <a id="markContact-{{$contact->id}}AsProcessed" style="text-decoration:none;">
+                                                            <i class="fas fa-check"></i> Mark as Processed 
+                                                        </a>
+                                                    </button>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    @endforeach
+                                </div>
+                                @endforeach
 
-                <script src="./assets/js/bars.js"></script>
-                </body>
+                                <script src="./assets/js/bars.js"></script>
+                                </body>
 
-                </html>
+                                </html>

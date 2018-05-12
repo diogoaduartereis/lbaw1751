@@ -50,23 +50,23 @@
                                     </div>
                                 </div>
                                 <div class="form-bottom ">
-                            <form action = "/login" method="post">
-                                    {!! csrf_field() !!}
-                                    <div class="form-group">
-                                        <label class="sr-only " for="form-username">Username</label>
-                                        <input type="text" name="username" placeholder="Username... " class="form-username form-control " id="form-username">
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="sr-only " for="form-password">Password</label>
-                                        <input type="password" name="pass_token" placeholder="Password...
-                                               " class="form-password form-control" id="form-password">
-                                    </div>
-                                    @if($errors->any())
+                                    <form action = "/login" method="post">
+                                        {!! csrf_field() !!}
+                                        <div class="form-group">
+                                            <label class="sr-only " for="form-username">Username</label>
+                                            <input type="text" name="username" placeholder="Username... " class="form-username form-control " id="form-username">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="sr-only " for="form-password">Password</label>
+                                            <input type="password" name="pass_token" placeholder="Password...
+                                                   " class="form-password form-control" id="form-password">
+                                        </div>
+                                        @if($errors->any())
                                         <h4 style = "color:red; text-align:center">{{$errors->first()}}</h4>
-                                    @endif
-                                    <a id="submitBtn" class="btn btn-lg center-block btn-primary" style="background:#007bff; ">Sign in!</a>
-                                            <button id="submitform" type="submit" hidden="true"></button>
-                            </form>
+                                        @endif
+                                        <a id="submitBtn" class="btn btn-lg center-block btn-primary" style="background:#007bff; ">Sign in!</a>
+                                        <button id="submitform" type="submit" hidden="true"></button>
+                                    </form>
 
                                     <div class="register-link ">
                                         <h3>
@@ -88,72 +88,67 @@
 		
 
 
-            function onSignIn(googleUser) {
-                // Useful data for your client-side scripts:
-                var profile = googleUser.getBasicProfile();
-                console.log("ID: " + profile.getId()); // Don't send this directly to your server!
-                console.log('Full Name: ' + profile.getName());
-                console.log('Given Name: ' + profile.getGivenName());
-                console.log('Family Name: ' + profile.getFamilyName());
-                console.log("Image URL: " + profile.getImageUrl());
-                console.log("Email: " + profile.getEmail());
+function onSignIn(googleUser) {
+// Useful data for your client-side scripts:
+var profile = googleUser.getBasicProfile();
+console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+console.log('Full Name: ' + profile.getName());
+console.log('Given Name: ' + profile.getGivenName());
+console.log('Family Name: ' + profile.getFamilyName());
+console.log("Image URL: " + profile.getImageUrl());
+console.log("Email: " + profile.getEmail());
+// The ID token you need to pass to your backend:
+var id_token = googleUser.getAuthResponse().id_token;
+console.log("ID Token: " + id_token);
+let img = "<img src=\"" + profile.getImageUrl() + "\">";
+//document.getElementById("ig").innerHTML = img;
+console.log(googleUser);
+$.ajax({
+headers: {
+'X-CSRF-Token':'{{csrf_token()}}',
+        },
+        url: '{{url("/login")}}',
+        type: 'POST',
+        dataType: 'JSON',
+        data: {
+        'username': '' + profile.getName(),
+                'email': '' + profile.getEmail(),
+                'description':"",
+                'password':'' + id_token,
+                'password_confirmation':'' + id_token,
+                'picture':profile.getImageUrl()
+        },
+        complete: function (response) {
+        console.log(response);
+        if (response.responseText == 'valid') {
+        gapi.load('auth2', function () {
+        var auth2 = gapi.auth2.getAuthInstance();
+        auth2.signOut().then(function () {
+        console.log('User signed out.');
+        document.getElementById('back').click();
+        });
+        });
+        }
+        if (response.responseText == 'args') {
+        location.reload();
+        }
+        }
 
-                // The ID token you need to pass to your backend:
-                var id_token = googleUser.getAuthResponse().id_token;
-                console.log("ID Token: " + id_token);
+});
+}
 
-
-                let img = "<img src=\"" + profile.getImageUrl() + "\">";
-                //document.getElementById("ig").innerHTML = img;
-                console.log(googleUser);
-
-                $.ajax({
-                    headers: {
-                        'X-CSRF-Token':'{{csrf_token()}}',
-                    },
-                    url: '{{url("/login")}}',
-                    type: 'POST',
-                    dataType: 'JSON',
-                    data: {
-                        'username': ''+profile.getName(),
-                        'email': ''+profile.getEmail(),
-                        'description':"",
-                        'password':''+id_token,
-                        'password_confirmation':''+id_token,
-                        'picture':profile.getImageUrl()
-                    },
-
-                    complete: function (response) {
-                        console.log(response);
-                        if(response.responseText=='valid') {
-                            gapi.load('auth2', function () {
-                                var auth2 = gapi.auth2.getAuthInstance();
-                                auth2.signOut().then(function () {
-                                    console.log('User signed out.');
-                                    document.getElementById('back').click();
-                                });
-                            });
-                        }
-                        if(response.responseText=='args') {
-                            location.reload();
-                        }
-                    }
-
-                });
-            }
-
-            let btn = document.getElementById('submitBtn');
-            if(btn!=null)
-            {
-                btn.onclick = function()
+let btn = document.getElementById('submitBtn');
+if (btn != null)
+        {
+        btn.onclick = function()
                 {
-                    var loggedIn = {{ auth()->check() ? 'true' : 'false' }};
-                    if (loggedIn) 
+                var loggedIn = {{ auth() - > check() ? 'true' : 'false' }};
+                if (loggedIn)
                         window.location = "/";
-                    else
+                else
                         document.getElementById('submitform').click();
                 }
-            }
+        }
         </script>
         <script src="../assets/js/jquery-1.11.1.min.js "></script>
         <script src="../assets/bootstrap/js/bootstrap.min.js "></script>

@@ -1,4 +1,4 @@
- 'use strict'
+'use strict'
 
 let postIdentifier;
 let deleteQuestionInQuestionPageSoBackHomepage = false;
@@ -27,7 +27,7 @@ function deleteAnswer(event)
 function deletePost(event, ajaxRequest)
 {
     event.preventDefault();
-    
+
     //get post id
     let idIndex = event.target.id.indexOf("-") + 1;
     postIdentifier = Number(event.target.id.substring(idIndex));
@@ -36,7 +36,7 @@ function deletePost(event, ajaxRequest)
     let csrfToken = document.getElementById("csrf-token").innerHTML;
 
     //delete question from the database using AJAX
-    ajaxRequest.open("POST", "/post/"+ postIdentifier +"/delete", true);
+    ajaxRequest.open("POST", "/post/" + postIdentifier + "/delete", true);
     ajaxRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     ajaxRequest.setRequestHeader("X-CSRF-Token", csrfToken);
     ajaxRequest.send();
@@ -48,7 +48,7 @@ function questionRemoved()
     if (this.responseText != "")
         return;
 
-    if(deleteQuestionInQuestionPageSoBackHomepage)
+    if (deleteQuestionInQuestionPageSoBackHomepage)
         window.location.replace("/");
 
     document.getElementById("question-" + postIdentifier).remove();

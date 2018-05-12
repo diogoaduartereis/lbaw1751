@@ -1,7 +1,8 @@
 ﻿<?php
-    use \App\Http\Controllers\TeamController;
 
-    $teams = TeamController::getMapWithAllTeamsToMembers();
+use \App\Http\Controllers\TeamController;
+
+$teams = TeamController::getMapWithAllTeamsToMembers();
 ?>
 
 <!DOCTYPE html>
@@ -76,11 +77,11 @@
                         </div>
                         <div id="classContainerID" class="container">
 
-                        @if ($teams == "error")
-                        <h4 id="resultMessage" style="text-align:left">
-                                                Seems like there has been a problem processing your request. Please try again later.
-                                                </h4>
-                        @else
+                            @if ($teams == "error")
+                            <h4 id="resultMessage" style="text-align:left">
+                                Seems like there has been a problem processing your request. Please try again later.
+                            </h4>
+                            @else
                             <section class="py-3">
                                 <div class="row">
                                     <div id ="testeID" class="col-md-12">
@@ -98,8 +99,8 @@
                             <section id = "teamSection" class="pb-3">
                                 <h2 class="my-3">{{$teamName}}</h2>
                                 <div id = "teamPhotos" class="row text-center pb-3">
-                                
-                            @foreach($teamMembers as $teamMember)
+
+                                    @foreach($teamMembers as $teamMember)
                                     <div class="col-md-3 d-flex justify-content-center">
                                         <div class="card text-center" style="width: 14rem;">
                                             <img class="card-img-top img-fluid" src="../assets/img/team/{{$teamMember->img_path}}" alt="dfg">
@@ -109,13 +110,13 @@
                                             </div>
                                         </div>
                                     </div>
-                            @endforeach
+                                    @endforeach
                                 </div>
-                                </section>
-                                <br>
-                                <br>
-                                @endforeach
-                                @endif
+                            </section>
+                            <br>
+                            <br>
+                            @endforeach
+                            @endif
                         </div>
                     </div>
                 </div>

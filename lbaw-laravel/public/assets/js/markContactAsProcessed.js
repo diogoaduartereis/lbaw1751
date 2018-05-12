@@ -1,4 +1,4 @@
- 'use strict'
+'use strict'
 
 let contactId;
 
@@ -18,7 +18,7 @@ function markContactAsProcessed(event)
     //add the new item to the database using AJAX
     let ajaxRequest = new XMLHttpRequest();
     ajaxRequest.addEventListener("load", responseArrived);
-    ajaxRequest.open("POST", "contacts/"+ contactId +"/markAsProcessed", true);
+    ajaxRequest.open("POST", "contacts/" + contactId + "/markAsProcessed", true);
     ajaxRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     ajaxRequest.setRequestHeader("X-CSRF-Token", csrfToken);
     ajaxRequest.send();
@@ -33,9 +33,9 @@ function responseArrived()
     document.getElementById("contact-" + contactId).remove();
 
     //if no contacts to display
-    if(document.getElementsByClassName("contactsDiv").length == 0)
+    if (document.getElementsByClassName("contactsDiv").length == 0)
     {
-        document.getElementById("ContactsList").insertAdjacentHTML('afterbegin', 
-            '<h3>No contacts to process</h3>');
-    }  
+        document.getElementById("ContactsList").insertAdjacentHTML('afterbegin',
+                '<h3>No contacts to process</h3>');
+    }
 }

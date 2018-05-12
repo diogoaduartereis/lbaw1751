@@ -7,15 +7,15 @@ function confirmUnban(event, userId)
 {
     event.preventDefault();
     let button = event.target;
-    
-    let buttonPreviousText =  button.innerHTML;
+
+    let buttonPreviousText = button.innerHTML;
     console.log(buttonPreviousText);
     button.innerText = "Confirm Unban";
     button.setAttribute("onclick", "unbanUser(event," + userId + ")");
     setTimeout(function deleteDefaultValue()
     {
         button.innerHTML = buttonPreviousText;
-        button.setAttribute("onclick", "confirmUnban(event,"+ userId + ")");
+        button.setAttribute("onclick", "confirmUnban(event," + userId + ")");
     }, 3000);
 }
 
@@ -39,7 +39,7 @@ function responseArrived()
 {
     if (this.responseText == "")
         return;
-        
+
     let userid = this.responseText;
 
     document.getElementById("unbanButton").insertAdjacentHTML('afterend', `<button

@@ -19,8 +19,8 @@ function updatedUserPointsArrived()
     if (newUserPoints > -1)
         newInnerHtml = `<div class="text-success" style="margin-left:2vw;"> 
                             <i class="fas fa-plus" style="padding-right: 3px;"></i> `
-                            + newUserPoints +
-                        ` Points
+                + newUserPoints +
+                ` Points
                         </div> `;
     else
         newInnerHtml = `<div class="text-danger" style="margin-left:2vw;"> 

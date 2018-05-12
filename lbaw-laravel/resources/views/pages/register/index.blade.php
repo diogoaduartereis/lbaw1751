@@ -15,11 +15,11 @@
         <link rel="stylesheet" href="../assets/css/register/form-elements.css">
         <link rel="stylesheet" href="../assets/css/register/style.css">
         <link rel="stylesheet" href="../assets/css/common.css">
-		
-		<!-- Google Login -->
-		<meta name="google-signin-scope" content="profile email">
-		<meta name="google-signin-client_id" content="914898849502-lcpd3q2madh2duv6banqs6ds5mue0fni.apps.googleusercontent.com">
-		<script src="https://apis.google.com/js/platform.js" async defer></script>
+
+        <!-- Google Login -->
+        <meta name="google-signin-scope" content="profile email">
+        <meta name="google-signin-client_id" content="914898849502-lcpd3q2madh2duv6banqs6ds5mue0fni.apps.googleusercontent.com">
+        <script src="https://apis.google.com/js/platform.js" async defer></script>
 
     </head>
 
@@ -54,37 +54,37 @@
                                 <div class="form-bottom" >
                                     <form action="/register" method="POST">
                                         {!! csrf_field() !!}
-                                    <div class="form-group">
-                                        <label class="sr-only" for="form-username">First name</label>
-                                        <input  type="text" name="username" placeholder="Username..." class="form-username form-control" id="username">
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="sr-only" for="form-email">Email</label>
-                                        <input name="email" placeholder="Email..." id="email" class="form-email form-control" style="height:50px;" type="email">
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="sr-only" for="form-about-yourself">About yourself</label>
-                                        <textarea name="description" placeholder="About yourself..." class="form-about-yourself form-control" id="about-yourself"></textarea>
-                                    </div>
-                                    <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                                        <label class="sr-only" for="form-password">Last name</label>
-                                        <input type="password" name="password" placeholder="Password..." class="form-password form-control" id="password">
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="sr-only" for="form-confirm-password">Last name</label>
-                                        <input type="password" name="password_confirmation" placeholder="Confirm Password..." class="form-confirm-password form-control"
-                                               id="confirm-password">
-                                    </div>
-                                    <h4 id="logmsg" style="text-align:center;"></h4>
-                                    @if($errors->any())
+                                        <div class="form-group">
+                                            <label class="sr-only" for="form-username">First name</label>
+                                            <input  type="text" name="username" placeholder="Username..." class="form-username form-control" id="username">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="sr-only" for="form-email">Email</label>
+                                            <input name="email" placeholder="Email..." id="email" class="form-email form-control" style="height:50px;" type="email">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="sr-only" for="form-about-yourself">About yourself</label>
+                                            <textarea name="description" placeholder="About yourself..." class="form-about-yourself form-control" id="about-yourself"></textarea>
+                                        </div>
+                                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                                            <label class="sr-only" for="form-password">Last name</label>
+                                            <input type="password" name="password" placeholder="Password..." class="form-password form-control" id="password">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="sr-only" for="form-confirm-password">Last name</label>
+                                            <input type="password" name="password_confirmation" placeholder="Confirm Password..." class="form-confirm-password form-control"
+                                                   id="confirm-password">
+                                        </div>
+                                        <h4 id="logmsg" style="text-align:center;"></h4>
+                                        @if($errors->any())
                                         <h4 id="errorMsgFromServer" style = "color:red; text-align:center;">{{$errors->first()}}</h4>
-                                    @endif
-                                    @if ($errors->has('password'))
+                                        @endif
+                                        @if ($errors->has('password'))
                                         <h4 id="errorMsgFromServer" style = "color:red; text-align:center;">{{ $errors->first('password') }}</h4>
-                                    @endif
-                                    <h4 style = "color:red; text-align:center;">{{ $errors->first('password') }}</h4>
-                                    <a id="submitBtn" class="btn btn-lg center-block btn-primary" style="background:#007bff; ">Register</a>
-                                            <button id="submitform" type="submit" hidden="true"></button>
+                                        @endif
+                                        <h4 style = "color:red; text-align:center;">{{ $errors->first('password') }}</h4>
+                                        <a id="submitBtn" class="btn btn-lg center-block btn-primary" style="background:#007bff; ">Register</a>
+                                        <button id="submitform" type="submit" hidden="true"></button>
                                     </form>
                                     <div class="login-link">
                                         <h3>
@@ -107,111 +107,105 @@
         <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 
         <script>
-			  function onSignIn(googleUser) {
-                  // Useful data for your client-side scripts:
-                  var profile = googleUser.getBasicProfile();
-                  console.log("ID: " + profile.getId()); // Don't send this directly to your server!
-                  console.log('Full Name: ' + profile.getName());
-                  console.log('Given Name: ' + profile.getGivenName());
-                  console.log('Family Name: ' + profile.getFamilyName());
-                  console.log("Image URL: " + profile.getImageUrl());
-                  console.log("Email: " + profile.getEmail());
+function onSignIn(googleUser) {
+// Useful data for your client-side scripts:
+var profile = googleUser.getBasicProfile();
+console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+console.log('Full Name: ' + profile.getName());
+console.log('Given Name: ' + profile.getGivenName());
+console.log('Family Name: ' + profile.getFamilyName());
+console.log("Image URL: " + profile.getImageUrl());
+console.log("Email: " + profile.getEmail());
+// The ID token you need to pass to your backend:
+var id_token = googleUser.getAuthResponse().id_token;
+console.log("ID Token: " + id_token);
+let img = "<img src=\"" + profile.getImageUrl() + "\">";
+//document.getElementById("ig").innerHTML = img;
+console.log(googleUser);
+$.ajax({
+headers: {
+'X-CSRF-Token':'{{csrf_token()}}',
+        },
+        url: '{{url("/register")}}',
+        type: 'POST',
+        dataType: 'JSON',
+        data: {
+        'username': '' + profile.getName(),
+                'email': '' + profile.getEmail(),
+                'description':"",
+                'password':'' + id_token,
+                'password_confirmation':'' + id_token,
+                'picture':profile.getImageUrl()
+        },
+        complete: function (response) {
+        console.log(response);
+        if (response.responseText == 'valid') {
+        gapi.load('auth2', function () {
+        var auth2 = gapi.auth2.getAuthInstance();
+        auth2.signOut().then(function () {
+        console.log('User signed out.');
+        document.getElementById('back').click();
+        });
+        });
+        }
+        if (response.responseText == 'args') {
+        location.reload();
+        }
+        }
 
-                  // The ID token you need to pass to your backend:
-                  var id_token = googleUser.getAuthResponse().id_token;
-                  console.log("ID Token: " + id_token);
+});
+}
 
-
-                  let img = "<img src=\"" + profile.getImageUrl() + "\">";
-                  //document.getElementById("ig").innerHTML = img;
-                  console.log(googleUser);
-
-                  $.ajax({
-                      headers: {
-                          'X-CSRF-Token':'{{csrf_token()}}',
-                      },
-                      url: '{{url("/register")}}',
-                      type: 'POST',
-                      dataType: 'JSON',
-                      data: {
-                          'username': ''+profile.getName(),
-                          'email': ''+profile.getEmail(),
-                          'description':"",
-                          'password':''+id_token,
-                          'password_confirmation':''+id_token,
-                          'picture':profile.getImageUrl()
-                      },
-
-                      complete: function (response) {
-                          console.log(response);
-                          if(response.responseText=='valid') {
-                              gapi.load('auth2', function () {
-                                  var auth2 = gapi.auth2.getAuthInstance();
-                                  auth2.signOut().then(function () {
-                                      console.log('User signed out.');
-                                      document.getElementById('back').click();
-                                  });
-                              });
-                          }
-                          if(response.responseText=='args') {
-                              location.reload();
-                          }
-                      }
-
-                  });
-              }
-		
-            let btn = document.getElementById('submitBtn');
-            if(btn!=null)
-            {
-                btn.onclick = function()
+let btn = document.getElementById('submitBtn');
+if (btn != null)
+        {
+        btn.onclick = function()
                 {
-                    var loggedIn = {{ auth()->check() ? 'true' : 'false' }};
-                    if (loggedIn) 
-                    {
+                var loggedIn = {{ auth() - > check() ? 'true' : 'false' }};
+                if (loggedIn)
+                        {
                         window.location = "/";
                         return;
-                    }
-                    //Clear server message
+                        }
+//Clear server message
                 let serverMsg = document.getElementById('errorMsgFromServer');
                 if (serverMsg != null)
-                    serverMsg.innerText = "";
-                    let password = document.getElementById('password').value;
-                    let passwrodConfirme = document.getElementById('confirm-password').value;
-                    var regexPW = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z!$%^&*_@#~?\\d]{8,72}$");
-
-                    if(username.length==0)
-                    {
+                        serverMsg.innerText = "";
+                let password = document.getElementById('password').value;
+                let passwrodConfirme = document.getElementById('confirm-password').value;
+                var regexPW = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z!$%^&*_@#~?\\d]{8,72}$");
+                if (username.length == 0)
+                        {
                         let message = "You Must Have A Username";
                         document.getElementById('logmsg').style.color = "red";
                         document.getElementById('logmsg').innerText = message;
                         return;
-                    }
-                   if(email.length==0)
-                    {
+                        }
+                if (email.length == 0)
+                        {
                         let message = "You Must Have A Email";
                         document.getElementById('logmsg').style.color = "red";
                         document.getElementById('logmsg').innerText = message;
                         return;
-                    }
-                    if(!regexPW.test(password))
-                    {
+                        }
+                if (!regexPW.test(password))
+                        {
                         let message = "Your password must contain a minimum of 8 characters, at least 1 uppercase letter, 1 lowercase letter and 1 one number";
                         document.getElementById('logmsg').style.color = "red";
                         document.getElementById('logmsg').innerText = message;
                         return;
-                    }
-                    if(password!=passwrodConfirme)
-                    {
+                        }
+                if (password != passwrodConfirme)
+                        {
                         let message = "Passwords do not match";
                         document.getElementById('logmsg').style.color = "red";
                         document.getElementById('logmsg').innerText = message;
                         return;
-                    }
+                        }
 
-                    document.getElementById('submitform').click();
+                document.getElementById('submitform').click();
                 }
-            }
+        }
         </script>
 
     </body>

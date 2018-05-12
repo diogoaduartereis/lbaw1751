@@ -27,18 +27,18 @@
 
     <body>
 
-    <p id="csrf-token" style:"display: none" hidden >{{csrf_token()}}</p>
-    <p id="lastUrl" style:"display: none" hidden >{{$_GET["last_URL"]}}</p>
+        <p id="csrf-token" style:"display: none" hidden >{{csrf_token()}}</p>
+        <p id="lastUrl" style:"display: none" hidden >{{$_GET["last_URL"]}}</p>
         <div id="wrap" class="wrapper">
-        @if(Auth::check())
-        @include('pages.sidebar')
-        @endif
-        <div id="content">
             @if(Auth::check())
-            @include('pages.navbar logged in')
-            @else
-            @include('pages.navbar')
+            @include('pages.sidebar')
             @endif
+            <div id="content">
+                @if(Auth::check())
+                @include('pages.navbar logged in')
+                @else
+                @include('pages.navbar')
+                @endif
                 <div id = "containerID">
                     <div id = "contentID">
                         <div id ="jumbotronID" class="jumbotron jumbotron-sm">
@@ -55,23 +55,23 @@
                             </div>
                         </div>
                         <div id="classContainerID" class="container">
-                        <h4 id="resultMessage" style="display:none; text-align:left"></h4>
+                            <h4 id="resultMessage" style="display:none; text-align:left"></h4>
                             <div class="row">
                                 <div class="col-md-8">
                                     <div class="well well-sm">
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <label for="name">
-                                                            Message</label>
-                                                        <textarea name="message" id="message" class="form-control" rows="7" cols="25" required="required" placeholder="Message" style="resize: none;"></textarea>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-12">
-                                                    <button onclick="reportPost(event, {{$id}})" class="btn btn-primary pull-right" id="btnContactUs">
-                                                        Report Post</button>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label for="name">
+                                                        Message</label>
+                                                    <textarea name="message" id="message" class="form-control" rows="7" cols="25" required="required" placeholder="Message" style="resize: none;"></textarea>
                                                 </div>
                                             </div>
+                                            <div class="col-md-12">
+                                                <button onclick="reportPost(event, {{$id}})" class="btn btn-primary pull-right" id="btnContactUs">
+                                                    Report Post</button>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

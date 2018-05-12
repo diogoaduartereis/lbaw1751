@@ -1,8 +1,9 @@
 ﻿<?php
-    use \App\Http\Controllers\FaqController;
 
-    $faqs = FaqController::getAllFaqs();
-    $i = 0; //this counter will be used to give ids to the collapsable divs so that the collapse button can affect the correct div
+use \App\Http\Controllers\FaqController;
+
+$faqs = FaqController::getAllFaqs();
+$i = 0; //this counter will be used to give ids to the collapsable divs so that the collapse button can affect the correct div
 ?>
 
 
@@ -36,38 +37,38 @@
 
     <body>
         <div id="wrap" class="wrapper">
-        @if(Auth::check())
-        @include('pages.sidebar')
-        @endif
-        <div id="content">
-        @if(Auth::check())
-        @include('pages.navbar logged in')
-        @else
-        @include('pages.navbar')
-        @endif
-        <div id = "containerID">
-                <div id="contentID">
-                    <div id ="jumbotronID" class="jumbotron jumbotron-sm">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-sm-12 col-lg-12">
-                                    <h1 id ="titleID" class="h1 text-primary">
-                                        FAQ </h1>
+            @if(Auth::check())
+            @include('pages.sidebar')
+            @endif
+            <div id="content">
+                @if(Auth::check())
+                @include('pages.navbar logged in')
+                @else
+                @include('pages.navbar')
+                @endif
+                <div id = "containerID">
+                    <div id="contentID">
+                        <div id ="jumbotronID" class="jumbotron jumbotron-sm">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-sm-12 col-lg-12">
+                                        <h1 id ="titleID" class="h1 text-primary">
+                                            FAQ </h1>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div id="classContainerID" class="container">
-                        @if ($faqs == "error")
-                        <h4 id="resultMessage" style="text-align:left">
-                                                Seems like there has been a problem processing your request. Please try again later.
-                                                </h4>
-                        @else
+                        <div id="classContainerID" class="container">
+                            @if ($faqs == "error")
+                            <h4 id="resultMessage" style="text-align:left">
+                                Seems like there has been a problem processing your request. Please try again later.
+                            </h4>
+                            @else
                             @foreach ($faqs as $faqCat => $faqArr)
                             <div class="faqHeader text-primary">
-                            <h3>{{$faqCat}}</h3>
-                        </div>
-                        @foreach ($faqArr as $faq)
+                                <h3>{{$faqCat}}</h3>
+                            </div>
+                            @foreach ($faqArr as $faq)
                             <div class="row">
                                 <div class="col-12">
                                     <div id="accordion">
@@ -89,21 +90,21 @@
                                 </div>
                             </div>
                             <?php $i++; ?>
-                        @endforeach
-                        <br>
-                        <br>
                             @endforeach
-                        @endif
-                        
-            </div>
-            </div>
-            <script src="../assets/js/bars.js"></script>
+                            <br>
+                            <br>
+                            @endforeach
+                            @endif
+
+                        </div>
+                    </div>
+                    <script src="../assets/js/bars.js"></script>
 
 
 
 
 
 
-    </body>
+                    </body>
 
-</html>
+                    </html>

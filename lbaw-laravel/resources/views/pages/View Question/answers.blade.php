@@ -30,56 +30,56 @@
             </div>
         </div>
         <div style="font-size:1.6em;" class="text-secondary">
-        @if(Auth::check())
-            
-                <?php if($voteValue == null || $voteValue < 0): ?>
+            @if(Auth::check())
+
+            <?php if ($voteValue == null || $voteValue < 0): ?>
                 <i style="cursor:pointer;" id="upvoteArr-{{$answersElements[$i]->post_id}}" onclick="return upvotePost(this, {{$answersElements[$i]->post_id}}, {{$voteValue}})" 
-                    onmouseover="return arrowToGreen(this)" onmouseleave="return arrowToDefault(this)" class="far fa-arrow-alt-circle-up voteUp">
+                   onmouseover="return arrowToGreen(this)" onmouseleave="return arrowToDefault(this)" class="far fa-arrow-alt-circle-up voteUp">
                 </i>
 
-                <?php elseif($voteValue > 0): ?>
+            <?php elseif ($voteValue > 0): ?>
                 <i style="cursor:pointer;" id="upvoteArr-{{$answersElements[$i]->post_id}}" onclick="return upvotePost(this, {{$answersElements[$i]->post_id}}, {{$voteValue}})"
-                    onmouseover="" onmouseleave="" class="far fa-arrow-alt-circle-up voteUp text-success">
+                   onmouseover="" onmouseleave="" class="far fa-arrow-alt-circle-up voteUp text-success">
                 </i>
-                <?php endif;?>
+            <?php endif; ?>
 
-            
-        @endif
+
+            @endif
             <span id="upvoteCount-{{$answersElements[$i]->post_id}}" itemprop="upvoteCount-{{$answersElements[$i]->post_id}}" class="vote-count-post ">{{$answersElements[$i]->points}} Points</span>
-        @if(Auth::check())
-           
+            @if(Auth::check())
 
-            <?php if($voteValue == null || $voteValue > 0): ?>
+
+            <?php if ($voteValue == null || $voteValue > 0): ?>
                 <i style="cursor:pointer;" id="downvoteArr-{{$answersElements[$i]->post_id}}" onclick="return downvotePost(this,{{$answersElements[$i]->post_id}},{{$voteValue}})" 
-                    onmouseover="return arrowToRed(this)" onmouseleave="return arrowToDefault(this)" class="far fa-arrow-alt-circle-down voteDown text-secondary">
+                   onmouseover="return arrowToRed(this)" onmouseleave="return arrowToDefault(this)" class="far fa-arrow-alt-circle-down voteDown text-secondary">
                 </i>
 
-            <?php elseif($voteValue < 0): ?>
+            <?php elseif ($voteValue < 0): ?>
                 <i style="cursor:pointer;" id="downvoteArr-{{$answersElements[$i]->post_id}}" onclick="return downvotePost(this,{{$answersElements[$i]->post_id}},{{$voteValue}})" 
-                    onmouseover="" onmouseleave="" class="far fa-arrow-alt-circle-down voteDown text-secondary text-danger">
+                   onmouseover="" onmouseleave="" class="far fa-arrow-alt-circle-down voteDown text-secondary text-danger">
                 </i>
-            <?php endif;?>
+            <?php endif; ?>
 
-           
 
-        @endif
+
+            @endif
         </div>
-        
+
     </section>
-    
+
     <div style="margin-top: 20px; margin-bottom:-16px;" class="panel-footer border-bottom border-dark">
-    @if(Auth::check())
+        @if(Auth::check())
         <div>
             <div class="btn-group btn-group-sm " role="group" aria-label="Basic example">
-            <button onclick="window.location.href='/report/post/{{$answersElements[$i]->post_id}}?last_URL=' + window.location.href" type="button" class="btn btn-outline-danger">
-            <i class="fas fa-flag"></i> Report
-        </button>
+                <button onclick="window.location.href='/report/post/{{$answersElements[$i]->post_id}}?last_URL = ' + window.location.href" type="button" class="btn btn-outline-danger">
+                    <i class="fas fa-flag"></i> Report
+                </button>
 
-                <?php if((Auth::check() && Auth::user()->id == $answersElements[$i]->posterid) || Auth::user()->type == "ADMIN"): ?>
+                <?php if ((Auth::check() && Auth::user()->id == $answersElements[$i]->posterid) || Auth::user()->type == "ADMIN"): ?>
                     <button id="deleteAnswerButton-{{$answersElements[$i]->post_id}}" type="button" onclick="return deleteAnswer(event);" class="btn btn-outline-danger">
                         <i class="fas fa-trash"></i> Remove</button>
-                <?php endif; ?>
-                
+                    <?php endif; ?>
+
             </div>
         </div>
     </div>

@@ -27,13 +27,11 @@ function reponseArrived()
     {
         resultMessageElement.innerHTML = 'Report submitted successfully.';
         resultMessageElement.style.color = "green";
-    }
-    else if (this.responseText == "already reported")
+    } else if (this.responseText == "already reported")
     {
         resultMessageElement.innerHTML = 'You have already submitted a report to that post. You have to wait until the report is processed to be able to submit another report to the same question.'
         resultMessageElement.style.color = "red";
-    }   
-    else
+    } else
     {
         resultMessageElement.innerHTML = 'There has been an unknown error while trying to process your request, please try again later';
         resultMessageElement.style.color = "red";
@@ -46,5 +44,5 @@ function reponseArrived()
 function redirectToLastURL()
 {
     let lastURL = document.getElementById('lastUrl').innerHTML;
-    window.location.href=lastURL;
+    window.location.href = lastURL;
 }

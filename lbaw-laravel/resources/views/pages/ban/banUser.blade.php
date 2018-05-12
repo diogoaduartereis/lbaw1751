@@ -25,15 +25,15 @@
     <body>
 
         <div id="wrap" class="wrapper">
-        @if(Auth::check())
-            @include('pages.sidebar')
-        @endif
-        <div id="content">
             @if(Auth::check())
-                @include('pages.navbar logged in')
-            @else
-                @include('pages.navbar')
+            @include('pages.sidebar')
             @endif
+            <div id="content">
+                @if(Auth::check())
+                @include('pages.navbar logged in')
+                @else
+                @include('pages.navbar')
+                @endif
                 <div id = "containerID">
                     <div id = "contentID">
                         <div id ="jumbotronID" class="jumbotron jumbotron-sm">
@@ -84,7 +84,7 @@
                                                     </button>
                                                     <p id="errorParagraph" style="color:red;">
                                                         @if($errors -> has("msg"))
-                                                            {{$errors -> first("msg")}}
+                                                        {{$errors -> first("msg")}}
                                                         @endif
                                                     </p>
                                                 </div>
@@ -98,45 +98,45 @@
                 </div>
 
                 <script src="/assets/js/bars.js"></script>
-                
+
                 <script>
-                    let today = new Date().toISOString().split('T')[0];
-                    document.getElementById("endOfBanDate").setAttribute('min', today);
-                    document.getElementById("endOfBanDate").setAttribute('value', today);
+let today = new Date().toISOString().split('T')[0];
+document.getElementById("endOfBanDate").setAttribute('min', today);
+document.getElementById("endOfBanDate").setAttribute('value', today);
 
-                    function submitIfCorrect()
-                    {
-                        event.preventDefault();
+function submitIfCorrect()
+{
+    event.preventDefault();
 
-                        let isPermanentElement = document.getElementById("Permanent");
-                        let isPermanent = isPermanentElement.options[isPermanentElement.selectedIndex].value;
-                        if(isPermanent == "No")
-                        {
-                            if(document.getElementById("endOfBanDate").value <= today)
-                            {
-                                let errorParagraph = document.getElementById("errorParagraph");
-                                if(errorParagraph.innerHTML != "")
-                                    errorParagraph.innerHTML.innerHTML = '';
+    let isPermanentElement = document.getElementById("Permanent");
+    let isPermanent = isPermanentElement.options[isPermanentElement.selectedIndex].value;
+    if (isPermanent == "No")
+    {
+        if (document.getElementById("endOfBanDate").value <= today)
+        {
+            let errorParagraph = document.getElementById("errorParagraph");
+            if (errorParagraph.innerHTML != "")
+                errorParagraph.innerHTML.innerHTML = '';
 
-                                errorParagraph.innerHTML = "Ban must be either permanent or higher than 1 day!";
-                                return;
-                            }
-                        }
+            errorParagraph.innerHTML = "Ban must be either permanent or higher than 1 day!";
+            return;
+        }
+    }
 
-                        if(document.getElementById("descriptionMessage").value.trim() == "")
-                        {
-                            let errorParagraph = document.getElementById("errorParagraph");
-                            if(errorParagraph.innerHTML != "")
-                                    errorParagraph.innerHTML.innerHTML = '';
+    if (document.getElementById("descriptionMessage").value.trim() == "")
+    {
+        let errorParagraph = document.getElementById("errorParagraph");
+        if (errorParagraph.innerHTML != "")
+            errorParagraph.innerHTML.innerHTML = '';
 
-                            errorParagraph.innerHTML = "Description must be filled!";
-                            return;
-                        }
+        errorParagraph.innerHTML = "Description must be filled!";
+        return;
+    }
 
-                        document.getElementById("banForm").submit();
-                    }
+    document.getElementById("banForm").submit();
+}
                 </script>
-                    
+
                 </body>
 
                 </html>

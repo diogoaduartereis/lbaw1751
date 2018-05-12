@@ -1,5 +1,4 @@
 ﻿<?php
-    
 ?>
 
 <!DOCTYPE html>
@@ -34,17 +33,17 @@
     </head>
 
     <body>
-    
+
 
         <div id="wrap" class="wrapper">
 
-        <?php if(Auth::check()): ?>
-            @include('pages.sidebar')
-        <?php endif; ?>
+            <?php if (Auth::check()): ?>
+                @include('pages.sidebar')
+            <?php endif; ?>
 
             <div id="content">
 
-                <?php if(Auth::check()): ?>
+                <?php if (Auth::check()): ?>
                     @include('pages.navbar logged in')
                 <?php else: ?>
                     @include('pages.navbar')
@@ -56,62 +55,57 @@
                             <div class="row clearfix">
                                 <div class="col-md-12 column">
                                     <div class="panel panel-default border border-dark">
-                                    <script src="../assets/js/encodeForAjax.js"></script>                                    
-                                    <script src="../assets/js/voteInPostOnQuestionPage.js"></script>
-                                    <script src="/assets/js/deletePost.js"></script>
-                                    <p id="csrf-token" style:"display: none;" hidden >{{csrf_token()}}</p>
-                                    <?php
+                                        <script src="../assets/js/encodeForAjax.js"></script>                                    
+                                        <script src="../assets/js/voteInPostOnQuestionPage.js"></script>
+                                        <script src="/assets/js/deletePost.js"></script>
+                                        <p id="csrf-token" style:"display: none;" hidden >{{csrf_token()}}</p>
+                                        <?php
                                         $questionVoteValue = null;
-                                        for($j = 0; $j < sizeof($postVotes); $j++)
-                                        {
-                                            if($questionElements->post_id == $postVotes[$j]->postid)
+                                        for ($j = 0; $j < sizeof($postVotes); $j++) {
+                                            if ($questionElements->post_id == $postVotes[$j]->postid)
                                                 $questionVoteValue = $postVotes[$j]->value;
                                         }
-                                    ?>   
+                                        ?>   
 
-                                    @include('pages.View Question.questions')
+                                        @include('pages.View Question.questions')
 
-                                    <?php 
-                                        for($i = 0; $i < sizeof($answersElements); $i++)
-                                        { 
+                                        <?php
+                                        for ($i = 0; $i < sizeof($answersElements); $i++) {
                                             $voteValue = null;
-                                            for($j = 0; $j < sizeof($postVotes); $j++)
-                                            {
-                                                if($answersElements[$i]->post_id == $postVotes[$j]->postid)
+                                            for ($j = 0; $j < sizeof($postVotes); $j++) {
+                                                if ($answersElements[$i]->post_id == $postVotes[$j]->postid)
                                                     $voteValue = $postVotes[$j]->value;
                                             }
-                                            
-
-                                    ?>
+                                            ?>
                                             @include('pages.View Question.answers')
-                                    
-                                    <?php 
-                                        } 
-                                    ?>
+
+                                            <?php
+                                        }
+                                        ?>
                                     </div>
                                 </div>
                                 <br>
                                 <br>
                             </div>
                             @if(Auth::check())
-                                <form action="{{url('postNewAnswer/' . $questionElements->post_id)}}" method="post">
-                                    {!! csrf_field() !!}
-                                    <div id="replyDiv" class="col-md-12">
-                                        <div class="form-group">
-                                            <label for="description" style="font-size: 150%">
-                                                Reply to this Question</label>
+                            <form action="{{url('postNewAnswer/' . $questionElements->post_id)}}" method="post">
+                                {!! csrf_field() !!}
+                                <div id="replyDiv" class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="description" style="font-size: 150%">
+                                            Reply to this Question</label>
 
-                                            
-                                                <textarea style="overflow-y:scroll;" name="content" class="form-control" rows="5" cols="32" required="required" placeholder="Message"> </textarea>
-                                                
-                                        </div>
-                                    </div>
 
-                                    <div class="col-md-12" style="padding-bottom:70px;">
-                                        <button type="submit" class="btn btn-primary pull-right" id="btnSubmitQuestion">
-                                            Post Reply</button>
+                                        <textarea style="overflow-y:scroll;" name="content" class="form-control" rows="5" cols="32" required="required" placeholder="Message"> </textarea>
+
                                     </div>
-                                </form>
+                                </div>
+
+                                <div class="col-md-12" style="padding-bottom:70px;">
+                                    <button type="submit" class="btn btn-primary pull-right" id="btnSubmitQuestion">
+                                        Post Reply</button>
+                                </div>
+                            </form>
                             @endif
                     </div>
                 </div>

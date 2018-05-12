@@ -45,122 +45,122 @@
                                     <div class="row" id="searchInput">
                                         <div class="col-8 mx-auto" style="margin-left:10vw;">
                                             <form action="post" method="POST">
-											<div class="input-group mb-3 mx-auto">
-                                                
-                                                        {{ csrf_field() }}
-                                                <div class="btn-group">
-													<button type="button" class="btn btn-default dropdown-toggle border-dark" data-toggle="dropdown"><span class="glyphicon glyphicon-cog"></span> Search Filters </button>
-													<ul class="dropdown-menu">
-													   <li>
-														   <label class="dropdown-menu-item checkbox">
-															   <input type="checkbox" />
-															   <span class="glyphicon glyphicon-unchecked"></span>
-															   Poster Points
-														   </label>
-													   </li>
-													   <li>
-														   <label class="dropdown-menu-item checkbox">
-															   <input type="checkbox" />
-															   <span class="glyphicon glyphicon-unchecked"></span>
-															   Post Points
-														   </label>
-													   </li>
-													   <li>
-														   <label class="dropdown-menu-item checkbox">
-															   <input type="checkbox" />
-															   <span class="glyphicon glyphicon-unchecked"></span>
-															   Post Date
-														   </label>
-													   </li> 
-													</ul>
-												 </div>
-                                                <input id="questionSearchBar" type="text" class="form-control border-dark" aria-label="Text input with segmented dropdown button" data-toggle="tooltip"
-                                                       data-placement="bottom" title="Search For Questions. Use the # before a word to add a tag search to your question.">
-                                                <button type="button" class="btn btn-outline-dark">Search</button>
+                                                <div class="input-group mb-3 mx-auto">
 
-                                                </form>
-                                                <a href="{{url('postNewQuestion/')}}">
+                                                    {{ csrf_field() }}
+                                                    <div class="btn-group">
+                                                        <button type="button" class="btn btn-default dropdown-toggle border-dark" data-toggle="dropdown"><span class="glyphicon glyphicon-cog"></span> Search Filters </button>
+                                                        <ul class="dropdown-menu">
+                                                            <li>
+                                                                <label class="dropdown-menu-item checkbox">
+                                                                    <input type="checkbox" />
+                                                                    <span class="glyphicon glyphicon-unchecked"></span>
+                                                                    Poster Points
+                                                                </label>
+                                                            </li>
+                                                            <li>
+                                                                <label class="dropdown-menu-item checkbox">
+                                                                    <input type="checkbox" />
+                                                                    <span class="glyphicon glyphicon-unchecked"></span>
+                                                                    Post Points
+                                                                </label>
+                                                            </li>
+                                                            <li>
+                                                                <label class="dropdown-menu-item checkbox">
+                                                                    <input type="checkbox" />
+                                                                    <span class="glyphicon glyphicon-unchecked"></span>
+                                                                    Post Date
+                                                                </label>
+                                                            </li> 
+                                                        </ul>
+                                                    </div>
+                                                    <input id="questionSearchBar" type="text" class="form-control border-dark" aria-label="Text input with segmented dropdown button" data-toggle="tooltip"
+                                                           data-placement="bottom" title="Search For Questions. Use the # before a word to add a tag search to your question.">
+                                                    <button type="button" class="btn btn-outline-dark">Search</button>
+
+                                            </form>
+                                            <a href="{{url('postNewQuestion/')}}">
                                                 <button id="postQuestionButton" type="button" class="btn btn-primary">Post New Question</button>
-                                                </a>
-                                            </div>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
 
-                                <div class="col-1">
-                                </div>
+                            <div class="col-1">
                             </div>
-                            <br>
-                            <div style="margin-top:2vw;" id="Questions">
-                                @include('pages.index logged in_questionsdiv')
-                            </div>
-                            
-                                    <div id="QuestionsFromSearch">
+                        </div>
+                        <br>
+                        <div style="margin-top:2vw;" id="Questions">
+                            @include('pages.index logged in_questionsdiv')
+                        </div>
+
+                        <div id="QuestionsFromSearch">
                             <p id="csrf-token" style:"display: none" hidden >{{csrf_token()}}</p>      
                             <br>
 
-                                    </div>
+                        </div>
 
-                <script src="./assets/js/voteInPost.js"></script>
+                        <script src="./assets/js/voteInPost.js"></script>
 
-                <script>
+                        <script>
 
-                    $('ul.pagination').hide();
-                    $(function() {
-                        $('.infinite-scroll').jscroll({
-                            autoTrigger: true,
-                            loadingHtml: '<img class="center-block" src="./assets/img/loading.gif" alt="Loading..." />',
-                            padding: 0,
-                            nextSelector: '.pagination li.active + li a',
-                            contentSelector: 'div.infinite-scroll',
-                            callback: function() {
-                                $('ul.pagination').remove();
-                            }
-                        });
-                    });
-
-
-                    $('.upvoteArr').mouseover(function () {
-                        $(".upvoteArr").removeClass('text-secondary');
-                        $(".upvoteArr").addClass('text-success');
-                    })
-                    $('.upvoteArr').mouseleave(function () {
-                        $(".upvoteArr").addClass('text-secondary');
-                        $(".upvoteArr").removeClass('text-success');
-                    })
+$('ul.pagination').hide();
+$(function () {
+    $('.infinite-scroll').jscroll({
+        autoTrigger: true,
+        loadingHtml: '<img class="center-block" src="./assets/img/loading.gif" alt="Loading..." />',
+        padding: 0,
+        nextSelector: '.pagination li.active + li a',
+        contentSelector: 'div.infinite-scroll',
+        callback: function () {
+            $('ul.pagination').remove();
+        }
+    });
+});
 
 
-                    $('.downvoteArr').mouseover(function () {
-                        $(".downvoteArr").removeClass('text-secondary');
-                        $(".downvoteArr").addClass('text-danger');
-                    })
-                    $('.downvoteArr').mouseleave(function () {
-                        $(".downvoteArr").addClass('text-secondary');
-                        $(".downvoteArr").removeClass('text-danger');
-                    })
+$('.upvoteArr').mouseover(function () {
+    $(".upvoteArr").removeClass('text-secondary');
+    $(".upvoteArr").addClass('text-success');
+})
+$('.upvoteArr').mouseleave(function () {
+    $(".upvoteArr").addClass('text-secondary');
+    $(".upvoteArr").removeClass('text-success');
+})
 
-                    $(function(){
-						$( '.dropdown-menu li' ).on( 'click', function( event ) {
-							var $checkbox = $(this).find('.checkbox');
-							if (!$checkbox.length) {
-								return;
-							}
-							var $input = $checkbox.find('input');
-							var $icon = $checkbox.find('span.glyphicon');
-							if ($input.is(':checked')) {
-								$input.prop('checked',false);
-								$icon.removeClass('glyphicon-check').addClass('glyphicon-unchecked')
-							} else {
-								$input.prop('checked',true);
-								$icon.removeClass('glyphicon-unchecked').addClass('glyphicon-check')
-							}
-							return false;
-						}); 
-					});
-                </script>
-                <script src="./assets/js/bars.js"></script>
-                </body>
 
-                </html>
-                
-                <script src="./assets/js/searchQuestion.js"></script>
+$('.downvoteArr').mouseover(function () {
+    $(".downvoteArr").removeClass('text-secondary');
+    $(".downvoteArr").addClass('text-danger');
+})
+$('.downvoteArr').mouseleave(function () {
+    $(".downvoteArr").addClass('text-secondary');
+    $(".downvoteArr").removeClass('text-danger');
+})
+
+$(function () {
+    $('.dropdown-menu li').on('click', function (event) {
+        var $checkbox = $(this).find('.checkbox');
+        if (!$checkbox.length) {
+            return;
+        }
+        var $input = $checkbox.find('input');
+        var $icon = $checkbox.find('span.glyphicon');
+        if ($input.is(':checked')) {
+            $input.prop('checked', false);
+            $icon.removeClass('glyphicon-check').addClass('glyphicon-unchecked')
+        } else {
+            $input.prop('checked', true);
+            $icon.removeClass('glyphicon-unchecked').addClass('glyphicon-check')
+        }
+        return false;
+    });
+});
+                        </script>
+                        <script src="./assets/js/bars.js"></script>
+                        </body>
+
+                        </html>
+
+                        <script src="./assets/js/searchQuestion.js"></script>

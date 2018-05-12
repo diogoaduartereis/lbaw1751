@@ -33,68 +33,68 @@
             </div>
         </div>
         <div style="font-size:1.6em;" class="text-secondary">
-        @if(Auth::check())
-            
-                <?php if($questionVoteValue == null || $questionVoteValue < 0): ?>
+            @if(Auth::check())
+
+            <?php if ($questionVoteValue == null || $questionVoteValue < 0): ?>
                 <i style="cursor:pointer;" id="upvoteArr-{{$questionElements->post_id}}" onclick="return upvotePost(this, {{$questionElements->post_id}}, {{$questionVoteValue}})"
-                    onmouseover="return arrowToGreen(this)" onmouseleave="return arrowToDefault(this)" class="far fa-arrow-alt-circle-up voteUp">
+                   onmouseover="return arrowToGreen(this)" onmouseleave="return arrowToDefault(this)" class="far fa-arrow-alt-circle-up voteUp">
                 </i>
 
-                <?php elseif($questionVoteValue > 0): ?>
+            <?php elseif ($questionVoteValue > 0): ?>
                 <i style="cursor:pointer;" id="upvoteArr-{{$questionElements->post_id}}" onclick="return upvotePost(this, {{$questionElements->post_id}}, {{$questionVoteValue}})" 
-                    onmouseover="" onmouseleave="" class="far fa-arrow-alt-circle-up voteUp text-success">
+                   onmouseover="" onmouseleave="" class="far fa-arrow-alt-circle-up voteUp text-success">
                 </i>
-                <?php endif;?>
+            <?php endif; ?>
 
-            
-        @endif
+
+            @endif
             <span id="upvoteCount-{{$questionElements->post_id}}" itemprop="upvoteCount-{{$questionElements->post_id}}" class="vote-count-post ">{{$questionElements->points}} Points</span>
-        @if(Auth::check())
+            @if(Auth::check())
 
-            <?php if($questionVoteValue == null || $questionVoteValue > 0): ?>
+            <?php if ($questionVoteValue == null || $questionVoteValue > 0): ?>
                 <i style="cursor:pointer;" id="downvoteArr-{{$questionElements->post_id}}" onclick="return downvotePost(this,{{$questionElements->post_id}},{{$questionVoteValue}})" 
-                    onmouseover="return arrowToRed(this)" onmouseleave="return arrowToDefault(this)" class="far fa-arrow-alt-circle-down voteDown text-secondary">
+                   onmouseover="return arrowToRed(this)" onmouseleave="return arrowToDefault(this)" class="far fa-arrow-alt-circle-down voteDown text-secondary">
                 </i>
 
-            <?php elseif($questionVoteValue < 0): ?>
+            <?php elseif ($questionVoteValue < 0): ?>
                 <i style="cursor:pointer;" id="downvoteArr-{{$questionElements->post_id}}" onclick="return downvotePost(this,{{$questionElements->post_id}},{{$questionVoteValue}})"
-                    onmouseover="" onmouseleave="" class="far fa-arrow-alt-circle-down voteDown text-secondary text-danger">
+                   onmouseover="" onmouseleave="" class="far fa-arrow-alt-circle-down voteDown text-secondary text-danger">
                 </i>
-            <?php endif;?>
+            <?php endif; ?>
 
 
-        @endif
+            @endif
         </div>
     </section>
     @if(Auth::check())
-        <div style="margin-top: 20px; margin-bottom:-20px;" class="panel-footer border-dark">
-    
-            <div>
-                <div class="btn-group btn-group-sm " role="group" aria-label="Basic example">
-            
-                    <button id="replyButton" type="button" class="btn btn-outline-primary">
-                        <i class="fas fa-comment"></i> Reply</button>
+    <div style="margin-top: 20px; margin-bottom:-20px;" class="panel-footer border-dark">
 
-                    <button onclick="window.location.href='/report/post/{{$questionElements->post_id}}?last_URL=' + window.location.href" type="button" class="btn btn-outline-danger">
-                        <i class="fas fa-flag"></i> Report
+        <div>
+            <div class="btn-group btn-group-sm " role="group" aria-label="Basic example">
+
+                <button id="replyButton" type="button" class="btn btn-outline-primary">
+                    <i class="fas fa-comment"></i> Reply</button>
+
+                <button onclick="window.location.href='/report/post/{{$questionElements->post_id}}?last_URL = ' + window.location.href" type="button" class="btn btn-outline-danger">
+                    <i class="fas fa-flag"></i> Report
+                </button>
+
+                <?php if ((Auth::check() && Auth::user()->id == $questionElements->posterid) || Auth::user()->type == "ADMIN"): ?>
+                    <button id="deleteQuestionButton-{{$questionElements->post_id}}" type="button" onclick="return deleteQuestionInQuestionPage(event);" class="btn btn-outline-danger">
+                        <i class="fas fa-trash"></i> Remove
                     </button>
-                    
-                    <?php if((Auth::check() && Auth::user()->id == $questionElements->posterid) || Auth::user()->type == "ADMIN"): ?>
-                        <button id="deleteQuestionButton-{{$questionElements->post_id}}" type="button" onclick="return deleteQuestionInQuestionPage(event);" class="btn btn-outline-danger">
-                            <i class="fas fa-trash"></i> Remove
-                        </button>
-                    <?php endif; ?>
-                </div>
+                <?php endif; ?>
             </div>
         </div>
+    </div>
     @endif
 </section>
 
-    <div style=" margin-bottom:-16px;" class="panel-heading border-bottom border-dark">
-        <section class="panel-title">
-            <section  class="pull-left" id="id">
-                <h2>Responses</h2>
-            </section>
+<div style=" margin-bottom:-16px;" class="panel-heading border-bottom border-dark">
+    <section class="panel-title">
+        <section  class="pull-left" id="id">
+            <h2>Responses</h2>
         </section>
-    </div>
-    <br>
+    </section>
+</div>
+<br>

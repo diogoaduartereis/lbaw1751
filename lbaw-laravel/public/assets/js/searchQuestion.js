@@ -30,7 +30,7 @@ function handleUserSearchInput(event)
 
     removeHashTagsFromBeggingOfEachTagOnArray(tagsArr);
 
-    
+
     //console.log(tagsArr);
     //console.log(keywordsArr);
 
@@ -130,7 +130,7 @@ function searchResultsArrived()
 {
     console.log("searchResultsArrived");
     console.log(this.responseText);
-    
+
 }
 
 function getElementInSearch(element, userInputText, endedSearchString)

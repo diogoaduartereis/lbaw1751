@@ -1,7 +1,8 @@
 <?php
-    use \App\Http\Controllers\TagController;
 
-    $tags = TagController::getFirstXTags(10);
+use \App\Http\Controllers\TagController;
+
+$tags = TagController::getFirstXTags(10);
 ?>
 
 <nav style="width:100%;" id="navbar" class="navbar rounded-0 navbar-expand-lg navbar-dark bg-dark sticky-top">

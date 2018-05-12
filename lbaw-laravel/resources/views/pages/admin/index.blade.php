@@ -51,52 +51,47 @@
                                 <div class="row">
                                     <div id="searchForm" class="col-md-6 offset-md-3">
                                         <form action="{{url('admin/')}}" method="GET">
-                                                <div id="searchFormID" class="input-group">
-                                                    <label for="userName" class="sr-only">Search Users</label>
-                                                    <input id="userName" name="username" class="form-control" placeholder="Search for users" required="" autofocus="" type="text">
-                                                    <div class="input-group-append">
-                                                        <button class="btn btn-outline-primary" type="submit">
-                                                            <i class="fas fa-search"></i>
-                                                        </button>
-                                                    </div>
+                                            <div id="searchFormID" class="input-group">
+                                                <label for="userName" class="sr-only">Search Users</label>
+                                                <input id="userName" name="username" class="form-control" placeholder="Search for users" required="" autofocus="" type="text">
+                                                <div class="input-group-append">
+                                                    <button class="btn btn-outline-primary" type="submit">
+                                                        <i class="fas fa-search"></i>
+                                                    </button>
                                                 </div>
+                                            </div>
                                         </form>
                                     </div>
                                 </div>
 
-                                <?php 
-                                        $i = 0;
-                                        $itemsPerPage = 15;
-                                        $id = 1;
-                                        $sizeOfUsers = sizeof($users);
-                                        $numberOfPages = ceil ( $sizeOfUsers /  $itemsPerPage);
+                                <?php
+                                $i = 0;
+                                $itemsPerPage = 15;
+                                $id = 1;
+                                $sizeOfUsers = sizeof($users);
+                                $numberOfPages = ceil($sizeOfUsers / $itemsPerPage);
 
-                                        for($i; $i < $numberOfPages && $i < $sizeOfUsers; $i++)
-                                        { 
-                                            
-                                ?>
+                                for ($i; $i < $numberOfPages && $i < $sizeOfUsers; $i++) {
+                                    ?>
 
 
-                                <div id= {{$i}} class="hidden row px-3 py-3 table-responsive">
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th>#</th>
-                                                <th>Name</th>
-                                                <th>Email</th>
-                                                <th>Actions</th>
-                                            </tr>
-                                        </thead>
+                                    <div id= {{$i}} class="hidden row px-3 py-3 table-responsive">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>Name</th>
+                                                    <th>Email</th>
+                                                    <th>Actions</th>
+                                                </tr>
+                                            </thead>
 
-                                        <tbody>
+                                            <tbody>
 
-                                                    <?php 
-
-                                                        for($j = $i*10; $j < $i*10 + $itemsPerPage && $j < $sizeOfUsers; $j++)
-                                                        { 
-
+                                                <?php
+                                                for ($j = $i * 10; $j < $i * 10 + $itemsPerPage && $j < $sizeOfUsers; $j++) {
                                                     ?>
-                                                    
+
 
 
                                                     <tr>
@@ -105,7 +100,7 @@
                                                         <td>{{$users[$j]->email}}</td>
                                                         <td>
 
-                                                        @if($users[$j]->state == "ACTIVE")
+                                                            @if($users[$j]->state == "ACTIVE")
                                                             <button class="btn btn-danger" title="Ban User" onclick="return gotoBanPage({{$users[$j]->id}})" type="submit">
                                                                 <i class="fas fa-ban"></i>
                                                             </button>
@@ -113,26 +108,26 @@
                                                             <button onclick="return gotoProfile({{$users[$j]->id}})" class="btn btn-warning" title="Warn User" type="submit">
                                                                 <i class="fas fa-edit" style="color: white"></i>
                                                             </button>
-                                                        @else
-                                                        <button id="unbanButton" class="btn btn-success " onclick="return confirmUnban(event,{{$users[$j]->id}})" type="submit">
+                                                            @else
+                                                            <button id="unbanButton" class="btn btn-success " onclick="return confirmUnban(event,{{$users[$j]->id}})" type="submit">
                                                                 <i class="fas fa-check-circle"></i>
-                                                        </button>
-                                                        @endif
+                                                            </button>
+                                                            @endif
 
                                                         </td>
                                                     </tr>
-                                                </div>
-                                            <?php
-                                                    } 
-                                            ?>
-
-                                        </tbody>
-                                    </table>
-                                    </div>
-                                                    
-                                            <?php
+                                                    </div>
+                                                    <?php
                                                 }
-                                            ?>
+                                                ?>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <?php
+                                }
+                                ?>
 
                                 <div class="col-md-6 offset-md-3 d-flex justify-content-center">
                                     <nav aria-label="Table navigation">
@@ -144,7 +139,7 @@
                                                 </a>
                                             </li>
                                             @for($t = 0; $t < $numberOfPages; $t++)
-                                            
+
                                             <li class="page-item">
                                                 <a id="page-{{$t}}" class="page-link" onclick="return changePage(this, 0,{{$t}}) ">{{$t + 1}}</a>
                                             </li>
@@ -164,7 +159,7 @@
                             </section>
 
 
-                            
+
 
                         </div>
                     </div>
@@ -175,77 +170,74 @@
 
                 <script>
 
-                function changePage(element, previousID, id)
-                {
-                    $('#'+previousID).addClass('hidden');
-                    $('#'+id).removeClass('hidden');
-                    $('#page-'+previousID).parent('li').removeClass('active');
-                    $('#page-'+id).parent('li').addClass('active');
-                    let pageid = element.id.substring(element.id.indexOf('-')+1);
-                    for(var i = 0; i < {{$t}}; i++)
+                    function changePage(element, previousID, id)
                     {
-                        $('#page-'+i).attr('onclick', `return changePage(this,` + id + `, this.id.substring(this.id.indexOf('-')+1))`);
-                    }
-                }
-
-                function nextPage()
-                {
-                    for(var i=0; i < {{$t}}; i++)
+                    $('#' + previousID).addClass('hidden');
+                    $('#' + id).removeClass('hidden');
+                    $('#page-' + previousID).parent('li').removeClass('active');
+                    $('#page-' + id).parent('li').addClass('active');
+                    let pageid = element.id.substring(element.id.indexOf('-') + 1);
+                    for (var i = 0; i < {{$t}}; i++)
                     {
-                        if(i != {{$t}} - 1)
-                        {
-                            if($('#page-'+ i).parent('li').hasClass('active') && !$('#page-'+ i).parent('li').hasClass('stop'))
-                            {
-                                $('#'+i).addClass('hidden');
-                                $('#'+ Number(i + 1)).removeClass('hidden');
-                                $('#page-'+ Number(i + 1)).parent('li').addClass('active');
-                                $('#page-'+ Number(i + 1)).parent('li').addClass('stop');
-                                $('#page-'+i).parent('li').removeClass('active');
-
-                                for(var j = 0; j < {{$t}}; j++)
-                                {
-                                    $('#page-'+j).attr('onclick', `return changePage(this,` + Number(i + 1) + `, this.id.substring(this.id.indexOf('-')+1))`);
-                                }
-                            }
-                            else if(!$('#page-'+ i).parent('li').hasClass('active'))
-                            { 
-                                $('#'+i).addClass('hidden');
-                                
-                            }
-                            else
-                            {
-                                $('#page-'+ i).parent('li').removeClass('stop');
-                            }
-                        }
-                       
+                    $('#page-' + i).attr('onclick', `return changePage(this,` + id + `, this.id.substring(this.id.indexOf('-')+1))`);
                     }
-                }
+                    }
 
-                function previousPage()
-                {
-                    for(var i=0; i < {{$t}}; i++)
+                    function nextPage()
                     {
-                        if(i != 0)
-                        {
-                            if($('#page-'+ i).parent('li').hasClass('active'))
-                            {
-                                $('#'+i).addClass('hidden');
-                                $('#'+ Number(i - 1)).removeClass('hidden');
-                                $('#page-'+ Number(i - 1)).parent('li').addClass('active');
-                                $('#page-'+i).parent('li').removeClass('active');
-
-                                for(var j = 0; j < {{$t}}; j++)
-                                {
-                                    $('#page-'+j).attr('onclick', `return changePage(this,` + Number(i - 1) + `, this.id.substring(this.id.indexOf('-')+1))`);
-                                }
-                            }
-                            else if(!$('#page-'+ i).parent('li').hasClass('active'))
-                            { 
-                                $('#'+i).addClass('hidden');
-                            }
-                        }
+                    for (var i = 0; i < {{$t}}; i++)
+                    {
+                    if (i != {{$t}} - 1)
+                    {
+                    if ($('#page-' + i).parent('li').hasClass('active') && !$('#page-' + i).parent('li').hasClass('stop'))
+                    {
+                    $('#' + i).addClass('hidden');
+                    $('#' + Number(i + 1)).removeClass('hidden');
+                    $('#page-' + Number(i + 1)).parent('li').addClass('active');
+                    $('#page-' + Number(i + 1)).parent('li').addClass('stop');
+                    $('#page-' + i).parent('li').removeClass('active');
+                    for (var j = 0; j < {{$t}}; j++)
+                    {
+                    $('#page-' + j).attr('onclick', `return changePage(this,` + Number(i + 1) + `, this.id.substring(this.id.indexOf('-')+1))`);
                     }
-                }
+                    }
+                    else if (!$('#page-' + i).parent('li').hasClass('active'))
+                    {
+                    $('#' + i).addClass('hidden');
+                    }
+                    else
+                    {
+                    $('#page-' + i).parent('li').removeClass('stop');
+                    }
+                    }
+
+                    }
+                    }
+
+                    function previousPage()
+                    {
+                    for (var i = 0; i < {{$t}}; i++)
+                    {
+                    if (i != 0)
+                    {
+                    if ($('#page-' + i).parent('li').hasClass('active'))
+                    {
+                    $('#' + i).addClass('hidden');
+                    $('#' + Number(i - 1)).removeClass('hidden');
+                    $('#page-' + Number(i - 1)).parent('li').addClass('active');
+                    $('#page-' + i).parent('li').removeClass('active');
+                    for (var j = 0; j < {{$t}}; j++)
+                    {
+                    $('#page-' + j).attr('onclick', `return changePage(this,` + Number(i - 1) + `, this.id.substring(this.id.indexOf('-')+1))`);
+                    }
+                    }
+                    else if (!$('#page-' + i).parent('li').hasClass('active'))
+                    {
+                    $('#' + i).addClass('hidden');
+                    }
+                    }
+                    }
+                    }
 
                 </script>
 

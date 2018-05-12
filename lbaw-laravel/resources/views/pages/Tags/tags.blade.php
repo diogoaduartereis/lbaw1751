@@ -51,16 +51,16 @@
             @endif
             <div id="content">
                 @if(Auth::check())
-                    @include('pages.navbar logged in')
+                @include('pages.navbar logged in')
                 @else
-                    @include('pages.navbar')
+                @include('pages.navbar')
                 @endif
 
                 <div id = "containerID">
                     <div class="row">
                         <div class="col-12 d-flex justify-content-center">
                             @foreach($tags as $tag)
-                                <a class="badge badge-pill badge-primary text-white" style="margin-left: 2px;margin-right: 2px;">{{$tag->name}}</a >
+                            <a class="badge badge-pill badge-primary text-white" style="margin-left: 2px;margin-right: 2px;">{{$tag->name}}</a >
                             @endforeach
                         </div>
                     </div>

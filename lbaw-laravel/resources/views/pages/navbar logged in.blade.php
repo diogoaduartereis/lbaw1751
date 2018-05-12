@@ -1,17 +1,19 @@
 <?php
-    use \App\Http\Controllers\TagController;
-    $tags = TagController::getFirstXTags(10);
+
+use \App\Http\Controllers\TagController;
+
+$tags = TagController::getFirstXTags(10);
 ?>
 
 <nav style="width:100%;" id="navbar" class="navbar rounded-0 navbar-expand-lg navbar-dark bg-dark sticky-top">
 
     <button id="sidebarCollapse" class="btn border-0 bg-transparent" data-toggle="collapse" data-target="#sidebar" data-parent="#navbar"
             aria-expanded="false" aria-controls="sidebar">
-            @if(preg_match('/https:\//', Auth::user()->img_path, $matches, PREG_OFFSET_CAPTURE))
-                <img class="img-responsive rounded-circle" width="30" height="30" src="{{Auth::user()->img_path}}" id="profPic2">
-            @else
-                <img class="img-responsive rounded-circle" width="30" height="30" src="/assets/img/users/{{Auth::user()->img_path}}" id="profPic2">
-            @endif
+        @if(preg_match('/https:\//', Auth::user()->img_path, $matches, PREG_OFFSET_CAPTURE))
+        <img class="img-responsive rounded-circle" width="30" height="30" src="{{Auth::user()->img_path}}" id="profPic2">
+        @else
+        <img class="img-responsive rounded-circle" width="30" height="30" src="/assets/img/users/{{Auth::user()->img_path}}" id="profPic2">
+        @endif
     </button>
     <a class="navbar-brand" href="/">
         <b>
@@ -47,15 +49,15 @@
                         <i class="fas fa-tags"></i> Tags
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    @if ($tags == "error")
-                    <a class="dropdown-item text-dark" href="#">
-                        <i class="fas fa-tag"></i> Sorry, it was not possible to load tags from DB server.</a>
-                    @else
-                    @foreach($tags as $tag)
-                    <a class="dropdown-item text-dark" href="#">
-                        <i class="fas fa-tag"></i> {{$tag->name}}</a>
-                    @endforeach
-                    @endif
+                        @if ($tags == "error")
+                        <a class="dropdown-item text-dark" href="#">
+                            <i class="fas fa-tag"></i> Sorry, it was not possible to load tags from DB server.</a>
+                        @else
+                        @foreach($tags as $tag)
+                        <a class="dropdown-item text-dark" href="#">
+                            <i class="fas fa-tag"></i> {{$tag->name}}</a>
+                        @endforeach
+                        @endif
 
                     </div>
                 </li>

@@ -9,7 +9,7 @@ function addTagToSearchBar(tag)
     let spaceIfNeeded = "";
     if (searchBar.value == "")
         spaceIfNeeded = "";
-    else if(searchBar.value[searchBar.value.length - 1] != " ")
+    else if (searchBar.value[searchBar.value.length - 1] != " ")
         spaceIfNeeded = " ";
     let searchTextArr = searchBar.value.split(" ");
     if (!arrayContains("#" + tag, searchTextArr))

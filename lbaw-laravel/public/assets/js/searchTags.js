@@ -1,7 +1,7 @@
 'use strict'
 
 var timeout = null;
-document.getElementById('tagsInputBox').addEventListener('keyup', function checkTimeout(event) 
+document.getElementById('tagsInputBox').addEventListener('keyup', function checkTimeout(event)
 {
     clearTimeout(timeout);
     timeout = setTimeout(handleUserTagInput(event), 500);
@@ -22,14 +22,13 @@ function handleUserTagInput(event)
     {
         tagsList.style.display = 'none';
         return;
-    } 
-    else
+    } else
         tagsList.style.display = 'block';
 
     //get last word
     let tagsArray = userInputText.split(/\s+/);
     let lastWord = tagsArray[tagsArray.length - 1];
-    
+
     let csrfToken = document.getElementById("tags-csrf-token").innerHTML;
     sendRequestToServer(lastWord, csrfToken);
 }
@@ -53,8 +52,8 @@ function receiveServerResponse()
     let newListInnerHTML = ``;
     for (let i = 0; i < tags.length; i++)
     {
-        newListInnerHTML += `<li class="list-group-item tagsList"> <a href="#" onClick="putTagInListTags(event);">` 
-            + tags[i]['name'] + `</a></li>`;
+        newListInnerHTML += `<li class="list-group-item tagsList"> <a href="#" onClick="putTagInListTags(event);">`
+                + tags[i]['name'] + `</a></li>`;
     }
 
     let listTagsElement = document.getElementById("listTags");
@@ -67,14 +66,14 @@ function putTagInListTags(event)
     if (tag == "" || tag == undefined)
         return;
 
-    let tagsArray =  document.getElementById('tagsInputBox').value.split(/\s+/);
+    let tagsArray = document.getElementById('tagsInputBox').value.split(/\s+/);
     let newValue = ``;
     for (let i = 0; i < tagsArray.length - 1; i++) //tags already existents execept the last word
     {
         newValue += tagsArray[i] + " ";
     }
 
-    if(tagsArray.includes(tag) == false)
+    if (tagsArray.includes(tag) == false)
         newValue += tag; //add tag
     document.getElementById('tagsInputBox').value = newValue;
 }

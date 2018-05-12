@@ -50,7 +50,7 @@
                                 <div class="col-sm-9 personal-info">
                                     <h3>Personal info</h3>
 
-                                      <form class="form-horizontal" role="form" action="{{url('users/'.$user->id.'/edit')}}" method="post"  enctype="multipart/form-data">
+                                    <form class="form-horizontal" role="form" action="{{url('users/'.$user->id.'/edit')}}" method="post"  enctype="multipart/form-data">
                                         {!! csrf_field() !!}
                                         <div class="form-group">
                                             <div class="text-center">
@@ -58,72 +58,72 @@
                                                 <input type="file" id="profilePhotoInput" class="hidden" name="fileToUpload" id="fileToUpload">
                                                 <br><br>
                                                 <h4><a href="#" onclick="uploadProfilePhoto(event)">Upload a different photo</a><h4>
-                                                <br><br>
-                                                @foreach ($errors->all() as $error)
-                                                    <h4 style = "color:red; text-align:center">{{ $error }}</h4>
-                                                @endforeach
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label">Username:</label>
-                                            <div class="col-sm-8">
-                                            <input class="form-control" type="text" name="form-username" value="{{$user->username}}" required>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label">Email:</label>
-                                            <div class="col-sm-8">
-                                            <input class="form-control" type="text" name="form-email" value="{{$user->email}}" required>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label">Description:</label>
-                                            <div class="col-sm-8">
-                                                <textarea name="form-about-yourself" placeholder="Description" class="form-about-yourself form-control" id="form-about-yourself"
-                                                          style="resize: none" required>{{$user->description}} </textarea>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label">New password:</label>
-                                            <div class="col-sm-8">
-                                                <input class="form-control" name="form-password" type="password" placeholder="New Password" >
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label">Confirm new password:</label>
-                                            <div class="col-sm-8">
-                                                <input class="form-control" name="form-password-confirm" type="password" placeholder="New Password">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label"></label>
-                                            <div class="col-sm-8">
-                                                <input type="submit" class="btn btn-primary" value="Save Changes">
-                                                <span></span>
-                                                <a class="btn btn-default" href="./">Cancel</a>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                                                        <br><br>
+                                                        @foreach ($errors->all() as $error)
+                                                        <h4 style = "color:red; text-align:center">{{ $error }}</h4>
+                                                        @endforeach
+                                                        </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-sm-3 control-label">Username:</label>
+                                                            <div class="col-sm-8">
+                                                                <input class="form-control" type="text" name="form-username" value="{{$user->username}}" required>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-sm-3 control-label">Email:</label>
+                                                            <div class="col-sm-8">
+                                                                <input class="form-control" type="text" name="form-email" value="{{$user->email}}" required>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-sm-3 control-label">Description:</label>
+                                                            <div class="col-sm-8">
+                                                                <textarea name="form-about-yourself" placeholder="Description" class="form-about-yourself form-control" id="form-about-yourself"
+                                                                          style="resize: none" required>{{$user->description}} </textarea>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-sm-3 control-label">New password:</label>
+                                                            <div class="col-sm-8">
+                                                                <input class="form-control" name="form-password" type="password" placeholder="New Password" >
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-sm-3 control-label">Confirm new password:</label>
+                                                            <div class="col-sm-8">
+                                                                <input class="form-control" name="form-password-confirm" type="password" placeholder="New Password">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-sm-3 control-label"></label>
+                                                            <div class="col-sm-8">
+                                                                <input type="submit" class="btn btn-primary" value="Save Changes">
+                                                                <span></span>
+                                                                <a class="btn btn-default" href="./">Cancel</a>
+                                                            </div>
+                                                        </div>
+                                                        </form>
+                                                        </div>
+                                                        </div>
+                                                        </div>
+                                                        </div>
+                                                        </div>
 
 
-                <script src="../../assets/js/bars.js"></script>
+                                                        <script src="../../assets/js/bars.js"></script>
 
-                <script>
+                                                        <script>
 
-                    function uploadProfilePhoto(event)
-                    {
-                        event.preventDefault();
-                        document.getElementById("profilePhotoInput").click();
-                    }
-                
-                
-                </script>
+function uploadProfilePhoto(event)
+{
+    event.preventDefault();
+    document.getElementById("profilePhotoInput").click();
+}
 
-                </body>
 
-                </html>
+                                                        </script>
+
+                                                        </body>
+
+                                                        </html>
