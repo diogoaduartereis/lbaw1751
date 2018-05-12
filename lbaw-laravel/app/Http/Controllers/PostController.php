@@ -330,7 +330,7 @@ class PostController extends Controller
         ->orderBy('date', 'desc')
         ->skip($firstQuestionOffset)
         ->take($numberOfQuestions)
-        ->get();
+        ->paginate(4);
 
         return PostController::checkQuestionsReturn($questions);
     }
@@ -345,7 +345,7 @@ class PostController extends Controller
         ->where('isvisible', '=', 'true')
         ->orderBy('post.points', 'desc')
         ->orderBy('date', 'desc')
-        ->take($numberOfQuestions)->get();
+        ->take($numberOfQuestions)->paginate(3);
       
         return PostController::checkQuestionsReturn($questions);
     }

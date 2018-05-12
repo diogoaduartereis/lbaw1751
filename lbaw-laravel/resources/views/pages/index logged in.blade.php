@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html class="no-js" lang="en">
 
     <head>
@@ -21,7 +22,10 @@
         <script src="../assets/js/encodeForAjax.js"></script>
         <script src="./assets/js/homepageSearchBar.js"></script>
         <script src="./assets/js/infiniteScrolling.js"></script>
-                <script src="./assets/js/ajaxQuestionLoading.js"></script>
+        <script src="./assets/js/ajaxQuestionLoading.js"></script>
+        <script src="//unpkg.com/jscroll/dist/jquery.jscroll.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+        <script src="./assets/js/jquery.jscroll.min.js"></script>
 
         <!-- Google Login -->
         <meta name="google-signin-scope" content="profile email">
@@ -38,8 +42,8 @@
                 <div id="containerID">
                     <div id="contentID">
                         <div id="classContainerID" class="container">
-                            <div class="row">
-                                <div id="searchInputForm" class="col-12">
+                            <div  class="row">
+                                <div style="width:80%; background-color: rgb(250,250,250); position:fixed; z-index:50;" id="searchInputForm" class="col-12">
                                     <div class="row" id="searchInput">
                                         <div class="col-8 mx-auto" style="margin-left:10vw;">
                                             <form action="post" method="POST">
@@ -89,9 +93,10 @@
                                 </div>
                             </div>
                             <br>
-                            <div id="Questions">
-                            @include('pages.index logged in_questionsdiv')
-                                    </div>
+                            <div style="margin-top:2vw;" id="Questions">
+                                @include('pages.index logged in_questionsdiv')
+                            </div>
+                            
                                     <div id="QuestionsFromSearch">
                             <p id="csrf-token" style:"display: none" hidden >{{csrf_token()}}</p>      
                             <br>
@@ -101,6 +106,20 @@
                 <script src="./assets/js/voteInPost.js"></script>
 
                 <script>
+
+                    $('ul.pagination').hide();
+                    $(function() {
+                        $('.infinite-scroll').jscroll({
+                            autoTrigger: true,
+                            loadingHtml: '<img class="center-block" src="./assets/img/loading.gif" alt="Loading..." />',
+                            padding: 0,
+                            nextSelector: '.pagination li.active + li a',
+                            contentSelector: 'div.infinite-scroll',
+                            callback: function() {
+                                $('ul.pagination').remove();
+                            }
+                        });
+                    });
 
 
                     $('.upvoteArr').mouseover(function () {
