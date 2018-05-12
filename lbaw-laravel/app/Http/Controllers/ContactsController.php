@@ -6,10 +6,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
-class ContactsController extends Controller
-{
-    public static function getAvailableSubjects()
-    {
+class ContactsController extends Controller {
+
+    public static function getAvailableSubjects() {
         $subjectsArr = DB::table("subject")->select('name')->get();
         if (!$subjectsArr)
             return "error";
@@ -17,8 +16,7 @@ class ContactsController extends Controller
             return $subjectsArr;
     }
 
-    public function submitContactRequest(Request $request)
-    {
+    public function submitContactRequest(Request $request) {
         $name = $request->name;
         $email = $request->email;
         $subject = $request->subject;
@@ -27,76 +25,68 @@ class ContactsController extends Controller
         $error = false;
         if (empty($name))
             $error = true;
-        
-           if (empty($email))
-           $error = true;
-        
-           if (empty($subject))
-           $error = true;
-        
-           if (empty($message))
-           $error = true;
-        
 
-            if ($error)
-            return redirect()->back()->with('resultMessage', 'error');   
-        
-        
-        $ret = DB::transaction(function() use($name,$email, $subject,$message)
-        {
-            $subjectFromDB = DB::table("subject")->select('subjectid')->where('name', '=', $subject)->first();
-            if (!$subjectFromDB)
-                return "error";
-            $subjectid = $subjectFromDB->subjectid;
-            $usrid = null;
-            if (Auth::check())
-                $usrid = Auth::user()->id;
-            DB::table("contact")->insert([
-                'message' => $message,
-                'date' => now(),
-                'userid' => $usrid,
-                'subjectid' => $subjectid
-            ]);
-            return "success";
-        });
+        if (empty($email))
+            $error = true;
+
+        if (empty($subject))
+            $error = true;
+
+        if (empty($message))
+            $error = true;
+
+
+        if ($error)
+            return redirect()->back()->with('resultMessage', 'error');
+
+
+        $ret = DB::transaction(function() use($name, $email, $subject, $message) {
+                    $subjectFromDB = DB::table("subject")->select('subjectid')->where('name', '=', $subject)->first();
+                    if (!$subjectFromDB)
+                        return "error";
+                    $subjectid = $subjectFromDB->subjectid;
+                    $usrid = null;
+                    if (Auth::check())
+                        $usrid = Auth::user()->id;
+                    DB::table("contact")->insert([
+                        'message' => $message,
+                        'date' => now(),
+                        'userid' => $usrid,
+                        'subjectid' => $subjectid
+                    ]);
+                    return "success";
+                });
         //this verifications instead of simply returning $ret ensures security in a way that if the transaction returns something other than the return values shown above
         //it does not send any DB server information to the user, thus not exposing something about and make it vulnerable to a certain attack
         //the user friendly message displaying is then handled by the view
         if ($ret == "success")
-            return redirect()->back()->with('resultMessage', 'success');   
+            return redirect()->back()->with('resultMessage', 'success');
         else
-            return redirect()->back()->with('resultMessage', 'error');   
+            return redirect()->back()->with('resultMessage', 'error');
     }
 
-    public function contacts()
-    {
+    public function contacts() {
         return view('pages.contacts.contacts');
     }
 
-    public function contactsList()
-    {
-        if(Auth::check() && Auth::user()->type == "ADMIN")
-        {
+    public function contactsList() {
+        if (Auth::check() && Auth::user()->type == "ADMIN") {
             $contacts = DB::table('contact')
-            ->join('users', 'contact.userid', '=', 'users.id')
-            ->join('subject', 'contact.subjectid', '=', 'subject.subjectid')
-            ->select('contact.id', 'username', 'message', 'date', 'userid', 'subject.name as subject')
-            ->where('processed', '=', 'false')
-            ->orderBy('date', 'asc')->take(5)->get();
+                            ->join('users', 'contact.userid', '=', 'users.id')
+                            ->join('subject', 'contact.subjectid', '=', 'subject.subjectid')
+                            ->select('contact.id', 'username', 'message', 'date', 'userid', 'subject.name as subject')
+                            ->where('processed', '=', 'false')
+                            ->orderBy('date', 'asc')->take(5)->get();
             return view('pages.contacts.contactsList', ['contacts' => $contacts]);
-        }
-        else
+        } else
             return redirect()->back();
     }
 
-    public function markContactAsProcessed($contactId)
-    {
-        if(Auth::check() && Auth::user()->type == "ADMIN")
-        {
-            DB::table("contact")->where('id', $contactId)->update(array('processed'=>true));
+    public function markContactAsProcessed($contactId) {
+        if (Auth::check() && Auth::user()->type == "ADMIN") {
+            DB::table("contact")->where('id', $contactId)->update(array('processed' => true));
             return "";
-        }
-        else
+        } else
             return redirect()->back();
     }
 
@@ -105,8 +95,7 @@ class ContactsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index() {
         //
     }
 
@@ -115,8 +104,7 @@ class ContactsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
+    public function create() {
         //
     }
 
@@ -126,8 +114,7 @@ class ContactsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request) {
         //
     }
 
@@ -137,8 +124,7 @@ class ContactsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
+    public function show($id) {
         //
     }
 
@@ -148,8 +134,7 @@ class ContactsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
+    public function edit($id) {
         //
     }
 
@@ -160,8 +145,7 @@ class ContactsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request, $id) {
         //
     }
 
@@ -171,8 +155,8 @@ class ContactsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
+    public function destroy($id) {
         //
     }
+
 }

@@ -12,20 +12,19 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Google_Client;
 use GuzzleHttp;
 
-class RegisterController extends Controller
-{
+class RegisterController extends Controller {
     /*
-    |--------------------------------------------------------------------------
-    | Register Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles the registration of new users as well as their
-    | validation and creation. By default this controller uses a trait to
-    | provide this functionality without requiring any additional code.
-    |
-    */
+      |--------------------------------------------------------------------------
+      | Register Controller
+      |--------------------------------------------------------------------------
+      |
+      | This controller handles the registration of new users as well as their
+      | validation and creation. By default this controller uses a trait to
+      | provide this functionality without requiring any additional code.
+      |
+     */
 
-    use RegistersUsers;
+use RegistersUsers;
 
     /**
      * Where to redirect users after registration.
@@ -34,14 +33,12 @@ class RegisterController extends Controller
      */
     protected $redirectTo = '';
 
-
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
-    {
+    public function __construct() {
         $this->middleware('guest');
     }
 
@@ -51,14 +48,13 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    protected function validator(array $data)
-    {
+    protected function validator(array $data) {
         return Validator::make($data, [
-            //'name' => 'required|string|max:255',
-            //'email' => 'required|string|email|max:255|unique:users',
-            'username' => 'required|string|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
-            'email' => 'required|string|email|max:255|unique:users',
+                    //'name' => 'required|string|max:255',
+                    //'email' => 'required|string|email|max:255|unique:users',
+                    'username' => 'required|string|max:255|unique:users',
+                    'password' => 'required|string|min:6|confirmed',
+                    'email' => 'required|string|email|max:255|unique:users',
         ]);
     }
 
@@ -68,13 +64,12 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\User
      */
-    protected function create(array $data)
-    {
+    protected function create(array $data) {
         return User::create([
-            'email' => $data['email'],
-            'username' => $data['username'],
-            'pass_token' => bcrypt($data['password']),
-            'auth_type' => 0,
+                    'email' => $data['email'],
+                    'username' => $data['username'],
+                    'pass_token' => bcrypt($data['password']),
+                    'auth_type' => 0,
         ]);
     }
 
@@ -84,12 +79,10 @@ class RegisterController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function register(Request $request)
-    {
-        if($request->ajax())
-        {
-            $uid=null;
-            $id_token =iconv('ASCII', 'UTF-8', $request->password);
+    public function register(Request $request) {
+        if ($request->ajax()) {
+            $uid = null;
+            $id_token = iconv('ASCII', 'UTF-8', $request->password);
             $id = '914898849502-lcpd3q2madh2duv6banqs6ds5mue0fni';
             $client = new Google_Client(['client_id' => $id]);
             $client->setAuthConfig('secrets.json');
@@ -97,8 +90,7 @@ class RegisterController extends Controller
             $client->setHttpClient(new GuzzleHttp\Client(['verify' => false]));
             try {
                 $payload = $client->verifyIdToken($id_token);
-            }catch (\InvalidArgumentException $e)
-            {
+            } catch (\InvalidArgumentException $e) {
                 return "args";
             }
             if ($payload) {
@@ -109,24 +101,22 @@ class RegisterController extends Controller
             $user = null;
             try {
                 $user = \App\User::where([
-                    ['email', '=', $request->email],
-                    ['auth_type', '=', 1]])->first();
-            }catch(\Illuminate\Database\QueryException $e)
-            {
+                            ['email', '=', $request->email],
+                            ['auth_type', '=', 1]])->first();
+            } catch (\Illuminate\Database\QueryException $e) {
+                
             }
-            if($user==null)
-            {
-                $username = $request->username.rand();
+            if ($user == null) {
+                $username = $request->username . rand();
                 $ck = \App\User::where([
-                    ['username', '=', $username]])->first();
-                while($ck!=null)
-                {
-                    $username = $request->username.rand();
+                            ['username', '=', $username]])->first();
+                while ($ck != null) {
+                    $username = $request->username . rand();
                     $ck = \App\User::where([
-                        ['username', '=', username]])->first();
+                                ['username', '=', username]])->first();
                 }
                 $user = new \App\User();
-                $user->username=$username;
+                $user->username = $username;
                 $user->pass_token = $uid;
                 $user->img_path = $request->picture;
                 $user->email = $request->email;
@@ -135,13 +125,11 @@ class RegisterController extends Controller
 
                 Auth::login($user);
                 return 'valid';
-            }else{
-                if($user->state!='ACTIVE')
-                {
+            } else {
+                if ($user->state != 'ACTIVE') {
                     return 'invalid';
                 }
-                if($uid!=$user->pass_token)
-                {
+                if ($uid != $user->pass_token) {
                     return 'invalid';
                 }
                 $user->img_path = $request->picture;
@@ -156,7 +144,7 @@ class RegisterController extends Controller
 
         $this->guard()->login($user);
 
-        return $this->registered($request, $user)
-            ?: redirect($this->redirectPath());
+        return $this->registered($request, $user) ?: redirect($this->redirectPath());
     }
+
 }

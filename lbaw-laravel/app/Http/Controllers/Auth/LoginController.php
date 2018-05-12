@@ -9,20 +9,19 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Google_Client;
 use GuzzleHttp;
 
-class LoginController extends Controller
-{
+class LoginController extends Controller {
     /*
-    |--------------------------------------------------------------------------
-    | Login Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles authenticating users for the application and
-    | redirecting them to your home screen. The controller uses a trait
-    | to conveniently provide its functionality to your applications.
-    |
-    */
+      |--------------------------------------------------------------------------
+      | Login Controller
+      |--------------------------------------------------------------------------
+      |
+      | This controller handles authenticating users for the application and
+      | redirecting them to your home screen. The controller uses a trait
+      | to conveniently provide its functionality to your applications.
+      |
+     */
 
-    use AuthenticatesUsers;
+use AuthenticatesUsers;
 
     /**
      * Where to redirect users after login.
@@ -31,34 +30,28 @@ class LoginController extends Controller
      */
     protected $redirectTo = '';
 
-    public function username()
-    {
+    public function username() {
         return 'username';
     }
-
-
 
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
-    {
+    public function __construct() {
         $this->middleware('guest')->except('logout');
     }
 
     /**
      * Handle a login request to the application.
-     ** @param  \Illuminate\Http\Request  $request
+     * * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Http\JsonResponse
      */
-    public function login(Request $request)
-    {
-        if($request->ajax())
-        {
-            $uid=null;
-            $id_token =iconv('ASCII', 'UTF-8', $request->password);
+    public function login(Request $request) {
+        if ($request->ajax()) {
+            $uid = null;
+            $id_token = iconv('ASCII', 'UTF-8', $request->password);
             $id = '914898849502-lcpd3q2madh2duv6banqs6ds5mue0fni';
             $client = new Google_Client(['client_id' => $id]);
             $client->setAuthConfig('secrets.json');
@@ -66,8 +59,7 @@ class LoginController extends Controller
             $client->setHttpClient(new GuzzleHttp\Client(['verify' => false]));
             try {
                 $payload = $client->verifyIdToken($id_token);
-            }catch (\InvalidArgumentException $e)
-            {
+            } catch (\InvalidArgumentException $e) {
                 return "args";
             }
             if ($payload) {
@@ -78,24 +70,22 @@ class LoginController extends Controller
             $user = null;
             try {
                 $user = \App\User::where([
-                    ['email', '=', $request->email],
-                    ['auth_type', '=', 1]])->first();
-            }catch(\Illuminate\Database\QueryException $e)
-            {
+                            ['email', '=', $request->email],
+                            ['auth_type', '=', 1]])->first();
+            } catch (\Illuminate\Database\QueryException $e) {
+                
             }
-            if($user==null)
-            {
-                $username = $request->username.rand();
+            if ($user == null) {
+                $username = $request->username . rand();
                 $ck = \App\User::where([
-                    ['username', '=', $username]])->first();
-                while($ck!=null)
-                {
-                    $username = $request->username.rand();
+                            ['username', '=', $username]])->first();
+                while ($ck != null) {
+                    $username = $request->username . rand();
                     $ck = \App\User::where([
-                        ['username', '=', username]])->first();
+                                ['username', '=', username]])->first();
                 }
                 $user = new \App\User();
-                $user->username=$username;
+                $user->username = $username;
                 $user->pass_token = $uid;
                 $user->email = $request->email;
                 $user->img_path = $request->picture;
@@ -104,13 +94,11 @@ class LoginController extends Controller
 
                 Auth::login($user);
                 return 'valid';
-            }else{
-                if($user->state!='ACTIVE')
-                {
+            } else {
+                if ($user->state != 'ACTIVE') {
                     return 'invalid';
                 }
-                if($uid!=$user->pass_token)
-                {
+                if ($uid != $user->pass_token) {
                     return 'invalid';
                 }
                 $user->img_path = $request->picture;
@@ -133,9 +121,8 @@ class LoginController extends Controller
 
         //check for banned
         $user = \App\User::where('username', $request->username)->first();
-        if($user != null)
-        {
-            if($user->state == 'BANNED')
+        if ($user != null) {
+            if ($user->state == 'BANNED')
                 return Redirect('/login')->withErrors("Your account has been banned!");
         }
 
@@ -157,8 +144,7 @@ class LoginController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return void
      */
-    protected function validateLogin(Request $request)
-    {
+    protected function validateLogin(Request $request) {
         $this->validate($request, [
             $this->username() => 'required|string',
             'pass_token' => 'required|string',
@@ -171,8 +157,7 @@ class LoginController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return array
      */
-    protected function credentials(Request $request)
-    {
+    protected function credentials(Request $request) {
         return array_merge($request->only($this->username(), 'pass_token'), ['state' => 'ACTIVE']);
     }
 
@@ -182,8 +167,7 @@ class LoginController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function logout(Request $request)
-    {
+    public function logout(Request $request) {
         $this->guard()->logout();
 
         $request->session()->invalidate();

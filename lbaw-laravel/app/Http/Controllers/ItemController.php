@@ -4,33 +4,31 @@ namespace App\Http\Controllers;
 
 use App\Item;
 use App\Card;
-
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
-class ItemController extends Controller
-{
-  /**
-   * Creates a new item.
-   *
-   * @param  int  $card_id
-   * @param  Request request containing the description
-   * @return Response
-   */
-  public function create(Request $request, $card_id)
-  {
-    $item = new Item();
-    $item->card_id = $card_id;
+class ItemController extends Controller {
 
-    $this->authorize('create', $item);
+    /**
+     * Creates a new item.
+     *
+     * @param  int  $card_id
+     * @param  Request request containing the description
+     * @return Response
+     */
+    public function create(Request $request, $card_id) {
+        $item = new Item();
+        $item->card_id = $card_id;
 
-    $item->done = false;
-    $item->description = $request->input('description');
-    $item->save();
+        $this->authorize('create', $item);
 
-    return $item;
-  }
+        $item->done = false;
+        $item->description = $request->input('description');
+        $item->save();
+
+        return $item;
+    }
 
     /**
      * Updates the state of an individual item.
@@ -39,16 +37,15 @@ class ItemController extends Controller
      * @param  Request request containing the new state
      * @return Response
      */
-    public function update(Request $request, $id)
-    {
-      $item = Item::find($id);
+    public function update(Request $request, $id) {
+        $item = Item::find($id);
 
-      $this->authorize('update', $item);
+        $this->authorize('update', $item);
 
-      $item->done = $request->input('done');
-      $item->save();
+        $item->done = $request->input('done');
+        $item->save();
 
-      return $item;
+        return $item;
     }
 
     /**
@@ -57,14 +54,13 @@ class ItemController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function delete(Request $request, $id)
-    {
-      $item = Item::find($id);
+    public function delete(Request $request, $id) {
+        $item = Item::find($id);
 
-      $this->authorize('delete', $item);
-      $item->delete();
+        $this->authorize('delete', $item);
+        $item->delete();
 
-      return $item;
+        return $item;
     }
 
 }

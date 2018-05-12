@@ -9,17 +9,14 @@ use Redirect;
 use Hash;
 use Auth;
 
-class PostController extends Controller
-{
+class PostController extends Controller {
 
-
-    public function reports($id)
-    {
-        if(Auth::user()->type == 'ADMIN') {
-            $ret = \App\PostReport::select('postid','reporterid','date','reason','username','type','email','state','img_path','points')->where('postid', $id)->join('users','id','reporterid')->get();
-            $post = \App\Post::select('posterid','content','date','isvisible','points')->where('id',$id)->get();
-            return view('pages.reports.reports')->with(['reports'=>$ret])->with(['post'=>$post])->with(['id'=>$id]);
-        }else{
+    public function reports($id) {
+        if (Auth::user()->type == 'ADMIN') {
+            $ret = \App\PostReport::select('postid', 'reporterid', 'date', 'reason', 'username', 'type', 'email', 'state', 'img_path', 'points')->where('postid', $id)->join('users', 'id', 'reporterid')->get();
+            $post = \App\Post::select('posterid', 'content', 'date', 'isvisible', 'points')->where('id', $id)->get();
+            return view('pages.reports.reports')->with(['reports' => $ret])->with(['post' => $post])->with(['id' => $id]);
+        } else {
             return redirect('404');
         }
     }
@@ -29,125 +26,106 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($id)
-    {
-        $ret = (array)DB::select('SELECT * FROM Tag WHERE id=:id',['id' => $id]);
-        if($ret!=null)
-        {
+    public function index($id) {
+        $ret = (array) DB::select('SELECT * FROM Tag WHERE id=:id', ['id' => $id]);
+        if ($ret != null) {
             $str = '';
-            foreach($ret as $val)
-            {
-                $str = $str.'Tag:'.$val->name."<br>";
+            foreach ($ret as $val) {
+                $str = $str . 'Tag:' . $val->name . "<br>";
             }
             return $str;
         }
-        return 'Val:'.session('test');
+        return 'Val:' . session('test');
     }
 
-    public function test(Request $req){
+    public function test(Request $req) {
         return $req->input('data');
     }
 
     //todo: begin add try
 
-    public function postQuestionPage()
-    {
-        if(Auth::check())
-        {
+    public function postQuestionPage() {
+        if (Auth::check()) {
             return view('pages.Post question page.index');
-        }
-        else
+        } else
             return view('pages.index');
     }
 
-    public function postQuestion(Request $request)
-    {
-        if(Auth::check() == false)
+    public function postQuestion(Request $request) {
+        if (Auth::check() == false)
             return redirect("/");
 
-        $postID = DB::transaction(function() use($request)
-        {
-            $newPost = DB::table('post')->insertGetId([
-                'posterid' => Auth::user()->id,
-                'content'  => $request->input('content')
-            ]);
+        $postID = DB::transaction(function() use($request) {
+                    $newPost = DB::table('post')->insertGetId([
+                        'posterid' => Auth::user()->id,
+                        'content' => $request->input('content')
+                    ]);
 
-            DB::table('question')->insert([
-                'postid' => $newPost,
-                'title'  => $request->input('title'),
-            ]);
+                    DB::table('question')->insert([
+                        'postid' => $newPost,
+                        'title' => $request->input('title'),
+                    ]);
 
-            $tagsString = trim($request->input('tags'));
-            $tags = preg_split('/\s+/', $tagsString);
-            for($i = 0; $i < count($tags); $i++)
-            {
-                $currTag = $tags[$i];
-                $dbTag = DB::table('tag')->select('id')->where('name', $currTag)->first();
-                if($dbTag == null)
-                {
-                    //insert new tag in database
-                    $dbTagId = DB::table('tag')->insertGetId(['name' => $currTag]);
-                }
-                else
-                {
-                    $dbTagId = $dbTag->id;
-                }
-                
-                DB::table('tagquestion')->insert([
-                    'question_id' => $newPost,
-                    'tag_id'  => $dbTagId,
-                ]);
-            }
+                    $tagsString = trim($request->input('tags'));
+                    $tags = preg_split('/\s+/', $tagsString);
+                    for ($i = 0; $i < count($tags); $i++) {
+                        $currTag = $tags[$i];
+                        $dbTag = DB::table('tag')->select('id')->where('name', $currTag)->first();
+                        if ($dbTag == null) {
+                            //insert new tag in database
+                            $dbTagId = DB::table('tag')->insertGetId(['name' => $currTag]);
+                        } else {
+                            $dbTagId = $dbTag->id;
+                        }
 
-            return $newPost;
-        });
+                        DB::table('tagquestion')->insert([
+                            'question_id' => $newPost,
+                            'tag_id' => $dbTagId,
+                        ]);
+                    }
 
-        if($postID != null)
+                    return $newPost;
+                });
+
+        if ($postID != null)
             return redirect('questions/' . $postID);
-
     }
 
-    public function showQuestionPage($id)
-    {
-        $questionElements = DB::table('post')->select('users.points as userPoints', 'users.*', 'post.id as post_id', 'post.posterid', 'post.content',
-                                            'post.date','post.isvisible','post.points', 'question.*')
-                                            ->join('users', DB::raw('post.posterid'), '=',DB::raw('users.id'))
-                                            ->join('question', DB::raw('post.id'), '=', DB::raw('question.postid'))
-                                            ->where(DB::raw('post.isvisible'), '=', TRUE)
-                                            ->where(DB::raw('post.id'), '=', $id)
-                                            ->get();
+    public function showQuestionPage($id) {
+        $questionElements = DB::table('post')->select('users.points as userPoints', 'users.*', 'post.id as post_id', 'post.posterid', 'post.content', 'post.date', 'post.isvisible', 'post.points', 'question.*')
+                ->join('users', DB::raw('post.posterid'), '=', DB::raw('users.id'))
+                ->join('question', DB::raw('post.id'), '=', DB::raw('question.postid'))
+                ->where(DB::raw('post.isvisible'), '=', TRUE)
+                ->where(DB::raw('post.id'), '=', $id)
+                ->get();
         if (!$questionElements)
             return "error";
-        $answersElements = DB::table('post')->select('users.*','post.id as post_id', 'post.posterid', 'post.content',
-                                            'post.date as post_date','post.isvisible','post.points', 'answer.*')
-                                            ->join('users', DB::raw('post.posterid'), '=',DB::raw('users.id'))
-                                            ->join('answer', DB::raw('post.id'), '=', DB::raw('answer.postid'))
-                                            ->where(DB::raw('post.isvisible'), '=', TRUE)
-                                            ->where(DB::raw('answer.questionid'), '=', $id)
-                                            ->orderBy('post_date', 'asc')
-                                            ->get();
+        $answersElements = DB::table('post')->select('users.*', 'post.id as post_id', 'post.posterid', 'post.content', 'post.date as post_date', 'post.isvisible', 'post.points', 'answer.*')
+                ->join('users', DB::raw('post.posterid'), '=', DB::raw('users.id'))
+                ->join('answer', DB::raw('post.id'), '=', DB::raw('answer.postid'))
+                ->where(DB::raw('post.isvisible'), '=', TRUE)
+                ->where(DB::raw('answer.questionid'), '=', $id)
+                ->orderBy('post_date', 'asc')
+                ->get();
 
-                                            if (!$answersElements)
-                                                return "error";
+        if (!$answersElements)
+            return "error";
         $questionUserCounter = array(
             'posts' => DB::table('post')->where('posterid', '=', $questionElements[0]->id)->count('posterid'),
             'points' => DB::table('users')->where('id', '=', $questionElements[0]->id)->sum('points')
         );
         if (!$questionUserCounter)
             return "error";
-        if(Auth::check())
-{
+        if (Auth::check()) {
             $postVotes = DB::table('postvote')->select('*')->where('posterid', '=', Auth::user()->id)->get();
             if (!$postVotes)
                 return "error";
-        }
-            else
+        } else
             $postVotes = null;
 
         $answerUserCounter = array();
-        foreach($answersElements as $answerElements)
-        {
-            $row =  array(
+        foreach ($answersElements as $answerElements) {
+            $row = array(
                 'posts' => DB::table('post')->where('posterid', '=', $answerElements->id)->count('posterid'),
                 'points' => DB::table('users')->where('id', '=', $answerElements->id)->sum('points')
             );
@@ -161,87 +139,77 @@ class PostController extends Controller
         if (!$questionUserPointsCounter)
             return "error";
         return view('pages.View Question.index', ['questionElements' => $questionElements[0],
-             'answersElements' => $answersElements, 'questionUserCounter' => $questionUserCounter,
-             'answerUserCounter' => $answerUserCounter, 'postVotes' => $postVotes
-             ]);
+            'answersElements' => $answersElements, 'questionUserCounter' => $questionUserCounter,
+            'answerUserCounter' => $answerUserCounter, 'postVotes' => $postVotes
+        ]);
     }
 
-    public function postAnswer($post_id, Request $request)
-    {
+    public function postAnswer($post_id, Request $request) {
         $user = Auth::user()->id;
-        $postID = DB::transaction(function() use($request, $post_id)
-        {
-            $newPost = DB::table('post')->insertGetId([
-                'posterid' => Auth::user()->id,
-                'content'  => $request->input('content')
-            ]);
+        $postID = DB::transaction(function() use($request, $post_id) {
+                    $newPost = DB::table('post')->insertGetId([
+                        'posterid' => Auth::user()->id,
+                        'content' => $request->input('content')
+                    ]);
 
-            DB::table('answer')->insert([
-                'postid' => $newPost,
-                'questionid'  => $post_id,
-                'iscorrect' => false
-            ]);
+                    DB::table('answer')->insert([
+                        'postid' => $newPost,
+                        'questionid' => $post_id,
+                        'iscorrect' => false
+                    ]);
 
-            return $newPost;
-        });
+                    return $newPost;
+                });
 
-        if($post_id != null)
+        if ($post_id != null)
             return redirect('questions/' . $post_id);
     }
 
-    public function closeQuestion($id)
-    {
-        if(Auth::check())
-        {
+    public function closeQuestion($id) {
+        if (Auth::check()) {
             $logged_user_id = Auth::user()->id;
             $user = \App\User::where('id', $logged_user_id)->first();
-            if($user == null)
+            if ($user == null)
                 return redirect("/");
-                
+
             $posterId = DB::select('SELECT posterID FROM Post WHERE id=:id', ['id' => $id])[0]->posterid;
 
             $validAccess = false;
-            if($user->type == "ADMIN")
+            if ($user->type == "ADMIN")
                 $validAccess = true;
-            else if($posterId == $logged_user_id)
+            else if ($posterId == $logged_user_id)
                 $validAccess = true;
 
-            if($validAccess == false)
-                return redirect("users/".$posterId);
+            if ($validAccess == false)
+                return redirect("users/" . $posterId);
 
-            DB::table("question")->where('postid', $id)->update(array('isclosed'=>true));
-            return redirect("users/".$posterId);
+            DB::table("question")->where('postid', $id)->update(array('isclosed' => true));
+            return redirect("users/" . $posterId);
         }
-    
+
         return redirect("/");
     }
 
-    public function postVote(Request $request, $postId)
-    {
-        if(Auth::check())
-        {
+    public function postVote(Request $request, $postId) {
+        if (Auth::check()) {
             $voteValue = $request->voteValue;
             $loggedUserId = Auth::user()->id;
             $postValueFromPreviousVote = DB::table("postvote")->select("value")->where('postid', $postId)
-                ->where('posterid', $loggedUserId)->first();
-               
-            if(count($postValueFromPreviousVote) != 0)
-            {
-               
-                if($postValueFromPreviousVote->value == $voteValue)
-                {
+                            ->where('posterid', $loggedUserId)->first();
+
+            if (count($postValueFromPreviousVote) != 0) {
+
+                if ($postValueFromPreviousVote->value == $voteValue) {
                     DB::table("postvote")->where('postid', $postId)->where('posterid', $loggedUserId)->delete();
                     $postAtualPoints = DB::table("post")->select("points")->where('id', $postId)->first();
                     return $postAtualPoints->points;
                 }
-                    
+
                 DB::table("postvote")->where('postid', $postId)->where('posterid', $loggedUserId)->update(['value' => $voteValue]);
                 $postAtualPoints = DB::table("post")->select("points")->where('id', $postId)->first();
                 return $postAtualPoints->points;
-            }
-            else
-            {
-                DB::table("postvote")->insert(['postid' => intval($postId), 'posterid' => intval($loggedUserId), 
+            } else {
+                DB::table("postvote")->insert(['postid' => intval($postId), 'posterid' => intval($loggedUserId),
                     'value' => intval($voteValue)]);
             }
 
@@ -252,118 +220,104 @@ class PostController extends Controller
         return "error";
     }
 
-    public function delete($postId)
-    {
-        if(!Auth::check())
+    public function delete($postId) {
+        if (!Auth::check())
             return "error";
 
         $question = DB::table("question")->select("postid")->where('postid', $postId)->first();
-        if($question != null)
+        if ($question != null)
             PostController::deleteQuestion($postId);
 
         $answer = DB::table("answer")->select("postid")->where('postid', $postId)->first();
-        if($answer != null)
+        if ($answer != null)
             PostController::deleteAnswer($postId);
     }
 
-    public function deleteQuestion($postId)
-    {
-        DB::transaction(function() use($postId)
-        {
-            DB::table("post")->where('id', $postId)->update(array('isvisible'=>false));
+    public function deleteQuestion($postId) {
+        DB::transaction(function() use($postId) {
+            DB::table("post")->where('id', $postId)->update(array('isvisible' => false));
             DB::table("postvote")->where('postid', $postId)->delete();
-            
+
             $answersToQuestion = DB::table("answer")->select("postid")->where('questionid', $postId)->get();
-            foreach($answersToQuestion as $answer)
+            foreach ($answersToQuestion as $answer)
                 PostController::deleteAnswer($answer->postid);
         });
     }
 
-    public function deleteAnswer($postId)
-    {
-        DB::transaction(function() use($postId)
-        {
-            DB::table("post")->where('id', $postId)->update(array('isvisible'=>false));
+    public function deleteAnswer($postId) {
+        DB::transaction(function() use($postId) {
+            DB::table("post")->where('id', $postId)->update(array('isvisible' => false));
             DB::table("postvote")->where('postid', $postId)->delete();
         });
     }
 
-    public function reportPost(Request $request, $postID)
-    {
+    public function reportPost(Request $request, $postID) {
         $newReporterId = Auth::user()->id;
         $reason = $request->reportReason;
-        return DB::transaction(function() use($postID, $newReporterId, $reason)
-        {
-            $reportAlreadyExistant = DB::table("postreport")->select('date')->where('postid', '=', $postID)->where('reporterid', '=', $newReporterId)->first();
-            if ($reportAlreadyExistant)
-               return "already reported";
-            
-            DB::table("postreport")->insert([
-                'postid' => $postID,
-                'reporterid' => $newReporterId,
-                'reason' => $reason,
-                'date'  => now()
-            ]);
-            return "success";
-        });
+        return DB::transaction(function() use($postID, $newReporterId, $reason) {
+                    $reportAlreadyExistant = DB::table("postreport")->select('date')->where('postid', '=', $postID)->where('reporterid', '=', $newReporterId)->first();
+                    if ($reportAlreadyExistant)
+                        return "already reported";
+
+                    DB::table("postreport")->insert([
+                        'postid' => $postID,
+                        'reporterid' => $newReporterId,
+                        'reason' => $reason,
+                        'date' => now()
+                    ]);
+                    return "success";
+                });
     }
 
-    public static function getXMostRecentQuestionsAsHTML(Request $request)
-    {
+    public static function getXMostRecentQuestionsAsHTML(Request $request) {
         $numberOfQuestions = $request->input('numOfQuestionsToRetrieve');
         $firstQuestionOffset = $request->input('offset');
-        $questions = PostController::getXMostRecentQuestions($numberOfQuestions, $firstQuestionOffset);        
-        if(Auth::check())
+        $questions = PostController::getXMostRecentQuestions($numberOfQuestions, $firstQuestionOffset);
+        if (Auth::check())
             return view('pages.index logged in_questionsdiv', ['questions' => $questions['questions']], ['questions_tags' => $questions['questions_tags']]);
         else
             return view('pages.index_questionsdiv', ['questions' => $questions['questions']], ['questions_tags' => $questions['questions_tags']]);
-
     }
-    
-    public static function getXMostRecentQuestions($numberOfQuestions, $firstQuestionOffset = 0)
-    {
+
+    public static function getXMostRecentQuestions($numberOfQuestions, $firstQuestionOffset = 0) {
         $questions = DB::table('question')
-        ->join('post', 'question.postid' , '=', 'post.id')
-        ->join('users', 'post.posterid', '=', 'users.id')
-        ->select('question.postid as question_id', 'title', 'content', 'post.posterid as poster_id', 'post.points as question_points', 'users.points as poster_points', 'username')
-        ->where('isvisible', '=', 'true')
-        ->orderBy('date', 'desc')
-        ->skip($firstQuestionOffset)
-        ->take($numberOfQuestions)
-        ->paginate(4);
+                ->join('post', 'question.postid', '=', 'post.id')
+                ->join('users', 'post.posterid', '=', 'users.id')
+                ->select('question.postid as question_id', 'title', 'content', 'post.posterid as poster_id', 'post.points as question_points', 'users.points as poster_points', 'username')
+                ->where('isvisible', '=', 'true')
+                ->orderBy('date', 'desc')
+                ->skip($firstQuestionOffset)
+                ->take($numberOfQuestions)
+                ->paginate(4);
 
         return PostController::checkQuestionsReturn($questions);
     }
 
-
-    public static function getXHotQuestions($numberOfQuestions)
-    {
+    public static function getXHotQuestions($numberOfQuestions) {
         $questions = DB::table('question')
-        ->join('post', 'question.postid' , '=', 'post.id')
-        ->join('users', 'post.posterid', '=', 'users.id')
-        ->select('question.postid as question_id', 'title', 'content', 'post.posterid as poster_id', 'post.points as question_points', 'users.points as poster_points', 'username')
-        ->where('isvisible', '=', 'true')
-        ->orderBy('post.points', 'desc')
-        ->orderBy('date', 'desc')
-        ->take($numberOfQuestions)->paginate(3);
-      
+                        ->join('post', 'question.postid', '=', 'post.id')
+                        ->join('users', 'post.posterid', '=', 'users.id')
+                        ->select('question.postid as question_id', 'title', 'content', 'post.posterid as poster_id', 'post.points as question_points', 'users.points as poster_points', 'username')
+                        ->where('isvisible', '=', 'true')
+                        ->orderBy('post.points', 'desc')
+                        ->orderBy('date', 'desc')
+                        ->take($numberOfQuestions)->paginate(3);
+
         return PostController::checkQuestionsReturn($questions);
     }
 
-    public static function checkQuestionsReturn($questions)
-    {
+    public static function checkQuestionsReturn($questions) {
         if (!$questions)
             return "error";
         $questions_tags = array();
-        foreach ($questions as $question)
-        {
+        foreach ($questions as $question) {
             $tags_arr = array();
             $tags = DB::table('question')
-                ->join('tagquestion', 'question.postid', '=', 'tagquestion.question_id')
-                ->join('tag', 'tagquestion.tag_id', '=', 'tag.id')
-                ->select('tag.name as tag_name')
-                ->where('question.postid', '=', $question->question_id)
-                ->get();
+                    ->join('tagquestion', 'question.postid', '=', 'tagquestion.question_id')
+                    ->join('tag', 'tagquestion.tag_id', '=', 'tag.id')
+                    ->select('tag.name as tag_name')
+                    ->where('question.postid', '=', $question->question_id)
+                    ->get();
             if (!$tags)
                 return "error";
 
@@ -376,90 +330,84 @@ class PostController extends Controller
         return $ret;
     }
 
-    public function searchForQuestion(Request $request)
-    {
+    public function searchForQuestion(Request $request) {
         $tags = $request->input('tags');
         $keywords = $request->input('keywords');
         $tagsArray = json_decode($tags);
         $keywordsArray = json_decode($keywords);
         /*
-        $tagsArray = array();
-        $tagsArray[0] = 'Java';
-        $tagsArray[1] = 'C++';
-        $tagsArray[2] = 'JS';
-        
-        */
+          $tagsArray = array();
+          $tagsArray[0] = 'Java';
+          $tagsArray[1] = 'C++';
+          $tagsArray[2] = 'JS';
+
+         */
         $currentDBResults = null;
-        foreach($tagsArray as $tag)
-        {
-            $retFromDB =
-                    DB::table('question')
-                        ->join('tagquestion', 'question.postid', '=', 'tagquestion.question_id')
-                        ->join('tag', 'tagquestion.tag_id', '=', 'tag.id')
-                        ->where('tag.name', '=', $tag)
-                        ->select(DB::raw('count(postid) as tag_count'), 'question.postid')
-                        ->groupBy('question.postid');
+        foreach ($tagsArray as $tag) {
+            $retFromDB = DB::table('question')
+                    ->join('tagquestion', 'question.postid', '=', 'tagquestion.question_id')
+                    ->join('tag', 'tagquestion.tag_id', '=', 'tag.id')
+                    ->where('tag.name', '=', $tag)
+                    ->select(DB::raw('count(postid) as tag_count'), 'question.postid')
+                    ->groupBy('question.postid');
             if ($currentDBResults == null)
                 $currentDBResults = $retFromDB;
             else
                 $currentDBResults = $currentDBResults->unionAll($retFromDB);
         }
         echo $currentDBResults->get();
-        $DBTagResults = 
-                        $currentDBResults
-                        ->select(DB::raw('count(question.postid) as tag_count'), 'postid')
-                        ->groupBy('postid')
-                        ->orderBy('postid')
-                        ->get();
-                        
+        $DBTagResults = $currentDBResults
+                ->select(DB::raw('count(question.postid) as tag_count'), 'postid')
+                ->groupBy('postid')
+                ->orderBy('postid')
+                ->get();
+
         echo "\n";
         echo $DBTagResults;
         return;
         $currentDBResults = null;
-        foreach($keywordsArray as $keyword)
-        {
-            $retFromDB =
-                    DB::table('question')
-                        ->join('post', 'question.postid', '=', 'post.id')
-                        ->where('question.title', 'like', '%' . $keyword . '%')
-                        ->orwhere('post.content', 'like', '%' . $keyword . '%')
-                        ->select(DB::raw('count(question.postid) as keyword_count, question.postid as question_id'))
-                        ->groupBy('question.postid');
+        foreach ($keywordsArray as $keyword) {
+            $retFromDB = DB::table('question')
+                    ->join('post', 'question.postid', '=', 'post.id')
+                    ->where('question.title', 'like', '%' . $keyword . '%')
+                    ->orwhere('post.content', 'like', '%' . $keyword . '%')
+                    ->select(DB::raw('count(question.postid) as keyword_count, question.postid as question_id'))
+                    ->groupBy('question.postid');
             if ($currentDBResults == null)
                 $currentDBResults = $retFromDB;
             else
                 $currentDBResults = $currentDBResults->unionAll($retFromDB);
         }
         /*
-        $DBKeywrodsResults = 
-                        $currentDBResults
-                        ->select('*', DB::raw('SUM (keyword_count) as keyword_matches'))
-                        ->groupBy('question_id')
-                        ->get();
-        */
-        $finalMatches = 
-            $DBTagResults
-            ->join($DBKeywrodsResults)
-            ->sum('keyword_count as keyword_matches')
-            ->groupBy('postid')
-            ->get();
+          $DBKeywrodsResults =
+          $currentDBResults
+          ->select('*', DB::raw('SUM (keyword_count) as keyword_matches'))
+          ->groupBy('question_id')
+          ->get();
+         */
+        $finalMatches = $DBTagResults
+                ->join($DBKeywrodsResults)
+                ->sum('keyword_count as keyword_matches')
+                ->groupBy('postid')
+                ->get();
 
         //echo json_encode($dbResultsArray);
-        /*$finalResult;
-        foreach($dbResultsArray as $db)
-        {
+        /* $finalResult;
+          foreach($dbResultsArray as $db)
+          {
 
-        }*/
-        if(Auth::check())
+          } */
+        if (Auth::check())
             return view('pages.index logged in_questionsdiv', ['questions' => $questions], ['questions_tags' => $questions_tags]);
         else
             return view('pages.index_questionsdiv', ['questions' => $questions], ['questions_tags' => $questions_tags]);
-        }
-        //}
-        /*$questions = DB::table('question')
-                        ->join('tagquestion', 'question.postid', '=', 'tagquestion.question_id')
-                        ->join('tag', 'tagquestion.tag_id', '=', 'tag.id')
-                        ->whereIn('tag.name', $tags);*/
+    }
+
+    //}
+    /* $questions = DB::table('question')
+      ->join('tagquestion', 'question.postid', '=', 'tagquestion.question_id')
+      ->join('tag', 'tagquestion.tag_id', '=', 'tag.id')
+      ->whereIn('tag.name', $tags); */
 
     //todo: end
 
@@ -468,9 +416,8 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-
+    public function create() {
+        
     }
 
     /**
@@ -479,8 +426,7 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request) {
         //
     }
 
@@ -490,9 +436,8 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-
+    public function show($id) {
+        
     }
 
     /**
@@ -501,8 +446,7 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
+    public function edit($id) {
         //
     }
 
@@ -513,8 +457,7 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request, $id) {
         //
     }
 
@@ -524,8 +467,8 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
+    public function destroy($id) {
         //
     }
+
 }

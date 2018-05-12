@@ -1,68 +1,68 @@
 <?php
 
 /*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+  |--------------------------------------------------------------------------
+  | Web Routes
+  |--------------------------------------------------------------------------
+  |
+  | Here is where you can register web routes for your application. These
+  | routes are loaded by the RouteServiceProvider within a group which
+  | contains the "web" middleware group. Now create something great!
+  |
+ */
 
 
-Route::get('about','PagesController@about');
-Route::get('','PagesController@frontpageNewQuestions');
-Route::get('/hot','PagesController@frontpageHotQuestion');
-Route::get('faq','PagesController@faq');
-Route::get('404','PagesController@error404');
-Route::get('admin','PagesController@admin');
+Route::get('about', 'PagesController@about');
+Route::get('', 'PagesController@frontpageNewQuestions');
+Route::get('/hot', 'PagesController@frontpageHotQuestion');
+Route::get('faq', 'PagesController@faq');
+Route::get('404', 'PagesController@error404');
+Route::get('admin', 'PagesController@admin');
 
 //Get First X questions (used for viewing more questions using infinite scrolling)
-Route::get('getMostRecentPosts','PostController@getXMostRecentQuestionsAsHTML');
+Route::get('getMostRecentPosts', 'PostController@getXMostRecentQuestionsAsHTML');
 
-/*//Register
-Route::get('register','PagesController@register');
-Route::post('register','UserController@register');
-Route::get('logout','UserController@logout');
-Route::post('logout','UserController@logout');
+/* //Register
+  Route::get('register','PagesController@register');
+  Route::post('register','UserController@register');
+  Route::get('logout','UserController@logout');
+  Route::post('logout','UserController@logout');
 
-//Login*/
+  //Login */
 //Route::post('login','UserController@login');
-Route::get('login','PagesController@login');
+Route::get('login', 'PagesController@login');
 
-Route::get('register','PagesController@register');
+Route::get('register', 'PagesController@register');
 
 //Get user points
-Route::get('userself/getPoints','UserController@getSelfCurrentPoints');
+Route::get('userself/getPoints', 'UserController@getSelfCurrentPoints');
 
 //View Administration page
-Route::get('admin','UserController@showAdminPage');
+Route::get('admin', 'UserController@showAdminPage');
 
 //View Profile
 Route::get('users/{id}', 'UserController@show');
 
 //Edit profile
-Route::get('users/{id}/edit','UserController@edit');
-Route::post('users/{id}/edit','UserController@editProfile');
+Route::get('users/{id}/edit', 'UserController@edit');
+Route::post('users/{id}/edit', 'UserController@editProfile');
 
 //Delete profile
-Route::post('users/{id}/delete','UserController@deleteUser');
+Route::post('users/{id}/delete', 'UserController@deleteUser');
 
 //Ban user
-Route::get('users/{id}/ban','UserController@banUserForm');
-Route::post('users/{id}/ban','UserController@banUserAction');
+Route::get('users/{id}/ban', 'UserController@banUserForm');
+Route::post('users/{id}/ban', 'UserController@banUserAction');
 
 //UnBan user
-Route::post('users/{id}/unban','UserController@unbanUserAction');
+Route::post('users/{id}/unban', 'UserController@unbanUserAction');
 
 //Posts
-Route::get('post/{id}','PostController@index');
-Route::post('poster','PostController@test');
+Route::get('post/{id}', 'PostController@index');
+Route::post('poster', 'PostController@test');
 
 //Delete Posts
-Route::post('post/{id}/delete','PostController@delete');
+Route::post('post/{id}/delete', 'PostController@delete');
 
 //Post new Question
 Route::get('postNewQuestion', 'PostController@postQuestionPage');
@@ -94,7 +94,7 @@ Route::post('post/{id}/deletevote', 'PostController@deleteVote');
 Route::get('report/post/{id}', 'PagesController@reportPost');
 
 //Get Reports Of A Post
-Route::get('/post/{id}/reports','PostController@reports');
+Route::get('/post/{id}/reports', 'PostController@reports');
 
 //Report Post
 Route::post('post/{id}/report', 'PostController@reportPost');
@@ -106,16 +106,15 @@ Route::get('test', function() {
 });
 
 //Tags
-Route::get('tags','PagesController@tags');
+Route::get('tags', 'PagesController@tags');
 
 //Contacts
-Route::get('contacts','ContactsController@contacts');
-Route::post('contacts/submit','ContactsController@submitContactRequest');
-Route::get('contactsList','ContactsController@contactsList');
-Route::post('contacts/{id}/markAsProcessed','ContactsController@markContactAsProcessed');
+Route::get('contacts', 'ContactsController@contacts');
+Route::post('contacts/submit', 'ContactsController@submitContactRequest');
+Route::get('contactsList', 'ContactsController@contactsList');
+Route::post('contacts/{id}/markAsProcessed', 'ContactsController@markContactAsProcessed');
 
 //Auth::routes();
-
 //auth routes
 //$this->get('login', 'Auth\LoginController@showLoginForm')->name('login');
 $this->post('login', 'Auth\LoginController@login');
