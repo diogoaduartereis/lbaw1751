@@ -86,8 +86,44 @@ $tags = TagController::getFirstXTags(10);
         <div>
             <ul class="navbar-nav mx-auto">
 
+            <form action="post" method="POST">
+
+                    {{ csrf_field() }}
+                    <div class="btn-group">
+                        <button style="height:32px; margin-top:1px; z-index:50; margin-right:-2px;" type="button" class="btn btn-sm btn-default" data-toggle="dropdown"><i class="glyphicon glyphicon-cog"></i></button>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <label class="dropdown-menu-item checkbox">
+                                    <input type="checkbox" />
+                                    <span class="glyphicon glyphicon-unchecked"></span>
+                                    Poster Points
+                                </label>
+                            </li>
+                            <li>
+                                <label class="dropdown-menu-item checkbox">
+                                    <input type="checkbox" />
+                                    <span class="glyphicon glyphicon-unchecked"></span>
+                                    Post Points
+                                </label>
+                            </li>
+                            <li>
+                                <label class="dropdown-menu-item checkbox">
+                                    <input type="checkbox" />
+                                    <span class="glyphicon glyphicon-unchecked"></span>
+                                    Post Date
+                                </label>
+                            </li> 
+                        </ul>
+                    <input style="width:320px;" placeholder="Type to search questions..." id="questionSearchBar" type="text" class="form-control border-dark rounded-0" aria-label="Text input with segmented dropdown button" data-toggle="tooltip"
+                            data-placement="bottom" title="Search For Questions. Use the # before a word to add a tag search to your question.">
+                    <button style="height:32px; margin-top:1px;" type="button" class="btn btn-sm btn-default"> 
+                        <i class="fas fa-search"></i>
+                    </button>
+
+            </form>
+
                 <a href="{{url('postNewQuestion/')}}">
-                    <button style="margin-top:7px; margin-right:7px;" id="postQuestionButton" type="button" class="btn btn-primary">Post New Question</button>
+                    <button style="margin-top:1px; margin-right:7px;" id="postQuestionButton" type="button" class="btn btn-primary">Post New Question</button>
                 </a>
 
                 @if(Request::is('about')))
