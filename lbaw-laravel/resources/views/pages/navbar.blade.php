@@ -32,16 +32,26 @@ $tags = TagController::getFirstXTags(10);
 <div class="collapse navbar-collapse" id="navbarPopularContent">
     <div>
         <ul class="navbar-nav mx-auto">
-            <li id="hotQuestionsLink" class="nav-item active">
-                <a class="nav-link" href="/hot">
+            <li id="hotQuestionsLink" class="nav-item">
+            @if(Request::is('hot') || Request::is('/'))
+                <a id="hotQuestionsLink" class="nav-link active" href="{{url('/hot')}}">
+            @else 
+                <a id="hotQuestionsLink" class="nav-link" href="{{url('/hot')}}">
+            @endif
                     <i class="fas fa-fire"></i> Hot</a>
+                </a>
             </li>
             <li class="nav-item">
-                <a id="newQuestionsLink" class="nav-link active" href="/new">
-                    <i class="far fa-clock"></i> New</a>
+            @if(Request::is('new'))
+                <a id="newQuestionsLink" class="nav-link active" href="{{url('/new')}}">
+            @else 
+                <a id="newQuestionsLink" class="nav-link" href="{{url('/new')}}">
+            @endif
+                <i class="far fa-clock"></i> New</a>
+            </a>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
                    aria-expanded="false">
                     <i class="fas fa-tags"></i> Tags
                 </a>
@@ -58,7 +68,11 @@ $tags = TagController::getFirstXTags(10);
                 </div>
             </li>
             <li class="nav-item">
+            @if(Request::is('tags'))
                 <a class="nav-link active" href="{{url('/tags')}}">
+            @else
+                <a class="nav-link" href="{{url('/tags')}}">
+            @endif
                     <i class="fas fa-tag"></i> All Tags</a>
                 </a>
             </li>
@@ -70,20 +84,32 @@ $tags = TagController::getFirstXTags(10);
     <div>
         <ul class="navbar-nav mx-auto">
 
-            <li class="nav-item items-align-right">
-                <a href="{{url('about')}}" class="nav-link" href="#">
+            @if(Request::is('about')))
+                <li class="nav-item items-align-right active">
+            @else
+                <li class="nav-item items-align-right">
+            @endif
+                <a href="{{url('about')}}" class="nav-link">
                     About</a>
                 </a>
             </li>
 
+            @if(Request::is('contacts')))
+            <li class="nav-item active">
+            @else 
             <li class="nav-item">
-                <a href="{{url('contacts')}}" class="nav-link" href="#">
-                    Contact</a>
+            @endif
+                <a href="{{url('contacts')}}" class="nav-link">
+                    Contacts</a>
                 </a>
             </li>
 
+            @if(Request::is('faq')))
+            <li class="nav-item active">
+            @else 
             <li class="nav-item">
-                <a href="{{url('faq')}}" class="nav-link" href="#">
+            @endif
+                <a href="{{url('faq')}}" class="nav-link">
                     FAQ</a>
                 </a>
             </li>
