@@ -34,7 +34,7 @@ $tags = TagController::getFirstXTags(10);
         <div>
             <ul class="navbar-nav mx-auto">
                 <li class="nav-item">
-	                @if(Request::is('hot'))
+	                @if(Request::is('hot') || Request::is('/'))
 	                    <a id="hotQuestionsLink" class="nav-link active" href="{{url('/hot')}}">
 	                @else 
 	                    <a id="hotQuestionsLink" class="nav-link" href="{{url('/hot')}}">
@@ -44,7 +44,7 @@ $tags = TagController::getFirstXTags(10);
                 </li>
                 <li class="nav-item">
 	                @if(Request::is('new'))
-	                    <a id="newQuestionsLink" class="nav-link" href="{{url('/new')}}">
+	                    <a id="newQuestionsLink" class="nav-link active" href="{{url('/new')}}">
 	                @else 
 	                    <a id="newQuestionsLink" class="nav-link" href="{{url('/new')}}">
 	                @endif
