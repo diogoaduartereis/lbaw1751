@@ -70,9 +70,9 @@
                                     </form>
                                     @endif
                                     @if(Auth::user()->type == "ADMIN")
-                                    @if($user[0]->state == "BANNED")
+                                    @if($user[0]->state == "BANNED" && $user[0]->id != Auth::user()->id)
                                     <button id="unbanButton" style="margin:5px 5px;" class="btn btn-success col-md-6" onclick="confirmUnban(event, {{$user[0]->id}});">Unban user</button>
-                                    @else
+                                    @elseif($user[0]->id != Auth::user()->id)
                                     <button style="margin:5px 5px;" class="btn btn-danger col-md-6" onclick="goToBanForm(event, {{$user[0]->id}})">Ban user</button>
                                     @endif
                                     @endif

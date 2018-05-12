@@ -62,27 +62,6 @@ else
                 <i class="fas fa-user"></i> Profile</a>
         </li>
 
-        @if($numberOfActiveQuestions != 0)
-        <li>
-            <!-- Link with dropdown items -->
-            <a style="cursor:pointer;" id="sidebarDropdown2Button" data-target="#homeSubmenu2" data-toggle="collapse" aria-expanded="false">
-                <i class="fas fa-archive"></i> Active Questions
-
-                <span class="badge badge-pill badge-primary">{{$numberOfActiveQuestions}}</span>
-                <i id="arrowDown" class="fas fa-angle-down"></i>
-            </a>
-            <ul style="width:100%; position:absolute;" class="collapse list-unstyled" id="homeSubmenu2">
-                @foreach ($userActivePosts as $activePost)
-                <li>
-                    <a href= {{"/questions/".$activePost->id}}> 
-                        <i class="far fa-envelope"></i> {{$activePost->title}} </a>
-                </li>
-                @endforeach       
-            </ul>    
-        </li>
-        @endif 
-
-
         @if(Auth::user()->type == 'ADMIN')
         <li class="active">
             <a href= {{"/admin"}}>
@@ -97,8 +76,28 @@ else
         </li>
         @endif
 
+        @if($numberOfActiveQuestions != 0)
+        <li>
+            <!-- Link with dropdown items -->
+            <a style="cursor:pointer;" id="sidebarDropdown2Button" data-target="#homeSubmenu2" data-toggle="collapse" aria-expanded="false">
+                <i class="fas fa-archive"></i> Active Questions
+
+                <span class="badge badge-pill badge-primary">{{$numberOfActiveQuestions}}</span>
+                <i id="arrowDown" class="fas fa-angle-down"></i>
+            </a>
+            <ul style="max-height:100px; overflow:auto; width:100%; position:absolute;" class="collapse list-unstyled" id="homeSubmenu2">
+                @foreach ($userActivePosts as $activePost)
+                <li>
+                    <a href= {{"/questions/".$activePost->id}}> 
+                        <i class="far fa-envelope"></i> {{$activePost->title}} </a>
+                </li>
+                @endforeach       
+            </ul>    
+        </li>
+        @endif 
+
         <hr>
-        <li id="signOutID" class="active">
+        <li style="margin-top:100px;" class="active">
             <a href="{{ route('logout') }}" class="btn rounded-0 border border-dark btn-default btn-lg"
                onclick="event.preventDefault();
     document.getElementById('logout-form').submit();">

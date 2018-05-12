@@ -161,7 +161,7 @@ if (btn != null)
         {
         btn.onclick = function()
                 {
-                var loggedIn = {{ auth() - > check() ? 'true' : 'false' }};
+                var loggedIn = {{ auth() -> check() ? 'true' : 'false' }};
                 if (loggedIn)
                         {
                         window.location = "/";

@@ -1,5 +1,4 @@
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
-
 #searchInputForm{
     padding-top: 10px;
 }
@@ -145,16 +144,6 @@
         width: 100%;
         overflow: scroll;
         overflow-x: hidden; }
-
-    ::-webkit-scrollbar {
-        width: 0px;
-        /* remove scrollbar space */
-        background: transparent;
-        /* optional: just make scrollbar invisible */ }
-
-    /* optional: show position indicator in red */
-    ::-webkit-scrollbar-thumb {
-        background: #FF0000; }
 
     .sidebarButtonAnim {
         animation: rotButAnim 500ms infinite; }

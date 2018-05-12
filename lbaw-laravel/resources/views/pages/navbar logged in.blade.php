@@ -74,6 +74,10 @@ $tags = TagController::getFirstXTags(10);
         <div>
             <ul class="navbar-nav mx-auto">
 
+                <a href="{{url('postNewQuestion/')}}">
+                    <button style="margin-top:7px; margin-right:7px;" id="postQuestionButton" type="button" class="btn btn-primary">Post New Question</button>
+                </a>
+
                 <li class="nav-item items-align-right">
                     <a href="{{url('about')}}" class="nav-link" href="#">
                         About</a>

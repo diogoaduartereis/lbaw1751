@@ -79,9 +79,6 @@
                                                     <button type="button" class="btn btn-outline-dark">Search</button>
 
                                             </form>
-                                            <a href="{{url('postNewQuestion/')}}">
-                                                <button id="postQuestionButton" type="button" class="btn btn-primary">Post New Question</button>
-                                            </a>
                                         </div>
                                     </div>
                                 </div>
