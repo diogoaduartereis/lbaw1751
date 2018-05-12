@@ -37,7 +37,7 @@ $tags = TagController::getFirstXTags(10);
                     <i class="fas fa-fire"></i> Hot</a>
             </li>
             <li class="nav-item">
-                <a id="newQuestionsLink" class="nav-link active" href="/">
+                <a id="newQuestionsLink" class="nav-link active" href="/new">
                     <i class="far fa-clock"></i> New</a>
             </li>
             <li class="nav-item dropdown">

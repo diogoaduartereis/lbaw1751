@@ -13,8 +13,9 @@
 
 
 Route::get('about', 'PagesController@about');
-Route::get('', 'PagesController@frontpageNewQuestions');
+Route::get('', 'PagesController@frontpageHotQuestion');
 Route::get('/hot', 'PagesController@frontpageHotQuestion');
+Route::get('/new', 'PagesController@frontpageNewQuestions');
 Route::get('faq', 'PagesController@faq');
 Route::get('404', 'PagesController@error404');
 Route::get('admin', 'PagesController@admin');

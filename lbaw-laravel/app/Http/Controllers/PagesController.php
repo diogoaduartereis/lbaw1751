@@ -9,23 +9,27 @@ use Session;
 use Auth;
 use DB;
 
-class PagesController extends Controller {
-
-    public function frontpage($questions) {
+class PagesController extends Controller 
+{
+    public function frontpage($questions)
+    {
         if ($questions == "error")
             return abort(404);
+
         if (Auth::check())
             return view('pages.index logged in', ['questions' => $questions['questions']], ['questions_tags' => $questions['questions_tags']]);
         else
             return view('pages.index', ['questions' => $questions['questions']], ['questions_tags' => $questions['questions_tags']]);
     }
 
-    public function frontpageNewQuestions() { // default
+    public function frontpageNewQuestions() 
+    { 
         $questions = PostController::getXMostRecentQuestions(5);
         return PagesController::frontpage($questions);
     }
 
-    public function frontpageHotQuestion() {
+    public function frontpageHotQuestion() // default
+    {
         $questions = PostController::getXHotQuestions(5);
         return PagesController::frontpage($questions);
     }

@@ -39,7 +39,7 @@ $tags = TagController::getFirstXTags(10);
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a id="newQuestionsLink" class="nav-link" href="/">
+                    <a id="newQuestionsLink" class="nav-link" href="/new">
                         <i class="far fa-clock"></i> New</a>
                     </a>
                 </li>
