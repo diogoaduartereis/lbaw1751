@@ -85,7 +85,7 @@ else
                 <span class="badge badge-pill badge-primary">{{$numberOfActiveQuestions}}</span>
                 <i id="arrowDown" class="fas fa-angle-down"></i>
             </a>
-            <ul style="max-height:100px; overflow:auto; width:100%; position:absolute;" class="collapse list-unstyled" id="homeSubmenu2">
+            <ul style="max-height:200px; overflow:hidden; overflow-y:auto; width:100%; position:absolute;" class="collapse list-unstyled" id="homeSubmenu2">
                 @foreach ($userActivePosts as $activePost)
                 <li>
                     <a href= {{"/questions/".$activePost->id}}> 
@@ -97,7 +97,7 @@ else
         @endif 
 
         <hr>
-        <li style="margin-top:100px;" class="active">
+        <li style="margin-top:200px;" class="active">
             <a href="{{ route('logout') }}" class="btn rounded-0 border border-dark btn-default btn-lg"
                onclick="event.preventDefault();
     document.getElementById('logout-form').submit();">
