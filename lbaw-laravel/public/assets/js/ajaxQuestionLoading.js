@@ -12,7 +12,7 @@ function loadNextQuestionsFromServer()
 
     let ajaxRequest = new XMLHttpRequest();
     ajaxRequest.addEventListener("load", newQuestionsFromServerArrived);
-    ajaxRequest.open("GET", "/getposts/{offset}/{numberOfPosts}", true);
+    ajaxRequest.open("GET", "/getMostRecentPosts", true);
     ajaxRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     ajaxRequest.send();
 }
