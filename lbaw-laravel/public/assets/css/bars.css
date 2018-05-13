@@ -1,5 +1,11 @@
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
 
+#questionSearchBar
+{
+    width:27vw;
+    margin-left:0px;
+}
+
 @media (min-width: 1200px) {
 
     #sidebar 
@@ -90,7 +96,9 @@ button#sidebarcollapse2
 hr {
     margin: 0 auto 0;
     border-color: gray;
-    width: 90%; }
+    width: 90%; 
+    margin-top:5px;
+}
 
 #profPic {
     display: inline-block;
@@ -226,6 +234,11 @@ ul ul a {
 
 @media (max-width: 480px) {
 
+    #questionSearchBar
+    {
+        width:80%;
+        margin-left:0px;
+    }
 
     div#classContainerID.container
     {
@@ -253,14 +266,14 @@ ul ul a {
 
     #sidebar
     {
-        margin-top:20%;
+        margin-top:26%;
         font-size:110%;
         line-height:1.6;
     }
 
     #signOutID
     {
-        padding-top:75%;
+        padding-top:50px;
     }
 }
 

@@ -39,22 +39,8 @@
                 @include('pages.navbar logged in')
                 <div id="containerID">
                     <div id="contentID">
-                        <div id="classContainerID" class="container">
-                            <div  class="row">
-                                <div style="width:80%; background-color: rgb(250,250,250); position:fixed; z-index:1;" id="searchInputForm" class="col-12">
-                                    <div class="row" id="searchInput">
-                                        <div class="col-8 mx-auto" style="margin-left:10vw;">
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-1">
-                            </div>
-                        </div>
                         <br>
-                        <div style="margin-top:2vw;" id="Questions">
+                        <div id="Questions">
                             @include('pages.index logged in_questionsdiv')
                         </div>
 

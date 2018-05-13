@@ -281,6 +281,11 @@
             margin-left:20px;
         }
 
+        #questionSearch
+        {
+            margin-left:-20px;
+        }
+
         .h6
         {
             font-size:1.1em;
@@ -675,7 +680,7 @@
         #contentID
         {
             width:92%;
-            margin-left:14vw;
+            margin-left:11vw;
             transition:0.3s;
         }
 
