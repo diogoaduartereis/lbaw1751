@@ -205,10 +205,10 @@ class UserController extends Controller {
             $maxNumberPostsToShow = 8;
             $postsTitles = array();
             $userClosedPosts = DB::select('SELECT id, title, date FROM Post JOIN Question ON Post.id=Question.postID
-                WHERE posterID=:posterID AND isClosed=true ORDER BY date DESC', ['posterID' => $id]);
+                WHERE posterID=:posterID AND isvisible=true AND isClosed=true ORDER BY date DESC', ['posterID' => $id]);
             $userClosedPosts = array_slice($userClosedPosts, 0, $maxNumberPostsToShow);
             $userActivePosts = DB::select('SELECT id, title, date FROM Post JOIN Question ON Post.id=Question.postID
-                WHERE posterID=:posterID AND isClosed=false ORDER BY date DESC', ['posterID' => $id]);
+                WHERE posterID=:posterID AND isvisible=true AND isClosed=false ORDER BY date DESC', ['posterID' => $id]);
             $userActivePosts = array_slice($userActivePosts, 0, $maxNumberPostsToShow);
 
             return view('pages.View Profile.View Profile', ['user' => $user, 'userActivePosts' => $userActivePosts,
