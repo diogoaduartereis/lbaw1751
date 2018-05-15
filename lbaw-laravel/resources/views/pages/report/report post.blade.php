@@ -31,13 +31,13 @@
         <p id="lastUrl" style:"display: none" hidden >{{$_GET["last_URL"]}}</p>
         <div id="wrap" class="wrapper">
             @if(Auth::check())
-            @include('pages.sidebar')
+                @include('pages.sidebar')
             @endif
             <div id="content">
                 @if(Auth::check())
-                @include('pages.navbar logged in')
+                    @include('pages.navbar logged in')
                 @else
-                @include('pages.navbar')
+                    @include('pages.navbar')
                 @endif
                 <div id = "containerID">
                     <div id = "contentID">
