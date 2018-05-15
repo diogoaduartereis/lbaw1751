@@ -74,8 +74,12 @@ class PagesController extends Controller
         return view('pages.Tags.tags', ['tags' => $tags]);
     }
 
-    public function reportPost($id) {
-        return view('pages.report.report post', ['id' => $id]);
+    public function reportPost($id) 
+    {
+        if(Auth::check())
+            return view('pages.report.report post', ['id' => $id]);
+
+        return redirect('/');
     }
 
     public function reports()

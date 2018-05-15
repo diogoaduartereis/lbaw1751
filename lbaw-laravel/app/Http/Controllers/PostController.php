@@ -288,7 +288,7 @@ class PostController extends Controller {
                 ->orderBy('date', 'desc')
                 ->skip($firstQuestionOffset)
                 ->take($numberOfQuestions)
-                ->paginate(4);
+                ->paginate(5);
 
         return PostController::checkQuestionsReturn($questions);
     }
@@ -342,26 +342,18 @@ class PostController extends Controller {
           $tagsArray[2] = 'JS';
 
          */
-        $currentDBResults = null;
-        foreach ($tagsArray as $tag) {
-            $retFromDB = DB::table('question')
-                    ->join('tagquestion', 'question.postid', '=', 'tagquestion.question_id')
-                    ->join('tag', 'tagquestion.tag_id', '=', 'tag.id')
-                    ->where('tag.name', '=', $tag)
-                    ->select(DB::raw('count(postid) as tag_count'), 'question.postid')
-                    ->groupBy('question.postid');
-            if ($currentDBResults == null)
-                $currentDBResults = $retFromDB;
-            else
-                $currentDBResults = $currentDBResults->unionAll($retFromDB);
-        }
-        echo $currentDBResults->get();
-        $DBTagResults = $currentDBResults
-                ->select(DB::raw('count(question.postid) as tag_count'), 'postid')
-                ->groupBy('postid')
-                ->orderBy('postid')
+
+
+                echo DB::table('question')
+                ->join('tagquestion', 'question.postid', '=', 'tagquestion.question_id')
+                ->join('tag', 'tagquestion.tag_id', '=', 'tag.id')
+                ->whereIn('tag.name', $tagsArray)
+                ->select(DB::raw('count(question.postid) as tag_count'), 'question.postid as question_id')
+                ->groupBy('question.postid')
+                ->orderBy('tag_count', 'DESC')
                 ->get();
 
+        return;
         echo "\n";
         echo $DBTagResults;
         return;
