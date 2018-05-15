@@ -288,7 +288,7 @@ class PostController extends Controller {
                 ->orderBy('date', 'desc')
                 ->skip($firstQuestionOffset)
                 ->take($numberOfQuestions)
-                ->paginate(4);
+                ->paginate(5);
 
         return PostController::checkQuestionsReturn($questions);
     }

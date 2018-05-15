@@ -92,7 +92,7 @@ use \App\Http\Controllers\ContactsController;
                                                         $availableSubjects = ContactsController::getAvailableSubjects();
                                                         ?>
                                                         <select id="subject" name="subject" class="form-control" required="required">
-                                                            <option value="na" selected="">Choose One:</option>
+                                                            <option value="" selected="">Choose One:</option>
                                                             @foreach ($availableSubjects as $availableSubject)
                                                             <option value="{{$availableSubject->name}}">{{$availableSubject->name}}</option>
                                                             @endforeach
