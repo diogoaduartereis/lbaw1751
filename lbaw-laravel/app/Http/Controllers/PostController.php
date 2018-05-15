@@ -98,8 +98,9 @@ class PostController extends Controller {
                 ->where(DB::raw('post.isvisible'), '=', TRUE)
                 ->where(DB::raw('post.id'), '=', $id)
                 ->get();
-        if (!$questionElements)
-            return "error";
+        if (!$questionElements || count($questionElements) == 0)
+            return redirect('/404');
+
         $answersElements = DB::table('post')->select('users.*', 'post.id as post_id', 'post.posterid', 'post.content', 'post.date as post_date', 'post.isvisible', 'post.points', 'answer.*')
                 ->join('users', DB::raw('post.posterid'), '=', DB::raw('users.id'))
                 ->join('answer', DB::raw('post.id'), '=', DB::raw('answer.postid'))
@@ -107,19 +108,20 @@ class PostController extends Controller {
                 ->where(DB::raw('answer.questionid'), '=', $id)
                 ->orderBy('post_date', 'asc')
                 ->get();
-
         if (!$answersElements)
-            return "error";
+            return redirect('/404');
+
         $questionUserCounter = array(
             'posts' => DB::table('post')->where('posterid', '=', $questionElements[0]->id)->count('posterid'),
             'points' => DB::table('users')->where('id', '=', $questionElements[0]->id)->sum('points')
         );
         if (!$questionUserCounter)
-            return "error";
+            return redirect('/404');
+
         if (Auth::check()) {
             $postVotes = DB::table('postvote')->select('*')->where('posterid', '=', Auth::user()->id)->get();
             if (!$postVotes)
-                return "error";
+                return redirect('/404');
         } else
             $postVotes = null;
 
@@ -130,14 +132,14 @@ class PostController extends Controller {
                 'points' => DB::table('users')->where('id', '=', $answerElements->id)->sum('points')
             );
             if (!$row)
-                return "error";
+                return redirect('/404');
             array_push($answerUserCounter, $row);
         }
 
         $questionUserPointsCounter = DB::table('post')->where('posterid', '=', $questionElements[0]->id)->count('posterid');
 
         if (!$questionUserPointsCounter)
-            return "error";
+            return redirect('/404');
         return view('pages.View Question.index', ['questionElements' => $questionElements[0],
             'answersElements' => $answersElements, 'questionUserCounter' => $questionUserCounter,
             'answerUserCounter' => $answerUserCounter, 'postVotes' => $postVotes
