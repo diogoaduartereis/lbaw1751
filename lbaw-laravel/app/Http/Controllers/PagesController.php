@@ -85,7 +85,7 @@ class PagesController extends Controller
     public function reports()
     {
         if(Auth::user()->type=='ADMIN') {
-            $ret = \App\PostReport::select('postid', 'reporterid', 'date', 'reason', 'username', 'type', 'email', 'state', 'img_path', 'points')->join('users', 'id', 'reporterid')->get();
+            $ret = \App\PostReport::select('postreport.postid','questionid','reporterid', 'postreport.date', 'reason', 'username', 'type', 'email', 'state', 'img_path', 'users.points as userpoints','post.points as postpoints')->join('users', 'id', 'reporterid')->join('post','postreport.postid','post.id')->join('answer','postreport.postid','questionid')->get();
             return view('pages.reports.all', ['reports' => $ret]);
         }
         return redirect('404');

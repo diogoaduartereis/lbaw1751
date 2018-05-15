@@ -71,6 +71,20 @@
                                             $dt->setTimezone(new DateTimeZone('UTC'));
                                             echo $dt->format('d-m-Y H:i:s');
                                             ?></h5></li>
+                                    <li><h5 class="card-text text-dark">Post link: <a href='<?php
+                                            if ($report->questionid == null) {
+                                                echo url('questions/' . $report->questionid);
+                                            } else {
+                                                echo url('questions/' . $report->postid);
+                                            }
+                                            ?>'><?php
+                                                if ($report->questionid == null) {
+                                                    echo url('questions/' . $report->questionid);
+                                                } else {
+                                                    echo url('questions/' . $report->postid);
+                                                }
+                                                ?></a></h5></li>
+                                    <li><h5 class="card-text text-dark">Post Points:{{$report->postpoints}}</h5></li>
                                     <li><h5 class="card-text text-dark">Report Reason:{{$report->reason}}</h5></li>
                                     <li><h5 class="card-text text-dark">Reporter Username:{{$report->username}}</h5>
                                     </li>
@@ -78,7 +92,7 @@
                                     <li><h5 class="card-text text-dark">Reporter User Type:{{$report->type}}</h5>
                                     </li>
                                     <li><h5 class="card-text text-dark">Reporter User
-                                            Points:{{$report->points}}</h5></li>
+                                            Points:{{$report->userpoints}}</h5></li>
                                 </ul>
                                 </p>
                             </div>
