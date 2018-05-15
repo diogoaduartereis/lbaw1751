@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:style="http://www.w3.org/1999/xhtml">
 
     <head>
 
@@ -28,7 +28,7 @@
     <body>
 
         <p id="csrf-token" style:"display: none" hidden >{{csrf_token()}}</p>
-        <p id="lastUrl" style:"display: none" hidden >{{$_GET["last_URL"]}}</p>
+        <p id="lastUrl" style:"display: none" hidden >{{session()->getId("last_URL")}}</p>
         <div id="wrap" class="wrapper">
             @if(Auth::check())
             @include('pages.sidebar')

@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>CodeHome - Post {{ $id }} Reports</title>
+    <title>CodeHome - Reports</title>
 
     <link href="/assets/css/admin.css" rel="stylesheet">
     <link href="/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -88,7 +88,6 @@
                 <br>
             @endforeach
         </div>
-
         <script src="/assets/js/bars.js"></script>
 </body>
 
