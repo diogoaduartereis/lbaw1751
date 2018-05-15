@@ -122,7 +122,7 @@ $tags = TagController::getFirstXTags(10);
 
     @if(Auth::check())
         <a href="{{url('postNewQuestion/')}}">
-            <button style="position:relative; height:96%; margin-top:1px; margin-left:25px;" id="postQuestionButton" type="button" class="btn btn-primary">Post New Question</button>
+            <button style="margin-top:1px; margin-left:25px;" id="postQuestionButton" type="button" class="btn btn-primary">Post New Question</button>
         </a>
     @endif
 
@@ -164,3 +164,6 @@ $tags = TagController::getFirstXTags(10);
         </div>
     </div>
 </nav>
+
+
+<script src="./assets/js/searchQuestion.js"></script>
