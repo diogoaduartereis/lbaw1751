@@ -164,3 +164,6 @@ $tags = TagController::getFirstXTags(10);
         </div>
     </div>
 </nav>
+
+
+<script src="./assets/js/searchQuestion.js"></script>
