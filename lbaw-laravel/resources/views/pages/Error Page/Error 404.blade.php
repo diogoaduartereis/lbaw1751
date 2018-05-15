@@ -53,9 +53,10 @@
 
                                 <div class="error-message" style="font-size: 150%;">
                                     <p class="message">The link you clicked may be broken or the page may have been removed.</p>
-                                    <p class="small">visit the
-                                        <a href="../index logged in.php">homepage</a> or
-                                        <a href="../contacts/index.php" title="Learn more about InVision">contact us</a> about the problem</p>
+                                    <p class="small">
+                                        Visit the
+                                        <a href="/" ><b>homepage</b></a> or
+                                        <a href="/contacts" title="Contact us"><b>contact us</b></a> about the problem</p>
                                 </div>
 
                             </div>
