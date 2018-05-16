@@ -94,6 +94,7 @@ class PagesController extends Controller
                 ->join('post','postreport.postid','post.id')
                 ->join('question','postreport.postid','question.postid')->get();
             $ret = $answers->concat($questions);
+            $ret->sortBy('date');
             return view('pages.reports.all', ['reports' => $ret]);
         }
         return redirect('404');
