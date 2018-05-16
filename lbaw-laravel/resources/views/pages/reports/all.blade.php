@@ -88,8 +88,8 @@
                                     <li><h5 class="card-text text-dark">Post Content:{{$report->content}}</h5></li>
                                     <li><h5 class="card-text text-dark">Post Points:{{$report->postpoints}}</h5></li>
                                     <li><h5 class="card-text text-dark">Report Reason:{{$report->reason}}</h5></li>
-                                    <li><h5 class="card-text text-dark">Reporter Username:{{$report->username}}</h5>
-                                    </li>
+                                    <li><h5 class="card-text text-dark">Reporter Username:{{$report->username}}</h5></li>
+                                    <li><h5 class="card-text text-dark">Reporter ID:{{$report->reporterid}}</h5></li>
                                     <li><h5 class="card-text text-dark">Reporter Email:{{$report->email}}</h5></li>
                                     <li><h5 class="card-text text-dark">Reporter User Type:{{$report->type}}</h5>
                                     </li>
