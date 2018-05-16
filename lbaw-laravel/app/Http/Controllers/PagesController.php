@@ -85,7 +85,15 @@ class PagesController extends Controller
     public function reports()
     {
         if(Auth::user()->type=='ADMIN') {
-            $ret = \App\PostReport::select('postreport.postid','questionid','reporterid', 'postreport.date', 'reason', 'username', 'type', 'email', 'state', 'img_path', 'users.points as userpoints','post.points as postpoints')->join('users', 'id', 'reporterid')->join('post','postreport.postid','post.id')->join('answer','postreport.postid','questionid')->get();
+            $answers = \App\PostReport::select('postreport.postid','questionid','reporterid', 'postreport.date', 'reason', 'username', 'type', 'email', 'state', 'img_path', 'users.points as userpoints','post.points as postpoints','post.content as content')
+                ->join('users', 'id', 'reporterid')
+                ->join('post','postreport.postid','post.id')
+                ->join('answer','postreport.postid','questionid')->get();
+            $questions = \App\PostReport::select('postreport.postid as postid','post.id as postid','reporterid', 'postreport.date', 'reason', 'username', 'type', 'email', 'state', 'img_path', 'users.points as userpoints','post.points as postpoints','post.content as content')
+                ->join('users', 'id', 'reporterid')
+                ->join('post','postreport.postid','post.id')
+                ->join('question','postreport.postid','question.postid')->get();
+            $ret = $answers->concat($questions);
             return view('pages.reports.all', ['reports' => $ret]);
         }
         return redirect('404');

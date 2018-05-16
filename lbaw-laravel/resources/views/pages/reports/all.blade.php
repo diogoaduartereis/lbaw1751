@@ -73,17 +73,19 @@
                                             ?></h5></li>
                                     <li><h5 class="card-text text-dark">Post link: <a href='<?php
                                             if ($report->questionid == null) {
-                                                echo url('questions/' . $report->questionid);
-                                            } else {
                                                 echo url('questions/' . $report->postid);
+                                            } else {
+                                                echo url('questions/' . $report->questionid);
                                             }
                                             ?>'><?php
                                                 if ($report->questionid == null) {
-                                                    echo url('questions/' . $report->questionid);
+                                                    echo 'Question '.$report->postid;
                                                 } else {
-                                                    echo url('questions/' . $report->postid);
+                                                    echo  'Answer on Question '.$report->questionid;
                                                 }
                                                 ?></a></h5></li>
+                                    <li><h5 class="card-text text-dark">Post ID:{{$report->postid}}</h5></li>
+                                    <li><h5 class="card-text text-dark">Post Content:{{$report->content}}</h5></li>
                                     <li><h5 class="card-text text-dark">Post Points:{{$report->postpoints}}</h5></li>
                                     <li><h5 class="card-text text-dark">Report Reason:{{$report->reason}}</h5></li>
                                     <li><h5 class="card-text text-dark">Reporter Username:{{$report->username}}</h5>
