@@ -19,6 +19,28 @@ class UserController extends Controller {
         
     }
 
+    public function reports($id)
+    {
+        if(Auth::user()->type=='ADMIN') {
+            $answers = \App\PostReport::select('postreport.postid','answer.questionid as questionid','reporterid', 'postreport.date as date', 'reason', 'username', 'type', 'email', 'state', 'img_path', 'users.points as userpoints','post.points as postpoints','post.content as content')
+                ->join('users', 'postreport.reporterid', 'users.id')
+                ->join('post','postreport.postid','post.id')
+                ->join('answer','postreport.postid','answer.postid')
+                ->where('post.posterid',$id)
+                ->orderBy('date','DESC')->get();
+            $questions = \App\PostReport::select('postreport.postid as postid','post.id as postid','reporterid', 'postreport.date as date', 'reason', 'username', 'type', 'email', 'state', 'img_path', 'users.points as userpoints','post.points as postpoints','post.content as content')
+                ->join('users', 'id', 'reporterid')
+                ->join('post','postreport.postid','post.id')
+                ->join('question','postreport.postid','question.postid')
+                ->where('post.posterid',$id)
+                ->orderBy('date','DESC')->get();
+            $ret = $answers->concat($questions);
+            $ret->sortBy('date');
+            return view('pages.reports.userreports', ['reports' => $ret],['id'=>$id]);
+        }
+        return redirect('404');
+    }
+
     public function getSelfCurrentPoints() {
         $userPoints = Auth::user()->points;
         //for security purposes, do not return DB error information to the user possibly gibing 
