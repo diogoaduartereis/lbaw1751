@@ -97,6 +97,9 @@ Route::get('report/post/{id}', 'PagesController@reportPost');
 //Get Reports Of A Post
 Route::get('/post/{id}/reports', 'PostController@reports');
 
+//Get Reports Of A User
+Route::get('/users/{id}/reports','UserController@reports');
+
 //Get Latest Reports
 Route::get('/reports','PagesController@reports');
 

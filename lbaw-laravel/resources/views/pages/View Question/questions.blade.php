@@ -7,7 +7,7 @@
     <section id="user-description" class="col-md-3 ">
         <div class="card border-dark">
             <h5 class="card-header border-dark" id="non-mobile-poster-name">
-                <a href="../View Profile/View Profile.php">
+                <a href="{{url('/users/'.$questionElements->posterid)}}">
                     <i class="fa fa-cricle"></i>{{$questionElements->username}}
                 </a>
             </h5>
@@ -17,7 +17,7 @@
                         <img style="height:90%; width:80%; margin-left:15%; margin-right:13%; margin-top:9%;" class="img img-responsive" src="../assets/img/users/{{$questionElements->img_path}}" alt="{{$questionElements->username}}'s avatar">
                     </figure>
                     <div id="mobile-poster-name">
-                        <a href="../View Profile/View Profile.php">
+                        <a href="{{url('/users/'.$questionElements->posterid)}}">
                             <i class="fa fa-cricle"></i>{{$questionElements->username}}
                         </a>
                     </div>
