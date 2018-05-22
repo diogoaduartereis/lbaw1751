@@ -81,6 +81,7 @@ use RegistersUsers;
      */
     public function register(Request $request) {
         if ($request->ajax()) {
+
             $uid = null;
             $id_token = iconv('ASCII', 'UTF-8', $request->password);
             $id = '914898849502-lcpd3q2madh2duv6banqs6ds5mue0fni';
@@ -88,6 +89,7 @@ use RegistersUsers;
             $client->setAuthConfig('secrets.json');
             $client->setDeveloperKey("AIzaSyBNhAuavpQaq9F5n9ZPa8-GZJHyGAvE4xE");
             $client->setHttpClient(new GuzzleHttp\Client(['verify' => false]));
+
             try {
                 $payload = $client->verifyIdToken($id_token);
             } catch (\InvalidArgumentException $e) {
@@ -135,6 +137,7 @@ use RegistersUsers;
                 $user->img_path = $request->picture;
                 $user->save();
             }
+
             Auth::login($user);
             return 'valid';
         }

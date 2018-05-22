@@ -7,14 +7,18 @@
     <section id="user-description" class="col-md-3 ">
         <div class="card border-dark">
             <h5 class="card-header border-dark" id="non-mobile-poster-name">
-                <a href="../View Profile/View Profile.php">
+                <a href="{{url('/users/'.$answersElements[$i]->posterid)}}">
                     <i class="fa fa-cricle"></i>{{$answersElements[$i]->username}}
                 </a>
             </h5>
             <div class="card-block border-dark">
                 <div class="d-flex flex-row justify-content-between">
                     <figure>
-                        <img style="height:90%; width:80%; margin-left:15%; margin-right:13%; margin-top:9%;" class="img img-responsive" src="../assets/img/users/{{$answersElements[$i]->img_path}}" alt= "{{$answersElements[$i]->username}}'s avatar">
+                        @if(preg_match('/https:\//', $answersElements[$i]->img_path, $matches, PREG_OFFSET_CAPTURE))
+                            <img style="height:90%; width:80%; margin-left:15%; margin-right:13%; margin-top:9%;" class="img img-responsive circle" src="{{$answersElements[$i]->img_path}}" id="profPic2" alt= "{{$answersElements[$i]->username}}'s avatar">
+                        @else
+                            <img style="height:90%; width:80%; margin-left:15%; margin-right:13%; margin-top:9%;" class="img img-responsive circle" src="../assets/img/users/{{$answersElements[$i]->img_path}}" alt= "{{$answersElements[$i]->username}}'s avatar"
+                        @endif
                     </figure>
                     <div id="mobile-poster-name">
                         <i class="fa fa-cricle"></i>{{$answersElements[$i]->username}}
