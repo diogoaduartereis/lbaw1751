@@ -43,69 +43,66 @@
                         <div id="Questions">
                             @include('pages.index logged in_questionsdiv')
                         </div>
-
-                        <div id="QuestionsFromSearch">
-                            <p id="csrf-token" style:"display: none" hidden >{{csrf_token()}}</p>      
-                            <br>
-
-                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
                         <script src="./assets/js/voteInPost.js"></script>
 
                         <script>
-
-$('ul.pagination').hide();
-$(function () {
-    $('.infinite-scroll').jscroll({
-        autoTrigger: true,
-        loadingHtml: '<img class="center-block" src="./assets/img/loading.gif" alt="Loading..." />',
-        padding: 0,
-        nextSelector: '.pagination li.active + li a',
-        contentSelector: 'div.infinite-scroll',
-        callback: function () {
-            $('ul.pagination').remove();
-        }
-    });
-});
-
-
-$('.upvoteArr').mouseover(function () {
-    $(".upvoteArr").removeClass('text-secondary');
-    $(".upvoteArr").addClass('text-success');
-})
-$('.upvoteArr').mouseleave(function () {
-    $(".upvoteArr").addClass('text-secondary');
-    $(".upvoteArr").removeClass('text-success');
-})
+                            $('ul.pagination').hide();
+                            $(function () {
+                                $('.infinite-scroll').jscroll({
+                                    autoTrigger: true,
+                                    loadingHtml: '<img class="center-block" src="./assets/img/loading.gif" alt="Loading..." />',
+                                    padding: 0,
+                                    nextSelector: '.pagination li.active + li a',
+                                    contentSelector: 'div.infinite-scroll',
+                                    callback: function () {
+                                        $('ul.pagination').remove();
+                                    }
+                                });
+                            });
 
 
-$('.downvoteArr').mouseover(function () {
-    $(".downvoteArr").removeClass('text-secondary');
-    $(".downvoteArr").addClass('text-danger');
-})
-$('.downvoteArr').mouseleave(function () {
-    $(".downvoteArr").addClass('text-secondary');
-    $(".downvoteArr").removeClass('text-danger');
-})
+                            $('.upvoteArr').mouseover(function () {
+                                $(".upvoteArr").removeClass('text-secondary');
+                                $(".upvoteArr").addClass('text-success');
+                            })
+                            $('.upvoteArr').mouseleave(function () {
+                                $(".upvoteArr").addClass('text-secondary');
+                                $(".upvoteArr").removeClass('text-success');
+                            })
 
-$(function () {
-    $('.dropdown-menu li').on('click', function (event) {
-        var $checkbox = $(this).find('.checkbox');
-        if (!$checkbox.length) {
-            return;
-        }
-        var $input = $checkbox.find('input');
-        var $icon = $checkbox.find('span.glyphicon');
-        if ($input.is(':checked')) {
-            $input.prop('checked', false);
-            $icon.removeClass('glyphicon-check').addClass('glyphicon-unchecked')
-        } else {
-            $input.prop('checked', true);
-            $icon.removeClass('glyphicon-unchecked').addClass('glyphicon-check')
-        }
-        return false;
-    });
-});
+
+                            $('.downvoteArr').mouseover(function () {
+                                $(".downvoteArr").removeClass('text-secondary');
+                                $(".downvoteArr").addClass('text-danger');
+                            })
+                            $('.downvoteArr').mouseleave(function () {
+                                $(".downvoteArr").addClass('text-secondary');
+                                $(".downvoteArr").removeClass('text-danger');
+                            })
+
+                            $(function () {
+                                $('.dropdown-menu li').on('click', function (event) {
+                                    var $checkbox = $(this).find('.checkbox');
+                                    if (!$checkbox.length) {
+                                        return;
+                                    }
+                                    var $input = $checkbox.find('input');
+                                    var $icon = $checkbox.find('span.glyphicon');
+                                    if ($input.is(':checked')) {
+                                        $input.prop('checked', false);
+                                        $icon.removeClass('glyphicon-check').addClass('glyphicon-unchecked')
+                                    } else {
+                                        $input.prop('checked', true);
+                                        $icon.removeClass('glyphicon-unchecked').addClass('glyphicon-check')
+                                    }
+                                    return false;
+                                });
+                            });
                         </script>
                         <script src="./assets/js/bars.js"></script>
                         </body>

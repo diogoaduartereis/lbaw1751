@@ -7,7 +7,6 @@ $tags = TagController::getFirstXTags(10);
 
 <nav style="width:100%;" id="navbar" class="navbar rounded-0 navbar-expand-lg navbar-dark bg-dark sticky-top">
     <a style="color:white;" href="{{url('login')}}"> Sign In </a>
-</button>
 
 <a href="{{url('register')}}" style="margin-left:15px; color:white; background-color:rgb(41, 157, 252);" class="btn btn-primary btn-md rounded"
    data-toggle="collapse" data-target="#sidebar" data-parent="#navbar" aria-expanded="false" aria-controls="sidebar">
@@ -32,13 +31,13 @@ $tags = TagController::getFirstXTags(10);
 <div class="collapse navbar-collapse" id="navbarPopularContent">
     <div>
         <ul class="navbar-nav mx-auto">
-            <li id="hotQuestionsLink" class="nav-item">
+            <li class="nav-item">
             @if(Request::is('hot') || Request::is('/'))
                 <a id="hotQuestionsLink" class="nav-link active" href="{{url('/hot')}}">
             @else 
                 <a id="hotQuestionsLink" class="nav-link" href="{{url('/hot')}}">
             @endif
-                    <i class="fas fa-fire"></i> Hot</a>
+                    <i class="fas fa-fire"></i> Hot
                 </a>
             </li>
             <li class="nav-item">
@@ -47,7 +46,7 @@ $tags = TagController::getFirstXTags(10);
             @else 
                 <a id="newQuestionsLink" class="nav-link" href="{{url('/new')}}">
             @endif
-                <i class="far fa-clock"></i> New</a>
+                <i class="far fa-clock"></i> New
             </a>
             </li>
             <li class="nav-item dropdown">
@@ -58,11 +57,13 @@ $tags = TagController::getFirstXTags(10);
                 <div class="dropdown-menu bg-light" aria-labelledby="navbarDropdown">
                     @if ($tags == "error")
                     <a class="dropdown-item text-dark" href="#">
-                        <i class="fas fa-tag"></i> Sorry, it was not possible to load tags from DB server.</a>
+                        <i class="fas fa-tag"></i> Sorry, it was not possible to load tags from DB server.
+                    </a>
                     @else
                     @foreach($tags as $tag)
                     <a class="dropdown-item text-dark" href="#">
-                        <i class="fas fa-tag"></i> {{$tag->name}}</a>
+                        <i class="fas fa-tag"></i> {{$tag->name}}
+                    </a>
                     @endforeach
                     @endif
                 </div>
@@ -73,7 +74,7 @@ $tags = TagController::getFirstXTags(10);
             @else
                 <a class="nav-link" href="{{url('/tags')}}">
             @endif
-                    <i class="fas fa-tag"></i> All Tags</a>
+                    <i class="fas fa-tag"></i> All Tags
                 </a>
             </li>
         </ul>
@@ -90,7 +91,7 @@ $tags = TagController::getFirstXTags(10);
                 <li class="nav-item items-align-right">
             @endif
                 <a href="{{url('about')}}" class="nav-link">
-                    About</a>
+                    About
                 </a>
             </li>
 
@@ -100,7 +101,7 @@ $tags = TagController::getFirstXTags(10);
             <li class="nav-item">
             @endif
                 <a href="{{url('contacts')}}" class="nav-link">
-                    Contacts</a>
+                    Contacts
                 </a>
             </li>
 
@@ -110,7 +111,7 @@ $tags = TagController::getFirstXTags(10);
             <li class="nav-item">
             @endif
                 <a href="{{url('faq')}}" class="nav-link">
-                    FAQ</a>
+                    FAQ
                 </a>
             </li>
         </ul>

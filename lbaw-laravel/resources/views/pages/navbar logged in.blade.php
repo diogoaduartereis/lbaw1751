@@ -10,9 +10,9 @@ $tags = TagController::getFirstXTags(10);
     <button id="sidebarCollapse" class="btn border-0 bg-transparent" data-toggle="collapse" data-target="#sidebar" data-parent="#navbar"
             aria-expanded="false" aria-controls="sidebar">
         @if(preg_match('/https:\//', Auth::user()->img_path, $matches, PREG_OFFSET_CAPTURE))
-        <img class="img-responsive rounded-circle" width="30" height="30" src="{{Auth::user()->img_path}}" id="profPic2">
+        <img class="img-responsive rounded-circle" width="30" height="30" src="{{Auth::user()->img_path}}" alt="Profile Picture" id="profPic2">
         @else
-        <img class="img-responsive rounded-circle" width="30" height="30" src="/assets/img/users/{{Auth::user()->img_path}}" id="profPic2">
+        <img class="img-responsive rounded-circle" width="30" height="30" src="/assets/img/users/{{Auth::user()->img_path}}" alt="Profile Picture" id="profPic2">
         @endif
     </button>
     <a class="navbar-brand" href="/">
@@ -21,12 +21,12 @@ $tags = TagController::getFirstXTags(10);
     </a>
 
     <button id="buttonToggler" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarAsideContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 
     <button id="buttonTogglerCategories" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarPopularContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            aria-expanded="false" aria-label="Toggle navigation">
         <b> Categories <i class="fas fa-angle-down"></i> </b>
     </button>
 
@@ -40,7 +40,6 @@ $tags = TagController::getFirstXTags(10);
 	                    <a id="hotQuestionsLink" class="nav-link" href="{{url('/hot')}}">
 	                @endif
                         <i class="fas fa-fire"></i> Hot</a>
-                    </a>
                 </li>
                 <li class="nav-item">
 	                @if(Request::is('new'))
@@ -48,8 +47,7 @@ $tags = TagController::getFirstXTags(10);
 	                @else 
 	                    <a id="newQuestionsLink" class="nav-link" href="{{url('/new')}}">
 	                @endif
-                        <i class="far fa-clock"></i> New</a>
-                    </a>
+                        <i class="far fa-clock"></i> New</a> 
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
@@ -75,8 +73,7 @@ $tags = TagController::getFirstXTags(10);
                 @else
                     <a class="nav-link" href="{{url('/tags')}}">
                 @endif
-                        <i class="fas fa-tag"></i> All Tags</a>
-                    </a>
+                    <i class="fas fa-tag"></i> All Tags</a>
                 </li>
 
                 <li style="margin-top:8px; margin-left:15px;" class="nav-item">
@@ -108,12 +105,12 @@ $tags = TagController::getFirstXTags(10);
                                     </label>
                                 </li> 
                             </ul>
-                        <input placeholder="Type to search questions..." id="questionSearchBar" type="text" class="form-control border-dark rounded-0" aria-label="Text input with segmented dropdown button" data-toggle="tooltip"
-                                data-placement="bottom" title="Search For Questions. Use the # before a word to add a tag search to your question.">
-                        <button style="height:32px; margin-top:1px;" type="button" class="btn btn-sm btn-default"> 
-                            <i class="fas fa-search"></i>
-                        </button>
-
+                            <input placeholder="Type to search questions..." id="questionSearchBar" type="text" class="form-control border-dark rounded-0" aria-label="Text input with segmented dropdown button" data-toggle="tooltip"
+                                    data-placement="bottom" title="Search For Questions. Use the # before a word to add a tag search to your question.">
+                            <button style="height:32px; margin-top:1px;" type="button" class="btn btn-sm btn-default"> 
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
                     </form>
                 </li>
             </ul>
@@ -121,9 +118,12 @@ $tags = TagController::getFirstXTags(10);
     </div>
 
     @if(Auth::check())
-        <a href="{{url('postNewQuestion/')}}">
-            <button style="margin-top:1px; margin-left:25px;" id="postQuestionButton" type="button" class="btn btn-primary">Post New Question</button>
-        </a>
+    <form style="display: inline" action="{{url('postNewQuestion/')}}" method="get">
+        <button type="submit" style="margin-top:1px; margin-left:25px;" id="postQuestionButton" class="btn btn-primary">
+            Post New Question
+        </button>
+    </form>
+        
     @endif
 
     <div class="collapse navbar-collapse justify-content-end" id="navbarAsideContent">
@@ -136,7 +136,7 @@ $tags = TagController::getFirstXTags(10);
                 <li class="nav-item items-align-right">
                 @endif
                     <a href="{{url('about')}}" class="nav-link">
-                        About</a>
+                        About
                     </a>
                 </li>
 
@@ -146,7 +146,7 @@ $tags = TagController::getFirstXTags(10);
                 <li class="nav-item">
                 @endif
                     <a href="{{url('contacts')}}" class="nav-link">
-                        Contacts</a>
+                        Contacts
                     </a>
                 </li>
 
@@ -156,7 +156,7 @@ $tags = TagController::getFirstXTags(10);
                 <li class="nav-item">
                 @endif
                     <a href="{{url('faq')}}" class="nav-link">
-                        FAQ</a>
+                        FAQ
                     </a>
                 </li>
             </ul>

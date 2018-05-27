@@ -34,7 +34,7 @@
 
                 @include('pages.navbar logged in') 
 
-                <p id="csrf-token" style:"display: none" hidden >{{csrf_token()}}</p>  
+                <p id="csrf-token" style="display: none" hidden >{{csrf_token()}}</p>  
                 <div id="containerID">
                     <div id="contentID">
                         <div id="classContainerID" class="container">

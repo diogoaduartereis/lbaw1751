@@ -24,7 +24,7 @@ else
                     <div class="row mx-auto">
                         <div class="col-12" style="max-height:100%;">
                             <div class="row">
-                                <div clas="col-12">
+                                <div class="col-12">
                                     <h4>
                                         {{Auth::user()->username}}
                                     </h4>
@@ -33,20 +33,22 @@ else
                         </div>
                     </div>
                     <div class="row mx-auto">
-                        <div clas="col-12">
-                            <h5 id="userPointsArea">
+                        <div class="col-12">
                                 @if(Auth::user()->points > -1)
                                 <div class="text-success" style="margin-left:2vw;"> 
-                                    <i class="fas fa-plus" style="padding-right: 3px;"></i>
-                                    {{Auth::user()->points}} Points
+                                    <h5> 
+                                        <i class="fas fa-plus" style="padding-right: 3px;"></i>
+                                        {{Auth::user()->points}} Points 
+                                    </h5>
                                 </div>
                                 @else
                                 <div class="text-danger" style="margin-left:2vw;"> 
-                                    <i class="fas fa-minus" style="padding-right: 3px; color:red"></i>
-                                    {{Auth::user()->points * (-1)}} Points
+                                    <h5>
+                                        <i class="fas fa-minus" style="padding-right: 3px; color:red"></i>
+                                        {{Auth::user()->points * (-1)}} Points
+                                    </h5>
                                 </div>
                                 @endif
-                            </h5>
                         </div>
                     </div>
                 </div>
@@ -96,7 +98,7 @@ else
         </li>
         @endif 
 
-        <hr>
+        
         <li style="margin-top:200px;" class="active">
             <a href="{{ route('logout') }}" class="btn rounded-0 border border-dark btn-default btn-lg"
                onclick="event.preventDefault();
@@ -106,7 +108,7 @@ else
 
             <form id="logout-form" action="/logout" method="POST" style="display: none;">
                 {{ csrf_field() }}
-                <button hidden="true" type="submit"></button>
+                <button hidden type="submit"></button>
             </form>
         </li>
     </ul>

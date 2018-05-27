@@ -11,6 +11,7 @@ function deleteQuestionInQuestionPage(event)
 
 function deleteQuestion(event)
 {
+    event.preventDefault();
     let ajaxRequest = new XMLHttpRequest();
     ajaxRequest.addEventListener("load", questionRemoved);
     deletePost(event, ajaxRequest);
