@@ -78,6 +78,13 @@ else
         </li>
         @endif
 
+        @if(Auth::user()->type == 'ADMIN')
+            <li class="active">
+                <a href= {{url('/reports')}}>
+                    <i class="fas fa-cogs"></i> Recent Reports</a>
+            </li>
+        @endif
+
         @if($numberOfActiveQuestions != 0)
         <li>
             <!-- Link with dropdown items -->
