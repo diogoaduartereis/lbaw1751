@@ -1,0 +1,10 @@
+@media (min-width: 1366px)
+{
+    #sidebar
+    {
+        min-width:17.2vw;
+        max-width:17.2vw;
+        font-size:90%;
+    }
+
+}
