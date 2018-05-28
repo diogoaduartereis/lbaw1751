@@ -360,7 +360,7 @@ class PostController extends Controller {
                 ->whereIn('tag.name', $tagsArray)
                 ->select(DB::raw('count(question.postid) as tag_count'), 'question.postid as question_id')
                 ->groupBy('question.postid')
-                ->orderBy('tag_count', 'DESC');
+                ->orderBy('tag_count', 'DESC')->get();
                 
                 $keyword_matches = DB::table('question')
                 ->join('post', 'question.postid', '=', 'post.id')
@@ -368,8 +368,10 @@ class PostController extends Controller {
                 ->orWhereIn('post.content', $keywordsArray)
                 ->select(DB::raw('count(question.postid) as keyword_count'), 'question.postid as question_id')
                 ->groupBy('question.postid')
-                ->orderBy('keyword_count', 'DESC');
+                ->orderBy('keyword_count', 'DESC')->get();
                 
+                $final_results = $tags_matches->merge($keyword_matches)->all();
+                echo $final_results;
 
         return;
         echo "\n";
