@@ -13,7 +13,7 @@ $tags = TagController::getFirstXTags(10);
     Sign Up
 </a>
 
-<a style="padding-top: 12px; padding-right:0px; font-size:140%;" class="navbar-brand" href="/">
+<a style="padding-top: 12px; padding-right:0px; font-size:140%;" title="CodeHome homepage" class="navbar-brand" href="/">
     <b>
         Code<i class="fas fa-home"></i>ome </b>
 </a>
@@ -31,16 +31,16 @@ $tags = TagController::getFirstXTags(10);
 <div class="collapse navbar-collapse" id="navbarPopularContent">
     <div>
         <ul class="navbar-nav mx-auto">
-            <li class="nav-item">
+            <li class="nav-item"  title="Recent top voted questions">
             @if(Request::is('hot') || Request::is('/'))
                 <a id="hotQuestionsLink" class="nav-link active" href="{{url('/hot')}}">
             @else 
-                <a id="hotQuestionsLink" class="nav-link" href="{{url('/hot')}}">
+                <a id="hotQuestionsLink" class="nav-link"  title="Recent top voted questions" href="{{url('/hot')}}">
             @endif
                     <i class="fas fa-fire"></i> Hot
                 </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item"  title="Recent questions">
             @if(Request::is('new'))
                 <a id="newQuestionsLink" class="nav-link active" href="{{url('/new')}}">
             @else 
@@ -74,7 +74,7 @@ $tags = TagController::getFirstXTags(10);
             @else
                 <a class="nav-link" href="{{url('/tags')}}">
             @endif
-                    <i class="fas fa-tag"></i> All Tags
+                    <i class="fas fa-tag" ></i> All Tags
                 </a>
             </li>
         </ul>

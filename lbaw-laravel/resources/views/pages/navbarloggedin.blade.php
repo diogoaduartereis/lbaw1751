@@ -15,7 +15,7 @@ $tags = TagController::getFirstXTags(10);
         <img class="img-responsive rounded-circle" width="30" height="30" src="/assets/img/users/{{Auth::user()->img_path}}" alt="Profile Picture" id="profPic2">
         @endif
     </button>
-    <a class="navbar-brand" href="/">
+    <a class="navbar-brand" title="CodeHome homepage" href="/">
         <b>
             Code<i class="fas fa-home"></i>ome </b>
     </a>
@@ -33,7 +33,7 @@ $tags = TagController::getFirstXTags(10);
     <div class="collapse navbar-collapse" id="navbarPopularContent">
         <div>
             <ul class="navbar-nav mx-auto">
-                <li class="nav-item">
+                <li class="nav-item" title="Recent top voted questions">
 	                @if(Request::is('hot') || Request::is('/'))
 	                    <a id="hotQuestionsLink" class="nav-link active" href="{{url('/hot')}}">
 	                @else 
@@ -41,13 +41,13 @@ $tags = TagController::getFirstXTags(10);
 	                @endif
                         <i class="fas fa-fire"></i> Hot</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" title="Recent questions">
 	                @if(Request::is('new'))
 	                    <a id="newQuestionsLink" class="nav-link active" href="{{url('/new')}}">
 	                @else 
 	                    <a id="newQuestionsLink" class="nav-link" href="{{url('/new')}}">
 	                @endif
-                        <i class="far fa-clock"></i> New</a> 
+                        <i class="far fa-clock" ></i> New</a> 
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
