@@ -25,7 +25,7 @@ else
                         <div class="col-12" style="max-height:100%;">
                             <div class="row">
                                 <div class="col-12">
-                                    <h4>
+                                    <h4 id="sidebarUsername">
                                         {{Auth::user()->username}}
                                     </h4>
                                 </div>
@@ -33,17 +33,17 @@ else
                         </div>
                     </div>
                     <div class="row mx-auto">
-                        <div class="col-12">
+                        <div id="userPointsArea" class="col-12">
                                 @if(Auth::user()->points > -1)
                                 <div class="text-success" style="margin-left:2vw;"> 
-                                    <h5> 
+                                    <h5 style="display:inline;"> 
                                         <i class="fas fa-plus" style="padding-right: 3px;"></i>
-                                        {{Auth::user()->points}} Points 
+                                        {{Auth::user()->points}} Points
                                     </h5>
                                 </div>
                                 @else
                                 <div class="text-danger" style="margin-left:2vw;"> 
-                                    <h5>
+                                    <h5 style="display:inline;">
                                         <i class="fas fa-minus" style="padding-right: 3px; color:red"></i>
                                         {{Auth::user()->points * (-1)}} Points
                                     </h5>

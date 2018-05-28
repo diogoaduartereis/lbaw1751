@@ -3,6 +3,7 @@
 
 <script src="./assets/js/deletePost.js"></script>
 <div class ="infinite-scroll">
+    <?php $index = 0 ?>
     @foreach ($questions as $question)
     <div  id="question-{{$question->question_id}}" class="row">
         <div class="col-12">
@@ -10,17 +11,43 @@
                 <div class="card border">
                     <div class="card-header border">
                         <div class="row">
-                            <div class="col-12">
+                            <div style="font-size:120%;" class="col-12">
                                 <a href="./questions/{{$question->question_id}}"> <b> {{$question->title}} </b></a>
-                                <a style="color: inherit;text-decoration: none;padding-left:10px;" data-toggle="tooltip" data-placement="bottom"
-                                title="Upvote Question">
-                                    <i id="upvoteArr-{{$question->question_id}}" class="fas fa-caret-up upvoteArr" onclick="voteInPost(event, 1)">
-                                    </i>
-                                </a>
-                                <a style="color: inherit;text-decoration: none;" data-toggle="tooltip" data-placement="top" title="Downvote Question">
-                                    <i id="downvoteArr-{{$question->question_id}}" class="fas fa-caret-down downvoteArr" onclick="voteInPost(event, - 1)"></i>
-                                </a>
                                 @include('pages.showQuestionPoints')
+
+                                <?php
+                                $questionVoteValue = "null";
+                                for ($j = 0; $j < sizeof($postVotes); $j++) 
+                                {
+                                    if ($question->question_id == $postVotes[$j]->postid)
+                                    $questionVoteValue = $postVotes[$j]->value;
+                                }
+
+                                if ($questionVoteValue == "null" || $questionVoteValue > 0): ?>
+                                <i id="downvoteArr-{{$question->question_id}}" class="far fa-lg fa-arrow-alt-circle-down voteDown downvoteArrow" 
+                                        onclick="return downvotePost(this,{{$question->question_id}},{{$questionVoteValue}},'frontpage')"
+                                        onmouseover="return arrowToRed(this)" onmouseleave="return arrowToDefault(this)">
+                                </i>
+                                <?php elseif ($questionVoteValue < 0): ?>
+                                    <i id="downvoteArr-{{$question->question_id}}" class="far fa-lg fa-arrow-alt-circle-down voteDown downvoteArrow text-danger" 
+                                            onclick="return downvotePost(this,{{$question->question_id}},{{$questionVoteValue}},'frontpage')"
+                                            onmouseover="" onmouseleave="">
+                                    </i>
+                                <?php endif;
+
+                                if ($questionVoteValue == "null" || $questionVoteValue < 0): 
+                                ?>
+                                    <i id="upvoteArr-{{$question->question_id}}" class="far fa-lg fa-arrow-alt-circle-up voteUp upvoteArrow" 
+                                        onclick="return upvotePost(this,{{$question->question_id}},{{$questionVoteValue}},'frontpage')"
+                                        onmouseover="return arrowToGreen(this)" onmouseleave="return arrowToDefault(this)">
+                                    </i>
+                                <?php elseif ($questionVoteValue > 0): ?>
+                                    <i id="upvoteArr-{{$question->question_id}}" class="far fa-lg fa-arrow-alt-circle-up voteUp upvoteArrow text-success" 
+                                        onclick="return upvotePost(this,{{$question->question_id}},{{$questionVoteValue}},'frontpage')"
+                                        onmouseover="" onmouseleave="">
+                                    </i>
+                                <?php endif; ?>
+                                <?php $index++ ?>
                             </div>
                         </div>
                     </div>
@@ -31,10 +58,10 @@
                             <h5 style="margin-top:4px;" class="card-text text-dark">{{$question->content}}</h5>
                             <br>
                             <div class="sticky-right">
-                                <h6 id="post{{$question->question_id}}PosterPoints" style="font-size:1.2em; color: rgb(0, 153, 255);">
+                                <h6 class="postBy">
                                     By: 
                                     <a href="./users/{{$question->poster_id}}">{{$question->username}}</a> 
-                                    ({{$question->poster_points}} Points)
+                                    <h6 class="postByPoints" id="post{{$question->question_id}}PosterPoints">({{$question->poster_points}} Points)</h6>
                                 </h6>
                             </div>
                             <br>
@@ -85,3 +112,5 @@
         overflow: hidden;
     }
 </style>
+
+<script src="../assets/js/voteInPostOnQuestionPage.js"></script>

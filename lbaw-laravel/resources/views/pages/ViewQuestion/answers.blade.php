@@ -36,10 +36,10 @@
                 </div>
             </div>
         </div>
-        <div style="font-size:1.6em;" class="text-secondary">
+        <div style="font-size:1.6em;">
             @if(Auth::check())
 
-            <?php if ($voteValue == null || $voteValue < 0): ?>
+            <?php if ($voteValue == "null" || $voteValue < 0): ?>
                 <i style="cursor:pointer;" id="upvoteArr-{{$answersElements[$i]->post_id}}" onclick="return upvotePost(this, {{$answersElements[$i]->post_id}}, {{$voteValue}})" 
                    onmouseover="return arrowToGreen(this)" onmouseleave="return arrowToDefault(this)" class="far fa-arrow-alt-circle-up voteUp">
                 </i>
@@ -56,14 +56,14 @@
             @if(Auth::check())
 
 
-            <?php if ($voteValue == null || $voteValue > 0): ?>
+            <?php if ($voteValue == "null" || $voteValue > 0): ?>
                 <i style="cursor:pointer;" id="downvoteArr-{{$answersElements[$i]->post_id}}" onclick="return downvotePost(this,{{$answersElements[$i]->post_id}},{{$voteValue}})" 
-                   onmouseover="return arrowToRed(this)" onmouseleave="return arrowToDefault(this)" class="far fa-arrow-alt-circle-down voteDown text-secondary">
+                   onmouseover="return arrowToRed(this)" onmouseleave="return arrowToDefault(this)" class="far fa-arrow-alt-circle-down voteDown">
                 </i>
 
             <?php elseif ($voteValue < 0): ?>
                 <i style="cursor:pointer;" id="downvoteArr-{{$answersElements[$i]->post_id}}" onclick="return downvotePost(this,{{$answersElements[$i]->post_id}},{{$voteValue}})" 
-                   onmouseover="" onmouseleave="" class="far fa-arrow-alt-circle-down voteDown text-secondary text-danger">
+                   onmouseover="" onmouseleave="" class="far fa-arrow-alt-circle-down voteDown text-danger">
                 </i>
             <?php endif; ?>
 

@@ -16,7 +16,7 @@ function updatedUserPointsArrived()
     let newUserPoints = parseInt(this.responseText);
     let userPointsArea = document.getElementById('userPointsArea');
     let newInnerHtml;
-    if (newUserPoints > -1)
+   /* if (newUserPoints > -1)
         newInnerHtml = `<div class="text-success" style="margin-left:2vw;"> 
                             <i class="fas fa-plus" style="padding-right: 3px;"></i> `
                 + newUserPoints +
@@ -28,5 +28,5 @@ function updatedUserPointsArrived()
                             ` + newUserPoints + ` Points
                         </div>
                     `;
-    userPointsArea.innerHTML = newInnerHtml;
+    userPointsArea.innerHTML = newInnerHtml; */
 }

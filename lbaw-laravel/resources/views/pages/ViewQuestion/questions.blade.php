@@ -34,10 +34,10 @@
                 </div>
             </div>
         </div>
-        <div style="font-size:1.6em;" class="text-secondary">
+        <div style="font-size:1.6em;">
             @if(Auth::check())
 
-            <?php if ($questionVoteValue == null || $questionVoteValue < 0): ?>
+            <?php if ($questionVoteValue == "null" || $questionVoteValue < 0): ?>
                 <i style="cursor:pointer;" id="upvoteArr-{{$questionElements->post_id}}" onclick="return upvotePost(this, {{$questionElements->post_id}}, {{$questionVoteValue}})"
                    onmouseover="return arrowToGreen(this)" onmouseleave="return arrowToDefault(this)" class="far fa-arrow-alt-circle-up voteUp">
                 </i>
@@ -53,14 +53,14 @@
             <span id="upvoteCount-{{$questionElements->post_id}}" class="vote-count-post ">{{$questionElements->points}} Points</span>
             @if(Auth::check())
 
-            <?php if ($questionVoteValue == null || $questionVoteValue > 0): ?>
+            <?php if ($questionVoteValue == "null" || $questionVoteValue > 0): ?>
                 <i style="cursor:pointer;" id="downvoteArr-{{$questionElements->post_id}}" onclick="return downvotePost(this,{{$questionElements->post_id}},{{$questionVoteValue}})" 
-                   onmouseover="return arrowToRed(this)" onmouseleave="return arrowToDefault(this)" class="far fa-arrow-alt-circle-down voteDown text-secondary">
+                   onmouseover="return arrowToRed(this)" onmouseleave="return arrowToDefault(this)" class="far fa-arrow-alt-circle-down voteDown">
                 </i>
 
             <?php elseif ($questionVoteValue < 0): ?>
                 <i style="cursor:pointer;" id="downvoteArr-{{$questionElements->post_id}}" onclick="return downvotePost(this,{{$questionElements->post_id}},{{$questionVoteValue}})"
-                   onmouseover="" onmouseleave="" class="far fa-arrow-alt-circle-down voteDown text-secondary text-danger">
+                   onmouseover="" onmouseleave="" class="far fa-arrow-alt-circle-down voteDown text-danger">
                 </i>
             <?php endif; ?>
 

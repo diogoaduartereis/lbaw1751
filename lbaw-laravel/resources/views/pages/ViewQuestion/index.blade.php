@@ -62,7 +62,7 @@
                                         <script src="/assets/js/deletePost.js"></script>
                                         <p id="csrf-token" style="display: none;" hidden >{{csrf_token()}}</p>
                                         <?php
-                                        $questionVoteValue = null;
+                                        $questionVoteValue = "null";
                                         for ($j = 0; $j < sizeof($postVotes); $j++) {
                                             if ($questionElements->post_id == $postVotes[$j]->postid)
                                                 $questionVoteValue = $postVotes[$j]->value;
