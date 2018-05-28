@@ -27,8 +27,8 @@
 
     <body>
 
-        <p id="csrf-token" style:"display: none" hidden >{{csrf_token()}}</p>
-        <p id="lastUrl" style:"display: none" hidden >{{session()->getId("last_URL")}}</p>
+        <p id="csrf-token" style="display: none" hidden >{{csrf_token()}}</p>
+        <p id="lastUrl" style="display: none" hidden >{{session()->getId("last_URL")}}</p>
         <div id="wrap" class="wrapper">
             @if(Auth::check())
                 @include('pages.sidebar')

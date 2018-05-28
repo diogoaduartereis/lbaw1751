@@ -35,7 +35,7 @@
 
     #contentID{
 
-        padding-left: 8vw;
+        padding-left: 1vw;
     }
 
     #classContainerID
@@ -257,9 +257,9 @@
             width:300px;
         }
 
-        #sidebar ul.components {
-            /*padding-top: 45px;*/ 
-        } 
+        /*#sidebar ul.components {
+            /*padding-top: 45px;
+        } */ 
     }
 
     @media (max-width: 480px) {
@@ -686,7 +686,7 @@
 
         #containerID.inactive
         {
-            margin-left:-140px;
+            margin-left:-15vw;
             transition:0.3s;
         }
     }
@@ -973,3 +973,4 @@
         100% {
             opacity: 0;
             transform: scale(13, 13); } }
+        }

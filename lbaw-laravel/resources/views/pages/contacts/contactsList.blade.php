@@ -54,7 +54,7 @@
                                 </h3>
                                 @endif
                                 <script src="./assets/js/markContactAsProcessed.js"></script>
-                                <p id="csrf-token" style:"display: none" hidden >{{csrf_token()}}</p>  
+                                <p id="csrf-token" style="display: none" hidden >{{csrf_token()}}</p>  
                                 @foreach ($contacts as $contact)
                                 <div id="contact-{{$contact->id}}" class="row contactsDiv">
                                     <div class="col-12">

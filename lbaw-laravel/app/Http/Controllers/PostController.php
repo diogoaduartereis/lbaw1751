@@ -303,7 +303,7 @@ class PostController extends Controller {
                         ->where('isvisible', '=', 'true')
                         ->orderBy('post.points', 'desc')
                         ->orderBy('date', 'desc')
-                        ->take($numberOfQuestions)->paginate(3);
+                        ->take($numberOfQuestions)->paginate(5);
 
         return PostController::checkQuestionsReturn($questions);
     }

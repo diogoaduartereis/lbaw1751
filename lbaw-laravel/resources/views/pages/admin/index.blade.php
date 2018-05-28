@@ -44,7 +44,7 @@
                                 </div>
                             </div>
                         </div>
-                        <p id="csrf-token" style:"display: none" hidden >{{csrf_token()}}</p>  
+                        <p id="csrf-token" style="display: none" hidden >{{csrf_token()}}</p>  
                         <div id="classContainerID" class="container">
 
                             <section class="pb-3">

@@ -11,7 +11,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>CodeHome - {{$questionElements->title}}</title>
 
-        <link rel="stylesheet" href="../assets/css/View Question.css">
+        <link rel="stylesheet" href="../assets/css/ViewQuestion.css">
         <link href="../assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <link href="../assets/css/bootstrap.css" rel="stylesheet">
         <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
@@ -27,7 +27,7 @@
               />
         <link href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.6.0/css/froala_style.min.css" rel="stylesheet" type="text/css"
               />
-        <script src="../assets/js/Froala HTML Editor.js"></script>
+        <script src="../assets/js/FroalaHTMLEditor.js"></script>
 
 
     </head>
@@ -52,13 +52,14 @@
                 <div id="containerID">
                     <div id="contentID">
                         <section id="classContainerID" class="container">
+                            <h2 hidden> Nothing </h2>
                             <div class="row clearfix">
                                 <div class="col-md-12 column">
                                     <div class="panel panel-default border border-dark">
                                         <script src="../assets/js/encodeForAjax.js"></script>                                    
                                         <script src="../assets/js/voteInPostOnQuestionPage.js"></script>
                                         <script src="/assets/js/deletePost.js"></script>
-                                        <p id="csrf-token" style:"display: none;" hidden >{{csrf_token()}}</p>
+                                        <p id="csrf-token" style="display: none;" hidden >{{csrf_token()}}</p>
                                         <?php
                                         $questionVoteValue = null;
                                         for ($j = 0; $j < sizeof($postVotes); $j++) {
@@ -92,11 +93,11 @@
                                 {!! csrf_field() !!}
                                 <div id="replyDiv" class="col-md-12">
                                     <div class="form-group">
-                                        <label for="description" style="font-size: 150%">
+                                        <label style="font-size: 150%">
                                             Reply to this Question</label>
 
 
-                                        <textarea style="overflow-y:scroll;" name="content" class="form-control" rows="5" cols="32" required="required" placeholder="Message"> </textarea>
+                                        <textarea style="overflow-y:auto;" name="content" class="form-control" rows="5" cols="32" required="required" placeholder="Message"> </textarea>
 
                                     </div>
                                 </div>
@@ -107,13 +108,11 @@
                                 </div>
                             </form>
                             @endif
+                        </section>
                     </div>
                 </div>
-                </section>
             </div>
         </div>
-    </div>
-</div>
 
 <!-- Bars -->
 <script src="../assets/js/bars.js"></script>

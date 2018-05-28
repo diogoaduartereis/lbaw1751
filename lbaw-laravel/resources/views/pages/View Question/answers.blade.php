@@ -1,12 +1,15 @@
 <section id="answer-{{$answersElements[$i]->post_id}}" class="row panel-body">
+    <h2 hidden> Nothing </h2>
     <section class="col-md-9">
+        <h2 hidden> Nothing </h2>
         <p>
             {{$answersElements[$i]->content}}
         </p>
     </section>
-    <section id="user-description" class="col-md-3 ">
+    <section class="col-md-3 user-description">
+        <h2 hidden> Nothing </h2>
         <div class="card border-dark">
-            <h5 class="card-header border-dark" id="non-mobile-poster-name">
+            <h5 class="card-header border-dark non-mobile-poster-name">
                 <a href="{{url('/users/'.$answersElements[$i]->posterid)}}">
                     <i class="fa fa-cricle"></i>{{$answersElements[$i]->username}}
                 </a>
@@ -17,13 +20,13 @@
                         @if(preg_match('/https:\//', $answersElements[$i]->img_path, $matches, PREG_OFFSET_CAPTURE))
                             <img style="height:90%; width:80%; margin-left:15%; margin-right:13%; margin-top:9%;" class="img img-responsive circle" src="{{$answersElements[$i]->img_path}}" id="profPic2" alt= "{{$answersElements[$i]->username}}'s avatar">
                         @else
-                            <img style="height:90%; width:80%; margin-left:15%; margin-right:13%; margin-top:9%;" class="img img-responsive circle" src="../assets/img/users/{{$answersElements[$i]->img_path}}" alt= "{{$answersElements[$i]->username}}'s avatar"
+                            <img style="height:90%; width:80%; margin-left:15%; margin-right:13%; margin-top:9%;" class="img img-responsive circle" src="../assets/img/users/{{$answersElements[$i]->img_path}}" alt= "{{$answersElements[$i]->username}}'s avatar">
                         @endif
                     </figure>
-                    <div id="mobile-poster-name">
+                    <div class="mobile-poster-name">
                         <i class="fa fa-cricle"></i>{{$answersElements[$i]->username}}
                     </div>
-                    <div style="width:150%; margin-top:5%; margin-right:6%;" id="postID" class="d-flex flex-column">
+                    <div style="width:150%; margin-top:5%; margin-right:6%;" class="d-flex flex-column postID">
                         <p class="text-dark">
                             <b class="text-dark font-weight-bold">Posts:</b>{{$answerUserCounter[$i]['posts']}}</p>
                         <p class="text-dark">
@@ -49,7 +52,7 @@
 
 
             @endif
-            <span id="upvoteCount-{{$answersElements[$i]->post_id}}" itemprop="upvoteCount-{{$answersElements[$i]->post_id}}" class="vote-count-post ">{{$answersElements[$i]->points}} Points</span>
+            <span id="upvoteCount-{{$answersElements[$i]->post_id}}" class="vote-count-post ">{{$answersElements[$i]->points}} Points</span>
             @if(Auth::check())
 
 
@@ -93,4 +96,4 @@
 
 <script src="../assets/js/voteInPostOnQuestionPage.js"></script>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>

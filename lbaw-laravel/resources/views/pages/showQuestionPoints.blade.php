@@ -1,4 +1,4 @@
-<div class="col-3 text-right">
+<div style="display:inline; float:right;">
     <div id="points-{{$question->question_id}}" class="text-success">
         @if($question->question_points > -1)
         <i class="fas fa-plus" style="padding-right:5px;"></i>

@@ -65,7 +65,7 @@
                                                         <input type="text" name="title" class="form-control" id="title" placeholder="Enter title" required="required" />
                                                     </div>
                                                     <div class="form-group">
-                                                        <p id="tags-csrf-token" style:"display: none" hidden >{{csrf_token()}}</p>  
+                                                        <p id="tags-csrf-token" style="display: none" hidden >{{csrf_token()}}</p>  
                                                         <label for="tags">Tags</label>
                                                         <input id="tagsInputBox" type="text" name = "tags" class="form-control" id="tags" placeholder="Enter tags" required="required" />
                                                         <ul id="listTags" class="list-group"></ul>

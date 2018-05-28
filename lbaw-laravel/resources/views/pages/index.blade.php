@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="no-js" lang="en">
 
     <head>
 
@@ -84,51 +84,53 @@
                 <div id="Questions">
                     @include('pages.index_questionsdiv')
                 </div>
+            </div>
+        </div>
 
-                <script>
+        <script>
+
+        $('#upvoteArr').mouseover(function () {
+            $("#upvoteArr").removeClass('text-secondary');
+            $("#upvoteArr").addClass('text-success');
+        })
+        $('#upvoteArr').mouseleave(function () {
+            $("#upvoteArr").addClass('text-secondary');
+            $("#upvoteArr").removeClass('text-success');
+        })
 
 
-$('#upvoteArr').mouseover(function () {
-    $("#upvoteArr").removeClass('text-secondary');
-    $("#upvoteArr").addClass('text-success');
-})
-$('#upvoteArr').mouseleave(function () {
-    $("#upvoteArr").addClass('text-secondary');
-    $("#upvoteArr").removeClass('text-success');
-})
+        $('#downvoteArr').mouseover(function () {
+            $("#downvoteArr").removeClass('text-secondary');
+            $("#downvoteArr").addClass('text-danger');
+        })
+        $('#downvoteArr').mouseleave(function () {
+            $("#downvoteArr").addClass('text-secondary');
+            $("#downvoteArr").removeClass('text-danger');
+        })
 
+        $(function () {
+            $('.dropdown-menu li').on('click', function (event) {
+                var $checkbox = $(this).find('.checkbox');
+                if (!$checkbox.length) {
+                    return;
+                }
+                var $input = $checkbox.find('input');
+                var $icon = $checkbox.find('span.glyphicon');
+                if ($input.is(':checked')) {
+                    $input.prop('checked', false);
+                    $icon.removeClass('glyphicon-check').addClass('glyphicon-unchecked')
+                } else {
+                    $input.prop('checked', true);
+                    $icon.removeClass('glyphicon-unchecked').addClass('glyphicon-check')
+                }
+                return false;
+            });
+        });
 
-$('#downvoteArr').mouseover(function () {
-    $("#downvoteArr").removeClass('text-secondary');
-    $("#downvoteArr").addClass('text-danger');
-})
-$('#downvoteArr').mouseleave(function () {
-    $("#downvoteArr").addClass('text-secondary');
-    $("#downvoteArr").removeClass('text-danger');
-})
+        </script>
+        <script src="./assets/js/bars.js"></script>
+        <script src="./assets/js/searchQuestion.js"></script>
+    </body>
 
-$(function () {
-    $('.dropdown-menu li').on('click', function (event) {
-        var $checkbox = $(this).find('.checkbox');
-        if (!$checkbox.length) {
-            return;
-        }
-        var $input = $checkbox.find('input');
-        var $icon = $checkbox.find('span.glyphicon');
-        if ($input.is(':checked')) {
-            $input.prop('checked', false);
-            $icon.removeClass('glyphicon-check').addClass('glyphicon-unchecked')
-        } else {
-            $input.prop('checked', true);
-            $icon.removeClass('glyphicon-unchecked').addClass('glyphicon-check')
-        }
-        return false;
-    });
-});
-
-                </script>
-                <script src="./assets/js/bars.js"></script>
-                </body>
-
-                </html>
-                <script src="./assets/js/searchQuestion.js"></script>
+</html>
+                

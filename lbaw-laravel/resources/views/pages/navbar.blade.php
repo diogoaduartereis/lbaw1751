@@ -9,7 +9,7 @@ $tags = TagController::getFirstXTags(10);
     <a style="color:white;" href="{{url('login')}}"> Sign In </a>
 
 <a href="{{url('register')}}" style="margin-left:15px; color:white; background-color:rgb(41, 157, 252);" class="btn btn-primary btn-md rounded"
-   data-toggle="collapse" data-target="#sidebar" data-parent="#navbar" aria-expanded="false" aria-controls="sidebar">
+   data-toggle="collapse" data-target="#sidebar" data-parent="#navbar" aria-expanded="false">
     Sign Up
 </a>
 
@@ -19,13 +19,13 @@ $tags = TagController::getFirstXTags(10);
 </a>
 
 <button id="buttonToggler" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarAsideContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
 </button>
 
 <button id="buttonTogglerCategories" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarPopularContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    Categories <i class="fas fa-angle-down"></i>
+        aria-expanded="false" aria-label="Toggle navigation">
+    <b> Categories <i class="fas fa-angle-down"></i> </b>
 </button>
 
 <div class="collapse navbar-collapse" id="navbarPopularContent">

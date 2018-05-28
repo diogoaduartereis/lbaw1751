@@ -1,4 +1,3 @@
-
 <p id="csrf-token" style="display: none" hidden >{{csrf_token()}}</p>      
 <br>
 
@@ -11,20 +10,18 @@
                 <div class="card border">
                     <div class="card-header border">
                         <div class="row">
-                            <div class="col-9">
-                            <h5>
+                            <div class="col-12">
                                 <a href="./questions/{{$question->question_id}}"> <b> {{$question->title}} </b></a>
                                 <a style="color: inherit;text-decoration: none;padding-left:10px;" data-toggle="tooltip" data-placement="bottom"
-                                   title="Upvote Question">
+                                title="Upvote Question">
                                     <i id="upvoteArr-{{$question->question_id}}" class="fas fa-caret-up upvoteArr" onclick="voteInPost(event, 1)">
                                     </i>
                                 </a>
                                 <a style="color: inherit;text-decoration: none;" data-toggle="tooltip" data-placement="top" title="Downvote Question">
                                     <i id="downvoteArr-{{$question->question_id}}" class="fas fa-caret-down downvoteArr" onclick="voteInPost(event, - 1)"></i>
                                 </a>
-                            </h5>
+                                @include('pages.showQuestionPoints')
                             </div>
-                            @include('pages.showQuestionPoints')
                         </div>
                     </div>
                 </div>

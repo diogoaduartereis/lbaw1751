@@ -1,12 +1,14 @@
 <section class="row panel-body">
+    <h2 hidden> Nothing </h2>
     <section class="col-md-9">
         <h2>
             <i class="fa fa-smile-o"></i>{{$questionElements->title}}</h2>
         {{$questionElements->content}}
     </section>
-    <section id="user-description" class="col-md-3 ">
+    <section class="col-md-3 user-description">
+        <h2 hidden> Nothing </h2>
         <div class="card border-dark">
-            <h5 class="card-header border-dark" id="non-mobile-poster-name">
+            <h5 class="card-header border-dark non-mobile-poster-name">
                 <a href="{{url('/users/'.$questionElements->posterid)}}">
                     <i class="fa fa-cricle"></i>{{$questionElements->username}}
                 </a>
@@ -16,12 +18,12 @@
                     <figure>
                         <img style="height:90%; width:80%; margin-left:15%; margin-right:13%; margin-top:9%;" class="img img-responsive" src="../assets/img/users/{{$questionElements->img_path}}" alt="{{$questionElements->username}}'s avatar">
                     </figure>
-                    <div id="mobile-poster-name">
+                    <div class="mobile-poster-name">
                         <a href="{{url('/users/'.$questionElements->posterid)}}">
                             <i class="fa fa-cricle"></i>{{$questionElements->username}}
                         </a>
                     </div>
-                    <div style="width:150%; margin-top:5%; margin-right:6%;" id="postID" class="d-flex flex-column">
+                    <div style="width:150%; margin-top:5%; margin-right:6%;" class="d-flex flex-column postID">
                         <p class="text-dark">
                             <b class="text-dark font-weight-bold">Posts:</b>{{$questionUserCounter['posts']}}</p>
                         <p class="text-dark">
@@ -48,7 +50,7 @@
 
 
             @endif
-            <span id="upvoteCount-{{$questionElements->post_id}}" itemprop="upvoteCount-{{$questionElements->post_id}}" class="vote-count-post ">{{$questionElements->points}} Points</span>
+            <span id="upvoteCount-{{$questionElements->post_id}}" class="vote-count-post ">{{$questionElements->points}} Points</span>
             @if(Auth::check())
 
             <?php if ($questionVoteValue == null || $questionVoteValue > 0): ?>
@@ -92,6 +94,7 @@
 
 <div style=" margin-bottom:-16px;" class="panel-heading border-bottom border-dark">
     <section class="panel-title">
+        <h2 hidden> Nothing </h2>
         <section  class="pull-left" id="id">
             <h2>Responses</h2>
         </section>
