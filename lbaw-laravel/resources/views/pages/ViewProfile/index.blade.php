@@ -44,10 +44,9 @@
                             <h1 class="text-center"></h1>
                             <br>
                             @if(preg_match('/https:\//', $user[0]->img_path, $matches, PREG_OFFSET_CAPTURE))
-                                <img class="img-fluid rounded-circle" src="{{$user[0]->img_path}}" id="profPic2">
+                                <img class="img-fluid rounded-circle" src="{{$user[0]->img_path}}" id="profPic2" alt="Profile photo">
                             @else
-                                <img class="img-fluid rounded-circle" src="../assets/img/users/{{$user[0]->img_path}}"
-                                     alt="">
+                                <img class="img-fluid rounded-circle" src="../assets/img/users/{{$user[0]->img_path}}" alt="Profile photo">
                             @endif
                         </div>
                         <div class="col-md-6">
