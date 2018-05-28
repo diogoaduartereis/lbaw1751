@@ -18,7 +18,6 @@ Route::get('/hot', 'PagesController@frontpageHotQuestion');
 Route::get('/new', 'PagesController@frontpageNewQuestions');
 Route::get('faq', 'PagesController@faq');
 Route::get('404', 'PagesController@error404');
-Route::get('admin', 'PagesController@admin');
 
 //Get First X questions (used for viewing more questions using infinite scrolling)
 Route::get('getMostRecentPosts', 'PostController@getXMostRecentQuestionsAsHTML');
@@ -37,9 +36,6 @@ Route::get('register', 'PagesController@register');
 
 //Get user points
 Route::get('userself/getPoints', 'UserController@getSelfCurrentPoints');
-
-//View Administration page
-Route::get('admin', 'UserController@showAdminPage');
 
 //View Profile
 Route::get('users/{id}', 'UserController@show');
@@ -73,8 +69,8 @@ Route::post('postNewQuestion', 'PostController@postQuestion');
 Route::post('tags/searchForTag', 'TagController@searchForTag');
 Route::post('search/question', 'PostController@searchForQuestion');
 
-//Search User
-Route::get('admin/', 'UserController@searchForUser');
+//View Administration page searching for user
+Route::get('admin', 'UserController@searchForUser');
 
 //View Question
 Route::get('questions/{id}', 'PostController@showQuestionPage');
@@ -107,10 +103,6 @@ Route::get('/reports','PagesController@reports');
 Route::post('post/{id}/report', 'PostController@reportPost');
 
 Route::get('/home', 'HomeController@index')->name('home');
-
-Route::get('test', function() {
-    return view('layouts.app');
-});
 
 //Tags
 Route::get('tags', 'PagesController@tags');
