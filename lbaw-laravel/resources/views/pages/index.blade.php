@@ -54,9 +54,7 @@
                     </div>
                 </div>
                 <br>
-                <div id="Questions">
                     @include('pages.index_questionsdiv')
-                </div>
             </div>
         </div>
 

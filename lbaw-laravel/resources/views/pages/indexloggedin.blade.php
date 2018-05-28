@@ -49,10 +49,7 @@
                 
                 <div id="containerID">
                     <div id="contentID">
-                        <br>
-                        <div id="Questions">
                             @include('pages.indexloggedin_questionsdiv')
-                        </div>
                     </div>
                 </div>
             </div>

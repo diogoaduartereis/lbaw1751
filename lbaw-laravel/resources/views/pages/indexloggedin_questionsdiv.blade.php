@@ -1,3 +1,7 @@
+
+                        <br>
+                        <div id="Questions">
+
 <p id="csrf-token" style="display: none" hidden >{{csrf_token()}}</p>      
 <br>
 
@@ -114,3 +118,6 @@
 </style>
 
 <script src="../assets/js/voteInPostOnQuestionPage.js"></script>
+
+
+</div>
