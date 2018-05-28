@@ -35,15 +35,15 @@ class PagesController extends Controller
     }
 
     public function about() {
-        return view('pages.about.about');
+        return view('pages.about.index');
     }
 
     public function faq() {
-        return view('pages.FAQ.faq');
+        return view('pages.FAQ.index');
     }
 
     public function error404() {
-        return view('pages.Error Page.Error 404');
+        return view('pages.ErrorPage.index');
     }
 
     public function register() {
@@ -59,7 +59,7 @@ class PagesController extends Controller
     }
 
     public function postQuestion() {
-        return view('pages.Post question page.index');
+        return view('pages.PostQuestionPage.index');
     }
 
     public function admin() {

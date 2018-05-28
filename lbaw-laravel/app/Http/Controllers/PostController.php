@@ -46,7 +46,7 @@ class PostController extends Controller {
 
     public function postQuestionPage() {
         if (Auth::check()) {
-            return view('pages.Post question page.index');
+            return view('pages.PostQuestionPage.index');
         } else
             return view('pages.index');
     }
@@ -140,7 +140,7 @@ class PostController extends Controller {
 
         if (!$questionUserPointsCounter)
             return redirect('/404');
-        return view('pages.View Question.index', ['questionElements' => $questionElements[0],
+        return view('pages.ViewQuestion.index', ['questionElements' => $questionElements[0],
             'answersElements' => $answersElements, 'questionUserCounter' => $questionUserCounter,
             'answerUserCounter' => $answerUserCounter, 'postVotes' => $postVotes
         ]);

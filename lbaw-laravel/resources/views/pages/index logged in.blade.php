@@ -34,9 +34,17 @@
     <body>
 
         <div id="wrap" class="wrapper">
-            @include('pages.sidebar')
+            
+            <?php if (Auth::check()): ?>
+                @include('pages.sidebar')
+            <?php endif; ?>
+
             <div id="content">
-                @include('pages.navbar logged in')
+        
+                <?php if (Auth::check()): ?>
+                    @include('pages.navbar logged in')
+                <?php endif; ?>
+                
                 <div id="containerID">
                     <div id="contentID">
                         <br>

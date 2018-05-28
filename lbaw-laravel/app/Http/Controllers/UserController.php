@@ -150,7 +150,7 @@ class UserController extends Controller {
     public function banUserForm($id) {
         if (Auth::check() && Auth::user()->type == "ADMIN") {
             $user = DB::table('users')->select('id', 'username')->where('id', $id)->first();
-            return view('pages.ban.banUser', ['user' => $user]);
+            return view('pages.ban.index', ['user' => $user]);
         }
 
         return redirect()->back();
@@ -233,7 +233,7 @@ class UserController extends Controller {
                 WHERE posterID=:posterID AND isvisible=true AND isClosed=false ORDER BY date DESC', ['posterID' => $id]);
             $userActivePosts = array_slice($userActivePosts, 0, $maxNumberPostsToShow);
 
-            return view('pages.View Profile.View Profile', ['user' => $user, 'userActivePosts' => $userActivePosts,
+            return view('pages.ViewProfile.index', ['user' => $user, 'userActivePosts' => $userActivePosts,
                 'userClosedPosts' => $userClosedPosts]);
         }
         return redirect('/');
