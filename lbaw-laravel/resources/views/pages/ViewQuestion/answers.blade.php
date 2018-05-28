@@ -10,8 +10,8 @@
         <h2 hidden> Nothing </h2>
         <div class="card border-dark">
             <h5 class="card-header border-dark non-mobile-poster-name">
-                <a href="{{url('/users/'.$answersElements[$i]->posterid)}}">
-                    <i class="fa fa-cricle"></i>{{$answersElements[$i]->username}}
+                <a id="post{{$answersElements[$i]->post_id}}Username" href="{{url('/users/'.$answersElements[$i]->posterid)}}">
+                    {{$answersElements[$i]->username}}
                 </a>
             </h5>
             <div class="card-block border-dark">
