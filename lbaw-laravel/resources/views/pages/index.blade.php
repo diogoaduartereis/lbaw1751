@@ -54,7 +54,11 @@
                     </div>
                 </div>
                 <br>
+                <div id="contentID">
                     @include('pages.index_questionsdiv')
+                    </div>
+                    <div id="changedContentID">
+                    </div>
             </div>
         </div>
 

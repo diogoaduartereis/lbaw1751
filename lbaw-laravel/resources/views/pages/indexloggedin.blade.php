@@ -48,8 +48,10 @@
                 <?php endif; ?>
                 
                 <div id="containerID">
-                    <div id="contentID">
-                            @include('pages.indexloggedin_questionsdiv')
+                <div id="contentID">
+                        @include('pages.indexloggedin_questionsdiv')
+                </div>
+                    <div id="changedContentID">
                     </div>
                 </div>
             </div>
