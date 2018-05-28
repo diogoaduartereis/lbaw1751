@@ -15,6 +15,7 @@
         <link href="./assets/css/common.css" rel="stylesheet">
         <link href="./assets/css/Homepage/styles.css" rel="stylesheet">
         <link href="./assets/css/HomepageLoggedIn/indexVote.css" rel="stylesheet">
+        <link href="./assets/css/HomepageLoggedIn/indexloggedin.css" rel="stylesheet">
 
         <script src="./assets/js/jquery-1.11.1.min.js"></script>
         <script src="./assets/bootstrap/js/bootstrap.min.js"></script>
