@@ -40,33 +40,6 @@
                                     <form action="{{ url('/poster') }}" method="post">
                                         <div class="input-group mb-3 mx-auto">
                                             {{ csrf_field() }}
-
-                                            <div class="btn-group">
-                                                <button type="button" class="btn btn-default dropdown-toggle border-dark" data-toggle="dropdown"><span class="glyphicon glyphicon-cog"></span> Search Filters </button>
-                                                <ul class="dropdown-menu">
-                                                    <li>
-                                                        <label class="dropdown-menu-item checkbox">
-                                                            <input type="checkbox" />
-                                                            <span class="glyphicon glyphicon-unchecked"></span>
-                                                            Poster Points
-                                                        </label>
-                                                    </li>
-                                                    <li>
-                                                        <label class="dropdown-menu-item checkbox">
-                                                            <input type="checkbox" />
-                                                            <span class="glyphicon glyphicon-unchecked"></span>
-                                                            Post Points
-                                                        </label>
-                                                    </li>
-                                                    <li>
-                                                        <label class="dropdown-menu-item checkbox">
-                                                            <input type="checkbox" />
-                                                            <span class="glyphicon glyphicon-unchecked"></span>
-                                                            Post Date
-                                                        </label>
-                                                    </li> 
-                                                </ul>
-                                            </div>
                                             <input id="questionSearchBar" type="text" name="data" class="form-control border-dark" aria-label="Text input with segmented dropdown button" data-toggle="tooltip"
                                                    data-placement="bottom" title="Search For Questions. Use the # before a word to add a tag search to your question.">
                                             <button type="button" class="btn btn-outline-dark">Search</button>

@@ -81,30 +81,6 @@ $tags = TagController::getFirstXTags(10);
 
                         {{ csrf_field() }}
                         <div id="questionSearch" class="btn-group">
-                            <button style="height:32px; margin-top:1px;" type="button" class="btn btn-sm btn-default" data-toggle="dropdown"><i class="glyphicon glyphicon-cog"></i></button>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <label class="dropdown-menu-item checkbox">
-                                        <input type="checkbox" />
-                                        <span class="glyphicon glyphicon-unchecked"></span>
-                                        Poster Points
-                                    </label>
-                                </li>
-                                <li>
-                                    <label class="dropdown-menu-item checkbox">
-                                        <input type="checkbox" />
-                                        <span class="glyphicon glyphicon-unchecked"></span>
-                                        Post Points
-                                    </label>
-                                </li>
-                                <li>
-                                    <label class="dropdown-menu-item checkbox">
-                                        <input type="checkbox" />
-                                        <span class="glyphicon glyphicon-unchecked"></span>
-                                        Post Date
-                                    </label>
-                                </li> 
-                            </ul>
                             <input placeholder="Type to search questions..." id="questionSearchBar" type="text" class="form-control border-dark rounded-0" aria-label="Text input with segmented dropdown button" data-toggle="tooltip"
                                     data-placement="bottom" title="Search For Questions. Use the # before a word to add a tag to your search">
                             <button style="height:32px; margin-top:1px;" type="button" class="btn btn-sm btn-default"> 
