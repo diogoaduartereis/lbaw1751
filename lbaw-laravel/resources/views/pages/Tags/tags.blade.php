@@ -51,7 +51,7 @@
             @endif
             <div id="content">
                 @if(Auth::check())
-                @include('pages.navbar logged in')
+                @include('pages.navbarloggedin')
                 @else
                 @include('pages.navbar')
                 @endif

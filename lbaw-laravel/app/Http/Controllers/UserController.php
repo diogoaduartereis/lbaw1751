@@ -256,7 +256,7 @@ class UserController extends Controller {
         }
 
         if (count($user) != 0)
-            return view('pages.Edit Profile.index', ['user' => $user[0]]);
+            return view('pages.EditProfile.index', ['user' => $user[0]]);
         else
             return redirect('404');
     }

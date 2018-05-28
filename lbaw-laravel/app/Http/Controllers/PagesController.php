@@ -55,7 +55,7 @@ class PagesController extends Controller
     }
 
     public function editProfile() {
-        return view('pages.Edit Profile.index');
+        return view('pages.EditProfile.index');
     }
 
     public function postQuestion() {

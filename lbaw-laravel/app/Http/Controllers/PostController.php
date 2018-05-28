@@ -276,7 +276,7 @@ class PostController extends Controller {
         $firstQuestionOffset = $request->input('offset');
         $questions = PostController::getXMostRecentQuestions($numberOfQuestions, $firstQuestionOffset);
         if (Auth::check())
-            return view('pages.index logged in_questionsdiv', ['questions' => $questions['questions']], ['questions_tags' => $questions['questions_tags']]);
+            return view('pages.indexloggedin_questionsdiv', ['questions' => $questions['questions']], ['questions_tags' => $questions['questions_tags']]);
         else
             return view('pages.index_questionsdiv', ['questions' => $questions['questions']], ['questions_tags' => $questions['questions_tags']]);
     }
@@ -392,7 +392,7 @@ class PostController extends Controller {
 
           } */
         if (Auth::check())
-            return view('pages.index logged in_questionsdiv', ['questions' => $questions], ['questions_tags' => $questions_tags]);
+            return view('pages.indexloggedin_questionsdiv', ['questions' => $questions], ['questions_tags' => $questions_tags]);
         else
             return view('pages.index_questionsdiv', ['questions' => $questions], ['questions_tags' => $questions_tags]);
     }

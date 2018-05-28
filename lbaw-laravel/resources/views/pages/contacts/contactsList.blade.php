@@ -32,7 +32,7 @@
         <div id="wrap" class="wrapper">
             @include('pages.sidebar')
             <div id="content">
-                @include('pages.navbar logged in')
+                @include('pages.navbarloggedin')
                 <div id="containerID">
                     <div id="contentID">
                         <div id="jumbotronID" class="jumbotron jumbotron-sm">

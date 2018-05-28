@@ -42,7 +42,7 @@ $i = 0; //this counter will be used to give ids to the collapsable divs so that 
             @endif
             <div id="content">
                 @if(Auth::check())
-                @include('pages.navbar logged in')
+                @include('pages.navbarloggedin')
                 @else
                 @include('pages.navbar')
                 @endif
