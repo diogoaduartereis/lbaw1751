@@ -73,7 +73,7 @@
 
                                         <?php
                                         for ($i = 0; $i < sizeof($answersElements); $i++) {
-                                            $voteValue = null;
+                                            $voteValue = "null";
                                             for ($j = 0; $j < sizeof($postVotes); $j++) {
                                                 if ($answersElements[$i]->post_id == $postVotes[$j]->postid)
                                                     $voteValue = $postVotes[$j]->value;

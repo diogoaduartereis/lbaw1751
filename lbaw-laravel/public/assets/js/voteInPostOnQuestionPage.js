@@ -224,14 +224,37 @@ function updateUserPoints(postId, voteValue)
 {
     let currUserPoints = Number(document.getElementById("post" + postId + "PosterPoints").innerHTML);
     let newUserPoints = currUserPoints + voteValue;
-    document.getElementById("post" + postId + "PosterPoints").innerHTML = newUserPoints;
+    document.getElementById("post" + postId + "PosterPoints").innerHTML;
+    let sidebarUsername = document.getElementById("sidebarUsername").innerHTML;
+    let cleanSidebarUsername = sidebarUsername.replace(/\s/g, '');
+    let postUsername = document.getElementById("post" + postId + "Username").innerHTML;
+    let cleanPostUsername = postUsername.replace(/\s/g, '');
+    
+
+    if(cleanSidebarUsername == cleanPostUsername)
+    {
+        if(newUserPoints > -1)
+            document.getElementById("userPointsArea").innerHTML = `<div class="text-success" style="margin-left:2vw;"> 
+                                                                    <h5 style="display:inline;"> 
+                                                                        <i class="fas fa-plus fa-md" style="padding-right: 3px;"></i>`
+                                                                       + newUserPoints + ` Points
+                                                                    </h5>
+                                                                </div>`;
+        else 
+            document.getElementById("userPointsArea").innerHTML = `<div class="text-danger" style="margin-left:2vw;"> 
+                                                                        <h5 style="display:inline;"> 
+                                                                            <i class="fas fa-minus fa-md" style="padding-right: 3px;"></i>`
+                                                                        + Number(newUserPoints * -1) + ` Points
+                                                                        </h5>
+                                                                    </div>`;
+    }
 }
 
 function updatePostPointsInFrontPage(postId, voteValue)
 {
     let oldPoints = document.getElementById("upvoteCount-" + postId).innerHTML;
     let oldPointsValue = Number(oldPoints.substring(0, oldPoints.indexOf('Points')));
-    console.log(oldPointsValue);
+    
     if(oldPointsValue == 1 && voteValue == 2)
         oldPointsValue = -1;
     let newValue = oldPointsValue + voteValue;
@@ -254,7 +277,8 @@ function updateUserPointsInFrontPage(postId, voteValue)
 {
     let userPointsString = document.getElementById("post" + postId + "PosterPoints").innerHTML;
     let currUserPoints = Number(userPointsString.substring(1,  userPointsString.indexOf('P')));
-    let postUsername = (document.getElementById("post" + postId + "PosterPoints").parentElement).childNodes[1].childNodes[1].innerHTML;
+    let postUsername = document.getElementById("post" + postId + "PosterPoints").parentElement.childNodes[1].innerHTML;
+   
     let sidebarUsername = document.getElementById("sidebarUsername").innerHTML;
     let cleanSidebarUsername = sidebarUsername.replace(/\s/g, '');
    
@@ -266,7 +290,7 @@ function updateUserPointsInFrontPage(postId, voteValue)
     
     for(let i = 0; i < postsArray.length; i++)
     {
-        if((postsArray[i].parentElement).childNodes[1].childNodes[1].innerHTML == postUsername)
+        if((postsArray[i].parentElement).childNodes[1].innerHTML == postUsername)
             postsArray[i].innerHTML = "(" + newUserPoints + " Points)";
     }
 
@@ -287,7 +311,5 @@ function updateUserPointsInFrontPage(postId, voteValue)
                                                                         </h5>
                                                                     </div>`;
     }
-
-    let userPointsArea = document.getElementById('userPointsArea');
     
 }

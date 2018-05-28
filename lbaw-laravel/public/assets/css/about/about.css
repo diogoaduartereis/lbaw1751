@@ -1,0 +1,126 @@
+@media (min-width: 1366px)
+{
+    #containerID.inactive
+    {
+        margin-left:-50px;
+        width:85%;
+    }
+
+    #sidebar
+    {
+        min-width:17.2vw;
+        max-width:17.2vw;
+        font-size:90%;
+    }
+
+    #contentID
+    {
+        width:92vw;
+    }
+
+    #containerID.inactive
+    {
+        margin-left:-12vw;
+        width:92vw;
+    }
+
+    #containerID.active
+    {
+        display:none;
+    }
+
+    .teamPhotos
+    {
+        height:200px;
+        width:200px;
+    }
+}
+
+
+@media (min-width: 768px) and (max-width:1366px) {
+    #containerID.inactive
+    {
+        margin-left:-50px;
+        width:85%;
+    }
+
+    #sidebar
+    {
+        min-width:17.2vw;
+        max-width:17.2vw;
+    }
+
+    #contentID
+    {
+        width:92vw;
+    }
+
+    #containerID.active
+    {
+        display:none;
+    }
+
+    #jumbotronID
+    {
+
+    }
+
+}
+
+@media (max-width: 768px) {
+    #containerID.inactive
+    {
+        margin-left:-50px;
+        width:85%;
+    }
+
+    #sidebar
+    {
+        min-width:100vw;
+        max-width:100vw;
+    }
+
+    #contentID
+    {
+        width:92vw;
+    }
+
+    #containerID.active
+    {
+        display:none;
+    }
+
+}
+
+@media (max-width: 480px) {
+    #containerID.inactive
+    {
+        width:80vw;
+        margin-left:-50px;
+    }
+
+    #contentID
+    {
+        width:85vw;
+        margin-left:18vw;
+    }
+
+    #jumbotronID.active
+    {
+        margin-left:-37vw;
+        margin-top:-5vh;
+    }
+}
+
+@media (max-width: 340px) {
+    #containerID.inactive
+    {
+        width:80vw;
+        margin-left:-40px;
+    }
+
+    #contentID
+    {
+        width:92vw;
+    }
+}
