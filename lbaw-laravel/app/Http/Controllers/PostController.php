@@ -326,9 +326,17 @@ class PostController extends Controller {
             $questions_tags[$question->question_id] = $tags;
         }
 
+        if (Auth::check()) {
+            $postVotes = DB::table('postvote')->select('*')->where('posterid', '=', Auth::user()->id)->get();
+            if (!$postVotes)
+                return redirect('/404');
+        } else
+            $postVotes = null;
+
         $ret = array();
         $ret['questions'] = $questions;
         $ret['questions_tags'] = $questions_tags;
+        $ret['postVotes'] = $postVotes;
         return $ret;
     }
 

@@ -17,7 +17,7 @@ class PagesController extends Controller
             return abort(404);
 
         if (Auth::check())
-            return view('pages.index logged in', ['questions' => $questions['questions']], ['questions_tags' => $questions['questions_tags']]);
+            return view('pages.indexloggedin', ['questions' => $questions['questions']], ['questions_tags' => $questions['questions_tags'], 'postVotes' => $questions['postVotes']]);
         else
             return view('pages.index', ['questions' => $questions['questions']], ['questions_tags' => $questions['questions_tags']]);
     }
