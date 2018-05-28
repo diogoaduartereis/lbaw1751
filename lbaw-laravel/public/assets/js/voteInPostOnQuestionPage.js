@@ -254,16 +254,20 @@ function updatePostPointsInFrontPage(postId, voteValue)
 {
     let oldPoints = document.getElementById("upvoteCount-" + postId).innerHTML;
     let oldPointsValue = Number(oldPoints.substring(0, oldPoints.indexOf('Points')));
-    console.log(document.getElementById("upvoteCount-" + postId).parentElement.childNodes[0]);
+    
+    let newPoints;
     if(document.getElementById("upvoteCount-" + postId).parentElement.childNodes[1].classList.contains("fa-minus"))
     {
-        oldPointsValue = -1;
+        newPoints = Number((oldPointsValue + voteValue) * -1);
     }
+    else
+        newPoints = oldPointsValue + voteValue;
+
     //if(oldPointsValue == 1 && voteValue == 2)
         //oldPointsValue = -1;
 
     let newValue = oldPointsValue + voteValue;
-    let newPointsInnerHTML = oldPointsValue + voteValue + " Points";
+    let newPointsInnerHTML = newPoints + " Points";
     let pointsDiv = document.getElementById("pointsOf-" + postId).innerHTML;
 
 

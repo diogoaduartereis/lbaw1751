@@ -59,7 +59,7 @@
                 <div class="card-block border">
                     <div class="row mx-auto">
                         <div class="col-12" style="font-size: 0.9rem;">
-                            <h5 style="margin-top:8px; font-size:1.9em;" class="card-text text-dark">{{$question->content}}</h5>
+                            <h5 style="margin-top:16px; margin-bottom:10px; font-size:1.9em;" class="card-text text-dark dont-break-out">{{$question->content}}</h5>
                             <br>
                             <div class="sticky-right">
                                 <h6 class="postBy">
