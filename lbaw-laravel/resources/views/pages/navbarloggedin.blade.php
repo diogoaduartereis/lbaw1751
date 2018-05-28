@@ -10,9 +10,9 @@ $tags = TagController::getFirstXTags(10);
     <button id="sidebarCollapse" class="btn border-0 bg-transparent" data-toggle="collapse" data-target="#sidebar" data-parent="#navbar"
             aria-expanded="false" aria-controls="sidebar">
         @if(preg_match('/https:\//', Auth::user()->img_path, $matches, PREG_OFFSET_CAPTURE))
-        <img class="img-responsive rounded-circle" width="30" height="30" src="{{Auth::user()->img_path}}" alt="Profile Picture" id="profPic2">
+        <img class="img-responsive rounded-circle" width="30" height="30" src="{{Auth::user()->img_path}}" title="Open/Close sidebar" alt="Profile Picture" id="profPic2">
         @else
-        <img class="img-responsive rounded-circle" width="30" height="30" src="/assets/img/users/{{Auth::user()->img_path}}" alt="Profile Picture" id="profPic2">
+        <img class="img-responsive rounded-circle" width="30" height="30" src="/assets/img/users/{{Auth::user()->img_path}}" title="Open/Close sidebar" alt="Profile Picture" id="profPic2">
         @endif
     </button>
     <a class="navbar-brand" title="CodeHome homepage" href="/">
