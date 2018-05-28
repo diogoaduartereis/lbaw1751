@@ -61,7 +61,7 @@
                                 <h6 class="postBy">
                                     By: 
                                     <a href="./users/{{$question->poster_id}}">{{$question->username}}</a> 
-                                    <h6 class="postByPoints" id="post{{$question->question_id}}PosterPoints">({{$question->poster_points}} Points)</h6>
+                                    <a href="./users/{{$question->poster_id}}" class="postByPoints" id="post{{$question->question_id}}PosterPoints">({{$question->poster_points}} Points)</a>
                                 </h6>
                             </div>
                             <br>
