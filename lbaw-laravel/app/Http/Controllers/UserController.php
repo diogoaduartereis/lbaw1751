@@ -203,12 +203,20 @@ class UserController extends Controller {
         return $userId;
     }
 
-    public function searchForUser(Request $request) {
-        if (Auth::check() && Auth::user()->type == "ADMIN") {
+    public function searchForUser(Request $request) 
+    {
+        if (Auth::check() && Auth::user()->type == "ADMIN") 
+        {
             $username = $request->username;
-            $users = DB::table('users')->select('*')->where('username', 'like', '%' . $username . '%')->get();
-            return view('pages.admin.index', ['users' => $users]);
-        } else
+            $query = DB::table('users')->select('*');
+            if (!$username)
+                $users = $query->get();
+            else
+                $users = $query->whereRaw('to_tsvector(\'english\', username) @@ plainto_tsquery(\'english\', ?)', [$username])->get();
+
+            return UserController::showAdminPage($users, $username);
+        }
+         else
             return back()->withErrors(['msg' => "You must be an admin"]);
     }
 
@@ -332,12 +340,10 @@ class UserController extends Controller {
             return $userActivePosts;
     }
 
-    public static function showAdminPage() {
-        if (Auth::check() && Auth::user()->type == 'ADMIN') {
-            $users = DB::table('users')->select('*')->where('id', '!=', Auth::user()->id)->orderBy('id', 'asc')->get();
-
-            return view('pages.admin.index', ['users' => $users]);
-        }
+    public static function showAdminPage($users, $username) 
+    {
+        $users = DB::table('users')->select('*')->where('username', 'like', '%' . $username . '%')->get();
+        return view('pages.admin.index', ['users' => $users]);
     }
 
     /**
