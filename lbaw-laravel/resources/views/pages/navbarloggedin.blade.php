@@ -106,7 +106,7 @@ $tags = TagController::getFirstXTags(10);
                                 </li> 
                             </ul>
                             <input placeholder="Type to search questions..." id="questionSearchBar" type="text" class="form-control border-dark rounded-0" aria-label="Text input with segmented dropdown button" data-toggle="tooltip"
-                                    data-placement="bottom" title="Search For Questions. Use the # before a word to add a tag search to your question.">
+                                    data-placement="bottom" title="Search For Questions. Use the # before a word to add a tag to your search">
                             <button style="height:32px; margin-top:1px;" type="button" class="btn btn-sm btn-default"> 
                                 <i class="fas fa-search"></i>
                             </button>
