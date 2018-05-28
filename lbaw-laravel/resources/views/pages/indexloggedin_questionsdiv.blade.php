@@ -12,7 +12,7 @@
                     <div class="card-header border">
                         <div class="row">
                             <div style="font-size:120%;" class="col-12">
-                                <a href="./questions/{{$question->question_id}}"> <b> {{$question->title}} </b></a>
+                                <a href="./questions/{{$question->question_id}}"> <b> {{$question->title}} </b></a> 
                                 @include('pages.showQuestionPoints')
 
                                 <?php
@@ -24,12 +24,12 @@
                                 }
 
                                 if ($questionVoteValue == "null" || $questionVoteValue > 0): ?>
-                                <i id="downvoteArr-{{$question->question_id}}" class="far fa-lg fa-arrow-alt-circle-down voteDown downvoteArrow" 
+                                <i id="downvoteArr-{{$question->question_id}}" title="Down vote" class="far fa-lg fa-arrow-alt-circle-down voteDown downvoteArrow" 
                                         onclick="return downvotePost(this,{{$question->question_id}},{{$questionVoteValue}},'frontpage')"
                                         onmouseover="return arrowToRed(this)" onmouseleave="return arrowToDefault(this)">
                                 </i>
                                 <?php elseif ($questionVoteValue < 0): ?>
-                                    <i id="downvoteArr-{{$question->question_id}}" class="far fa-lg fa-arrow-alt-circle-down voteDown downvoteArrow text-danger" 
+                                    <i id="downvoteArr-{{$question->question_id}}" title="Down vote" class="far fa-lg fa-arrow-alt-circle-down voteDown downvoteArrow text-danger" 
                                             onclick="return downvotePost(this,{{$question->question_id}},{{$questionVoteValue}},'frontpage')"
                                             onmouseover="" onmouseleave="">
                                     </i>
@@ -37,12 +37,12 @@
 
                                 if ($questionVoteValue == "null" || $questionVoteValue < 0): 
                                 ?>
-                                    <i id="upvoteArr-{{$question->question_id}}" class="far fa-lg fa-arrow-alt-circle-up voteUp upvoteArrow" 
+                                    <i id="upvoteArr-{{$question->question_id}}" title="Up vote" class="far fa-lg fa-arrow-alt-circle-up voteUp upvoteArrow" 
                                         onclick="return upvotePost(this,{{$question->question_id}},{{$questionVoteValue}},'frontpage')"
                                         onmouseover="return arrowToGreen(this)" onmouseleave="return arrowToDefault(this)">
                                     </i>
                                 <?php elseif ($questionVoteValue > 0): ?>
-                                    <i id="upvoteArr-{{$question->question_id}}" class="far fa-lg fa-arrow-alt-circle-up voteUp upvoteArrow text-success" 
+                                    <i id="upvoteArr-{{$question->question_id}}" title="Up vote" class="far fa-lg fa-arrow-alt-circle-up voteUp upvoteArrow text-success" 
                                         onclick="return upvotePost(this,{{$question->question_id}},{{$questionVoteValue}},'frontpage')"
                                         onmouseover="" onmouseleave="">
                                     </i>
