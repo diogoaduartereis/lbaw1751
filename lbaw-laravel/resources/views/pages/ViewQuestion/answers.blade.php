@@ -87,6 +87,9 @@
                         <i class="fas fa-trash"></i> Remove</button>
                     <?php endif; ?>
 
+                @if(Auth::user()->type == "ADMIN")
+                    <a id="reportsButton" href="{{url('post/'.$answersElements[$i]->post_id.'/reports')}}" class="btn btn-danger col-md-6 text-white">View Reports</a>
+                @endif
             </div>
         </div>
     </div>
