@@ -12,10 +12,10 @@
     <div  id="question-{{$question->question_id}}" class="row">
         <div class="col-12">
             <div class="col-11 mx-auto">
-                <div class="card border">
+                <div style="margin-top:20px;" class="card border">
                     <div class="card-header border">
                         <div class="row">
-                            <div style="font-size:120%;" class="col-12">
+                            <div style="font-size:1.3em;" class="col-12">
                                 <a href="./questions/{{$question->question_id}}"> <b> {{$question->title}} </b></a> 
                                 @include('pages.showQuestionPoints')
 
@@ -59,7 +59,7 @@
                 <div class="card-block border">
                     <div class="row mx-auto">
                         <div class="col-12" style="font-size: 0.9rem;">
-                            <h5 style="margin-top:4px;" class="card-text text-dark">{{$question->content}}</h5>
+                            <h5 style="margin-top:8px; font-size:1.9em;" class="card-text text-dark">{{$question->content}}</h5>
                             <br>
                             <div class="sticky-right">
                                 <h6 class="postBy">
@@ -80,7 +80,7 @@
                     </div>
                     <br>
                 </div>
-                <div class="card-footer border-bottom border-top-0 border-dark">
+                <div class="card-footer">
                     <div class="btn-group btn-group-sm " role="group" aria-label="Basic example">
                         <form style="display: inline" action="{{url('/questions/'.$question->question_id)}}#replyDiv" method="get">
                             <button type="submit" class="btn btn-outline-primary">
