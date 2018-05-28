@@ -354,14 +354,22 @@ class PostController extends Controller {
          */
 
 
-                echo DB::table('question')
+                $tags_matches = DB::table('question')
                 ->join('tagquestion', 'question.postid', '=', 'tagquestion.question_id')
                 ->join('tag', 'tagquestion.tag_id', '=', 'tag.id')
                 ->whereIn('tag.name', $tagsArray)
                 ->select(DB::raw('count(question.postid) as tag_count'), 'question.postid as question_id')
                 ->groupBy('question.postid')
-                ->orderBy('tag_count', 'DESC')
-                ->get();
+                ->orderBy('tag_count', 'DESC');
+                
+                $keyword_matches = DB::table('question')
+                ->join('post', 'question.postid', '=', 'post.id')
+                ->whereIn('question.title', $keywordsArray)
+                ->orWhereIn('post.content', $keywordsArray)
+                ->select(DB::raw('count(question.postid) as keyword_count'), 'question.postid as question_id')
+                ->groupBy('question.postid')
+                ->orderBy('keyword_count', 'DESC');
+                
 
         return;
         echo "\n";

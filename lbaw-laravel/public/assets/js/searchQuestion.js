@@ -4,20 +4,20 @@ document.getElementById("questionSearchBar").addEventListener("keyup", handleUse
 
 function handleUserSearchInput(event)
 {
-    let defaultQuestionsDiv = document.getElementById('Questions');
-    let searchedQuestionsDiv = document.getElementById('QuestionsFromSearch');
+    let defaultContentDiv = document.getElementById('contentID');
+    let searchedQuestionsDiv = document.getElementById('changedContentID');
     let userInputText = event.target.value.trim();
     if (userInputText == "")
     {
-        defaultQuestionsDiv.hidden = false;
-        defaultQuestionsDiv.style.display = 'block';
+        defaultContentDiv.hidden = false;
+        defaultContentDiv.style.display = 'block';
         searchedQuestionsDiv.hidden = true;
         searchedQuestionsDiv.style.display = 'none';
         return;
     }
 
-    defaultQuestionsDiv.hidden = true;
-    defaultQuestionsDiv.style.display = 'none';
+    defaultContentDiv.hidden = true;
+    defaultContentDiv.style.display = 'none';
     searchedQuestionsDiv.hidden = false;
     searchedQuestionsDiv.style.display = 'block';
     let keywordsArr = userInputText.split(" ");
