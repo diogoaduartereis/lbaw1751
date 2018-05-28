@@ -130,7 +130,7 @@ $tags = TagController::getFirstXTags(10);
         <div>
             <ul class="navbar-nav mx-auto">
 
-                @if(Request::is('about')))
+                @if(Request::is('about'))
                 <li class="nav-item items-align-right active">
                 @else
                 <li class="nav-item items-align-right">
@@ -140,7 +140,7 @@ $tags = TagController::getFirstXTags(10);
                     </a>
                 </li>
 
-                @if(Request::is('contacts')))
+                @if(Request::is('contacts'))
                 <li class="nav-item active">
                 @else 
                 <li class="nav-item">
@@ -150,7 +150,7 @@ $tags = TagController::getFirstXTags(10);
                     </a>
                 </li>
 
-                @if(Request::is('faq')))
+                @if(Request::is('faq'))
                 <li class="nav-item active">
                 @else 
                 <li class="nav-item">
