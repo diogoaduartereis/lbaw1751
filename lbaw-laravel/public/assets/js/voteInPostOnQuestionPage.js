@@ -254,21 +254,27 @@ function updatePostPointsInFrontPage(postId, voteValue)
 {
     let oldPoints = document.getElementById("upvoteCount-" + postId).innerHTML;
     let oldPointsValue = Number(oldPoints.substring(0, oldPoints.indexOf('Points')));
-    
-    if(oldPointsValue == 1 && voteValue == 2)
+    console.log(document.getElementById("upvoteCount-" + postId).parentElement.childNodes[0]);
+    if(document.getElementById("upvoteCount-" + postId).parentElement.childNodes[1].classList.contains("fa-minus"))
+    {
         oldPointsValue = -1;
+    }
+    //if(oldPointsValue == 1 && voteValue == 2)
+        //oldPointsValue = -1;
+
     let newValue = oldPointsValue + voteValue;
     let newPointsInnerHTML = oldPointsValue + voteValue + " Points";
     let pointsDiv = document.getElementById("pointsOf-" + postId).innerHTML;
 
 
     if(newValue > -1)
-    document.getElementById("pointsOf-" + postId).innerHTML = `<i class="fas fa-plus" style="padding-right:5px;"></i>
-                    <b id="upvoteCount-` + postId + `" class="text-success">` + newPointsInnerHTML +`</b>`;
+        document.getElementById("pointsOf-" + postId).innerHTML = `
+            <i class="fas fa-plus" style="padding-right:5px;"></i>
+            <b id="upvoteCount-` + postId + `" class="text-success">` + newPointsInnerHTML +`</b>`;
     else 
-    document.getElementById("pointsOf-" + postId).innerHTML = `  <i class="fas fa-minus" style="padding-right:5px; color:red;"></i>
-                        <b id="upvoteCount-` + postId + `" class="text-danger">` + newPointsInnerHTML + `</b>`;
-    
+        document.getElementById("pointsOf-" + postId).innerHTML = `  
+            <i class="fas fa-minus" style="padding-right:5px; color:red;"></i>
+            <b id="upvoteCount-` + postId + `" class="text-danger">` + newPointsInnerHTML + `</b>`;
     
     document.getElementById("upvoteCount-" + postId).innerHTML = newPointsInnerHTML;
 }
