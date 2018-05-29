@@ -11,22 +11,30 @@ function insertAfter(el, referenceNode)
 function handleUserSearchInput(event)
 {
     let defaultContentDiv = document.getElementById('contentID');
-    let searchedQuestionsDiv = document.getElementById('changedContentID');
-    if (searchedQuestionsDiv != null)
-        searchedQuestionsDiv.parentElement.removeChild(searchedQuestionsDiv);
-    searchedQuestionsDiv = document.createElement("div");
-    searchedQuestionsDiv.id = "changedContentID";
+    let oldContentDiv = document.getElementById('oldContentID');
+    let userInputText = event.target.value.trim();
+    if (oldContentDiv != null) //a search already took place and the results are currently being displayed
+    {
+        if (userInputText == "")
+        {
+            defaultContentDiv.parentElement.removeChild(defaultContentDiv);
+            oldContentDiv.id = "contentID";
+            oldContentDiv.hidden = false;
+            oldContentDiv.style.display = 'block';
+            return;
+        }
+        else
+        {
+            defaultContentDiv = oldContentDiv;
+        }
+    }
+        
+    let searchedQuestionsDiv = document.createElement("div");
+    defaultContentDiv.id = "oldContentID";
+    searchedQuestionsDiv.id = "contentID";
     searchedQuestionsDiv.style = defaultContentDiv.style;
     insertAfter(searchedQuestionsDiv, defaultContentDiv);
-    let userInputText = event.target.value.trim();
-    if (userInputText == "")
-    {
-        defaultContentDiv.hidden = false;
-        defaultContentDiv.style.display = 'block';
-        searchedQuestionsDiv.hidden = true;
-        searchedQuestionsDiv.style.display = 'none';
-        return;
-    }
+    
 
     defaultContentDiv.hidden = true;
     defaultContentDiv.style.display = 'none';
@@ -77,7 +85,7 @@ function removeStringFromArray(arr, what)
 
 function searchResultsArrived()
 {
-    let searchedQuestionsDiv = document.getElementById('changedContentID');
+    let searchedQuestionsDiv = document.getElementById('contentID');
     searchedQuestionsDiv.innerHTML = this.responseText;
 }
 
