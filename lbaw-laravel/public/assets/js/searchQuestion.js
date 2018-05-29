@@ -121,3 +121,11 @@ function searchAndReplaceInString(string, expression)
 
     return [found_expression, string];
 }
+
+function encodeForAjax(data)
+{
+    return Object.keys(data).map(function (k)
+    {
+        return encodeURIComponent(k) + '=' + encodeURIComponent(data[k])
+    }).join('&');
+}
