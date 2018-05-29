@@ -24,7 +24,7 @@
 
 </head>
 
-<body style="background: rgba(223, 220, 220, 0.842);">
+<body>
 <!-- Top content -->
 <div class="top-content">
     <div class="inner-bg">
@@ -113,9 +113,8 @@
 <script src="../assets/js/jquery-1.11.1.min.js"></script>
 <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
 <script src="../assets/js/jquery.backstretch.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 <script src="../assets/js/scripts.js"></script>
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"
-        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 
 <script>
     function onSignIn(googleUser) 
@@ -203,7 +202,11 @@
             document.getElementById('submitform').click();
         }
     }
+}
 </script>
+
+    <script src="../assets/js/jquery.backstretch.min.js "></script>
+    <script src="../assets/js/scripts.js "></script>
 
 </body>
 
