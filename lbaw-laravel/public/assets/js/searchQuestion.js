@@ -31,6 +31,7 @@ function handleUserSearchInput()
     let defaultContentDiv = document.getElementById('contentID');
     let oldContentDiv = document.getElementById('oldContentID');
     let userInputText = document.getElementById("questionSearchBar").value.trim();
+    let searchedQuestionsDiv = defaultContentDiv;
     if (oldContentDiv != null) //a search already took place and the results are currently being displayed
     {
         if (userInputText == "")
@@ -46,13 +47,13 @@ function handleUserSearchInput()
             defaultContentDiv = oldContentDiv;
         }
     }
-        
-    let searchedQuestionsDiv = document.createElement("div");
-    defaultContentDiv.id = "oldContentID";
-    searchedQuestionsDiv.id = "contentID";
-    searchedQuestionsDiv.style = defaultContentDiv.style;
-    insertAfter(searchedQuestionsDiv, defaultContentDiv);
-    
+    else
+    {
+        searchedQuestionsDiv = document.createElement("div");
+        defaultContentDiv.id = "oldContentID";
+        searchedQuestionsDiv.id = "contentID";
+        insertAfter(searchedQuestionsDiv, defaultContentDiv);
+    }
 
     defaultContentDiv.hidden = true;
     defaultContentDiv.style.display = 'none';
@@ -105,6 +106,11 @@ function searchResultsArrived()
 {
     let searchedQuestionsDiv = document.getElementById('contentID');
     searchedQuestionsDiv.innerHTML = this.responseText;
+    let oldContentDiv = document.getElementById('oldContentID');
+    if (oldContentDiv == null)
+    {
+        oldContentDiv.parentElement.removeChild(oldContentDiv);
+    }
 }
 
 function getElementInSearch(element, userInputText, endedSearchString)
