@@ -105,11 +105,11 @@
                                                                 <i class="fas fa-ban"></i>
                                                             </button>
 
-                                                            <button onclick="return gotoProfile({{$users[$j]->id}})" class="btn btn-warning" title="Warn User" type="submit">
+                                                            <button onclick="return gotoProfile({{$users[$j]->id}})" class="btn btn-warning" title="View/Edit User Profile" type="submit">
                                                                 <i class="fas fa-edit" style="color: white"></i>
                                                             </button>
                                                             @else
-                                                            <button id="unbanButton" class="btn btn-success " onclick="return confirmUnban(event,{{$users[$j]->id}})" type="submit">
+                                                            <button id="unbanButton" class="btn btn-success " title="Unban User" onclick="return confirmUnban(event,{{$users[$j]->id}})" type="submit">
                                                                 <i class="fas fa-check-circle"></i>
                                                             </button>
                                                             @endif

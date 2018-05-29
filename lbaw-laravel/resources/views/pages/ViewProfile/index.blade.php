@@ -177,6 +177,8 @@
         <script src="../../assets/js/bars.js"></script>
 
         <script>
+
+            let user_id;
             function confirmDelete(event) {
                 event.preventDefault();
                 let button = event.target;
@@ -196,6 +198,7 @@
 
             function confirmUnban(event, userId) {
                 event.preventDefault();
+                user_id = userId;
                 let button = event.target;
                 button.innerText = "Confirm Unban";
                 button.setAttribute("onclick", "unbanUser(event," + userId + ")");
@@ -220,7 +223,7 @@
 
             // Handler for ajax response received
             function responseArrived() {
-                if (this.responseText != "")
+                if (this.responseText != user_id)
                     return;
                 document.getElementById("unbanButton").insertAdjacentHTML('afterend', `<button style="margin:5px 5px;"
                            class="btn btn-danger col-md-6" onclick="goToBanForm(event, {{$user[0]->id}})">Ban user</button>;`);
