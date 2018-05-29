@@ -89,8 +89,8 @@
                                     @endif
                                 @endif
                                 @if(Auth::user()->type == "ADMIN")
-                                    <a id="reportsButton" style="margin:5px 5px;" href="{{url('users/'.$user[0]->id.'/reports')}}" class="btn btn-danger col-md-6 text-white">Reports
-                                        Against User</a>
+                                    <a id="reportsButton" style="margin:5px 5px;" href="{{url('users/'.$user[0]->id.'/reports')}}" class="btn btn-danger col-md-6 text-white">
+                                    Reports Against User Posts</a>
                                 @endif
                             @endif
                         </div>
