@@ -56,6 +56,24 @@
         @endif
 
         <div id="containerID">
+        @if(count($reports) == 0)
+                <div id = "contentID">
+                    <div id ="jumbotronID" class="jumbotron jumbotron-sm">
+                            <div class="container">
+                                <div class="col-sm-12 col-lg-12">
+                                    <div class="row">
+                                        <div id="ReportsList">
+                                            <br>   
+                                            <h1 id ="titleID" class="h1 text-primary">
+                                                No reports to show </h1>
+                                        <div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endif 
             <?php $i = 0 ?>
             @foreach($reports as $report)
                 <?php $i++ ?>
