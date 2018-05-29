@@ -1,0 +1,12 @@
+@media (min-width: 1366px)
+{
+    ul.pagination
+    {
+        margin-left:25.8vw;
+    }
+
+    #classContainerID
+    {
+        margin-left:7vw;
+    }
+}

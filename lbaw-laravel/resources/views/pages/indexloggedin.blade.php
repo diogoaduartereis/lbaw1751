@@ -57,5 +57,6 @@
 
         <script src="./assets/js/voteInPost.js"></script>
         <script src="./assets/js/bars.js"></script>
+        <script src="./assets/js/indexloggedinJS/infiniteScrolling.js"></script>
     </body>
 </html>
