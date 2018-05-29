@@ -87,7 +87,11 @@
 
                 @if($questionElements->isclosed == false)
                     <button onclick="return closeQuestion({{$questionElements->post_id}});" type="button" class="btn btn-success" >
-                    Close Question
+                        Close Question
+                    </button>
+                @else
+                    <button onclick="return openQuestion({{$questionElements->post_id}});" type="button" class="btn btn-success" >
+                        Open Question
                     </button>
                 @endif
 
@@ -95,6 +99,10 @@
                     <a id="reportsButton" href="{{url('post/'.$questionElements->post_id.'/reports')}}" class="btn btn-danger col-md-6 text-white">View Reports</a>
                 @endif
             </div>
+
+            @if($questionElements->isclosed)
+                <h4 class="bold pull-right text-success"><i class="fas fa-check-circle " placeholder="correct"></i> Closed Question</h4>
+            @endif
         </div>
     </div>
     @endif
@@ -120,6 +128,20 @@
         let ajaxRequest = new XMLHttpRequest();
         ajaxRequest.addEventListener("load", responseArrived);
         ajaxRequest.open("POST", "/questions/" + postId + "/close", true);
+        ajaxRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        ajaxRequest.setRequestHeader("X-CSRF-Token", csrfToken);
+        ajaxRequest.send();
+    }
+
+    function openQuestion(postId) 
+    {
+        //get csrf token
+        let csrfToken = document.getElementById("csrf-token").innerHTML;
+
+        //add the new item to the database using AJAX
+        let ajaxRequest = new XMLHttpRequest();
+        ajaxRequest.addEventListener("load", responseArrived);
+        ajaxRequest.open("POST", "/questions/" + postId + "/open", true);
         ajaxRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         ajaxRequest.setRequestHeader("X-CSRF-Token", csrfToken);
         ajaxRequest.send();

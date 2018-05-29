@@ -91,9 +91,11 @@
                     </form>
                 @endif
             </div>
+
             @if($answersElements[$i]->iscorrect)
-                <h4 class="bold pull-right"><i class="fas fa-check-circle text-success" placeholder="correct"> Correct Answer</i></h4>
+                <h4 class="bold pull-right text-success"><i class="fas fa-check-circle " placeholder="correct"></i> Correct Answer</h4>
             @endif
+
         </div>
     </div>
     @endif
