@@ -98,7 +98,7 @@
                                                         <th scope="row">{{$users[$j]->id}}</th>
                                                         <td>{{$users[$j]->username}}</td>
                                                         <td>{{$users[$j]->email}}</td>
-                                                        <td>
+                                                        <td id="actions-{{$users[$j]->id}}">
 
                                                             @if($users[$j]->state == "ACTIVE")
                                                             <button class="btn btn-danger" title="Ban User" onclick="return gotoBanPage({{$users[$j]->id}})" type="submit">
@@ -109,8 +109,8 @@
                                                                 <i class="fas fa-edit" style="color: white"></i>
                                                             </button>
                                                             @else
-                                                            <button id="unbanButton" class="btn btn-success " title="Unban User" onclick="return confirmUnban(event,{{$users[$j]->id}})" type="submit">
-                                                                <i class="fas fa-check-circle"></i>
+                                                            <button id="unbanButton-{{$users[$j]->id}}" class="btn btn-success " title="Unban User" onclick="return confirmUnban(event,{{$users[$j]->id}})" type="submit">
+                                                                <i class="fas fa-check"></i>
                                                             </button>
                                                             @endif
 

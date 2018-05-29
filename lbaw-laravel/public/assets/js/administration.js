@@ -3,18 +3,18 @@ function gotoProfile(id)
     window.location.href = "./users/" + id;
 }
 
+var buttonPreviousElement;
 function confirmUnban(event, userId)
 {
     event.preventDefault();
-    let button = event.target;
+    let button = document.getElementById("unbanButton-" + userId);
 
-    let buttonPreviousText = button.innerHTML;
-    console.log(buttonPreviousText);
-    button.innerText = "Confirm Unban";
+    buttonPreviousElement = button.innerHTML;
+    button.innerHTML = "Confirm Unban";
     button.setAttribute("onclick", "unbanUser(event," + userId + ")");
     setTimeout(function deleteDefaultValue()
     {
-        button.innerHTML = buttonPreviousText;
+        button.innerHTML = buttonPreviousElement;
         button.setAttribute("onclick", "confirmUnban(event," + userId + ")");
     }, 3000);
 }
@@ -40,11 +40,15 @@ function responseArrived()
     if (this.responseText == "")
         return;
 
-    let userid = this.responseText;
+    let userId = this.responseText;
 
-    document.getElementById("unbanButton").insertAdjacentHTML('afterend', `<button
-        class="btn btn-danger" onclick="gotoBanPage(event, userid)"> <i class="fas fa-ban"></i> </button>;`);
-    document.getElementById("unbanButton").remove();
+    document.getElementById("unbanButton-" + userId).remove();
+    document.getElementById("actions-" + userId).innerHTML =`<button class="btn btn-danger" title="Ban User" onclick="gotoBanPage(` + userId + `)" type="submit">
+                                                                <i class="fas fa-ban"></i>
+                                                            </button>
+                                                            <button onclick="return gotoProfile(` + userId + `)" class="btn btn-warning" title="View/Edit User Profile" type="submit">
+                                                                <i class="fas fa-edit" style="color: white"></i>
+                                                            </button>`;
 }
 
 function gotoBanPage(id)
