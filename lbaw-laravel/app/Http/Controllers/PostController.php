@@ -431,15 +431,12 @@ class PostController extends Controller {
                         }
                     }
                 }
-                print_r($final_results);
 
                 $questions_ids = array();
                 foreach ($final_results as $result)
                 {
                     array_push($questions_ids, $result[0]);
                 }
-                
-                print_r($questions_ids);
 
                 $currentDBResults = null;
                 foreach ($questions_ids as $question_id)
@@ -456,11 +453,10 @@ class PostController extends Controller {
                 }
                 $final_questions = $currentDBResults->get();
 
-                echo $final_questions;
                 $questions_and_tags = PostController::checkQuestionsReturn($final_questions);
-
+                
         if (Auth::check())
-            return view('pages.indexloggedin_questionsdiv', ['questions' => $questions_and_tags['questions']], ['questions_tags' => $questions_and_tags['questions_tags']]);
+            return view('pages.indexloggedin_questionsdiv', ['questions' => $questions_and_tags['questions']], ['questions_tags' => $questions_and_tags['questions_tags'], 'postVotes' => $questions_and_tags['postVotes']]);
         else
             return view('pages.index_questionsdiv', ['questions' => $questions_and_tags['questions']], ['questions_tags' => $questions_and_tags['questions_tags']]);
     }
