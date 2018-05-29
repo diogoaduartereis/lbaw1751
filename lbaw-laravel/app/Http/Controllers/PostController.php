@@ -441,14 +441,20 @@ class PostController extends Controller {
                 
                 print_r($questions_ids);
 
-                
-                $final_questions = DB::table('question')
-                ->join('post', 'question.postid', '=', 'post.id')
-                ->join('users', 'post.posterid', '=', 'users.id')
-                ->whereIn('question.postid', $questions_ids)
-                ->select('question.postid as question_id', 'title', 'content', 'post.posterid as poster_id', 'post.points as question_points', 'users.points as poster_points', 'username')
-                ->take(10)//->toSql();
-                ->get();
+                $currentDBResults = null;
+                foreach ($questions_ids as $question_id)
+                {
+                    $retFromDB = DB::table('question')
+                    ->join('post', 'question.postid', '=', 'post.id')
+                    ->join('users', 'post.posterid', '=', 'users.id')
+                    ->where('question.postid', '=', $question_id)
+                    ->select('question.postid as question_id', 'title', 'content', 'post.posterid as poster_id', 'post.points as question_points', 'users.points as poster_points', 'username');
+                    if ($currentDBResults == null)
+                        $currentDBResults = $retFromDB;
+                    else
+                        $currentDBResults = $currentDBResults->unionAll($retFromDB);
+                }
+                $final_questions = $currentDBResults->get();
 
                 echo $final_questions;
 
