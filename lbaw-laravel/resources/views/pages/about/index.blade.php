@@ -52,7 +52,6 @@ $teams = TeamController::getMapWithAllTeamsToMembers();
 
     <body>
 
-    <p id="csrf-token" style="display: none;" hidden >{{csrf_token()}}</p>
         <div id="wrap" class="wrapper">
             @if(Auth::check())
             @include('pages.sidebar')
