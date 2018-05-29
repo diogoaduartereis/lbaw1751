@@ -68,7 +68,7 @@
                                         <button id="submitform" type="submit" hidden="true"></button>
                                     </form>
                                     <h6>
-                                        <a style="font-size: 120%;" href="./password/reset">Recovery password</a>
+                                        <a style="font-size: 120%;" href="./password/reset">Forgot your password?</a>
                                     </h6>
                                     <div class="register-link ">
                                         <h3>
