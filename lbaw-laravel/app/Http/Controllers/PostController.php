@@ -336,6 +336,7 @@ class PostController extends Controller {
         $ret = array();
         $ret['questions'] = $questions;
         $ret['questions_tags'] = $questions_tags;
+        if (Auth::check())
         $ret['postVotes'] = $postVotes;
         return $ret;
     }

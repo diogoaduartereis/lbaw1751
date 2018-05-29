@@ -7,6 +7,16 @@
         font-size:90%;
     }
 
+    #questionSearch
+    {
+        margin-left:70px;
+    }
+
+}
+
+#contentID
+{
+    margin-left:15.2vw;
 }
 
 .dont-break-out {
@@ -27,4 +37,4 @@
     -webkit-hyphens: auto;
     hyphens: auto;
   
-  }
+}
