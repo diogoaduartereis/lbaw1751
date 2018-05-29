@@ -5,6 +5,7 @@ use \App\Http\Controllers\TagController;
 $tags = TagController::getFirstXTags(10);
 ?>
 
+<p id="csrf-token" style="display: none;" hidden >{{csrf_token()}}</p>
 <nav style="width:100%;" id="navbar" class="navbar rounded-0 navbar-expand-lg navbar-dark bg-dark sticky-top">
     <a class="btn btn-md" style="color:white; margin-left:5px;" href="{{url('login')}}"> Sign In </a>
 

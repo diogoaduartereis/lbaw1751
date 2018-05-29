@@ -5,6 +5,7 @@ use \App\Http\Controllers\TagController;
 $tags = TagController::getFirstXTags(10);
 ?>
 
+<p id="csrf-token" style="display: none;" hidden >{{csrf_token()}}</p>
 <nav style="width:100%;" id="navbar" class="navbar rounded-0 navbar-expand-lg navbar-dark bg-dark sticky-top">
 
     <button id="sidebarCollapse" class="btn border-0 bg-transparent" data-toggle="collapse" data-target="#sidebar" data-parent="#navbar"

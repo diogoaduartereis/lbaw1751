@@ -2,10 +2,22 @@
 
 document.getElementById("questionSearchBar").addEventListener("keyup", handleUserSearchInput);
 
+
+function insertAfter(el, referenceNode)
+{
+    referenceNode.parentNode.insertBefore(el, referenceNode.nextSibling);
+}
+
 function handleUserSearchInput(event)
 {
     let defaultContentDiv = document.getElementById('contentID');
     let searchedQuestionsDiv = document.getElementById('changedContentID');
+    if (searchedQuestionsDiv != null)
+        searchedQuestionsDiv.parentElement.removeChild(searchedQuestionsDiv);
+    searchedQuestionsDiv = document.createElement("div");
+    searchedQuestionsDiv.id = "changedContentID";
+    searchedQuestionsDiv.style = defaultContentDiv.style;
+    insertAfter(searchedQuestionsDiv, defaultContentDiv);
     let userInputText = event.target.value.trim();
     if (userInputText == "")
     {
@@ -109,4 +121,12 @@ function searchAndReplaceInString(string, expression)
     string = string.trim();
 
     return [found_expression, string];
+}
+
+function encodeForAjax(data)
+{
+    return Object.keys(data).map(function (k)
+    {
+        return encodeURIComponent(k) + '=' + encodeURIComponent(data[k])
+    }).join('&');
 }
