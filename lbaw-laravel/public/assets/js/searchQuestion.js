@@ -49,10 +49,17 @@ function handleUserSearchInput()
     }
     else
     {
-        searchedQuestionsDiv = document.createElement("div");
-        defaultContentDiv.id = "oldContentID";
-        searchedQuestionsDiv.id = "contentID";
-        insertAfter(searchedQuestionsDiv, defaultContentDiv);
+        if (userInputText == "")
+        {
+            return;
+        }
+        else
+        {
+            searchedQuestionsDiv = document.createElement("div");
+            defaultContentDiv.id = "oldContentID";
+            searchedQuestionsDiv.id = "contentID";
+            insertAfter(searchedQuestionsDiv, defaultContentDiv);
+        }
     }
 
     defaultContentDiv.hidden = true;
