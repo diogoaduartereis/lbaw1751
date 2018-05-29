@@ -431,67 +431,34 @@ class PostController extends Controller {
                         }
                     }
                 }
-                print_r($final_results);
 
                 $questions_ids = array();
                 foreach ($final_results as $result)
                 {
                     array_push($questions_ids, $result[0]);
                 }
-                
-                print_r($questions_ids);
 
-                
-                $final_questions = DB::table('question')
-                ->join('post', 'question.postid', '=', 'post.id')
-                ->join('users', 'post.posterid', '=', 'users.id')
-                ->whereIn('question.postid', $questions_ids)
-                ->select('question.postid as question_id', 'title', 'content', 'post.posterid as poster_id', 'post.points as question_points', 'users.points as poster_points', 'username')
-                ->take(10)//->toSql();
-                ->get();
-
-                echo $final_questions;
-
-        return;
-        echo "\n";
-        echo $DBTagResults;
-        return;
-        $currentDBResults = null;
-        foreach ($keywordsArray as $keyword) {
-            $retFromDB = DB::table('question')
+                $currentDBResults = null;
+                foreach ($questions_ids as $question_id)
+                {
+                    $retFromDB = DB::table('question')
                     ->join('post', 'question.postid', '=', 'post.id')
-                    ->where('question.title', 'like', '%' . $keyword . '%')
-                    ->orwhere('post.content', 'like', '%' . $keyword . '%')
-                    ->select(DB::raw('count(question.postid) as keyword_count, question.postid as question_id'))
-                    ->groupBy('question.postid');
-            if ($currentDBResults == null)
-                $currentDBResults = $retFromDB;
-            else
-                $currentDBResults = $currentDBResults->unionAll($retFromDB);
-        }
-        /*
-          $DBKeywrodsResults =
-          $currentDBResults
-          ->select('*', DB::raw('SUM (keyword_count) as keyword_matches'))
-          ->groupBy('question_id')
-          ->get();
-         */
-        $finalMatches = $DBTagResults
-                ->join($DBKeywrodsResults)
-                ->sum('keyword_count as keyword_matches')
-                ->groupBy('postid')
-                ->get();
+                    ->join('users', 'post.posterid', '=', 'users.id')
+                    ->where('question.postid', '=', $question_id)
+                    ->select('question.postid as question_id', 'title', 'content', 'post.posterid as poster_id', 'post.points as question_points', 'users.points as poster_points', 'username');
+                    if ($currentDBResults == null)
+                        $currentDBResults = $retFromDB;
+                    else
+                        $currentDBResults = $currentDBResults->unionAll($retFromDB);
+                }
+                $final_questions = $currentDBResults->get();
 
-        //echo json_encode($dbResultsArray);
-        /* $finalResult;
-          foreach($dbResultsArray as $db)
-          {
-
-          } */
+                $questions_and_tags = PostController::checkQuestionsReturn($final_questions);
+                
         if (Auth::check())
-            return view('pages.indexloggedin_questionsdiv', ['questions' => $questions], ['questions_tags' => $questions_tags]);
+            return view('pages.indexloggedin_questionsdiv', ['questions' => $questions_and_tags['questions']], ['questions_tags' => $questions_and_tags['questions_tags'], 'postVotes' => $questions_and_tags['postVotes']]);
         else
-            return view('pages.index_questionsdiv', ['questions' => $questions], ['questions_tags' => $questions_tags]);
+            return view('pages.index_questionsdiv', ['questions' => $questions_and_tags['questions']], ['questions_tags' => $questions_and_tags['questions_tags']]);
     }
 
     //}
