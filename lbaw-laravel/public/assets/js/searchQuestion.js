@@ -6,6 +6,9 @@ function handleUserSearchInput(event)
 {
     let defaultContentDiv = document.getElementById('contentID');
     let searchedQuestionsDiv = document.getElementById('changedContentID');
+    console.log("begin");
+    console.log(searchedQuestionsDiv.innerHTML);
+    console.log("end");
     let userInputText = event.target.value.trim();
     if (userInputText == "")
     {
@@ -70,6 +73,8 @@ function searchResultsArrived()
 {
     console.log("searchResultsArrived");
     console.log(this.responseText);
+    let searchedQuestionsDiv = document.getElementById('changedContentID');
+    searchedQuestionsDiv.innerHTML = this.responseText;
 
 }
 
