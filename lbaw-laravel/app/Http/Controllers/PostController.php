@@ -451,7 +451,9 @@ class PostController extends Controller {
                     else
                         $currentDBResults = $currentDBResults->unionAll($retFromDB);
                 }
-                $final_questions = $currentDBResults->get();
+                $final_questions = DB::table(DB::raw("(" . $currentDBResults->toSql() . ") as res"))
+                ->mergeBindings($currentDBResults)
+                ->paginate(10);
 
                 $questions_and_tags = PostController::checkQuestionsReturn($final_questions);
                 
