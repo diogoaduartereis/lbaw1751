@@ -358,7 +358,7 @@ class UserController extends Controller {
 
     public static function showAdminPage($users, $username) 
     {
-        $users = DB::table('users')->select('*')->where('username', 'like', '%' . $username . '%')->get();
+        $users = DB::table('users')->select('*')->where('username', 'like', '%' . $username . '%')->paginate(20);
         return view('pages.admin.index', ['users' => $users]);
     }
 
