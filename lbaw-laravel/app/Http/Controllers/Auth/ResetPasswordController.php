@@ -5,6 +5,9 @@ use Closure;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
+use Illuminate\Auth\Events\PasswordReset;
 class ResetPasswordController extends Controller
 {
     /*
@@ -60,31 +63,18 @@ class ResetPasswordController extends Controller
             'email', 'password', 'password_confirmation', 'token'
         );
     }
-    
-    protected function validateNewPassword(array $credentials)
-    {
-        if (isset($this->passwordValidator)) {
-            list($password, $confirm) = [
-                $credentials['password'],
-                $credentials['password_confirmation'],
-            ];
 
-            return call_user_func(
-                $this->passwordValidator, $credentials
-            ) && $password === $confirm;
-        }
-
-        return $this->validatePasswordWithDefaults($credentials);
-    }
-    
-    protected function validatePasswordWithDefaults(array $credentials)
+    protected function resetPassword($user, $password)
     {
-        list($password, $confirm) = [
-            $credentials['password'],
-            $credentials['password_confirmation'],
-        ];
- 
-        return $password === $confirm && mb_strlen($password) >= 6;
+        $user->pass_token = Hash::make($password);
+
+        $user->setRememberToken(Str::random(60));
+
+        $user->save();
+
+        event(new PasswordReset($user));
+
+        $this->guard()->login($user);
     }
 }
 
