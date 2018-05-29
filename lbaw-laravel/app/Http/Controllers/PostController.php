@@ -358,30 +358,70 @@ class PostController extends Controller {
                 ->join('tagquestion', 'question.postid', '=', 'tagquestion.question_id')
                 ->join('tag', 'tagquestion.tag_id', '=', 'tag.id')
                 ->whereIn('tag.name', $tagsArray)
-                ->select(DB::raw('count(question.postid) as tag_count'), 'question.postid as question_id1')
+                ->select(DB::raw('count(question.postid) as tag_count'), 'question.postid as question_id')
                 ->groupBy('question.postid')
-                ->orderBy('tag_count', 'DESC');
+                ->orderBy('tag_count', 'DESC')
+                ->take(10)
+                ->get();
                 
                 $keyword_matches = DB::table('question')
                 ->join('post', 'question.postid', '=', 'post.id')
                 ->whereIn('question.title', $keywordsArray)
                 ->orWhereIn('post.content', $keywordsArray)
-                ->select(DB::raw('count(question.postid) as keyword_count'), 'question.postid as question_id2')
+                ->select(DB::raw('count(question.postid) as keyword_count'), 'question.postid as question_id')
                 ->groupBy('question.postid')
-                ->orderBy('keyword_count', 'DESC');
+                ->orderBy('keyword_count', 'DESC')
+                ->take(10)
+                ->get();
                 
-                $final_results = $tags_matches
-                ->join($keyword_matches->toSql(), function ($join) {
-                $join->on('question_id1', '=', 'question_id2');
-                })->toSql();
-                echo $tags_matches->toSql();
-                echo "\n";
-                echo $keyword_matches->toSql();
-                echo "\n";
+                $final_results = array();
+                foreach ($tags_matches as $result1)
+                {
+                    $found = false;
+                    foreach ($keyword_matches as $result2)
+                    {
+                        if ($result1->question_id == $result2->question_id)
+                        {
+                            $found = true;
+                            array_push($final_results, array($result1->question_id, $result1->tag_count * 3 + $result2->keyword_count * 2));
+                        }
+                    }
+                    if (!$found)
+                        array_push($final_results, array($result1->question_id, $result1->tag_count * 3));
+                }
                 
-                //$final_results = $tags_matches->leftJoin($keyword_matches)->get();
-                echo ($final_results);
-                
+                foreach ($keyword_matches as $result1)
+                {
+                    $found = false;
+                    foreach ($tags_matches as $result2)
+                    {
+                        if ($result1->question_id == $result2->question_id)
+                        {
+                            $found = true;
+                        }
+                    }
+                    if (!$found)
+                        array_push($final_results, array($result1->question_id, $result1->keyword_count * 3));
+                }
+
+                $sorted = false;
+                while (!$sorted)
+                {
+                    $sorted = true;
+                    foreach ($final_results as $i=>$result)
+                    {
+                        if ($i == count($final_results) - 1)
+                            break;
+                        if ($result[1] < $final_results[$i + 1][1])
+                        {
+                            $temp = $final_results[$i];
+                            $final_results[$i] = $final_results[$i + 1];
+                            $final_results[$i + 1] = $temp;
+                            $sorted = false;
+                        }
+                    }
+                }
+                print_r($final_results);
 
         return;
         echo "\n";
