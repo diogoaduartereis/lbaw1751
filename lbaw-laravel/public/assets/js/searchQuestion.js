@@ -3,6 +3,20 @@
 document.getElementById("questionSearchBar").addEventListener("keyup", handleUserSearchInput);
 
 
+function searchAndReplaceInString(string, expression)
+{
+    let found_expression = false;
+    if (string.toLowerCase().includes(expression))
+    {
+        found_expression = true;
+        string = string.toLowerCase().replace(expression, "");
+    }
+    string = string.trim();
+
+    return [found_expression, string];
+}
+
+
 function insertAfter(el, referenceNode)
 {
     referenceNode.parentNode.insertBefore(el, referenceNode.nextSibling);
@@ -107,17 +121,4 @@ function getElementInSearch(element, userInputText, endedSearchString)
     request.open("GET", "../search/getUser" + element + ".php?" +
             encodeForAjax({name: userInputText, endedOption: endedSearchString}), true);
     request.send();
-}
-
-function searchAndReplaceInString(string, expression)
-{
-    let found_expression = false;
-    if (string.toLowerCase().includes(expression))
-    {
-        found_expression = true;
-        string = string.toLowerCase().replace(expression, "");
-    }
-    string = string.trim();
-
-    return [found_expression, string];
 }
