@@ -383,9 +383,7 @@ class PostController extends Controller {
                         $currentDBResults = $currentDBResults->unionAll($retFromDB);
                 }
                 $keyword_matches = $currentDBResults->take(10)->get();
-                
-                
-                echo $keyword_matches;
+
                 $final_results = array();
                 foreach ($tags_matches as $result1)
                 {
