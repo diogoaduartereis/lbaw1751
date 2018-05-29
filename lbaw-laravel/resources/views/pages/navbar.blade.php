@@ -6,7 +6,7 @@ $tags = TagController::getFirstXTags(10);
 ?>
 
 <nav style="width:100%;" id="navbar" class="navbar rounded-0 navbar-expand-lg navbar-dark bg-dark sticky-top">
-    <a style="color:white;" href="{{url('login')}}"> Sign In </a>
+    <a class="btn btn-md" style="color:white; margin-left:5px;" href="{{url('login')}}"> Sign In </a>
 
 <a href="{{url('register')}}" style="margin-left:15px; color:white; background-color:rgb(41, 157, 252);" class="btn btn-primary btn-md rounded"
    data-toggle="collapse" data-target="#sidebar" data-parent="#navbar" aria-expanded="false">

@@ -6,19 +6,19 @@
 
     <div class ="infinite-scroll">
         @foreach ($questions as $question)
-            <div id="question-{{$question->question_id}}" class="row">
-                <div class="col-12">
-                    <div class="col-11 mx-auto">
-                        <div style="margin-top:20px;" class="card border">
-                                <div class="card-header border">
-                                    <div class="row">
-                                        <div style="font-size:1.3em;" class="col-12">
-                                            <a href="./questions/{{$question->question_id}}"> <b> {{$question->title}} </b></a> 
-                                            @include('pages.showQuestionPoints')
-                                        </div>
-                                    </div>
+        <div id="question-{{$question->question_id}}" class="row">
+            <div class="col-12">
+                <div class="col-11 mx-auto">
+                    <div style="margin-top:20px;" class="card border">
+                        <div class="card-header border">
+                            <div class="row">
+                                <div style="font-size:1.3em;" class="col-12">
+                                    <a href="./questions/{{$question->question_id}}"> <b> {{$question->title}} </b></a> 
+                                    @include('pages.showQuestionPoints')
                                 </div>
+                            </div>
                         </div>
+                    </div>
                     <div class="card-block border">
                         <div class="row mx-auto">
                             <div class="col-12" style="font-size: 0.9rem;">
@@ -43,7 +43,9 @@
                         </div>
                         <br>
                     </div>
+                </div>
             </div>
+        </div>
         @endforeach
         {{ $questions->links() }}
     </div>
