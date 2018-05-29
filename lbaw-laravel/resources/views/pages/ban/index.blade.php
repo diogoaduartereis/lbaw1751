@@ -74,7 +74,7 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="name">
-                                                            Description</label>
+                                                            Description * </label>
                                                         <textarea name="descriptionMessage" id="descriptionMessage" class="form-control" rows="7" cols="25" required="required" placeholder="Message" style="resize: none;"></textarea>
                                                     </div>
                                                 </div>
@@ -82,6 +82,7 @@
                                                     <button id="banUserButton" class="btn btn-danger pull-right" onclick="submitIfCorrect(event);">
                                                         Ban User
                                                     </button>
+                                                    <p style="font-size: 90%; color:black;"> * mandatory </p>
                                                     <p id="errorParagraph" style="color:red;">
                                                         @if($errors -> has("msg"))
                                                             {{$errors -> first("msg")}}

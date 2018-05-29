@@ -28,10 +28,17 @@
     <body>
 
         <div id="wrap" class="wrapper">
-            @include('pages.sidebar')
+            <?php if (Auth::check()): ?>
+                @include('pages.sidebar')
+            <?php endif; ?>
+
             <div id="content">
 
-                @include('pages.navbarloggedin') 
+                <?php if (Auth::check()): ?>
+                    @include('pages.navbarloggedin')
+                <?php else: ?>
+                    @include('pages.navbar')
+                <?php endif; ?>
 
                 <div id = "containerID">
                     <div id = "contentID">

@@ -63,13 +63,14 @@
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label for="name">
-                                                        Message</label>
+                                                        Report Message *</label>
                                                     <textarea name="message" id="message" class="form-control" rows="7" cols="25" required="required" placeholder="Message" style="resize: none;"></textarea>
                                                 </div>
                                             </div>
                                             <div class="col-md-12">
                                                 <button onclick="reportPost(event, {{$id}})" class="btn btn-primary pull-right" id="btnContactUs">
                                                     Report Post</button>
+                                                <p style="font-size: 90%; color:black;"> * mandatory </p>
                                             </div>
                                         </div>
                                     </div>

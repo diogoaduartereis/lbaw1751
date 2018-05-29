@@ -61,13 +61,13 @@
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label for="title">Title</label>
-                                                        <input type="text" name="title" class="form-control" id="title" placeholder="Enter title" required="required" />
+                                                        <label for="title">Title *</label>
+                                                        <input type="text" name="title" class="form-control" id="title" title="Enter title" placeholder="Enter title" required="required" />
                                                     </div>
                                                     <div class="form-group">
                                                         <p id="tags-csrf-token" style="display: none" hidden >{{csrf_token()}}</p>  
-                                                        <label for="tags">Tags</label>
-                                                        <input id="tagsInputBox" type="text" name = "tags" class="form-control" id="tags" placeholder="Enter tags" required="required" />
+                                                        <label for="tags">Tags *</label>
+                                                        <input id="tagsInputBox" type="text" name = "tags" class="form-control" id="tags" placeholder="tag1 tag2 tag3" title="Tags (max 3 tags)" required="required" />
                                                         <ul id="listTags" class="list-group"></ul>
                                                         <script src="../assets/js/encodeForAjax.js"></script>
                                                         <script src="../assets/js/searchTags.js"></script>
@@ -75,7 +75,7 @@
                                                 </div>
                                                 <div class="col-md-12">
                                                     <div class="form-group">
-                                                        <label for="description">Description</label>
+                                                        <label for="description">Description *</label>
                                                         <textarea name="content" id="froala-editor" class="form-control" rows="15" cols="25" required="required" placeholder="Message">
                                                         </textarea>
                                                         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
@@ -87,6 +87,7 @@
                                                 <div class="col-md-12">
                                                     <button type="submit" class="btn btn-primary pull-right" id="btnSubmitQuestion">
                                                         Submit Question</button>
+                                                    <p style="font-size: 90%; color:black;"> * mandatory </p>
                                                 </div>
                                             </div>
                                         </form>

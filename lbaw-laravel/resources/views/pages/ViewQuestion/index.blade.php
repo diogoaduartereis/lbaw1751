@@ -89,17 +89,15 @@
                                 <br>
                                 <br>
                             </div>
-                            @if(Auth::check())
+                            @if(Auth::check() && $questionElements->isclosed != true)
                             <form action="{{url('postNewAnswer/' . $questionElements->post_id)}}" method="post">
                                 {!! csrf_field() !!}
                                 <div id="replyDiv" class="col-md-12">
                                     <div class="form-group">
                                         <label style="font-size: 150%">
                                             Reply to this Question</label>
-
-
                                         <textarea style="overflow-y:auto;" name="content" class="form-control" rows="5" cols="32" 
-                                        required="required" placeholder="Type reponse here" title="Type reponse here"> </textarea>
+                                        required="required" placeholder="Type response here" title="Type response here"> </textarea>
 
                                     </div>
                                 </div>
