@@ -86,7 +86,7 @@
                 @endif
 
                 @if(Auth::user()->type == "ADMIN" || Auth::user()->id==$answersElements->posterid)
-                    <form action="{{url()}}">
+                    <form action="{{url('answer/'.$answersElements[$i]->post_id.'/correct')}}">
                         <a id="correctmarkButton" class="btn btn-success col-md-6 text-white">Mark as Correct</a>
                     </form>
                 @endif

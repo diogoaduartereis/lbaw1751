@@ -473,9 +473,9 @@ class PostController extends Controller {
             return view('pages.index_questionsdiv', ['questions' => $questions_and_tags['questions']], ['questions_tags' => $questions_and_tags['questions_tags']]);
     }
 
-    public function markCorrect()
+    public function markCorrect($id)
     {
-
+        return 'hi';
     }
 
     //}
