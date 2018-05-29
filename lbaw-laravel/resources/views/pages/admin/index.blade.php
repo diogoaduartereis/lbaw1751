@@ -53,9 +53,9 @@
                                         <form action="{{url('admin/')}}" method="GET">
                                             <div id="searchFormID" class="input-group">
                                                 <label for="userName" class="sr-only">Search Users</label>
-                                                <input id="userName" name="username" class="form-control" placeholder="Search for users" autofocus="" type="text">
+                                                <input id="userName" name="username" class="form-control" placeholder="Search for users, by username" autofocus="" type="text">
                                                 <div class="input-group-append">
-                                                    <button class="btn btn-outline-primary" type="submit">
+                                                    <button class="btn btn-outline-primary" title="Search" type="submit">
                                                         <i class="fas fa-search"></i>
                                                     </button>
                                                 </div>
@@ -79,8 +79,8 @@
                                         <table class="table">
                                             <thead>
                                                 <tr>
-                                                    <th>#</th>
-                                                    <th>Name</th>
+                                                    <th>Id</th>
+                                                    <th>Username</th>
                                                     <th>Email</th>
                                                     <th>Actions</th>
                                                 </tr>
