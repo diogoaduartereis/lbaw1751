@@ -167,29 +167,29 @@ class PostController extends Controller {
             return redirect('questions/' . $post_id);
     }
 
-    public function closeQuestion($id) {
-        if (Auth::check()) {
-            $logged_user_id = Auth::user()->id;
-            $user = \App\User::where('id', $logged_user_id)->first();
-            if ($user == null)
-                return redirect("/");
+    public function closeQuestion($id) 
+    {
+        if (!Auth::check()) 
+            return redirect("/login");
+        
+        $logged_user_id = Auth::user()->id;
+        $user = \App\User::where('id', $logged_user_id)->first();
+        if ($user == null)
+            return redirect("/login");
 
-            $posterId = DB::select('SELECT posterID FROM Post WHERE id=:id', ['id' => $id])[0]->posterid;
+        $posterId = DB::select('SELECT posterID FROM Post WHERE id=:id', ['id' => $id])[0]->posterid;
 
-            $validAccess = false;
-            if ($user->type == "ADMIN")
-                $validAccess = true;
-            else if ($posterId == $logged_user_id)
-                $validAccess = true;
+        $validAccess = false;
+        if ($user->type == "ADMIN")
+            $validAccess = true;
+        else if ($posterId == $logged_user_id)
+            $validAccess = true;
 
-            if ($validAccess == false)
-                return redirect("users/" . $posterId);
+        if ($validAccess == false)
+            return redirect("questions/" . $id);
 
-            DB::table("question")->where('postid', $id)->update(array('isclosed' => true));
-            return redirect("users/" . $posterId);
-        }
-
-        return redirect("/");
+        DB::table("question")->where('postid', $id)->update(array('isclosed' => true));
+        return redirect("questions/" . $id);
     }
 
     public function postVote(Request $request, $postId) {
