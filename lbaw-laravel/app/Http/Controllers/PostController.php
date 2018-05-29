@@ -92,7 +92,8 @@ class PostController extends Controller {
     }
 
     public function showQuestionPage($id) {
-        $questionElements = DB::table('post')->select('users.points as userPoints', 'users.*', 'post.id as post_id', 'post.posterid', 'post.content', 'post.date', 'post.isvisible', 'post.points', 'question.*')
+        $questionElements = DB::table('post')
+                ->select('users.points as userPoints', 'users.*', 'post.id as post_id', 'post.posterid', 'post.content', 'post.date', 'post.isvisible', 'post.points', 'question.*')
                 ->join('users', DB::raw('post.posterid'), '=', DB::raw('users.id'))
                 ->join('question', DB::raw('post.id'), '=', DB::raw('question.postid'))
                 ->where(DB::raw('post.isvisible'), '=', TRUE)
@@ -101,11 +102,13 @@ class PostController extends Controller {
         if (!$questionElements || count($questionElements) == 0)
             return redirect('/404');
 
-        $answersElements = DB::table('post')->select('users.*', 'post.id as post_id', 'post.posterid', 'post.content', 'post.date as post_date', 'post.isvisible', 'post.points', 'answer.*')
+        $answersElements = DB::table('post')->select('users.*', 'post.id as post_id', 'post.posterid', 'post.content', 'post.date as post_date', 'post.isvisible', 'post.points', 'answer.*', 'answer.iscorrect')
                 ->join('users', DB::raw('post.posterid'), '=', DB::raw('users.id'))
                 ->join('answer', DB::raw('post.id'), '=', DB::raw('answer.postid'))
                 ->where(DB::raw('post.isvisible'), '=', TRUE)
                 ->where(DB::raw('answer.questionid'), '=', $id)
+                ->orderBy('answer.iscorrect')
+                ->orderBy('post.date')
                 ->orderBy('post_date', 'asc')
                 ->get();
         if (!$answersElements)
