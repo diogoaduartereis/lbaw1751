@@ -98,7 +98,8 @@
                                             Reply to this Question</label>
 
 
-                                        <textarea style="overflow-y:auto;" name="content" class="form-control" rows="5" cols="32" required="required" placeholder="Message"> </textarea>
+                                        <textarea style="overflow-y:auto;" name="content" class="form-control" rows="5" cols="32" 
+                                        required="required" placeholder="Type reponse here" title="Type reponse here"> </textarea>
 
                                     </div>
                                 </div>
