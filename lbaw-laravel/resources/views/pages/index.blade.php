@@ -42,7 +42,6 @@
 
         <script src="./assets/js/bars.js"></script>
         <script src="./assets/js/indexloggedinJS/infiniteScrolling.js"></script>
-        <script src="./assets/js/searchQuestion.js"></script>
     </body>
 
 </html>
