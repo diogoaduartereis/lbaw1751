@@ -367,7 +367,11 @@ class PostController extends Controller {
                     else
                         $currentDBResults = $currentDBResults->unionAll($retFromDB);
                 }
-                $tags_matches = $currentDBResults->take(10)->get();
+                $tags_matches;
+                if ($currentDBResults != null)
+                    $tags_matches = $currentDBResults->take(10)->get();
+                else
+                    $tags_matches = array();
 
                 $currentDBResults = null;
                 foreach ($keywordsArray as $keyword) {
@@ -382,7 +386,11 @@ class PostController extends Controller {
                     else
                         $currentDBResults = $currentDBResults->unionAll($retFromDB);
                 }
-                $keyword_matches = $currentDBResults->take(10)->get();
+                $keyword_matches;
+                if ($currentDBResults != null)
+                    $keyword_matches = $currentDBResults->take(10)->get();
+                else
+                    $keyword_matches = array();
 
                 $final_results = array();
                 foreach ($tags_matches as $result1)
@@ -451,6 +459,8 @@ class PostController extends Controller {
                     else
                         $currentDBResults = $currentDBResults->unionAll($retFromDB);
                 }
+                if ($currentDBResults == null)
+                    return "No Questions to show";
                 $final_questions = DB::table(DB::raw("(" . $currentDBResults->toSql() . ") as res"))
                 ->mergeBindings($currentDBResults)
                 ->paginate(10);
