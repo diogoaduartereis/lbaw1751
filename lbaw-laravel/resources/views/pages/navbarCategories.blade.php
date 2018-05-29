@@ -27,10 +27,10 @@
                         <a class="dropdown-item text-dark" href="#">
                             <i class="fas fa-tag"></i> Sorry, it was not possible to load tags from DB server.</a>
                         @else
-                        @foreach($tags as $tag)
-                        <a class="dropdown-item text-dark" href="#">
-                            <i class="fas fa-tag"></i> {{$tag->name}}</a>
-                        @endforeach
+                            @foreach($tags as $tag)
+                            <a class="dropdown-item text-dark" href="#">
+                                <i class="fas fa-tag"></i> {{$tag->name}}</a>
+                            @endforeach
                         @endif
 
                     </div>
@@ -62,12 +62,9 @@
     </div>
 
     @if(Auth::check())
-    <form style="display: inline" action="{{url('postNewQuestion/')}}" method="get">
-        <button type="submit" style="margin-top:1px; margin-left:25px;" id="postQuestionButton" class="btn btn-primary">
+        <a type="submit" href="postNewQuestion/" style="margin-top:1px; margin-left:25px;" id="postQuestionButton" class="btn btn-primary">
             Post New Question
-        </button>
-    </form>
-        
+        </a>
     @endif
 
     <div class="collapse navbar-collapse justify-content-end" id="navbarAsideContent">

@@ -34,7 +34,6 @@
     </head>
 
     <body>
-
         <div id="wrap" class="wrapper">
             
             <?php if (Auth::check()): ?>
@@ -48,14 +47,16 @@
                 <?php endif; ?>
                 
                 <div id="containerID">
-                <div id="contentID">
-                        @include('pages.indexloggedin_questionsdiv')
-                </div>
+                    <div id="contentID">
+                            @include('pages.indexloggedin_questionsdiv')
+                    </div>
+
                     <div id="changedContentID">
                     </div>
                 </div>
-                <d
-            </div>
+                </div>
+            <div>
+        </div>
         </div>
 
         <script src="./assets/js/voteInPost.js"></script>

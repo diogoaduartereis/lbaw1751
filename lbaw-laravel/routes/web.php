@@ -18,6 +18,7 @@ Route::get('/hot', 'PagesController@frontpageHotQuestion');
 Route::get('/new', 'PagesController@frontpageNewQuestions');
 Route::get('faq', 'PagesController@faq');
 Route::get('404/Auth', 'PagesController@error404Auth');
+Route::get('404/NotAuth', 'PagesController@error404Auth');
 Route::get('404', 'PagesController@error404');
 
 //Get First X questions (used for viewing more questions using infinite scrolling)
@@ -72,6 +73,7 @@ Route::post('search/question', 'PostController@searchForQuestion');
 
 //View Administration page searching for user
 Route::get('admin', 'UserController@searchForUser');
+Route::get('admin/{username}', 'UserController@searchForUser');
 
 //View Question
 Route::get('questions/{id}', 'PostController@showQuestionPage');

@@ -37,7 +37,7 @@
             @include('pages.sidebar')
             <div id="content">
 
-                @include('pages.navbarloggedin') 
+                @include('pages.navbarloggedin')
                 <div id = "containerID">
                     <div id = "contentID">
                         <div style="margin-top:-20px;" id ="jumbotronID" class="jumbotron jumbotron-sm">
@@ -75,7 +75,7 @@
                                                 <div class="col-md-12">
                                                     <div class="form-group">
                                                         <label for="description">Description *</label>
-                                                        <textarea style="overflow-y:auto;" name="content" class="form-control" rows="10" cols="32" 
+                                                        <textarea style="overflow-y:auto; resize:none;" name="content" class="form-control" rows="10" cols="32" 
                                                         required="required" placeholder="Type question here" title="Type question here"> </textarea>                                                    </div>
                                                 </div>
                                                 <div class="col-md-12">

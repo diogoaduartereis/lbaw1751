@@ -48,7 +48,7 @@ class PostController extends Controller {
         if (Auth::check()) {
             return view('pages.PostQuestionPage.index');
         } else
-            return view('pages.index');
+            return redirect()->action('PagesController@frontpageHotQuestion');
     }
 
     public function postQuestion(Request $request) {
