@@ -62,13 +62,6 @@ class PagesController extends Controller
         return view('pages.PostQuestionPage.index');
     }
 
-    public function admin() {
-        if (Auth::check() && Auth::user()->type == "ADMIN")
-            return view('pages.admin.index');
-        else
-            return redirect()->back();
-    }
-
     public function tags() {
         $tags = \App\Tag::all();
         return view('pages.Tags.tags', ['tags' => $tags]);
