@@ -1,0 +1,48 @@
+
+@media (min-width: 1700px)
+{
+    #postQuestionButton
+    {
+        width:10%;
+        font-size:125%;
+    }
+
+    #questionSearch
+    {
+        margin-left:0px;
+        width:100%;
+    }
+}
+
+@media (min-width: 1366px)
+{
+
+    #questionSearch
+    {
+        margin-left:0px;
+        width:70%;
+    }
+
+    #postQuestionButton
+    {
+        width:12%;
+        font-size:110%;
+    }
+
+}
+
+@media (max-width: 1366px)
+{
+    #postQuestionButton
+    {
+        width:12%;
+        font-size:110%;
+    }
+
+    #questionSearch
+    {
+        margin-left:0px;
+        width:70%;
+    }
+
+}
