@@ -23,6 +23,8 @@ function handleUserSearchInput(event)
     let keywordsArr = userInputText.split(" ");
     //Get array with tags
     let tagsArr = userInputText.match(/#\S+/g);
+    if (tagsArr == null)
+        tagsArr = new Array();
 
     //Get array with keyword, i.e., everything except the tags
     for (let i = 0; i < tagsArr.length; i++)
