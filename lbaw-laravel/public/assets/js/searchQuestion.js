@@ -1,18 +1,36 @@
 'use strict'
 
-document.getElementById("questionSearchBar").addEventListener("keyup", handleUserSearchInput);
+// Get the input box
+var textInput = document.getElementById("questionSearchBar");
+// Init a timeout variable to be used below
+var timeout = null;
 
+// Listen for keystroke events
+textInput.onkeyup = function (e) 
+{
+    e.preventDefault();
+    // Clear the timeout if it has already been set.
+    // This will prevent the previous task from executing
+    // if it has been less than <MILLISECONDS>
+    clearTimeout(timeout);
+
+    // Make a new timeout set to go off in 500ms
+    timeout = setTimeout(function () 
+    {
+        handleUserSearchInput();
+    }, 500);
+};
 
 function insertAfter(el, referenceNode)
 {
     referenceNode.parentNode.insertBefore(el, referenceNode.nextSibling);
 }
 
-function handleUserSearchInput(event)
+function handleUserSearchInput()
 {
     let defaultContentDiv = document.getElementById('contentID');
     let oldContentDiv = document.getElementById('oldContentID');
-    let userInputText = event.target.value.trim();
+    let userInputText = document.getElementById("questionSearchBar").value.trim();
     if (oldContentDiv != null) //a search already took place and the results are currently being displayed
     {
         if (userInputText == "")

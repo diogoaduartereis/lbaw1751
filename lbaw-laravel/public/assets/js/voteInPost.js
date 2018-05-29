@@ -1,17 +1,17 @@
 'use strict'
 
-let postId;
-let voteValue;
+let post_id;
+let vote_value;
 
 function voteInPost(event, vote)
 {
     //get target element id
     let elementVoteId = event.target.id;
-    voteValue = vote;
+    vote_value = vote;
 
     //get post id
     let dashIndex = elementVoteId.indexOf("-");
-    postId = elementVoteId.substring(dashIndex + 1);
+    post_id = elementVoteId.substring(dashIndex + 1);
 
     //get csrf token
     let csrfToken = document.getElementById("csrf-token").innerHTML;
@@ -19,10 +19,10 @@ function voteInPost(event, vote)
     //add the new item to the database using AJAX
     let ajaxRequest = new XMLHttpRequest();
     ajaxRequest.addEventListener("load", voteIntroducedInDatabase);
-    ajaxRequest.open("POST", "post/" + postId + "/vote", true);
+    ajaxRequest.open("POST", "post/" + post_id + "/vote", true);
     ajaxRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     ajaxRequest.setRequestHeader("X-CSRF-Token", csrfToken);
-    ajaxRequest.send(encodeForAjax({voteValue: voteValue}));
+    ajaxRequest.send(encodeForAjax({vote_value: vote_value}));
 }
 
 // Handler for ajax response received
@@ -36,7 +36,7 @@ function voteIntroducedInDatabase()
     let newPointsInnerHTML = newPointsValue + " Points";
 
     //set new post points
-    let pointsElementId = "points-" + postId;
+    let pointsElementId = "points-" + post_id;
     document.getElementById(pointsElementId).children[1].innerHTML = newPointsInnerHTML;
     //alter style to match curr points
     if (newPointsValue < 0)
@@ -53,13 +53,13 @@ function voteIntroducedInDatabase()
 
 
     //alter post poster points
-    let userPointsInnerHTML = document.getElementById("post" + postId + "PosterPoints").innerHTML;
+    let userPointsInnerHTML = document.getElementById("post" + post_id + "PosterPoints").innerHTML;
     let lhsIndex = userPointsInnerHTML.indexOf("(") + 1;
     let rhsIndex = userPointsInnerHTML.indexOf(" Points");
     let currUserPoints = Number(userPointsInnerHTML.substring(lhsIndex, rhsIndex));
-    let newUserPoints = currUserPoints + voteValue;
+    let newUserPoints = currUserPoints + vote_value;
     let newInnerHTML = replaceRange(userPointsInnerHTML, lhsIndex, rhsIndex, newUserPoints);
-    document.getElementById("post" + postId + "PosterPoints").innerHTML = newInnerHTML;
+    document.getElementById("post" + post_id + "PosterPoints").innerHTML = newInnerHTML;
 }
 
 function replaceRange(string, start, end, substitute)
