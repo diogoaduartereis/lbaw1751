@@ -84,6 +84,12 @@
                 @if(Auth::user()->type == "ADMIN")
                     <a id="reportsButton" href="{{url('post/'.$answersElements[$i]->post_id.'/reports')}}" class="btn btn-danger col-md-6 text-white">View Reports</a>
                 @endif
+
+                @if(Auth::user()->type == "ADMIN" || Auth::user()->id==$answersElements->posterid)
+                    <form action="{{url()}}">
+                        <a id="correctmarkButton" class="btn btn-success col-md-6 text-white">Mark as Correct</a>
+                    </form>
+                @endif
             </div>
             @if($answersElements[$i]->iscorrect)
                 <h4 class="bold pull-right"><i class="fas fa-check-circle text-success" placeholder="correct"> Correct Answer</i></h4>
