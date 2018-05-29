@@ -51,9 +51,6 @@
                     <div id="contentID">
                             @include('pages.indexloggedin_questionsdiv')
                     </div>
-
-                    <div id="changedContentID">
-                    </div>
                 </div>
                 </div>
             <div>
