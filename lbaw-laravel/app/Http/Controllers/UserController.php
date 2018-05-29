@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Intervention\Image\ImageManagerStatic as Image;
 use Illuminate\Http\Request;
 use Redirect;
 use Hash;
@@ -303,12 +304,14 @@ class UserController extends Controller {
 
         $imagePath = "0.png";
         $this->validate($request, ['fileToUpload' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048']);
-        if ($request->hasFile('fileToUpload')) {
+        if($request->hasFile('fileToUpload')) 
+        {
             $image = $request->file('fileToUpload');
+            $imageResized = Image::make($image->getRealPath());              
+            $imageResized->resize(300, 300);
             $name = $user_id . ".png";
             $destinationPath = public_path('/assets/img/users');
-            $image->move($destinationPath, $name);
-            $imagePath = $name;
+            $imageResized->move($destinationPath, $name);
         }
 
         if (empty($username) || empty($email) || empty($description))
