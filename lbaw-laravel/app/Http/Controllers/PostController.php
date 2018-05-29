@@ -374,6 +374,7 @@ class PostController extends Controller {
                 ->take(10)
                 ->get();
                 
+                echo $keyword_matches;
                 $final_results = array();
                 foreach ($tags_matches as $result1)
                 {
@@ -401,7 +402,7 @@ class PostController extends Controller {
                         }
                     }
                     if (!$found)
-                        array_push($final_results, array($result1->question_id, $result1->keyword_count * 3));
+                        array_push($final_results, array($result1->question_id, $result1->keyword_count * 2));
                 }
 
                 $sorted = false;
