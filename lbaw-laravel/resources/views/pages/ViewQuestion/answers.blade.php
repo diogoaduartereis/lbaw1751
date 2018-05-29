@@ -4,6 +4,8 @@
         <h2 hidden> Nothing </h2>
         <p>
             {{$answersElements[$i]->content}}
+            @if($answersElements[$i]->iscorrect)
+            @endif
         </p>
     </section>
     <section class="col-md-3 user-description">
@@ -83,6 +85,9 @@
                     <a id="reportsButton" href="{{url('post/'.$answersElements[$i]->post_id.'/reports')}}" class="btn btn-danger col-md-6 text-white">View Reports</a>
                 @endif
             </div>
+            <button type="button" class="btn btn-outline-success pull-right pull-right">
+                <i class="fas fa-check-circle" placeholder="correct"> Correct Answer</i>
+            </button>
         </div>
     </div>
     @endif
