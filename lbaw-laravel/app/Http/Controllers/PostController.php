@@ -354,24 +354,13 @@ class PostController extends Controller {
 
          */
 
-
-                $tags_matches = DB::table('question')
-                ->join('tagquestion', 'question.postid', '=', 'tagquestion.question_id')
-                ->join('tag', 'tagquestion.tag_id', '=', 'tag.id')
-                ->whereIn('tag.name', $tagsArray)
-                ->select(DB::raw('count(question.postid) as tag_count'), 'question.postid as question_id')
-                ->groupBy('question.postid')
-                ->orderBy('tag_count', 'DESC')
-                ->take(10)
-                ->get();
-
                 $currentDBResults = null;
                 foreach ($tagsArray as $tag) {
                     $retFromDB = DB::table('question')
                             ->join('tagquestion', 'question.postid', '=', 'tagquestion.question_id')
                             ->join('tag', 'tagquestion.tag_id', '=', 'tag.id')
                             ->where('tag.name', '=', $tag)
-                            ->select(DB::raw('count(postid) as tag_count'), 'question.postid')
+                            ->select(DB::raw('count(postid) as tag_count'), 'question.postid as question_id')
                             ->groupBy('question.postid');
                     if ($currentDBResults == null)
                         $currentDBResults = $retFromDB;
@@ -379,16 +368,22 @@ class PostController extends Controller {
                         $currentDBResults = $currentDBResults->unionAll($retFromDB);
                 }
                 $tags_matches = $currentDBResults->take(10)->get();
+
+                $currentDBResults = null;
+                foreach ($keywordsArray as $keyword) {
+                    $retFromDB = DB::table('question')
+                            ->join('post', 'question.postid', '=', 'post.id')
+                            ->where('question.title', 'like', '%' . $keyword . '%')
+                            ->orwhere('post.content', 'like', '%' . $keyword . '%')
+                            ->select(DB::raw('count(question.postid) as keyword_count, question.postid as question_id'))
+                            ->groupBy('question.postid');
+                    if ($currentDBResults == null)
+                        $currentDBResults = $retFromDB;
+                    else
+                        $currentDBResults = $currentDBResults->unionAll($retFromDB);
+                }
+                $keyword_matches = $currentDBResults->take(10)->get();
                 
-                $keyword_matches = DB::table('question')
-                ->join('post', 'question.postid', '=', 'post.id')
-                ->whereIn('question.title', $keywordsArray)
-                ->orWhereIn('post.content', $keywordsArray)
-                ->select(DB::raw('count(question.postid) as keyword_count'), 'question.postid as question_id')
-                ->groupBy('question.postid')
-                ->orderBy('keyword_count', 'DESC')
-                ->take(10)
-                ->get();
                 
                 echo $keyword_matches;
                 $final_results = array();
