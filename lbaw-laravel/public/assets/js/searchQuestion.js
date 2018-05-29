@@ -11,13 +11,15 @@ function insertAfter(el, referenceNode)
 function handleUserSearchInput(event)
 {
     let defaultContentDiv = document.getElementById('contentID');
-    let searchedQuestionsDiv = document.getElementById('changedContentID');
+    let searchedQuestionsDiv = document.getElementById('oldContentID');
     if (searchedQuestionsDiv != null)
+    {
+        if (userInputText == "")
+            searchedQuestionsDiv.parentElement.removeChild(searchedQuestionsDiv);
+        defaultContentDiv = searchedQuestionsDiv;
         searchedQuestionsDiv.parentElement.removeChild(searchedQuestionsDiv);
-    searchedQuestionsDiv = document.createElement("div");
-    searchedQuestionsDiv.id = "changedContentID";
-    searchedQuestionsDiv.style = defaultContentDiv.style;
-    insertAfter(searchedQuestionsDiv, defaultContentDiv);
+    }
+    //searchedQuestionsDiv = document.cloneNode();
     let userInputText = event.target.value.trim();
     if (userInputText == "")
     {
@@ -26,6 +28,15 @@ function handleUserSearchInput(event)
         searchedQuestionsDiv.hidden = true;
         searchedQuestionsDiv.style.display = 'none';
         return;
+    }
+    else
+    {
+        
+    searchedQuestionsDiv = document.createElement("div");
+    defaultContentDiv.id = "oldContentID";
+    searchedQuestionsDiv.id = "contentID";
+    searchedQuestionsDiv.style = defaultContentDiv.style;
+    insertAfter(searchedQuestionsDiv, defaultContentDiv);
     }
 
     defaultContentDiv.hidden = true;
@@ -77,7 +88,7 @@ function removeStringFromArray(arr, what)
 
 function searchResultsArrived()
 {
-    let searchedQuestionsDiv = document.getElementById('changedContentID');
+    let searchedQuestionsDiv = document.getElementById('contentID');
     searchedQuestionsDiv.innerHTML = this.responseText;
 }
 
