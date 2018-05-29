@@ -47,66 +47,6 @@ function handleUserSearchInput(event)
     ajaxRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     ajaxRequest.setRequestHeader("X-CSRF-Token", csrfToken);
     ajaxRequest.send(encodeForAjax({tags: tagsArrEncoded, keywords: keywordsArrEncoded}));
-
-    //ended flag
-    let return_array;
-    let ended_str = false;
-    if ((return_array = searchAndReplaceInString(userInputText, "#ended"))[0])
-    {
-        ended_str = return_array[0];
-        userInputText = return_array[1];
-    }
-    //working flag
-    let working_str = false;
-    if ((return_array = searchAndReplaceInString(userInputText, "#working"))[0])
-    {
-        working_str = return_array[0];
-        userInputText = return_array[1];
-    }
-    let endedSearchString;
-    if (ended_str == working_str)
-        endedSearchString = "both";
-    else if (ended_str)
-        endedSearchString = "ended";
-    else
-        endedSearchString = "working";
-
-
-    //select elements
-    let projects_search = false;
-    if ((return_array = searchAndReplaceInString(userInputText, "#projects"))[0])
-    {
-        projects_search = return_array[0];
-        userInputText = return_array[1];
-    }
-
-    let lists_search = false;
-    if ((return_array = searchAndReplaceInString(userInputText, "#lists"))[0])
-    {
-        lists_search = return_array[0];
-        userInputText = return_array[1];
-    }
-
-    let items_search = false;
-    if ((return_array = searchAndReplaceInString(userInputText, "#items"))[0])
-    {
-        items_search = return_array[0];
-        userInputText = return_array[1];
-    }
-
-    if (projects_search == lists_search && lists_search == items_search)
-    {
-        projects_search = true;
-        lists_search = true;
-        items_search = true;
-    }
-
-    if (projects_search)
-        getElementInSearch("Projects", userInputText, endedSearchString);
-    if (lists_search)
-        getElementInSearch("Lists", userInputText, endedSearchString);
-    if (items_search)
-        getElementInSearch("Items", userInputText, endedSearchString);
 }
 
 function removeHashTagsFromBeggingOfEachTagOnArray(tags)
