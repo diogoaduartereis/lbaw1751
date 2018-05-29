@@ -60,7 +60,7 @@
                                 <h2 hidden> Nothing </h2>
                                 <div class="row">
                                     <div id="searchForm" class="col-md-6 offset-md-3">
-                                        <form action="{{url('admin/')}}" method="GET">
+                                        <form action="{{url('./admin/')}}" method="GET">
                                             <div id="searchFormID" class="input-group">
                                                 <label for="userName" class="sr-only">Search Users</label>
                                                 <input id="userName" name="username" class="form-control" placeholder="Search for users, by username" autofocus="" type="text">
@@ -108,7 +108,7 @@
                                         @endforeach
                                     </table>
                                 </div>
-                                {{ $users->links() }}
+                                {{ $users->appends(request()->query())->links() }}
                             </section>
                         </div>
                     </div>

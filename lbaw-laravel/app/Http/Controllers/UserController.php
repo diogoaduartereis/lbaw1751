@@ -225,7 +225,7 @@ class UserController extends Controller {
         if (Auth::check() && Auth::user()->type == "ADMIN") 
         {
             $username = $request->username;
-            $query = DB::table('users')->select('*');
+            $query = DB::table('users');
             if (!$username)
                 $users = $query->get();
             else
@@ -361,7 +361,12 @@ class UserController extends Controller {
 
     public static function showAdminPage($users, $username) 
     {
-        $users = DB::table('users')->select('*')->where('username', 'like', '%' . $username . '%')->paginate(20);
+        $users = DB::table('users')->select('*')
+                ->where('username', 'like', '%' . $username . '%')
+                ->where('state', '!=', 'INACTIVE')
+                ->paginate(20);
+
+                
         return view('pages.admin.index', ['users' => $users]);
     }
 

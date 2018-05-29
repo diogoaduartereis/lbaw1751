@@ -72,6 +72,7 @@ Route::post('search/question', 'PostController@searchForQuestion');
 
 //View Administration page searching for user
 Route::get('admin', 'UserController@searchForUser');
+Route::get('admin/{username}', 'UserController@searchForUser');
 
 //View Question
 Route::get('questions/{id}', 'PostController@showQuestionPage');
