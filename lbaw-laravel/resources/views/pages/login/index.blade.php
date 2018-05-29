@@ -67,7 +67,9 @@
                                         <a id="submitBtn" class="btn btn-lg center-block btn-primary" style="background:#007bff; ">Sign in!</a>
                                         <button id="submitform" type="submit" hidden="true"></button>
                                     </form>
-
+                                    <h6>
+                                        <a style="font-size: 120%;" href="./password/reset">Recovery password</a>
+                                    </h6>
                                     <div class="register-link ">
                                         <h3>
                                             <a href="./register">Register here </a>
@@ -85,69 +87,60 @@
 
         <!-- Javascript -->
         <script type="text/javascript">
-		
+            function onSignIn(googleUser) 
+            {
+                // Useful data for your client-side scripts:
+                var profile = googleUser.getBasicProfile();
+                // The ID token you need to pass to your backend:
+                var id_token = googleUser.getAuthResponse().id_token;
+                let img = "<img src=\"" + profile.getImageUrl() + "\">";
 
+                $.ajax({
+                headers: {
+                'X-CSRF-Token':'{{csrf_token()}}',
+                        },
+                        url: '{{url("/login")}}',
+                        type: 'POST',
+                        dataType: 'JSON',
+                        data: {
+                        'username': '' + profile.getName(),
+                                'email': '' + profile.getEmail(),
+                                'description':"",
+                                'password':'' + id_token,
+                                'password_confirmation':'' + id_token,
+                                'picture':profile.getImageUrl()
+                        },
+                        complete: function (response) {
+                        console.log(response);
+                        if (response.responseText == 'valid') {
+                        gapi.load('auth2', function () {
+                        var auth2 = gapi.auth2.getAuthInstance();
+                        auth2.signOut().then(function () {
+                        console.log('User signed out.');
+                        document.getElementById('back').click();
+                        });
+                        });
+                        }
+                        if (response.responseText == 'args') {
+                        location.reload();
+                        }
+                        }
 
-function onSignIn(googleUser) {
-// Useful data for your client-side scripts:
-var profile = googleUser.getBasicProfile();
-console.log("ID: " + profile.getId()); // Don't send this directly to your server!
-console.log('Full Name: ' + profile.getName());
-console.log('Given Name: ' + profile.getGivenName());
-console.log('Family Name: ' + profile.getFamilyName());
-console.log("Image URL: " + profile.getImageUrl());
-console.log("Email: " + profile.getEmail());
-// The ID token you need to pass to your backend:
-var id_token = googleUser.getAuthResponse().id_token;
-console.log("ID Token: " + id_token);
-let img = "<img src=\"" + profile.getImageUrl() + "\">";
+                });
+            }
 
-$.ajax({
-headers: {
-'X-CSRF-Token':'{{csrf_token()}}',
-        },
-        url: '{{url("/login")}}',
-        type: 'POST',
-        dataType: 'JSON',
-        data: {
-        'username': '' + profile.getName(),
-                'email': '' + profile.getEmail(),
-                'description':"",
-                'password':'' + id_token,
-                'password_confirmation':'' + id_token,
-                'picture':profile.getImageUrl()
-        },
-        complete: function (response) {
-        console.log(response);
-        if (response.responseText == 'valid') {
-        gapi.load('auth2', function () {
-        var auth2 = gapi.auth2.getAuthInstance();
-        auth2.signOut().then(function () {
-        console.log('User signed out.');
-        document.getElementById('back').click();
-        });
-        });
-        }
-        if (response.responseText == 'args') {
-        location.reload();
-        }
-        }
-
-});
-}
-
-let btn = document.getElementById('submitBtn');
-if (btn != null)
-        {
-        btn.onclick = function()
-                {
-                var loggedIn = {{ auth() -> check() ? 'true' : 'false' }};
-                if (loggedIn)
-                        window.location = "/";
-                else
-                        document.getElementById('submitform').click();
-                }
-        }
+            let btn = document.getElementById('submitBtn');
+            if (btn != null)
+                    {
+                    btn.onclick = function()
+                            {
+                            var loggedIn = {{ auth() -> check() ? 'true' : 'false' }};
+                            if (loggedIn)
+                                    window.location = "/";
+                            else
+                                    document.getElementById('submitform').click();
+                            }
+                    }
         </script>
         <script src="../assets/js/jquery-1.11.1.min.js "></script>
         <script src="../assets/bootstrap/js/bootstrap.min.js "></script>
