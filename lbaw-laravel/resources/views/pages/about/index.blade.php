@@ -104,7 +104,7 @@ $teams = TeamController::getMapWithAllTeamsToMembers();
                                     @foreach($teamMembers as $teamMember)
                                     <div class="col-md-3 d-flex justify-content-center">
                                         <div class="card text-center" style="width: 16rem;">
-                                            <img class="card-img-top img-fluid" src="../assets/img/team/{{$teamMember->img_path}}" alt="Team Member">
+                                            <img class="card-img-top img-fluid" src="../assets/img/team/{{$teamMember->img_path}}" alt="Team Member Photo">
                                             <div class="card-body">
                                                 <h5 class="card-title">{{$teamMember->name}}</h5>
                                                 <p class="card-text">{{$teamMember->title}}</p>
