@@ -2,10 +2,21 @@
 
 document.getElementById("questionSearchBar").addEventListener("keyup", handleUserSearchInput);
 
+
+function insertAfter(el, referenceNode)
+{
+    referenceNode.parentNode.insertBefore(el, referenceNode.nextSibling);
+}
+
 function handleUserSearchInput(event)
 {
     let defaultContentDiv = document.getElementById('contentID');
     let searchedQuestionsDiv = document.getElementById('changedContentID');
+    if (searchedQuestionsDiv != null)
+        searchedQuestionsDiv.parentElement.removeChild(searchedQuestionsDiv);
+    searchedQuestionsDiv = document.createElement("div");
+    searchedQuestionsDiv.id = "changedContentID";
+    insertAfter(searchedQuestionsDiv, defaultContentDiv);
     let userInputText = event.target.value.trim();
     if (userInputText == "")
     {
