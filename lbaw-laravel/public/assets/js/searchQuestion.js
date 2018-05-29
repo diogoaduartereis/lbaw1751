@@ -16,6 +16,7 @@ function handleUserSearchInput(event)
         searchedQuestionsDiv.parentElement.removeChild(searchedQuestionsDiv);
     searchedQuestionsDiv = document.createElement("div");
     searchedQuestionsDiv.id = "changedContentID";
+    searchedQuestionsDiv.style = defaultContentDiv.style;
     insertAfter(searchedQuestionsDiv, defaultContentDiv);
     let userInputText = event.target.value.trim();
     if (userInputText == "")
