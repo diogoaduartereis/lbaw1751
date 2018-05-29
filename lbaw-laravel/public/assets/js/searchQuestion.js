@@ -30,13 +30,8 @@ function handleUserSearchInput(event)
 
     removeHashTagsFromBeggingOfEachTagOnArray(tagsArr);
 
-
-    //console.log(tagsArr);
-    //console.log(keywordsArr);
-
     let tagsArrEncoded = JSON.stringify(tagsArr);
     let keywordsArrEncoded = JSON.stringify(keywordsArr);
-    //console.log(JSON.parse(tagsArrEncoded));
 
     //get csrf token
     let csrfToken = document.getElementById("csrf-token").innerHTML;
