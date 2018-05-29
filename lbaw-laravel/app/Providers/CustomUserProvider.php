@@ -115,7 +115,11 @@ class CustomUserProvider extends UserProvider {
 
         foreach ($credentials as $key => $value) {
             if (! Str::contains($key, 'pass_token')) {
-                $query->where($key, $value);
+                if($key == 'password' || $key == 'password_confirmation') {
+
+                } else {
+                    $query->where($key, $value);
+                }
             }
         }
 
@@ -192,6 +196,10 @@ class CustomUserProvider extends UserProvider {
         $this->model = $model;
 
         return $this;
+    }
+
+    public function cenas() {
+        echo 'cenas';
     }
 
 }

@@ -17,6 +17,7 @@ Route::get('', 'PagesController@frontpageHotQuestion');
 Route::get('/hot', 'PagesController@frontpageHotQuestion');
 Route::get('/new', 'PagesController@frontpageNewQuestions');
 Route::get('faq', 'PagesController@faq');
+Route::get('404/Auth', 'PagesController@error404Auth');
 Route::get('404', 'PagesController@error404');
 
 //Get First X questions (used for viewing more questions using infinite scrolling)

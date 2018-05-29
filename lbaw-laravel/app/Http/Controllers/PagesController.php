@@ -46,6 +46,14 @@ class PagesController extends Controller
         return view('pages.ErrorPage.index');
     }
 
+    public function error404Auth() {
+        $name = "Auth";
+        if(Auth::check())
+            return view('pages.ErrorPage.index')->with(['name' => $name]);
+        else 
+            return view('pages.ErrorPage.index');
+    }
+
     public function register() {
         return view('pages.register.index');
     }

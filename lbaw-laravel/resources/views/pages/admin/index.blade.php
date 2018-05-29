@@ -53,9 +53,9 @@
                                         <form action="{{url('admin/')}}" method="GET">
                                             <div id="searchFormID" class="input-group">
                                                 <label for="userName" class="sr-only">Search Users</label>
-                                                <input id="userName" name="username" class="form-control" placeholder="Search for users" required="" autofocus="" type="text">
+                                                <input id="userName" name="username" class="form-control" placeholder="Search for users, by username" autofocus="" type="text">
                                                 <div class="input-group-append">
-                                                    <button class="btn btn-outline-primary" type="submit">
+                                                    <button class="btn btn-outline-primary" title="Search" type="submit">
                                                         <i class="fas fa-search"></i>
                                                     </button>
                                                 </div>
@@ -79,8 +79,8 @@
                                         <table class="table">
                                             <thead>
                                                 <tr>
-                                                    <th>#</th>
-                                                    <th>Name</th>
+                                                    <th>Id</th>
+                                                    <th>Username</th>
                                                     <th>Email</th>
                                                     <th>Actions</th>
                                                 </tr>
@@ -98,19 +98,19 @@
                                                         <th scope="row">{{$users[$j]->id}}</th>
                                                         <td>{{$users[$j]->username}}</td>
                                                         <td>{{$users[$j]->email}}</td>
-                                                        <td>
+                                                        <td id="actions-{{$users[$j]->id}}">
 
                                                             @if($users[$j]->state == "ACTIVE")
                                                             <button class="btn btn-danger" title="Ban User" onclick="return gotoBanPage({{$users[$j]->id}})" type="submit">
                                                                 <i class="fas fa-ban"></i>
                                                             </button>
 
-                                                            <button onclick="return gotoProfile({{$users[$j]->id}})" class="btn btn-warning" title="Warn User" type="submit">
+                                                            <button onclick="return gotoProfile({{$users[$j]->id}})" class="btn btn-warning" title="View/Edit User Profile" type="submit">
                                                                 <i class="fas fa-edit" style="color: white"></i>
                                                             </button>
                                                             @else
-                                                            <button id="unbanButton" class="btn btn-success " onclick="return confirmUnban(event,{{$users[$j]->id}})" type="submit">
-                                                                <i class="fas fa-check-circle"></i>
+                                                            <button id="unbanButton-{{$users[$j]->id}}" class="btn btn-success " title="Unban User" onclick="return confirmUnban(event,{{$users[$j]->id}})" type="submit">
+                                                                <i class="fas fa-check"></i>
                                                             </button>
                                                             @endif
 

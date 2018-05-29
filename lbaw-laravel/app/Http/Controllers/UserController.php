@@ -64,8 +64,7 @@ class UserController extends Controller {
             return redirect('login');
         try {
             $user = \App\User::where('username', $username)->get();
-            //$user = DB::table('"User"')->select('id, password')->where('username', '=', $username)->get();
-            //$user = DB::select('SELECT id,password FROM "User" WHERE username=$1',[$username]);
+
         } catch (\Illuminate\Database\QueryException $e) {
             return back()->withErrors(['msg' => "Username doesn't exist122112"]);
         }
@@ -129,8 +128,6 @@ class UserController extends Controller {
             return back()->withErrors(['msg' => "You only have permission to delete your own profile."]);
         try {
             DB::table('users')->where('id', $id)->update(['state' => 'INACTIVE']);
-            //$user = DB::table('"User"')->select('id, password')->where('username', '=', $username)->get();
-            //$user = DB::select('SELECT id,password FROM "User" WHERE username=$1',[$username]);
         } catch (\Illuminate\Database\QueryException $e) {
             return back()->withErrors(['msg' => "User doesn't exist"]);
         }
@@ -202,6 +199,25 @@ class UserController extends Controller {
 
         return $userId;
     }
+
+   
+    public static function getUserBanRemainTime($userId) 
+    {
+        $banInfo = DB::table('baninfo')->select('enddate', 'ispermanent')->where('userid', $userId)->first();
+        if($banInfo->ispermanent == true)
+            return "permanent";
+        
+        $timeRemaining = (strtotime($banInfo->enddate) - strtotime(date("Y/m/d"))) / 86400;
+        return $timeRemaining;
+    }
+
+
+    public static function getBanReason($userId) 
+    {
+        $banReason = DB::table('baninfo')->select('description')->where('userid', $userId)->first();
+        return serialize($banReason);
+    }
+
 
     public function searchForUser(Request $request) 
     {

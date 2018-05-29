@@ -16,13 +16,13 @@ else
     <br>
     <div class="row mx-auto">
     </div>
-    <div id="UserArea" style="height:10%;">
+    <div id="UserArea">
         <div>
             <div class="row mx-auto">
                 <hr>
                 <div class="col-sm-12" id="usernameSec">
                     <div class="row mx-auto">
-                        <div class="col-12" style="max-height:100%;">
+                        <div class="col-12">
                             <div class="row">
                                 <div class="col-12">
                                     <h4 id="sidebarUsername">

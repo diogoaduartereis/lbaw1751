@@ -60,12 +60,12 @@
                                                     <div class="form-group">
                                                         <label for="endOfBanDate">
                                                             End of ban</label>
-                                                        <input type="date" name="endOfBanDate" class="form-control" id="endOfBanDate"/>
+                                                        <input type="date" title="End of ban date - must be either permanent or higher than 1 day" name="endOfBanDate" class="form-control" id="endOfBanDate"/>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="Permanent">
                                                             Permanent</label>
-                                                        <select size="1" id="Permanent" name="isPermanent" class="form-control">
+                                                        <select size="1" title="Permanent - must be either permanent or higher than 1 day" id="Permanent" name="isPermanent" class="form-control">
                                                             <option value="Yes">Yes</option>
                                                             <option value="No" selected>No</option>
                                                         </select>
@@ -84,7 +84,7 @@
                                                     </button>
                                                     <p id="errorParagraph" style="color:red;">
                                                         @if($errors -> has("msg"))
-                                                        {{$errors -> first("msg")}}
+                                                            {{$errors -> first("msg")}}
                                                         @endif
                                                     </p>
                                                 </div>

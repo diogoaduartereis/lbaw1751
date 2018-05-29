@@ -12,7 +12,7 @@ use Auth;
 class PostController extends Controller {
 
     public function reports($id) {
-        if (Auth::user()->type == 'ADMIN') {
+        if (Auth::check() && Auth::user()->type == 'ADMIN') {
             $ret = \App\PostReport::select('postid', 'reporterid', 'date', 'reason', 'username', 'type', 'email', 'state', 'img_path', 'points')->where('postid', $id)->join('users', 'id', 'reporterid')->get();
             $post = \App\Post::select('posterid', 'content', 'date', 'isvisible', 'points')->where('id', $id)->get();
             return view('pages.reports.reports')->with(['reports' => $ret])->with(['post' => $post])->with(['id' => $id]);

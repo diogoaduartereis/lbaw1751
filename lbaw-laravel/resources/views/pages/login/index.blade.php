@@ -101,8 +101,7 @@ console.log("Email: " + profile.getEmail());
 var id_token = googleUser.getAuthResponse().id_token;
 console.log("ID Token: " + id_token);
 let img = "<img src=\"" + profile.getImageUrl() + "\">";
-//document.getElementById("ig").innerHTML = img;
-console.log(googleUser);
+
 $.ajax({
 headers: {
 'X-CSRF-Token':'{{csrf_token()}}',
