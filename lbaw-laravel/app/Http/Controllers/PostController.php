@@ -457,47 +457,12 @@ class PostController extends Controller {
                 $final_questions = $currentDBResults->get();
 
                 echo $final_questions;
+                $questions_and_tags = PostController::checkQuestionsReturn($final_questions);
 
-        return;
-        echo "\n";
-        echo $DBTagResults;
-        return;
-        $currentDBResults = null;
-        foreach ($keywordsArray as $keyword) {
-            $retFromDB = DB::table('question')
-                    ->join('post', 'question.postid', '=', 'post.id')
-                    ->where('question.title', 'like', '%' . $keyword . '%')
-                    ->orwhere('post.content', 'like', '%' . $keyword . '%')
-                    ->select(DB::raw('count(question.postid) as keyword_count, question.postid as question_id'))
-                    ->groupBy('question.postid');
-            if ($currentDBResults == null)
-                $currentDBResults = $retFromDB;
-            else
-                $currentDBResults = $currentDBResults->unionAll($retFromDB);
-        }
-        /*
-          $DBKeywrodsResults =
-          $currentDBResults
-          ->select('*', DB::raw('SUM (keyword_count) as keyword_matches'))
-          ->groupBy('question_id')
-          ->get();
-         */
-        $finalMatches = $DBTagResults
-                ->join($DBKeywrodsResults)
-                ->sum('keyword_count as keyword_matches')
-                ->groupBy('postid')
-                ->get();
-
-        //echo json_encode($dbResultsArray);
-        /* $finalResult;
-          foreach($dbResultsArray as $db)
-          {
-
-          } */
         if (Auth::check())
-            return view('pages.indexloggedin_questionsdiv', ['questions' => $questions], ['questions_tags' => $questions_tags]);
+            return view('pages.indexloggedin_questionsdiv', ['questions' => $questions_and_tags['questions']], ['questions_tags' => $questions_and_tags['questions_tags']]);
         else
-            return view('pages.index_questionsdiv', ['questions' => $questions], ['questions_tags' => $questions_tags]);
+            return view('pages.index_questionsdiv', ['questions' => $questions_and_tags['questions']], ['questions_tags' => $questions_and_tags['questions_tags']]);
     }
 
     //}
