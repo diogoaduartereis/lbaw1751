@@ -433,6 +433,21 @@ class PostController extends Controller {
                 }
                 print_r($final_results);
 
+                $questions_ids = array();
+                foreach ($final_results as $result)
+                {
+                    array_push($questions_ids, $result[0]);
+                }
+
+                $final_questions = DB::table('question')
+                ->join('post', 'question.postid', '=', 'post.id')
+                ->whereIn('question.postid', $questions_ids)
+                ->select('question.postid as question_id', 'title', 'content', 'post.posterid as poster_id', 'post.points as question_points', 'users.points as poster_points', 'username')
+                ->take(10)->toSql();
+                //->get();
+
+                echo $final_questions;
+
         return;
         echo "\n";
         echo $DBTagResults;
