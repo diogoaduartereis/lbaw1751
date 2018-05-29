@@ -61,36 +61,38 @@
                             <p class="text-dark">
                                 <b class="text-dark font-weight-bold">Points:</b> {{$user[0]->points}} </p>
 
-                            @if($user != null && count($user) > 0)
-                                @if(Auth::user()->id == $user[0]->id || Auth::user()->type == "ADMIN")
-                                    <a href="{{url('users/'.$user[0]->id.'/edit')}}">
-                                        <button style="background:#007bff; margin:5px 5px;"
-                                                class="btn btn-primary col-md-6">Edit Profile
-                                        </button>
-                                    </a>
-                                    <form id="deleteForm" action="{{url('users/'.$user[0]->id.'/delete')}}"
-                                          method="post">
-                                        {{csrf_field()}}
-                                        <button style="margin:5px 5px;" class="btn btn-danger col-md-6"
-                                                onclick="confirmDelete(event)">Delete Profile
-                                        </button>
-                                    </form>
-                                @endif
-                                @if(Auth::user()->type == "ADMIN")
-                                    @if($user[0]->state == "BANNED" && $user[0]->id != Auth::user()->id)
-                                        <button id="unbanButton" style="margin:5px 5px;"
-                                                class="btn btn-success col-md-6"
-                                                onclick="confirmUnban(event, {{$user[0]->id}});">Unban user
-                                        </button>
-                                    @elseif($user[0]->id != Auth::user()->id)
-                                        <button style="margin:5px 5px;" class="btn btn-danger col-md-6"
-                                                onclick="goToBanForm(event, {{$user[0]->id}})">Ban user
-                                        </button>
+                            @if($user[0]->state != "INACTIVE")
+                                @if($user != null && count($user) > 0)
+                                    @if(Auth::user()->id == $user[0]->id || Auth::user()->type == "ADMIN")
+                                        <a href="{{url('users/'.$user[0]->id.'/edit')}}">
+                                            <button style="background:#007bff; margin:5px 5px;"
+                                                    class="btn btn-primary col-md-6">Edit Profile
+                                            </button>
+                                        </a>
+                                        <form id="deleteForm" action="{{url('users/'.$user[0]->id.'/delete')}}"
+                                            method="post">
+                                            {{csrf_field()}}
+                                            <button style="margin:5px 5px;" class="btn btn-danger col-md-6"
+                                                    onclick="confirmDelete(event)">Delete Profile
+                                            </button>
+                                        </form>
                                     @endif
-                                @endif
-                                @if(Auth::user()->type == "ADMIN")
-                                    <a id="reportsButton" style="margin:5px 5px;" href="{{url('users/'.$user[0]->id.'/reports')}}" class="btn btn-danger col-md-6 text-white">
-                                    Reports Against User Posts</a>
+                                    @if(Auth::user()->type == "ADMIN")
+                                        @if($user[0]->state == "BANNED" && $user[0]->id != Auth::user()->id)
+                                            <button id="unbanButton" style="margin:5px 5px;"
+                                                    class="btn btn-success col-md-6"
+                                                    onclick="confirmUnban(event, {{$user[0]->id}});">Unban user
+                                            </button>
+                                        @elseif($user[0]->id != Auth::user()->id)
+                                            <button style="margin:5px 5px;" class="btn btn-danger col-md-6"
+                                                    onclick="goToBanForm(event, {{$user[0]->id}})">Ban user
+                                            </button>
+                                        @endif
+                                    @endif
+                                    @if(Auth::user()->type == "ADMIN")
+                                        <a id="reportsButton" style="margin:5px 5px;" href="{{url('users/'.$user[0]->id.'/reports')}}" class="btn btn-danger col-md-6 text-white">
+                                        Reports Against User Posts</a>
+                                    @endif
                                 @endif
                             @endif
                         </div>
