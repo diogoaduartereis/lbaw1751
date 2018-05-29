@@ -85,9 +85,9 @@
                     <a id="reportsButton" href="{{url('post/'.$answersElements[$i]->post_id.'/reports')}}" class="btn btn-danger col-md-6 text-white">View Reports</a>
                 @endif
             </div>
-            <button type="button" class="btn btn-outline-success pull-right pull-right">
-                <i class="fas fa-check-circle" placeholder="correct"> Correct Answer</i>
-            </button>
+            @if($answersElements[$i]->iscorrect)
+                <h4 class="bold pull-right"><i class="fas fa-check-circle text-success" placeholder="correct"> Correct Answer</i></h4>
+            @endif
         </div>
     </div>
     @endif
