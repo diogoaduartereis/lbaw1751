@@ -364,6 +364,21 @@ class PostController extends Controller {
                 ->orderBy('tag_count', 'DESC')
                 ->take(10)
                 ->get();
+
+                $currentDBResults = null;
+                foreach ($tagsArray as $tag) {
+                    $retFromDB = DB::table('question')
+                            ->join('tagquestion', 'question.postid', '=', 'tagquestion.question_id')
+                            ->join('tag', 'tagquestion.tag_id', '=', 'tag.id')
+                            ->where('tag.name', '=', $tag)
+                            ->select(DB::raw('count(postid) as tag_count'), 'question.postid')
+                            ->groupBy('question.postid');
+                    if ($currentDBResults == null)
+                        $currentDBResults = $retFromDB;
+                    else
+                        $currentDBResults = $currentDBResults->unionAll($retFromDB);
+                }
+                $tags_matches = $currentDBResults->take(10)->get();
                 
                 $keyword_matches = DB::table('question')
                 ->join('post', 'question.postid', '=', 'post.id')
