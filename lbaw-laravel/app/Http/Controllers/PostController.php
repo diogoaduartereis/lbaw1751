@@ -377,8 +377,8 @@ class PostController extends Controller {
                 foreach ($keywordsArray as $keyword) {
                     $retFromDB = DB::table('question')
                             ->join('post', 'question.postid', '=', 'post.id')
-                            ->where('question.title', 'like', '%' . $keyword . '%')
-                            ->orwhere('post.content', 'like', '%' . $keyword . '%')
+                            ->where('question.title', 'ilike', '%' . $keyword . '%')
+                            ->orwhere('post.content', 'ilike', '%' . $keyword . '%')
                             ->select(DB::raw('count(question.postid) as keyword_count, question.postid as question_id'))
                             ->groupBy('question.postid');
                     if ($currentDBResults == null)
