@@ -24,9 +24,9 @@
                         </a>
                     </div>
                     <div style="width:150%; margin-top:5%; margin-right:6%;" class="d-flex flex-column postID">
-                        <p class="text-dark" title="User Number Of Posts">>
+                        <p class="text-dark" title="User Number Of Posts">
                             <b class="text-dark font-weight-bold">Posts:</b>{{$questionUserCounter['posts']}}</p>
-                        <p class="text-dark" title="User Points">>
+                        <p class="text-dark" title="User Points">
                             <b class="text-dark font-weight-bold">Points:</b>
                             <span id="post{{$questionElements->post_id}}PosterPoints">{{$questionElements->userPoints}}</span>
                         </p>
@@ -47,7 +47,7 @@
                     </i>
                 <?php endif; ?>
             @endif
-            <span id="upvoteCount-{{$questionElements->post_id}}" class="vote-count-post " title="Question Points">>{{$questionElements->points}} Points</span>
+            <span id="upvoteCount-{{$questionElements->post_id}}" class="vote-count-post " title="Question Points">{{$questionElements->points}} Points</span>
             @if(Auth::check())
                 <?php if ($questionVoteValue == "null" || $questionVoteValue > 0): ?>
                     <i style="cursor:pointer;" id="downvoteArr-{{$questionElements->post_id}}" onclick="return downvotePost(this,{{$questionElements->post_id}},{{$questionVoteValue}})" 

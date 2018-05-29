@@ -75,19 +75,19 @@ use \App\Http\Controllers\ContactsController;
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="name">
-                                                            Name</label>
+                                                            Name *</label>
                                                         <input name="name" type="text" class="form-control" id="name" placeholder="Enter name" required="required" />
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="email">
-                                                            Email Address</label>
+                                                            Email Address *</label>
                                                         <div class="input-group">
                                                             <input name="email" type="email" class="form-control" id="email" placeholder="Enter email" required="required" />
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="subject">
-                                                            Subject</label>
+                                                            Subject *</label>
                                                         <?php
                                                         $availableSubjects = ContactsController::getAvailableSubjects();
                                                         ?>
@@ -102,13 +102,14 @@ use \App\Http\Controllers\ContactsController;
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="name">
-                                                            Message</label>
+                                                            Message *</label>
                                                         <textarea name="message" id="message" class="form-control" rows="7" cols="25" required="required" placeholder="Message" style="resize: none;"></textarea>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-12">
                                                     <button type="submit" class="btn btn-primary pull-right" id="btnContactUs">
                                                         Send Message</button>
+                                                    <p style="font-size: 90%; color:black;"> * mandatory </p>
                                                 </div>
                                             </div>
                                         </form>
