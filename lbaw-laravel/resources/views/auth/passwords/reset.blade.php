@@ -9,18 +9,18 @@
         <title>Reset Password</title>
 
         <!-- CSS -->
-        <link rel="stylesheet" href="../../assets/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
         <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
-        <link rel="stylesheet" href="../../assets/css/login/form-elements.css">
-        <link rel="stylesheet" href="../../assets/css/login/style.css">
-        <link rel="stylesheet" href="../../assets/css/common.css">
+        <link rel="stylesheet" href="/assets/css/login/form-elements.css">
+        <link rel="stylesheet" href="/assets/css/login/style.css">
+        <link rel="stylesheet" href="/assets/css/common.css">
     </head>
 
-<body style="background: rgba(223, 220, 220, 0.842);">
+<body>
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
-                <div class="panel panel-default">
+                <div class="panel panel-default" style="margin: auto; width: 50%; border: 3px solid green; padding: 10px;">
                     <div class="panel-heading">Reset Password</div>
 
                     <div class="panel-body">
@@ -72,7 +72,7 @@
 
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-4">
-                                    <button type="submit" class="btn btn-primary">
+                                    <button type="submit" class="btn btn-primary" style="background:#007bff;">
                                         Reset Password
                                     </button>
                                 </div>
@@ -83,4 +83,7 @@
             </div>
         </div>
     </div>
+    <script src="/assets/js/jquery-1.11.1.min.js "></script>
+    <script src="/assets/js/jquery.backstretch.min.js "></script>
+    <script src="/assets/js/scripts.js "></script>
 </body>

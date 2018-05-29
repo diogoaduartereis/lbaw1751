@@ -16,7 +16,7 @@
         <link rel="stylesheet" href="../assets/css/common.css">
     </head>
 
-<body style="background: rgba(223, 220, 220, 0.842);">
+<body>
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
@@ -49,7 +49,7 @@
 
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-4">
-                                    <button type="submit" class="btn btn-primary">
+                                    <button type="submit" class="btn btn-primary" style="background:#007bff;">
                                         Send Password Reset Link
                                     </button>
                                 </div>
@@ -60,4 +60,7 @@
             </div>
         </div>
     </div>
+    <script src="../assets/js/jquery-1.11.1.min.js "></script>
+    <script src="../assets/js/jquery.backstretch.min.js "></script>
+    <script src="../assets/js/scripts.js "></script>
 </body>
