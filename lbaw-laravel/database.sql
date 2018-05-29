@@ -1,11 +1,56 @@
 --
--- PostgreSQL database dump
+-- PostgreSQL database cluster dump
 --
 
--- Dumped from database version 9.4.17
--- Dumped by pg_dump version 9.5.12
+SET default_transaction_read_only = off;
 
--- Started on 2018-05-22 16:11:10 WEST
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+
+--
+-- Drop databases
+--
+
+
+
+
+
+--
+-- Drop roles
+--
+
+DROP ROLE postgres;
+
+
+--
+-- Roles
+--
+
+CREATE ROLE postgres;
+ALTER ROLE postgres WITH SUPERUSER INHERIT CREATEROLE CREATEDB LOGIN REPLICATION PASSWORD 'md50192c17dd3ae9d708e5cca90781286e7';
+
+
+
+
+
+
+--
+-- Database creation
+--
+
+REVOKE ALL ON DATABASE template1 FROM PUBLIC;
+REVOKE ALL ON DATABASE template1 FROM postgres;
+GRANT ALL ON DATABASE template1 TO postgres;
+GRANT CONNECT ON DATABASE template1 TO PUBLIC;
+
+
+\connect postgres
+
+SET default_transaction_read_only = off;
+
+--
+-- PostgreSQL database dump
+--
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -14,10 +59,29 @@ SET standard_conforming_strings = on;
 SELECT pg_catalog.set_config('search_path', '', false);
 SET check_function_bodies = false;
 SET client_min_messages = warning;
-SET row_security = off;
 
 --
--- TOC entry 220 (class 1255 OID 49216)
+-- Name: DATABASE postgres; Type: COMMENT; Schema: -; Owner: postgres
+--
+
+COMMENT ON DATABASE postgres IS 'default administrative connection database';
+
+
+--
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+--
 -- Name: update_user_points_on_delete(); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -50,7 +114,6 @@ $$;
 ALTER FUNCTION public.update_user_points_on_delete() OWNER TO postgres;
 
 --
--- TOC entry 221 (class 1255 OID 49218)
 -- Name: update_user_points_on_insert(); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -83,7 +146,6 @@ $$;
 ALTER FUNCTION public.update_user_points_on_insert() OWNER TO postgres;
 
 --
--- TOC entry 219 (class 1255 OID 49220)
 -- Name: update_user_points_on_update(); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -120,8 +182,7 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- TOC entry 174 (class 1259 OID 33076)
--- Name: users; Type: TABLE; Schema: public; Owner: postgres
+-- Name: users; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE public.users (
@@ -136,6 +197,7 @@ CREATE TABLE public.users (
     img_path text DEFAULT '0.png'::text NOT NULL,
     points integer DEFAULT 0 NOT NULL,
     remember_token text,
+    password_confirmation text,
     CONSTRAINT "User_auth_type_check" CHECK (((auth_type = 0) OR (auth_type = 1)))
 );
 
@@ -143,7 +205,6 @@ CREATE TABLE public.users (
 ALTER TABLE public.users OWNER TO postgres;
 
 --
--- TOC entry 173 (class 1259 OID 33074)
 -- Name: User_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -158,8 +219,6 @@ CREATE SEQUENCE public."User_id_seq"
 ALTER TABLE public."User_id_seq" OWNER TO postgres;
 
 --
--- TOC entry 2252 (class 0 OID 0)
--- Dependencies: 173
 -- Name: User_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -167,8 +226,7 @@ ALTER SEQUENCE public."User_id_seq" OWNED BY public.users.id;
 
 
 --
--- TOC entry 188 (class 1259 OID 33210)
--- Name: answer; Type: TABLE; Schema: public; Owner: postgres
+-- Name: answer; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE public.answer (
@@ -181,7 +239,6 @@ CREATE TABLE public.answer (
 ALTER TABLE public.answer OWNER TO postgres;
 
 --
--- TOC entry 186 (class 1259 OID 33206)
 -- Name: answer_postid_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -196,8 +253,6 @@ CREATE SEQUENCE public.answer_postid_seq
 ALTER TABLE public.answer_postid_seq OWNER TO postgres;
 
 --
--- TOC entry 2253 (class 0 OID 0)
--- Dependencies: 186
 -- Name: answer_postid_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -205,7 +260,6 @@ ALTER SEQUENCE public.answer_postid_seq OWNED BY public.answer.postid;
 
 
 --
--- TOC entry 187 (class 1259 OID 33208)
 -- Name: answer_questionid_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -220,8 +274,6 @@ CREATE SEQUENCE public.answer_questionid_seq
 ALTER TABLE public.answer_questionid_seq OWNER TO postgres;
 
 --
--- TOC entry 2254 (class 0 OID 0)
--- Dependencies: 187
 -- Name: answer_questionid_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -229,8 +281,7 @@ ALTER SEQUENCE public.answer_questionid_seq OWNED BY public.answer.questionid;
 
 
 --
--- TOC entry 178 (class 1259 OID 33131)
--- Name: baninfo; Type: TABLE; Schema: public; Owner: postgres
+-- Name: baninfo; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE public.baninfo (
@@ -249,7 +300,6 @@ CREATE TABLE public.baninfo (
 ALTER TABLE public.baninfo OWNER TO postgres;
 
 --
--- TOC entry 177 (class 1259 OID 33129)
 -- Name: baninfo_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -264,8 +314,6 @@ CREATE SEQUENCE public.baninfo_id_seq
 ALTER TABLE public.baninfo_id_seq OWNER TO postgres;
 
 --
--- TOC entry 2255 (class 0 OID 0)
--- Dependencies: 177
 -- Name: baninfo_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -273,8 +321,7 @@ ALTER SEQUENCE public.baninfo_id_seq OWNED BY public.baninfo.id;
 
 
 --
--- TOC entry 204 (class 1259 OID 49240)
--- Name: contact; Type: TABLE; Schema: public; Owner: postgres
+-- Name: contact; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE public.contact (
@@ -290,7 +337,6 @@ CREATE TABLE public.contact (
 ALTER TABLE public.contact OWNER TO postgres;
 
 --
--- TOC entry 203 (class 1259 OID 49238)
 -- Name: contact_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -305,8 +351,6 @@ CREATE SEQUENCE public.contact_id_seq
 ALTER TABLE public.contact_id_seq OWNER TO postgres;
 
 --
--- TOC entry 2256 (class 0 OID 0)
--- Dependencies: 203
 -- Name: contact_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -314,8 +358,7 @@ ALTER SEQUENCE public.contact_id_seq OWNED BY public.contact.id;
 
 
 --
--- TOC entry 205 (class 1259 OID 49271)
--- Name: faqcategory; Type: TABLE; Schema: public; Owner: postgres
+-- Name: faqcategory; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE public.faqcategory (
@@ -327,8 +370,7 @@ CREATE TABLE public.faqcategory (
 ALTER TABLE public.faqcategory OWNER TO postgres;
 
 --
--- TOC entry 206 (class 1259 OID 49282)
--- Name: faqentry; Type: TABLE; Schema: public; Owner: postgres
+-- Name: faqentry; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE public.faqentry (
@@ -342,8 +384,77 @@ CREATE TABLE public.faqentry (
 ALTER TABLE public.faqentry OWNER TO postgres;
 
 --
--- TOC entry 183 (class 1259 OID 33169)
--- Name: post; Type: TABLE; Schema: public; Owner: postgres
+-- Name: migrations; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE public.migrations (
+    id integer NOT NULL,
+    migration character varying(255) NOT NULL,
+    batch integer NOT NULL
+);
+
+
+ALTER TABLE public.migrations OWNER TO postgres;
+
+--
+-- Name: migrations_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.migrations_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.migrations_id_seq OWNER TO postgres;
+
+--
+-- Name: migrations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.migrations_id_seq OWNED BY public.migrations.id;
+
+
+--
+-- Name: password_resets; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE public.password_resets (
+    id integer NOT NULL,
+    email character varying(255) NOT NULL,
+    token character varying(255) NOT NULL,
+    created_at timestamp(0) without time zone,
+    updated_at timestamp(0) without time zone
+);
+
+
+ALTER TABLE public.password_resets OWNER TO postgres;
+
+--
+-- Name: password_resets_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.password_resets_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.password_resets_id_seq OWNER TO postgres;
+
+--
+-- Name: password_resets_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.password_resets_id_seq OWNED BY public.password_resets.id;
+
+
+--
+-- Name: post; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE public.post (
@@ -359,7 +470,6 @@ CREATE TABLE public.post (
 ALTER TABLE public.post OWNER TO postgres;
 
 --
--- TOC entry 181 (class 1259 OID 33165)
 -- Name: post_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -374,8 +484,6 @@ CREATE SEQUENCE public.post_id_seq
 ALTER TABLE public.post_id_seq OWNER TO postgres;
 
 --
--- TOC entry 2257 (class 0 OID 0)
--- Dependencies: 181
 -- Name: post_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -383,7 +491,6 @@ ALTER SEQUENCE public.post_id_seq OWNED BY public.post.id;
 
 
 --
--- TOC entry 182 (class 1259 OID 33167)
 -- Name: post_posterid_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -398,8 +505,6 @@ CREATE SEQUENCE public.post_posterid_seq
 ALTER TABLE public.post_posterid_seq OWNER TO postgres;
 
 --
--- TOC entry 2258 (class 0 OID 0)
--- Dependencies: 182
 -- Name: post_posterid_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -407,8 +512,7 @@ ALTER SEQUENCE public.post_posterid_seq OWNED BY public.post.posterid;
 
 
 --
--- TOC entry 195 (class 1259 OID 33270)
--- Name: postreport; Type: TABLE; Schema: public; Owner: postgres
+-- Name: postreport; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE public.postreport (
@@ -422,7 +526,6 @@ CREATE TABLE public.postreport (
 ALTER TABLE public.postreport OWNER TO postgres;
 
 --
--- TOC entry 194 (class 1259 OID 33268)
 -- Name: postreport_postid_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -437,8 +540,6 @@ CREATE SEQUENCE public.postreport_postid_seq
 ALTER TABLE public.postreport_postid_seq OWNER TO postgres;
 
 --
--- TOC entry 2259 (class 0 OID 0)
--- Dependencies: 194
 -- Name: postreport_postid_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -446,8 +547,7 @@ ALTER SEQUENCE public.postreport_postid_seq OWNED BY public.postreport.postid;
 
 
 --
--- TOC entry 193 (class 1259 OID 33251)
--- Name: postvote; Type: TABLE; Schema: public; Owner: postgres
+-- Name: postvote; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE public.postvote (
@@ -461,7 +561,6 @@ CREATE TABLE public.postvote (
 ALTER TABLE public.postvote OWNER TO postgres;
 
 --
--- TOC entry 192 (class 1259 OID 33249)
 -- Name: postvote_postid_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -476,8 +575,6 @@ CREATE SEQUENCE public.postvote_postid_seq
 ALTER TABLE public.postvote_postid_seq OWNER TO postgres;
 
 --
--- TOC entry 2260 (class 0 OID 0)
--- Dependencies: 192
 -- Name: postvote_postid_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -485,8 +582,7 @@ ALTER SEQUENCE public.postvote_postid_seq OWNED BY public.postvote.postid;
 
 
 --
--- TOC entry 185 (class 1259 OID 33189)
--- Name: question; Type: TABLE; Schema: public; Owner: postgres
+-- Name: question; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE public.question (
@@ -501,7 +597,6 @@ CREATE TABLE public.question (
 ALTER TABLE public.question OWNER TO postgres;
 
 --
--- TOC entry 184 (class 1259 OID 33187)
 -- Name: question_postid_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -516,8 +611,6 @@ CREATE SEQUENCE public.question_postid_seq
 ALTER TABLE public.question_postid_seq OWNER TO postgres;
 
 --
--- TOC entry 2261 (class 0 OID 0)
--- Dependencies: 184
 -- Name: question_postid_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -525,8 +618,7 @@ ALTER SEQUENCE public.question_postid_seq OWNED BY public.question.postid;
 
 
 --
--- TOC entry 176 (class 1259 OID 33096)
--- Name: subject; Type: TABLE; Schema: public; Owner: postgres
+-- Name: subject; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE public.subject (
@@ -538,7 +630,6 @@ CREATE TABLE public.subject (
 ALTER TABLE public.subject OWNER TO postgres;
 
 --
--- TOC entry 175 (class 1259 OID 33094)
 -- Name: subject_subjectid_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -553,8 +644,6 @@ CREATE SEQUENCE public.subject_subjectid_seq
 ALTER TABLE public.subject_subjectid_seq OWNER TO postgres;
 
 --
--- TOC entry 2262 (class 0 OID 0)
--- Dependencies: 175
 -- Name: subject_subjectid_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -562,8 +651,7 @@ ALTER SEQUENCE public.subject_subjectid_seq OWNED BY public.subject.subjectid;
 
 
 --
--- TOC entry 180 (class 1259 OID 33154)
--- Name: tag; Type: TABLE; Schema: public; Owner: postgres
+-- Name: tag; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE public.tag (
@@ -575,7 +663,6 @@ CREATE TABLE public.tag (
 ALTER TABLE public.tag OWNER TO postgres;
 
 --
--- TOC entry 179 (class 1259 OID 33152)
 -- Name: tag_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -590,8 +677,6 @@ CREATE SEQUENCE public.tag_id_seq
 ALTER TABLE public.tag_id_seq OWNER TO postgres;
 
 --
--- TOC entry 2263 (class 0 OID 0)
--- Dependencies: 179
 -- Name: tag_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -599,8 +684,7 @@ ALTER SEQUENCE public.tag_id_seq OWNED BY public.tag.id;
 
 
 --
--- TOC entry 191 (class 1259 OID 33232)
--- Name: tagquestion; Type: TABLE; Schema: public; Owner: postgres
+-- Name: tagquestion; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE public.tagquestion (
@@ -612,7 +696,6 @@ CREATE TABLE public.tagquestion (
 ALTER TABLE public.tagquestion OWNER TO postgres;
 
 --
--- TOC entry 189 (class 1259 OID 33228)
 -- Name: tagquestion_question_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -627,8 +710,6 @@ CREATE SEQUENCE public.tagquestion_question_id_seq
 ALTER TABLE public.tagquestion_question_id_seq OWNER TO postgres;
 
 --
--- TOC entry 2264 (class 0 OID 0)
--- Dependencies: 189
 -- Name: tagquestion_question_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -636,7 +717,6 @@ ALTER SEQUENCE public.tagquestion_question_id_seq OWNED BY public.tagquestion.qu
 
 
 --
--- TOC entry 190 (class 1259 OID 33230)
 -- Name: tagquestion_tag_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -651,8 +731,6 @@ CREATE SEQUENCE public.tagquestion_tag_id_seq
 ALTER TABLE public.tagquestion_tag_id_seq OWNER TO postgres;
 
 --
--- TOC entry 2265 (class 0 OID 0)
--- Dependencies: 190
 -- Name: tagquestion_tag_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -660,8 +738,7 @@ ALTER SEQUENCE public.tagquestion_tag_id_seq OWNED BY public.tagquestion.tag_id;
 
 
 --
--- TOC entry 197 (class 1259 OID 33290)
--- Name: team; Type: TABLE; Schema: public; Owner: postgres
+-- Name: team; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE public.team (
@@ -673,7 +750,6 @@ CREATE TABLE public.team (
 ALTER TABLE public.team OWNER TO postgres;
 
 --
--- TOC entry 196 (class 1259 OID 33288)
 -- Name: team_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -688,8 +764,6 @@ CREATE SEQUENCE public.team_id_seq
 ALTER TABLE public.team_id_seq OWNER TO postgres;
 
 --
--- TOC entry 2266 (class 0 OID 0)
--- Dependencies: 196
 -- Name: team_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -697,8 +771,7 @@ ALTER SEQUENCE public.team_id_seq OWNED BY public.team.id;
 
 
 --
--- TOC entry 199 (class 1259 OID 33301)
--- Name: teammember; Type: TABLE; Schema: public; Owner: postgres
+-- Name: teammember; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE public.teammember (
@@ -714,7 +787,6 @@ CREATE TABLE public.teammember (
 ALTER TABLE public.teammember OWNER TO postgres;
 
 --
--- TOC entry 198 (class 1259 OID 33299)
 -- Name: teammember_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -729,8 +801,6 @@ CREATE SEQUENCE public.teammember_id_seq
 ALTER TABLE public.teammember_id_seq OWNER TO postgres;
 
 --
--- TOC entry 2267 (class 0 OID 0)
--- Dependencies: 198
 -- Name: teammember_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -738,8 +808,7 @@ ALTER SEQUENCE public.teammember_id_seq OWNED BY public.teammember.id;
 
 
 --
--- TOC entry 202 (class 1259 OID 33316)
--- Name: teamtoteammember; Type: TABLE; Schema: public; Owner: postgres
+-- Name: teamtoteammember; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE public.teamtoteammember (
@@ -751,7 +820,6 @@ CREATE TABLE public.teamtoteammember (
 ALTER TABLE public.teamtoteammember OWNER TO postgres;
 
 --
--- TOC entry 200 (class 1259 OID 33312)
 -- Name: teamtoteammember_teamid_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -766,8 +834,6 @@ CREATE SEQUENCE public.teamtoteammember_teamid_seq
 ALTER TABLE public.teamtoteammember_teamid_seq OWNER TO postgres;
 
 --
--- TOC entry 2268 (class 0 OID 0)
--- Dependencies: 200
 -- Name: teamtoteammember_teamid_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -775,7 +841,6 @@ ALTER SEQUENCE public.teamtoteammember_teamid_seq OWNED BY public.teamtoteammemb
 
 
 --
--- TOC entry 201 (class 1259 OID 33314)
 -- Name: teamtoteammember_teammemberid_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -790,8 +855,6 @@ CREATE SEQUENCE public.teamtoteammember_teammemberid_seq
 ALTER TABLE public.teamtoteammember_teammemberid_seq OWNER TO postgres;
 
 --
--- TOC entry 2269 (class 0 OID 0)
--- Dependencies: 201
 -- Name: teamtoteammember_teammemberid_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -799,7 +862,6 @@ ALTER SEQUENCE public.teamtoteammember_teammemberid_seq OWNED BY public.teamtote
 
 
 --
--- TOC entry 2014 (class 2604 OID 33213)
 -- Name: postid; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -807,7 +869,6 @@ ALTER TABLE ONLY public.answer ALTER COLUMN postid SET DEFAULT nextval('public.a
 
 
 --
--- TOC entry 2015 (class 2604 OID 33214)
 -- Name: questionid; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -815,7 +876,6 @@ ALTER TABLE ONLY public.answer ALTER COLUMN questionid SET DEFAULT nextval('publ
 
 
 --
--- TOC entry 2001 (class 2604 OID 33134)
 -- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -823,7 +883,6 @@ ALTER TABLE ONLY public.baninfo ALTER COLUMN id SET DEFAULT nextval('public.bani
 
 
 --
--- TOC entry 2029 (class 2604 OID 49243)
 -- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -831,7 +890,20 @@ ALTER TABLE ONLY public.contact ALTER COLUMN id SET DEFAULT nextval('public.cont
 
 
 --
--- TOC entry 2005 (class 2604 OID 33172)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.migrations ALTER COLUMN id SET DEFAULT nextval('public.migrations_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.password_resets ALTER COLUMN id SET DEFAULT nextval('public.password_resets_id_seq'::regclass);
+
+
+--
 -- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -839,7 +911,6 @@ ALTER TABLE ONLY public.post ALTER COLUMN id SET DEFAULT nextval('public.post_id
 
 
 --
--- TOC entry 2006 (class 2604 OID 33173)
 -- Name: posterid; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -847,7 +918,6 @@ ALTER TABLE ONLY public.post ALTER COLUMN posterid SET DEFAULT nextval('public.p
 
 
 --
--- TOC entry 2021 (class 2604 OID 33273)
 -- Name: postid; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -855,7 +925,6 @@ ALTER TABLE ONLY public.postreport ALTER COLUMN postid SET DEFAULT nextval('publ
 
 
 --
--- TOC entry 2019 (class 2604 OID 33254)
 -- Name: postid; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -863,7 +932,6 @@ ALTER TABLE ONLY public.postvote ALTER COLUMN postid SET DEFAULT nextval('public
 
 
 --
--- TOC entry 2010 (class 2604 OID 33192)
 -- Name: postid; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -871,7 +939,6 @@ ALTER TABLE ONLY public.question ALTER COLUMN postid SET DEFAULT nextval('public
 
 
 --
--- TOC entry 2000 (class 2604 OID 33099)
 -- Name: subjectid; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -879,7 +946,6 @@ ALTER TABLE ONLY public.subject ALTER COLUMN subjectid SET DEFAULT nextval('publ
 
 
 --
--- TOC entry 2004 (class 2604 OID 33157)
 -- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -887,7 +953,6 @@ ALTER TABLE ONLY public.tag ALTER COLUMN id SET DEFAULT nextval('public.tag_id_s
 
 
 --
--- TOC entry 2017 (class 2604 OID 33235)
 -- Name: question_id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -895,7 +960,6 @@ ALTER TABLE ONLY public.tagquestion ALTER COLUMN question_id SET DEFAULT nextval
 
 
 --
--- TOC entry 2018 (class 2604 OID 33236)
 -- Name: tag_id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -903,7 +967,6 @@ ALTER TABLE ONLY public.tagquestion ALTER COLUMN tag_id SET DEFAULT nextval('pub
 
 
 --
--- TOC entry 2023 (class 2604 OID 33293)
 -- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -911,7 +974,6 @@ ALTER TABLE ONLY public.team ALTER COLUMN id SET DEFAULT nextval('public.team_id
 
 
 --
--- TOC entry 2024 (class 2604 OID 33304)
 -- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -919,7 +981,6 @@ ALTER TABLE ONLY public.teammember ALTER COLUMN id SET DEFAULT nextval('public.t
 
 
 --
--- TOC entry 2027 (class 2604 OID 33319)
 -- Name: teamid; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -927,7 +988,6 @@ ALTER TABLE ONLY public.teamtoteammember ALTER COLUMN teamid SET DEFAULT nextval
 
 
 --
--- TOC entry 2028 (class 2604 OID 33320)
 -- Name: teammemberid; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -935,7 +995,6 @@ ALTER TABLE ONLY public.teamtoteammember ALTER COLUMN teammemberid SET DEFAULT n
 
 
 --
--- TOC entry 1994 (class 2604 OID 33079)
 -- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -943,17 +1002,13 @@ ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public."User_
 
 
 --
--- TOC entry 2270 (class 0 OID 0)
--- Dependencies: 173
 -- Name: User_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public."User_id_seq"', 125, true);
+SELECT pg_catalog.setval('public."User_id_seq"', 152, true);
 
 
 --
--- TOC entry 2226 (class 0 OID 33210)
--- Dependencies: 188
 -- Data for Name: answer; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -984,12 +1039,15 @@ COPY public.answer (postid, questionid, iscorrect) FROM stdin;
 102	101	f
 103	101	f
 124	107	f
+125	104	f
+128	126	f
+130	129	f
+131	126	f
+132	126	f
 \.
 
 
 --
--- TOC entry 2271 (class 0 OID 0)
--- Dependencies: 186
 -- Name: answer_postid_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -997,8 +1055,6 @@ SELECT pg_catalog.setval('public.answer_postid_seq', 1, false);
 
 
 --
--- TOC entry 2272 (class 0 OID 0)
--- Dependencies: 187
 -- Name: answer_questionid_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -1006,8 +1062,6 @@ SELECT pg_catalog.setval('public.answer_questionid_seq', 1, true);
 
 
 --
--- TOC entry 2216 (class 0 OID 33131)
--- Dependencies: 178
 -- Data for Name: baninfo; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -1016,7 +1070,6 @@ COPY public.baninfo (id, duration, description, ispermanent, initdate, enddate, 
 11	\N	dAAdad	t	2018-05-06 13:49:43.538402+00	\N	37	37
 12	\N	FSAFASFAS	t	2018-05-06 13:49:54.569891+00	\N	37	37
 13	\N	dgsdgsdg	t	2018-05-06 13:56:22.905139+00	\N	37	37
-14	\N	hk	t	2018-05-06 14:36:58.346103+00	\N	99	37
 15	\N	vcvfhdfhdf	t	2018-05-06 19:41:49.539917+00	\N	98	37
 16	\N	gddsg	t	2018-05-09 15:57:14.717901+00	\N	60	99
 17	1	Toxicity	f	2018-05-10 00:11:57.325786+00	2018-05-11 00:00:00+00	1	48
@@ -1025,21 +1078,31 @@ COPY public.baninfo (id, duration, description, ispermanent, initdate, enddate, 
 20	1	we	f	2018-05-10 02:12:17.478969+00	2018-05-11 00:00:00+00	1	48
 21	1	s	f	2018-05-10 03:22:57.682441+00	2018-05-11 00:00:00+00	1	48
 22	1	sd	f	2018-05-12 15:44:39.801784+00	2018-05-13 00:00:00+00	49	48
+23	1	lsçkkflsaklfçsakçl	f	2018-05-29 09:44:07.746334+00	2018-05-30 00:00:00+00	49	37
+24	\N	fsafsafasasf	t	2018-05-29 09:47:02.647156+00	\N	49	37
+25	\N	fsfsfs	t	2018-05-29 09:48:23.866242+00	\N	49	37
+26	\N	rghreuyhr	t	2018-05-29 09:54:35.54284+00	\N	49	37
+27	\N	hdfhdfh	t	2018-05-29 09:55:00.0607+00	\N	49	37
+28	\N	gdfgdg	t	2018-05-29 09:57:08.253289+00	\N	56	37
+29	\N	fsfsa	t	2018-05-29 10:00:28.577909+00	\N	56	37
+30	\N	dsgsgdds	t	2018-05-29 10:04:00.314188+00	\N	56	37
+31	\N	vsdgs	t	2018-05-29 10:08:03.929595+00	\N	56	37
+32	\N	fsa	t	2018-05-29 10:11:48.528002+00	\N	56	37
+33	\N	gsdgsdg	t	2018-05-29 10:13:04.350312+00	\N	56	37
+34	\N	gdsgs	t	2018-05-29 10:14:33.261296+00	\N	56	37
+35	2	dsgdsgdsgdssdg	t	2018-05-29 11:26:34.789587+00	2018-05-31 00:00:00+00	99	37
+36	2	dgsdgsdgds	t	2018-05-29 11:32:07.5248+00	2018-05-31 00:00:00+00	99	37
 \.
 
 
 --
--- TOC entry 2273 (class 0 OID 0)
--- Dependencies: 177
 -- Name: baninfo_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.baninfo_id_seq', 22, true);
+SELECT pg_catalog.setval('public.baninfo_id_seq', 36, true);
 
 
 --
--- TOC entry 2242 (class 0 OID 49240)
--- Dependencies: 204
 -- Data for Name: contact; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -1059,8 +1122,6 @@ COPY public.contact (id, message, date, userid, subjectid, processed) FROM stdin
 
 
 --
--- TOC entry 2274 (class 0 OID 0)
--- Dependencies: 203
 -- Name: contact_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -1068,8 +1129,6 @@ SELECT pg_catalog.setval('public.contact_id_seq', 13, true);
 
 
 --
--- TOC entry 2243 (class 0 OID 49271)
--- Dependencies: 205
 -- Data for Name: faqcategory; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -1080,20 +1139,48 @@ COPY public.faqcategory (id, name) FROM stdin;
 
 
 --
--- TOC entry 2244 (class 0 OID 49282)
--- Dependencies: 206
 -- Data for Name: faqentry; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.faqentry (id, question, answer, category) FROM stdin;
-1	Is account registration required?	Account registration at\n                                                <strong>Code Home</strong> is only required if you want to post or responde to questions.	1
-2	How to avoid being banned?	 Respect other users.\n                                                <br> Respond only when you have knowldge about the theme\n                                                <br> Bump is only allowed after 48 hours with no response	2
+1	Is account registration required?	Account registration is only required if you want to post a question or an answer to an existing question. Non authenticated users also cannot vote on any post	1
+2	How to avoid being banned?	Respect other users. \nAnswer only when you have knowledge about the theme in question.\n\n\n\n\nBump is only allowed after 48 hours with no response.\nNo racial slurs or difamation is allowed	2
 \.
 
 
 --
--- TOC entry 2221 (class 0 OID 33169)
--- Dependencies: 183
+-- Data for Name: migrations; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.migrations (id, migration, batch) FROM stdin;
+\.
+
+
+--
+-- Name: migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.migrations_id_seq', 1, false);
+
+
+--
+-- Data for Name: password_resets; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.password_resets (id, email, token, created_at, updated_at) FROM stdin;
+17	marrecamaluca@hotmail.com	$2y$10$MyAswgpxi8vKVGtjlVPpQe6enSTo/5OX8m7OzsGIxXIpbn0uPryw6	2018-05-29 01:44:16	\N
+23	diogoreis95@hotmail.com	$2y$10$Di.xtOpKn8tijgYMwpjLuOhic0lJkUnfBpNTHc7YYLgqoehN1zZlq	2018-05-29 03:45:23	\N
+\.
+
+
+--
+-- Name: password_resets_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.password_resets_id_seq', 23, true);
+
+
+--
 -- Data for Name: post; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -1137,14 +1224,14 @@ COPY public.post (id, posterid, content, date, isvisible, points) FROM stdin;
 64	99	<p>szfafasfassf</p>	2018-05-03 16:48:48.393968+00	f	0
 75	48	<p>stuffing stufish<br></p>	2018-05-03 20:51:13.546772+00	f	-1
 79	48	<p>asdasdsad<br></p>	2018-05-06 18:51:35.861536+00	f	0
-98	48	<p>AH AFINAL SABE<br></p>	2018-05-10 02:40:48.741293+00	t	0
-97	48	<p>asdasdas<br></p>	2018-05-10 02:24:38.911473+00	t	0
+131	48	Hello there Hello there Hello thereHello thereHello thereHello thereHello thereHello thereHello thereHello thereHello thereHello thereHello thereHello thereHello thereHello thereHello thereHello thereHello thereHello thereHello thereHello thereHello thereHello thereHello thereHello thereHello thereHello thereHello thereHello thereHello thereHello thereHello thereHello thereHello thereHello thereHello thereHello thereHello there	2018-05-28 17:53:34.72401+00	t	1
 14	99	<p>asas</p>	2018-04-27 01:02:13.961202+00	f	0
 13	99	<p>asas</p>	2018-04-27 01:00:53.112376+00	f	0
 6	99	<p>sdsd</p>	2018-04-27 00:45:55.767274+00	f	1
 119	48	<p>5<br></p>	2018-05-12 01:26:00.065045+00	f	0
 41	99	<p>szfafasfassf</p>	2018-05-03 16:41:42.988414+00	f	0
 5	99	<p>adad</p>	2018-04-27 00:45:34.889573+00	f	-1
+123	48	<p>5<br></p>	2018-05-12 01:26:11.849453+00	t	-2
 77	37	ewstwefdsds	2018-05-05 11:35:50.484174+00	f	0
 4	99	<p>asdsad</p>	2018-04-27 00:44:48.780128+00	f	-19
 118	48	<p>5<br></p>	2018-05-12 01:25:56.7234+00	f	0
@@ -1152,26 +1239,22 @@ COPY public.post (id, posterid, content, date, isvisible, points) FROM stdin;
 72	48	asdasddas	2018-05-03 20:34:38.362448+00	f	0
 73	48	scccxcccc	2018-05-03 20:34:46.082382+00	f	0
 81	48	<p>gfhhfg<br></p>	2018-05-09 02:06:26.29116+00	f	0
-82	48	<p>dgfgdf<br></p>	2018-05-09 02:06:47.129932+00	t	0
-83	48	<p>dfgdf<br></p>	2018-05-09 02:06:56.110293+00	t	0
-84	48	<p>asdasdas<br></p>	2018-05-09 02:07:09.449519+00	t	0
 117	48	<p>5<br></p>	2018-05-12 01:25:54.15516+00	f	0
 8	99	<p>sdsd</p>	2018-04-27 00:50:54.777485+00	f	8888
 110	48	<p>5<br></p>	2018-05-12 01:25:11.367526+00	f	0
 109	48	<p>5<br></p>	2018-05-12 01:25:08.495211+00	f	0
 121	48	<p>5<br></p>	2018-05-12 01:26:06.322515+00	f	0
 108	48	<p>5<br></p>	2018-05-12 01:25:05.969879+00	f	0
-104	48	<p>as<br></p>	2018-05-12 01:24:40.514944+00	t	0
-105	48	<p>2<br></p>	2018-05-12 01:24:47.808061+00	t	0
-106	48	<p>5<br></p>	2018-05-12 01:24:57.288909+00	t	0
-100	48	<p>asdasdas<br></p>	2018-05-11 01:07:13.824287+00	t	0
+130	37	sadhdfdfsdfhhfdsadhdfdfsdfhhfdsadhdfdfsdfhhfdsadhdfdfsdfhhfdsadhdfdfsdfhhfdsadhdfdfsdfhhfdsadhdfdfsdfhhfdsadhdfdfsdfhhfdsadhdfdfsdfhhfdsadhdfdfsdfhhfdsadhdfdfsdfhhfdsadhdfdfsdfhhfdsadhdfdfsdfhhfdsadhdfdfsdfhhfdsadhdfdfsdfhhfdsadhdfdfsdfhhfdsadhdfdfsdfhhfdsadhdfdfsdfhhfdsadhdfdfsdfhhfdsadhdfdfsdfhhfdsadhdfdfsdfhhfdsadhdfdfsdfhhfdsadhdfdfsdfhhfdsadhdfdfsdfhhfdsadhdfdfsdfhhfdsadhdfdfsdfhhfdsadhdfdfsdfhhfdsadhdfdfsdfhhfdsadhdfdfsdfhhfdsadhdfdfsdfhhfdsadhdfdfsdfhhfd	2018-05-28 17:25:11.507098+00	t	0
+82	48	<p>dgfgdf<br></p>	2018-05-09 02:06:47.129932+00	t	-1
 116	48	<p>5<br></p>	2018-05-12 01:25:51.511812+00	f	0
 115	48	<p>5<br></p>	2018-05-12 01:25:48.781642+00	f	0
 114	48	<p>5<br></p>	2018-05-12 01:25:46.012579+00	f	0
-123	48	<p>5<br></p>	2018-05-12 01:26:11.849453+00	t	-1
+98	48	<p>AH AFINAL SABE<br></p>	2018-05-10 02:40:48.741293+00	t	0
 113	48	<p>5<br></p>	2018-05-12 01:25:22.18375+00	f	0
 112	48	<p>5<br></p>	2018-05-12 01:25:17.355648+00	f	0
 101	37	<p>fasfaffasfsa</p>	2018-05-11 14:41:30.799635+00	f	0
+105	48	<p>2<br></p>	2018-05-12 01:24:47.808061+00	t	-2
 9	99	<p>sdsd</p>	2018-04-27 00:52:41.236788+00	f	88888
 7	99	<p>sdsd</p>	2018-04-27 00:47:52.406911+00	f	888
 102	37	dasfsafasfas	2018-05-11 14:41:36.822025+00	f	0
@@ -1179,24 +1262,32 @@ COPY public.post (id, posterid, content, date, isvisible, points) FROM stdin;
 103	37	fsafasfasfsa	2018-05-11 14:41:54.097013+00	f	0
 120	48	<p>5<br></p>	2018-05-12 01:26:03.685807+00	f	0
 111	48	<p>5<br></p>	2018-05-12 01:25:14.230354+00	f	0
-107	48	<p>5<br></p>	2018-05-12 01:25:03.443267+00	t	1
-99	48	<p>stuffing<br></p>	2018-05-10 03:00:51.238043+00	t	1
-124	121	responde	2018-05-22 13:39:02.455877+00	t	0
+100	48	<p>asdasdas<br></p>	2018-05-11 01:07:13.824287+00	t	0
+126	48	<p>Sdsdsd</p>	2018-05-28 01:47:13.98608+00	t	1
+107	48	<p>5<br></p>	2018-05-12 01:25:03.443267+00	f	0
+124	121	responde	2018-05-22 13:39:02.455877+00	f	0
+104	48	<p>as<br></p>	2018-05-12 01:24:40.514944+00	t	-2
+99	48	<p>stuffing<br></p>	2018-05-10 03:00:51.238043+00	f	0
+106	48	<p>5<br></p>	2018-05-12 01:24:57.288909+00	f	0
+125	48	Hey there	2018-05-28 00:22:32.401909+00	t	0
+97	48	<p>asdasdas<br></p>	2018-05-10 02:24:38.911473+00	t	0
+129	51	<p>sd</p>	2018-05-28 16:56:00.024788+00	t	-1
+83	48	<p>dfgdf<br></p>	2018-05-09 02:06:56.110293+00	t	-1
+84	48	<p>asdasdas<br></p>	2018-05-09 02:07:09.449519+00	t	-1
+132	48	Master Kenobi. Your are a bold one.	2018-05-29 01:04:19.223562+00	t	1
+128	37	gtfdsgddsgsdgsg	2018-05-28 15:53:17.243513+00	t	0
+127	48	sadhsadhsadhsadhsadhsadhsadhsadhsadhsadhsadhsadhsadhsadhsadhsadhsadhsadhsadhsadhsadhsadhsadhsadhsadhsadhsadhsadhsadhsadhsadhsadhsadhsadh 	2018-05-28 03:10:46.071323+00	t	0
 \.
 
 
 --
--- TOC entry 2275 (class 0 OID 0)
--- Dependencies: 181
 -- Name: post_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.post_id_seq', 124, true);
+SELECT pg_catalog.setval('public.post_id_seq', 132, true);
 
 
 --
--- TOC entry 2276 (class 0 OID 0)
--- Dependencies: 182
 -- Name: post_posterid_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -1204,8 +1295,6 @@ SELECT pg_catalog.setval('public.post_posterid_seq', 1, false);
 
 
 --
--- TOC entry 2233 (class 0 OID 33270)
--- Dependencies: 195
 -- Data for Name: postreport; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -1221,12 +1310,13 @@ COPY public.postreport (postid, reporterid, date, reason) FROM stdin;
 100	48	2018-05-11 02:10:52+00	asd
 100	37	2018-05-11 11:26:30+00	asfasfsafasfasfasf
 107	37	2018-05-15 13:56:34+00	dfsfsdfs
+107	48	2018-05-27 19:24:14+00	Test
+105	48	2018-05-27 19:38:07+00	test
+126	37	2018-05-29 13:49:08+00	snfkajslkfjasklfjlas
 \.
 
 
 --
--- TOC entry 2277 (class 0 OID 0)
--- Dependencies: 194
 -- Name: postreport_postid_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -1234,21 +1324,29 @@ SELECT pg_catalog.setval('public.postreport_postid_seq', 1, false);
 
 
 --
--- TOC entry 2231 (class 0 OID 33251)
--- Dependencies: 193
 -- Data for Name: postvote; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.postvote (postid, posterid, value) FROM stdin;
+104	48	-1
 123	37	-1
-107	37	1
-99	37	1
+84	48	-1
+127	48	1
+123	48	-1
+82	48	-1
+131	48	1
+83	48	-1
+105	48	-1
+132	48	1
+127	37	-1
+105	37	-1
+104	37	-1
+129	37	-1
+126	37	1
 \.
 
 
 --
--- TOC entry 2278 (class 0 OID 0)
--- Dependencies: 192
 -- Name: postvote_postid_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -1256,8 +1354,6 @@ SELECT pg_catalog.setval('public.postvote_postid_seq', 1, false);
 
 
 --
--- TOC entry 2223 (class 0 OID 33189)
--- Dependencies: 185
 -- Data for Name: question; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -1320,12 +1416,13 @@ COPY public.question (postid, isclosed, nviews, title) FROM stdin;
 121	f	0	18
 122	f	0	19
 123	f	0	20
+126	f	0	sdsd
+127	f	0	f
+129	f	0	asas
 \.
 
 
 --
--- TOC entry 2279 (class 0 OID 0)
--- Dependencies: 184
 -- Name: question_postid_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -1333,8 +1430,6 @@ SELECT pg_catalog.setval('public.question_postid_seq', 1, false);
 
 
 --
--- TOC entry 2214 (class 0 OID 33096)
--- Dependencies: 176
 -- Data for Name: subject; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -1346,8 +1441,6 @@ COPY public.subject (subjectid, name) FROM stdin;
 
 
 --
--- TOC entry 2280 (class 0 OID 0)
--- Dependencies: 175
 -- Name: subject_subjectid_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -1355,8 +1448,6 @@ SELECT pg_catalog.setval('public.subject_subjectid_seq', 1, false);
 
 
 --
--- TOC entry 2218 (class 0 OID 33154)
--- Dependencies: 180
 -- Data for Name: tag; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -1376,21 +1467,19 @@ COPY public.tag (id, name) FROM stdin;
 20	as
 21	2
 22	4
+23	sdsd
+24	hello
 \.
 
 
 --
--- TOC entry 2281 (class 0 OID 0)
--- Dependencies: 179
 -- Name: tag_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.tag_id_seq', 22, true);
+SELECT pg_catalog.setval('public.tag_id_seq', 24, true);
 
 
 --
--- TOC entry 2229 (class 0 OID 33232)
--- Dependencies: 191
 -- Data for Name: tagquestion; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -1430,12 +1519,13 @@ COPY public.tagquestion (question_id, tag_id) FROM stdin;
 121	22
 122	22
 123	22
+126	23
+127	14
+129	24
 \.
 
 
 --
--- TOC entry 2282 (class 0 OID 0)
--- Dependencies: 189
 -- Name: tagquestion_question_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -1443,8 +1533,6 @@ SELECT pg_catalog.setval('public.tagquestion_question_id_seq', 1, false);
 
 
 --
--- TOC entry 2283 (class 0 OID 0)
--- Dependencies: 190
 -- Name: tagquestion_tag_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -1452,8 +1540,6 @@ SELECT pg_catalog.setval('public.tagquestion_tag_id_seq', 1, false);
 
 
 --
--- TOC entry 2235 (class 0 OID 33290)
--- Dependencies: 197
 -- Data for Name: team; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -1465,8 +1551,6 @@ COPY public.team (id, name) FROM stdin;
 
 
 --
--- TOC entry 2284 (class 0 OID 0)
--- Dependencies: 196
 -- Name: team_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -1474,8 +1558,6 @@ SELECT pg_catalog.setval('public.team_id_seq', 1, false);
 
 
 --
--- TOC entry 2237 (class 0 OID 33301)
--- Dependencies: 199
 -- Data for Name: teammember; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -1488,8 +1570,6 @@ COPY public.teammember (id, name, email, title, joindate, img_path) FROM stdin;
 
 
 --
--- TOC entry 2285 (class 0 OID 0)
--- Dependencies: 198
 -- Name: teammember_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -1497,8 +1577,6 @@ SELECT pg_catalog.setval('public.teammember_id_seq', 1, false);
 
 
 --
--- TOC entry 2240 (class 0 OID 33316)
--- Dependencies: 202
 -- Data for Name: teamtoteammember; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -1515,8 +1593,6 @@ COPY public.teamtoteammember (teamid, teammemberid) FROM stdin;
 
 
 --
--- TOC entry 2286 (class 0 OID 0)
--- Dependencies: 200
 -- Name: teamtoteammember_teamid_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -1524,8 +1600,6 @@ SELECT pg_catalog.setval('public.teamtoteammember_teamid_seq', 1, false);
 
 
 --
--- TOC entry 2287 (class 0 OID 0)
--- Dependencies: 201
 -- Name: teamtoteammember_teammemberid_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -1533,70 +1607,67 @@ SELECT pg_catalog.setval('public.teamtoteammember_teammemberid_seq', 1, false);
 
 
 --
--- TOC entry 2212 (class 0 OID 33076)
--- Dependencies: 174
 -- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.users (id, username, type, pass_token, auth_type, email, state, description, img_path, points, remember_token) FROM stdin;
-3	test1	REGULAR	11	0	test1	ACTIVE	test1	0.png	0	\N
-4	gbgdsgsd	REGULAR	klj	0	jk	ACTIVE	lkj	0.png	0	\N
-7	gbgdsgsdrwqrqw	REGULAR	12	0	jkrwqrqwrqwr	ACTIVE	lkjqrqwr	0.png	0	\N
-60	cenas12345	REGULAR	$2y$10$WgDiRUP5l4FFA4sQb0teG.ZJQn9R6hFvKGEcF1Sq4KaOItHXDFswS	0	1@gmail.com	ACTIVE	\N	0.png	0	NFQd2TGjIbvWtUhlsempXx0llU6cKy1qXy3SCiTwScN6l7uu0afZKSoK3rWF
-9	gbgdsgsdrwqrqwfsa	REGULAR	12	0	jkrwqrqfasfaswrqwr	ACTIVE	lkjqrqwr	0.png	0	\N
-10	sfsfafsa	REGULAR	12	0	sfasfaasf	ACTIVE	fsasaffas	0.png	0	\N
-11	sfsfafsagds	REGULAR	12	0	sfasfaasfgds	ACTIVE	fsasaffas	0.png	0	\N
-12	sfsfafsagdsfsaaf	REGULAR	12	0	sfasfaasfgfsafds	ACTIVE	fsasaffasfsa	0.png	0	\N
-98	cenas20	REGULAR	$2y$10$O5kXZDsf26OP4Rrvbt9zfuzsiHWKgAosFtClUDv3TKbOnMVHA2SVG	0	adjbabd@sd.com	ACTIVE	\N	0.png	1	\N
-14	sfsfafsagdsfsaafasf	REGULAR	12	0	sfasfaasfgfsafsafds	ACTIVE	fsasaffasfsa	0.png	0	\N
-15	sfsfafsagdsfsaafasfsffa	REGULAR	12	0	sfasfaasfgfsafsafdsfasfa	ACTIVE	fsasaffasfsa	0.png	0	\N
-16	caca	REGULAR	Caca1234	0	caca@gmail	ACTIVE	kjljkljk	0.png	0	\N
-17	sfsfafsagdsfsaafasfsffafassfa	REGULAR	12	0	sfasfaasfgfsafsafdsfasfafsasaf	ACTIVE	fsasaffasfsa	0.png	0	\N
-18	fsdfsd	REGULAR	Caca1234	0	fsdfsdfs	ACTIVE	fsdfsfsd	0.png	0	\N
-19	fsdfs	REGULAR	Caca1234	0	fsdfs@gmail.com	ACTIVE	fsdfsd	0.png	0	\N
-20	sfsfafsagdsfsaafasfsffafassfafsaasf	REGULAR	12	0	sfasfaasfgfsafsafdsfasfafsasaffasasf	ACTIVE	fsasaffasfsa	0.png	0	\N
-1	test	REGULAR	12	0	test	BANNED	test	0.png	0	\N
-23	sfsfafsagdsfsaafasfsffafassfafsaasfdgsdgsdsg	REGULAR	12	0	sfasfaasfgfsafsafdsfasfafsasaffasasfdgssdgdsg	ACTIVE	fsasaffasfsa	0.png	0	\N
-24	saafasfsffafassfafsaasfdgsdgsdsg	REGULAR	12	0	sffsasaffasasfsafdgssdgdsg	ACTIVE	fsasaffasfsa	0.png	0	\N
-26	fsasfasaf	REGULAR	Test1234	0	asfsafsfa@jdflkgjkd.com	ACTIVE	fssafasffas	0.png	0	\N
-49	cenas1	REGULAR	$2y$10$QUU9RvKeWayOFXRJNSCZtuqYSv.BpNw5WL0jKcgawAIbf1QkCiUFq	0	manel1@gmail.com	BANNED	\N	0.png	0	pXrwZYwAu9fA8C9nRq8YjHNrMnVctE8p31X1v7qfYRsDZXBOfqELmwlw4llU
-29	www	REGULAR	Test1234	0	dd@afdl.com	ACTIVE	eqdasfasf	0.png	0	\N
-32	123	REGULAR	$2y$10$0SCcufAl2GQmAom7AThmy.ar7SOFYbN60O/57ZLYwBaSA6/0TWGyy	0	dsgsdgd@fkçslk	ACTIVE	gdsdgsdgsgsd	0.png	0	\N
-35	kjsdfhkjsdghjs	REGULAR	$2y$10$411IXiz3Hfd2kREz1upoB.GseDxrnLhufjKszM9iTNBphJWia0fE2	0	slkgjsdl@dsjg.com	ACTIVE	fpoafkçlf	0.png	0	\N
-34	diogo	REGULAR	$2y$10$RGh3EkT3o4kIQcYP6TdPQu/xOVHz5Dn9x2cLpRA8ZNmkNcm9YjQ4.	0	gdsdgsdg@jdsagfdls.com	ACTIVE	21412412	0.png	0	\N
-36	gfdgdf	REGULAR	$2y$10$RxB116KcBZvndW/R6PPlsOOwbSoSCpUqIO1oarXqoFNg6qXcZsQXG	0	ffff@gmail.com	ACTIVE	dfgfdg	0.png	0	\N
-38	testtest	REGULAR	$2y$10$22sNedAGIEK0rsm1nwH03.bNHN2fuR.E.KDarpAWKzIiE5ULsLaIO	0	test@gmail.com	ACTIVE	iasfhjlkasfj	0.png	0	\N
-39	111	REGULAR	$2y$10$4M3aLHWr.fVypPVJQvT..eZsBf5W2C4dDc0gDlB1D0kB3qWDyr3ti	0	fskljsdl@hjfdlks.com	ACTIVE	fçsalkfçlaskçlfsakç	0.png	0	\N
-51	diogoreis	REGULAR	$2y$10$2jPo9hOBBO0AoCazowMqKOVlcAs13kKeHchXgsVoSgdcTCADwAcf2	0	diogoreis95@hotmail.com	ACTIVE	\N	0.png	0	SjYOslOR7ID2NWh1jVILZkUiraWy6HIRlGUSKLi6ix7q1gyse91MLOcmeair
-31	1111	REGULAR	$2y$10$.fKabDAj9ftOjFjOR8UiiOvM7S4RGVjJlhT2uL740B7mJUVGUfW.2	0	DHKAJF@DHJVHJVLKSK.COM	ACTIVE	1E414R32	0.png	0	xOjSclXbmT8jjxXkx86XoAIdNoG3w2VwDGM4hxywmhDKOy7ASPDL9fo77rPi
-54	ppppdAADaD	REGULAR	$2y$10$D4qKb0AU.IPl1j9smLs6IedHrA6miVS5dizDPkrALG36vJQF3mn7W	0	pppp@gmail.comDAadAd	INACTIVE	fsadsasfaafsfgasfsasfaasffsasafasffffffffffffffffffffffff	0.png	0	uhLtqEcbjXUNwh0IOQihCNx76voraTlqRQr7F7tagLcvzlhlxBULsroZpWfD
-53	blabla	REGULAR	$2y$10$X7mt5PsU5Ml3ET9BK072Y.7tlGDyJ2tj0OQhN7/JW73RmzLBJb1uq	0	wooerwq@jdlasfj.com	ACTIVE	\N	0.png	0	37pNlZcWkKmkusSmMKDqff3FTSK3fe5gPtaPjmGOhZK3l2rn7IUldqgPh5nH
-56	cenas12	ADMIN	$2y$10$2SnS2rH/4p.cxIgiVT0u9uuEGwU8F18z6Iwrdg.cGyJ.t6LMLS2hm	0	cenas@cenas.com	ACTIVE	\N	0.png	0	ewHay7k97qBEcMNtr6lynPwDgD91K93ehgaNrisPHeQo0fHdmQMyC25Gw96O
-94	asffsa	REGULAR	$2y$10$tijC03z931b94Cf3rtQI1.dfFzjeEBLF1zC0kURCD4hxyNMdAZ0d2	0	fsasaffs@asfkjahk.com	ACTIVE	\N	0.png	0	8nvPXAfKUDElXkFXT5ckmNpxKfEhbu2tEN2rXoOJqbKTcv9SsBJ7clVCvcIe
-55	TestingN	REGULAR	$2y$10$bAktZreL2ZmO7SqAHMmLh.Jq4qbXkICOrGtlFzYVOtE5om4u1whZS	0	Testing@gmail.com	ACTIVE	\N	0.png	0	1nk8rNTzgZRQGTtQpBGxch01DCTrEmGjd60RwyI8Pf99B4jjRaMqYUSNq4nu
-46	cenas123	REGULAR	$2y$10$NioJshEwdh2I2RgsIoFZxuQ859a6pRyWLFcojw2jZ1DqDlLvJf.Dm	0	manel@gmail.com2	ACTIVE	\N	0.png	0	6Rt5SwNZHxFhx7lhfhKLh7XXi3mF9hNOrVlUtduzR3LP0WxgYhRIXzr7pwNo
-95	stuffingstuff	REGULAR	$2y$10$qxQJN7nj0ssTUOkQQ9bIbueRxWvflWbAKnsAy8Uvqin6S.7UkjiTO	0	stuffingstuff@gmail.com	INACTIVE	\N	0.png	0	efloua05phtc35QBXEfkxeyDCybo7MsAt6zgyZQnw65fVLv76rqyoYMtoqQH
-61	jaslkfkaçl	REGULAR	$2y$10$8KwwbG5DW8ACYntdCYPhFu2yROW/g8Miq/LnKTKIjoM6v6jiSXFq6	0	ddddd@kfldas.com	ACTIVE	\N	0.png	0	wIZCBB6HqJC9J5VcgnqdnS5l1bxX9rrRC9puX3okZHtswzbRUauZuoTlDBxE
-40	222	REGULAR	$2y$10$bssA3wPxE8.2WFoUbR8TGuUv0csPKR0kNmdWU1gbdfXaatYmNy75m	0	222@fe.up.pt	INACTIVE	fljalkfsjsaflkjsaflk	0.png	0	\N
-58	yyy	REGULAR	$2y$10$yq3bmHNFsWdtNsE110gd/O8rQ2VZyMencZAUWNjgtXt.32nPb2B8y	0	aklsfjalsk@djlks.com	INACTIVE	fasfsafsafsa	0.png	0	3agXICSgDI3Te5acNGuRjpdSIW5LVTiwDo5ajyepwmbLzIKERVuzLyNIHGb8
-57	ttt	REGULAR	$2y$10$B1PwtmugBsMGYzeIeU63JO6X0LiwB/QRGLVlS4g0CGaXkkDGCIrPO	0	gfasfsaassa@gmail.com	INACTIVE	\N	0.png	0	3LYqaPKywhyvWBZjlBXJRvHEpQyyaaGqKepz7QNOYSSQjRKrF6cCh6tds3zM
-59	Lbaw	REGULAR	$2y$10$Np72MQqd3EHRWrmvKDcTxe6GF4Mf0DENP1b5lKotm0lwyDny8t.ia	0	Lbaw@gmail.com	INACTIVE	Lbaw	0.png	0	MOXWEoPW6Ab667JrkKLEHtw8i8Bagnw1yWjMho5DHpbnjmFrzo87OZAEySe9
-96	arrefole	REGULAR	$2y$10$j8JRVvcqYJIruFwRi7c14u.v6b5jhhklSDW.c/2TB5wTuweCVd2Oa	0	arrefole@banda.com	ACTIVE	\N	0.png	0	tuQV5If2lB71fC2DqlYL3h5X8wqyzZZ1iMEREJCvYAqSxYLSQvAXyYu1KGCs
-97	cenas10	REGULAR	$2y$10$26fZ.E0pqBwhhRl.tQ/jsu4/4ggW.lHq/i4n6Os.BzSsIWVG/MNiW	0	sodj@gm.com	ACTIVE	\N	0.png	0	E2uflGYDAij5ZNAYd1V0jDlBWDMwPNDoByOBSDTRaXSjkyeDFClSn0d33L1A
-125	Davide Henrique Fernandes da Costa22474506	REGULAR	102067226835393709342	1	davidehfc@gmail.com	ACTIVE	\N	https://lh6.googleusercontent.com/-eQ6gCuJiQ3I/AAAAAAAAAAI/AAAAAAAAAIM/si99Z4LW024/s96-c/photo.jpg	0	ha9Ov7R1ogUxvMq5mRmHHqz385d1RjQWfhn53V82JT7JV3CXkWxk01cRdydA
-48	cenas	ADMIN	$2y$10$GPtwomHX4zv.yJZipBMkpOAgeUQDjDupUnjPlF7IDmj/xOfBf3p/G	0	manel@gmail.com	ACTIVE	sdsdsd	0.png	7	qymMOGV9MSuBqfKfqLzcrgoLud5yX3OAeKVy4nlecEgHAEvVBbyDAmNbADqs
-118	TiagoTest2	REGULAR	$2y$10$NEkFRB7z9JQgT0QIt7AuE./TvUJ8cBi2fRt.DZ26BljDqBRpI/TS.	0	testtest@gmail.com	ACTIVE	\N	0.png	0	IE7g5OSnmWv9otzZ8hNIYJJy5OH3V7syyLonI4t1IP6npd5vUlyfj8fkYh5B
-121	strbonus	ADMIN	114477816892656720569	1	crakylps@gmail.com	ACTIVE	Rock And Roll	https://lh5.googleusercontent.com/-o1nnl1HcNJ0/AAAAAAAAAAI/AAAAAAAAARU/TPI2xeywB60/s96-c/photo.jpg	0	hFfFFVMZu8wf6yIB4tJBzA2eT9N6jtDbY2Xg27vMXLpp73AbLe2mrFu2sNuv
-120	Tiago Magalhães21121	ADMIN	106048134885856570006	1	tiagojsmagalhaes@gmail.com	ACTIVE	\N	0.png	0	WBFPk86I8cYL7LHDLXgEYXUCzAVgOKIgqTGeSHDex7uEAnb6LwYWj3YWoykS
-99	cenas69	ADMIN	$2y$10$mkZJJMTlfieuZPZNHLmW2OB16Y3AGAagILLR2wyyNO1NptJO.q0fm	0	cenas@oajfoajf.com	ACTIVE	addasad	99.png	-101	jSiY50Rl3x2xnUNGf22opny98C7mAgii7lwAuVTrdc2N8ATOHOLFMJFXiLf1
-37	TiagoTest	ADMIN	$2y$10$mkZJJMTlfieuZPZNHLmW2OB16Y3AGAagILLR2wyyNO1NptJO.q0fm	0	TiagoTest@email.com	ACTIVE	Programmer	0.png	100	bGnZffZDmgqR5QyzsBCuYesUpX9myumgSy6RalhvMuoUVzNLFjOHkPMPvMKJ
-119	Testing123	REGULAR	$2y$10$U69KMUU5bFZaERMn6GgRPuQaAcaEd4yMMJ2U6EYoSqd1Et1kxWKvy	0	testing1234@gmail.com	ACTIVE	\N	0.png	0	46e2l29sK0wGuWJenZH842X2omIa4QBiw5yVRsx7myoUwlpiyWMRGOwMgzbA
+COPY public.users (id, username, type, pass_token, auth_type, email, state, description, img_path, points, remember_token, password_confirmation) FROM stdin;
+3	test1	REGULAR	11	0	test1	ACTIVE	test1	0.png	0	\N	\N
+4	gbgdsgsd	REGULAR	klj	0	jk	ACTIVE	lkj	0.png	0	\N	\N
+7	gbgdsgsdrwqrqw	REGULAR	12	0	jkrwqrqwrqwr	ACTIVE	lkjqrqwr	0.png	0	\N	\N
+60	cenas12345	REGULAR	$2y$10$WgDiRUP5l4FFA4sQb0teG.ZJQn9R6hFvKGEcF1Sq4KaOItHXDFswS	0	1@gmail.com	ACTIVE	\N	0.png	0	NFQd2TGjIbvWtUhlsempXx0llU6cKy1qXy3SCiTwScN6l7uu0afZKSoK3rWF	\N
+9	gbgdsgsdrwqrqwfsa	REGULAR	12	0	jkrwqrqfasfaswrqwr	ACTIVE	lkjqrqwr	0.png	0	\N	\N
+10	sfsfafsa	REGULAR	12	0	sfasfaasf	ACTIVE	fsasaffas	0.png	0	\N	\N
+11	sfsfafsagds	REGULAR	12	0	sfasfaasfgds	ACTIVE	fsasaffas	0.png	0	\N	\N
+12	sfsfafsagdsfsaaf	REGULAR	12	0	sfasfaasfgfsafds	ACTIVE	fsasaffasfsa	0.png	0	\N	\N
+98	cenas20	REGULAR	$2y$10$O5kXZDsf26OP4Rrvbt9zfuzsiHWKgAosFtClUDv3TKbOnMVHA2SVG	0	adjbabd@sd.com	ACTIVE	\N	0.png	1	\N	\N
+14	sfsfafsagdsfsaafasf	REGULAR	12	0	sfasfaasfgfsafsafds	ACTIVE	fsasaffasfsa	0.png	0	\N	\N
+15	sfsfafsagdsfsaafasfsffa	REGULAR	12	0	sfasfaasfgfsafsafdsfasfa	ACTIVE	fsasaffasfsa	0.png	0	\N	\N
+16	caca	REGULAR	Caca1234	0	caca@gmail	ACTIVE	kjljkljk	0.png	0	\N	\N
+17	sfsfafsagdsfsaafasfsffafassfa	REGULAR	12	0	sfasfaasfgfsafsafdsfasfafsasaf	ACTIVE	fsasaffasfsa	0.png	0	\N	\N
+18	fsdfsd	REGULAR	Caca1234	0	fsdfsdfs	ACTIVE	fsdfsfsd	0.png	0	\N	\N
+19	fsdfs	REGULAR	Caca1234	0	fsdfs@gmail.com	ACTIVE	fsdfsd	0.png	0	\N	\N
+20	sfsfafsagdsfsaafasfsffafassfafsaasf	REGULAR	12	0	sfasfaasfgfsafsafdsfasfafsasaffasasf	ACTIVE	fsasaffasfsa	0.png	0	\N	\N
+40	222	REGULAR	$2y$10$bssA3wPxE8.2WFoUbR8TGuUv0csPKR0kNmdWU1gbdfXaatYmNy75m	0	222@fe.up.pt	ACTIVE	fljalkfsjsaflkjsaflk	0.png	0	\N	\N
+23	sfsfafsagdsfsaafasfsffafassfafsaasfdgsdgsdsg	REGULAR	12	0	sfasfaasfgfsafsafdsfasfafsasaffasasfdgssdgdsg	ACTIVE	fsasaffasfsa	0.png	0	\N	\N
+24	saafasfsffafassfafsaasfdgsdgsdsg	REGULAR	12	0	sffsasaffasasfsafdgssdgdsg	ACTIVE	fsasaffasfsa	0.png	0	\N	\N
+26	fsasfasaf	REGULAR	Test1234	0	asfsafsfa@jdflkgjkd.com	ACTIVE	fssafasffas	0.png	0	\N	\N
+49	cenas1	REGULAR	$2y$10$QUU9RvKeWayOFXRJNSCZtuqYSv.BpNw5WL0jKcgawAIbf1QkCiUFq	0	manel1@gmail.com	ACTIVE	\N	0.png	0	pXrwZYwAu9fA8C9nRq8YjHNrMnVctE8p31X1v7qfYRsDZXBOfqELmwlw4llU	\N
+29	www	REGULAR	Test1234	0	dd@afdl.com	ACTIVE	eqdasfasf	0.png	0	\N	\N
+32	123	REGULAR	$2y$10$0SCcufAl2GQmAom7AThmy.ar7SOFYbN60O/57ZLYwBaSA6/0TWGyy	0	dsgsdgd@fkçslk	ACTIVE	gdsdgsdgsgsd	0.png	0	\N	\N
+35	kjsdfhkjsdghjs	REGULAR	$2y$10$411IXiz3Hfd2kREz1upoB.GseDxrnLhufjKszM9iTNBphJWia0fE2	0	slkgjsdl@dsjg.com	ACTIVE	fpoafkçlf	0.png	0	\N	\N
+34	diogo	REGULAR	$2y$10$RGh3EkT3o4kIQcYP6TdPQu/xOVHz5Dn9x2cLpRA8ZNmkNcm9YjQ4.	0	gdsdgsdg@jdsagfdls.com	ACTIVE	21412412	0.png	0	\N	\N
+36	gfdgdf	REGULAR	$2y$10$RxB116KcBZvndW/R6PPlsOOwbSoSCpUqIO1oarXqoFNg6qXcZsQXG	0	ffff@gmail.com	ACTIVE	dfgfdg	0.png	0	\N	\N
+38	testtest	REGULAR	$2y$10$22sNedAGIEK0rsm1nwH03.bNHN2fuR.E.KDarpAWKzIiE5ULsLaIO	0	test@gmail.com	ACTIVE	iasfhjlkasfj	0.png	0	\N	\N
+39	111	REGULAR	$2y$10$4M3aLHWr.fVypPVJQvT..eZsBf5W2C4dDc0gDlB1D0kB3qWDyr3ti	0	fskljsdl@hjfdlks.com	ACTIVE	fçsalkfçlaskçlfsakç	0.png	0	\N	\N
+54	ppppdAADaD	REGULAR	$2y$10$D4qKb0AU.IPl1j9smLs6IedHrA6miVS5dizDPkrALG36vJQF3mn7W	0	pppp@gmail.comDAadAd	ACTIVE	fsadsasfaafsfgasfsasfaasffsasafasffffffffffffffffffffffff	0.png	0	uhLtqEcbjXUNwh0IOQihCNx76voraTlqRQr7F7tagLcvzlhlxBULsroZpWfD	\N
+1	test	REGULAR	12	0	test	ACTIVE	test	0.png	0	\N	\N
+95	stuffingstuff	REGULAR	$2y$10$qxQJN7nj0ssTUOkQQ9bIbueRxWvflWbAKnsAy8Uvqin6S.7UkjiTO	0	stuffingstuff@gmail.com	ACTIVE	\N	0.png	0	efloua05phtc35QBXEfkxeyDCybo7MsAt6zgyZQnw65fVLv76rqyoYMtoqQH	\N
+57	ttt	REGULAR	$2y$10$B1PwtmugBsMGYzeIeU63JO6X0LiwB/QRGLVlS4g0CGaXkkDGCIrPO	0	gfasfsaassa@gmail.com	ACTIVE	\N	0.png	0	3LYqaPKywhyvWBZjlBXJRvHEpQyyaaGqKepz7QNOYSSQjRKrF6cCh6tds3zM	\N
+56	cenas12	ADMIN	$2y$10$2SnS2rH/4p.cxIgiVT0u9uuEGwU8F18z6Iwrdg.cGyJ.t6LMLS2hm	0	cenas@cenas.com	ACTIVE	\N	0.png	0	ewHay7k97qBEcMNtr6lynPwDgD91K93ehgaNrisPHeQo0fHdmQMyC25Gw96O	\N
+31	1111	REGULAR	$2y$10$.fKabDAj9ftOjFjOR8UiiOvM7S4RGVjJlhT2uL740B7mJUVGUfW.2	0	DHKAJF@DHJVHJVLKSK.COM	ACTIVE	1E414R32	0.png	0	xOjSclXbmT8jjxXkx86XoAIdNoG3w2VwDGM4hxywmhDKOy7ASPDL9fo77rPi	\N
+53	blabla	REGULAR	$2y$10$X7mt5PsU5Ml3ET9BK072Y.7tlGDyJ2tj0OQhN7/JW73RmzLBJb1uq	0	wooerwq@jdlasfj.com	ACTIVE	\N	0.png	0	37pNlZcWkKmkusSmMKDqff3FTSK3fe5gPtaPjmGOhZK3l2rn7IUldqgPh5nH	\N
+94	asffsa	REGULAR	$2y$10$tijC03z931b94Cf3rtQI1.dfFzjeEBLF1zC0kURCD4hxyNMdAZ0d2	0	fsasaffs@asfkjahk.com	ACTIVE	\N	0.png	0	8nvPXAfKUDElXkFXT5ckmNpxKfEhbu2tEN2rXoOJqbKTcv9SsBJ7clVCvcIe	\N
+55	TestingN	REGULAR	$2y$10$bAktZreL2ZmO7SqAHMmLh.Jq4qbXkICOrGtlFzYVOtE5om4u1whZS	0	Testing@gmail.com	ACTIVE	\N	0.png	0	1nk8rNTzgZRQGTtQpBGxch01DCTrEmGjd60RwyI8Pf99B4jjRaMqYUSNq4nu	\N
+46	cenas123	REGULAR	$2y$10$NioJshEwdh2I2RgsIoFZxuQ859a6pRyWLFcojw2jZ1DqDlLvJf.Dm	0	manel@gmail.com2	ACTIVE	\N	0.png	0	6Rt5SwNZHxFhx7lhfhKLh7XXi3mF9hNOrVlUtduzR3LP0WxgYhRIXzr7pwNo	\N
+61	jaslkfkaçl	REGULAR	$2y$10$8KwwbG5DW8ACYntdCYPhFu2yROW/g8Miq/LnKTKIjoM6v6jiSXFq6	0	ddddd@kfldas.com	ACTIVE	\N	0.png	0	wIZCBB6HqJC9J5VcgnqdnS5l1bxX9rrRC9puX3okZHtswzbRUauZuoTlDBxE	\N
+58	yyy	REGULAR	$2y$10$yq3bmHNFsWdtNsE110gd/O8rQ2VZyMencZAUWNjgtXt.32nPb2B8y	0	aklsfjalsk@djlks.com	INACTIVE	fasfsafsafsa	0.png	0	3agXICSgDI3Te5acNGuRjpdSIW5LVTiwDo5ajyepwmbLzIKERVuzLyNIHGb8	\N
+59	Lbaw	REGULAR	$2y$10$Np72MQqd3EHRWrmvKDcTxe6GF4Mf0DENP1b5lKotm0lwyDny8t.ia	0	Lbaw@gmail.com	INACTIVE	Lbaw	0.png	0	MOXWEoPW6Ab667JrkKLEHtw8i8Bagnw1yWjMho5DHpbnjmFrzo87OZAEySe9	\N
+96	arrefole	REGULAR	$2y$10$j8JRVvcqYJIruFwRi7c14u.v6b5jhhklSDW.c/2TB5wTuweCVd2Oa	0	arrefole@banda.com	ACTIVE	\N	0.png	0	tuQV5If2lB71fC2DqlYL3h5X8wqyzZZ1iMEREJCvYAqSxYLSQvAXyYu1KGCs	\N
+97	cenas10	REGULAR	$2y$10$26fZ.E0pqBwhhRl.tQ/jsu4/4ggW.lHq/i4n6Os.BzSsIWVG/MNiW	0	sodj@gm.com	ACTIVE	\N	0.png	0	E2uflGYDAij5ZNAYd1V0jDlBWDMwPNDoByOBSDTRaXSjkyeDFClSn0d33L1A	\N
+125	Davide Henrique Fernandes da Costa22474506	REGULAR	102067226835393709342	1	davidehfc@gmail.com	ACTIVE	\N	https://lh6.googleusercontent.com/-eQ6gCuJiQ3I/AAAAAAAAAAI/AAAAAAAAAIM/si99Z4LW024/s96-c/photo.jpg	0	ha9Ov7R1ogUxvMq5mRmHHqz385d1RjQWfhn53V82JT7JV3CXkWxk01cRdydA	\N
+118	TiagoTest2	REGULAR	$2y$10$NEkFRB7z9JQgT0QIt7AuE./TvUJ8cBi2fRt.DZ26BljDqBRpI/TS.	0	testtest@gmail.com	ACTIVE	\N	0.png	0	IE7g5OSnmWv9otzZ8hNIYJJy5OH3V7syyLonI4t1IP6npd5vUlyfj8fkYh5B	\N
+121	strbonus	ADMIN	114477816892656720569	1	crakylps@gmail.com	ACTIVE	Rock And Roll	https://lh5.googleusercontent.com/-o1nnl1HcNJ0/AAAAAAAAAAI/AAAAAAAAARU/TPI2xeywB60/s96-c/photo.jpg	0	hFfFFVMZu8wf6yIB4tJBzA2eT9N6jtDbY2Xg27vMXLpp73AbLe2mrFu2sNuv	\N
+120	Tiago Magalhães21121	ADMIN	106048134885856570006	1	tiagojsmagalhaes@gmail.com	ACTIVE	\N	https://lh4.googleusercontent.com/-UFusMn6rTKI/AAAAAAAAAAI/AAAAAAAAAAA/AIcfdXC9jN-rQx7dcy2ITwnZ1YXolZt6VA/s96-c/photo.jpg	0	WBFPk86I8cYL7LHDLXgEYXUCzAVgOKIgqTGeSHDex7uEAnb6LwYWj3YWoykS	\N
+119	Testing123	REGULAR	$2y$10$U69KMUU5bFZaERMn6GgRPuQaAcaEd4yMMJ2U6EYoSqd1Et1kxWKvy	0	testing1234@gmail.com	ACTIVE	\N	0.png	0	46e2l29sK0wGuWJenZH842X2omIa4QBiw5yVRsx7myoUwlpiyWMRGOwMgzbA	\N
+48	cenas	ADMIN	$2y$10$GPtwomHX4zv.yJZipBMkpOAgeUQDjDupUnjPlF7IDmj/xOfBf3p/G	0	marrecamaluca@hotmail.com	ACTIVE	sdsdsd	0.png	0	RkLhZIvDHJDrfEtj46UIQdYO22hBHsOQLQWFY7V9jk91mr8NAscTfnT6xEF2	\N
+37	TiagoTest	ADMIN	$2y$10$mkZJJMTlfieuZPZNHLmW2OB16Y3AGAagILLR2wyyNO1NptJO.q0fm	0	TiagoTest@email.com	ACTIVE	Programmer	0.png	100	UxTl7YIcUb3BaxxoY0DYxcHazS97UPD09kA9f6S7TpWqWZRjv7ZGXm8KhJ5R	\N
+99	cenas69	ADMIN	$2y$10$mkZJJMTlfieuZPZNHLmW2OB16Y3AGAagILLR2wyyNO1NptJO.q0fm	0	cenas@oajfoajf.com	ACTIVE	addasad	99.png	-101	jSiY50Rl3x2xnUNGf22opny98C7mAgii7lwAuVTrdc2N8ATOHOLFMJFXiLf1	\N
+51	diogoreis	REGULAR	$2y$10$H7jpbdPp6qkvEoWcqfKLpeXXN0HiVbrjO/6oQ9IxYwpfu3.MhXVki	0	diogoreis95@hotmail.com	ACTIVE	\N	0.png	-1	yIYaVOoW3US5v6BUKviXuIQ0vJNvnPXjQ2uxPLr3PWY9oRktqz7aavNTlXJb	$2y$10$2jPo9hOBBO0AoCazowMqKOVlcAs13kKeHchXgsVoSgdcTCADwAcf2
 \.
 
 
 --
--- TOC entry 2033 (class 2606 OID 33093)
--- Name: User_email_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: User_email_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY public.users
@@ -1604,8 +1675,7 @@ ALTER TABLE ONLY public.users
 
 
 --
--- TOC entry 2035 (class 2606 OID 33091)
--- Name: User_username_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: User_username_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY public.users
@@ -1613,8 +1683,7 @@ ALTER TABLE ONLY public.users
 
 
 --
--- TOC entry 2053 (class 2606 OID 33217)
--- Name: answerpk; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: answerpk; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY public.answer
@@ -1622,8 +1691,7 @@ ALTER TABLE ONLY public.answer
 
 
 --
--- TOC entry 2043 (class 2606 OID 33141)
--- Name: banpk; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: banpk; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY public.baninfo
@@ -1631,8 +1699,7 @@ ALTER TABLE ONLY public.baninfo
 
 
 --
--- TOC entry 2067 (class 2606 OID 49250)
--- Name: contactpk; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: contactpk; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY public.contact
@@ -1640,8 +1707,7 @@ ALTER TABLE ONLY public.contact
 
 
 --
--- TOC entry 2069 (class 2606 OID 49278)
--- Name: faqcategory_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: faqcategory_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY public.faqcategory
@@ -1649,8 +1715,23 @@ ALTER TABLE ONLY public.faqcategory
 
 
 --
--- TOC entry 2049 (class 2606 OID 33181)
--- Name: postpk; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY public.migrations
+    ADD CONSTRAINT migrations_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: password_resets_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY public.password_resets
+    ADD CONSTRAINT password_resets_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: postpk; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY public.post
@@ -1658,8 +1739,7 @@ ALTER TABLE ONLY public.post
 
 
 --
--- TOC entry 2059 (class 2606 OID 33276)
--- Name: postreport_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: postreport_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY public.postreport
@@ -1667,8 +1747,7 @@ ALTER TABLE ONLY public.postreport
 
 
 --
--- TOC entry 2071 (class 2606 OID 49289)
--- Name: postreportpk; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: postreportpk; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY public.faqentry
@@ -1676,8 +1755,7 @@ ALTER TABLE ONLY public.faqentry
 
 
 --
--- TOC entry 2057 (class 2606 OID 33257)
--- Name: postvote_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: postvote_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY public.postvote
@@ -1685,8 +1763,7 @@ ALTER TABLE ONLY public.postvote
 
 
 --
--- TOC entry 2051 (class 2606 OID 33200)
--- Name: questionpk; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: questionpk; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY public.question
@@ -1694,8 +1771,7 @@ ALTER TABLE ONLY public.question
 
 
 --
--- TOC entry 2039 (class 2606 OID 33106)
--- Name: subject_name_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: subject_name_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY public.subject
@@ -1703,8 +1779,7 @@ ALTER TABLE ONLY public.subject
 
 
 --
--- TOC entry 2041 (class 2606 OID 33104)
--- Name: subjectpk; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: subjectpk; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY public.subject
@@ -1712,8 +1787,7 @@ ALTER TABLE ONLY public.subject
 
 
 --
--- TOC entry 2045 (class 2606 OID 33164)
--- Name: tag_name_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: tag_name_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY public.tag
@@ -1721,8 +1795,7 @@ ALTER TABLE ONLY public.tag
 
 
 --
--- TOC entry 2047 (class 2606 OID 33162)
--- Name: tagpk; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: tagpk; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY public.tag
@@ -1730,8 +1803,7 @@ ALTER TABLE ONLY public.tag
 
 
 --
--- TOC entry 2055 (class 2606 OID 33238)
--- Name: tagquestion_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: tagquestion_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY public.tagquestion
@@ -1739,8 +1811,7 @@ ALTER TABLE ONLY public.tagquestion
 
 
 --
--- TOC entry 2063 (class 2606 OID 33311)
--- Name: teammemberpk; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: teammemberpk; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY public.teammember
@@ -1748,8 +1819,7 @@ ALTER TABLE ONLY public.teammember
 
 
 --
--- TOC entry 2061 (class 2606 OID 33298)
--- Name: teampk; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: teampk; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY public.team
@@ -1757,8 +1827,7 @@ ALTER TABLE ONLY public.team
 
 
 --
--- TOC entry 2065 (class 2606 OID 33322)
--- Name: teamtoteammember_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: teamtoteammember_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY public.teamtoteammember
@@ -1766,8 +1835,7 @@ ALTER TABLE ONLY public.teamtoteammember
 
 
 --
--- TOC entry 2037 (class 2606 OID 33089)
--- Name: userpk; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: userpk; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY public.users
@@ -1775,7 +1843,20 @@ ALTER TABLE ONLY public.users
 
 
 --
--- TOC entry 2099 (class 2620 OID 49217)
+-- Name: password_resets_email_index; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX password_resets_email_index ON public.password_resets USING btree (email);
+
+
+--
+-- Name: password_resets_token_index; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX password_resets_token_index ON public.password_resets USING btree (token);
+
+
+--
 -- Name: update_user_points_on_delete; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -1783,7 +1864,6 @@ CREATE TRIGGER update_user_points_on_delete BEFORE DELETE ON public.postvote FOR
 
 
 --
--- TOC entry 2100 (class 2620 OID 49219)
 -- Name: update_user_points_on_insert; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -1791,7 +1871,6 @@ CREATE TRIGGER update_user_points_on_insert AFTER INSERT ON public.postvote FOR 
 
 
 --
--- TOC entry 2101 (class 2620 OID 49221)
 -- Name: update_user_points_on_update; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -1799,7 +1878,6 @@ CREATE TRIGGER update_user_points_on_update AFTER UPDATE ON public.postvote FOR 
 
 
 --
--- TOC entry 2075 (class 2606 OID 33338)
 -- Name: adminidfk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1808,7 +1886,6 @@ ALTER TABLE ONLY public.baninfo
 
 
 --
--- TOC entry 2080 (class 2606 OID 33218)
 -- Name: answer_postid_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1817,7 +1894,6 @@ ALTER TABLE ONLY public.answer
 
 
 --
--- TOC entry 2081 (class 2606 OID 33223)
 -- Name: answer_questionid_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1826,7 +1902,6 @@ ALTER TABLE ONLY public.answer
 
 
 --
--- TOC entry 2073 (class 2606 OID 33147)
 -- Name: baninfo_adminid_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1835,7 +1910,6 @@ ALTER TABLE ONLY public.baninfo
 
 
 --
--- TOC entry 2072 (class 2606 OID 33142)
 -- Name: baninfo_userid_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1844,7 +1918,6 @@ ALTER TABLE ONLY public.baninfo
 
 
 --
--- TOC entry 2097 (class 2606 OID 49256)
 -- Name: contact_subjectid_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1853,7 +1926,6 @@ ALTER TABLE ONLY public.contact
 
 
 --
--- TOC entry 2096 (class 2606 OID 49251)
 -- Name: contact_userid_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1862,7 +1934,6 @@ ALTER TABLE ONLY public.contact
 
 
 --
--- TOC entry 2098 (class 2606 OID 49290)
 -- Name: faqentry_category_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1871,7 +1942,6 @@ ALTER TABLE ONLY public.faqentry
 
 
 --
--- TOC entry 2076 (class 2606 OID 33182)
 -- Name: post_posterid_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1880,7 +1950,6 @@ ALTER TABLE ONLY public.post
 
 
 --
--- TOC entry 2077 (class 2606 OID 33343)
 -- Name: postidfk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1889,7 +1958,6 @@ ALTER TABLE ONLY public.post
 
 
 --
--- TOC entry 2082 (class 2606 OID 33348)
 -- Name: postidfk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1898,7 +1966,6 @@ ALTER TABLE ONLY public.answer
 
 
 --
--- TOC entry 2079 (class 2606 OID 33358)
 -- Name: postidfk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1907,7 +1974,6 @@ ALTER TABLE ONLY public.question
 
 
 --
--- TOC entry 2090 (class 2606 OID 33373)
 -- Name: postidfk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1916,7 +1982,6 @@ ALTER TABLE ONLY public.postvote
 
 
 --
--- TOC entry 2092 (class 2606 OID 33383)
 -- Name: postreport_post_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1925,7 +1990,6 @@ ALTER TABLE ONLY public.postreport
 
 
 --
--- TOC entry 2091 (class 2606 OID 33378)
 -- Name: postreport_user_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1934,7 +1998,6 @@ ALTER TABLE ONLY public.postvote
 
 
 --
--- TOC entry 2093 (class 2606 OID 33388)
 -- Name: postreport_user_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1943,7 +2006,6 @@ ALTER TABLE ONLY public.postreport
 
 
 --
--- TOC entry 2089 (class 2606 OID 33263)
 -- Name: postvote_posterid_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1952,7 +2014,6 @@ ALTER TABLE ONLY public.postvote
 
 
 --
--- TOC entry 2088 (class 2606 OID 33258)
 -- Name: postvote_postid_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1961,7 +2022,6 @@ ALTER TABLE ONLY public.postvote
 
 
 --
--- TOC entry 2086 (class 2606 OID 33363)
 -- Name: question_idfk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1970,7 +2030,6 @@ ALTER TABLE ONLY public.tagquestion
 
 
 --
--- TOC entry 2078 (class 2606 OID 33201)
 -- Name: question_postid_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1979,7 +2038,6 @@ ALTER TABLE ONLY public.question
 
 
 --
--- TOC entry 2083 (class 2606 OID 33353)
 -- Name: questionidfk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1988,7 +2046,6 @@ ALTER TABLE ONLY public.answer
 
 
 --
--- TOC entry 2087 (class 2606 OID 33368)
 -- Name: tag_idfk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1997,7 +2054,6 @@ ALTER TABLE ONLY public.tagquestion
 
 
 --
--- TOC entry 2084 (class 2606 OID 33239)
 -- Name: tagquestion_question_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2006,7 +2062,6 @@ ALTER TABLE ONLY public.tagquestion
 
 
 --
--- TOC entry 2085 (class 2606 OID 33244)
 -- Name: tagquestion_tag_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2015,7 +2070,6 @@ ALTER TABLE ONLY public.tagquestion
 
 
 --
--- TOC entry 2094 (class 2606 OID 33393)
 -- Name: teamtoteamember_teamid_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2024,7 +2078,6 @@ ALTER TABLE ONLY public.teamtoteammember
 
 
 --
--- TOC entry 2095 (class 2606 OID 33398)
 -- Name: teamtoteamember_teammemberid_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2033,7 +2086,6 @@ ALTER TABLE ONLY public.teamtoteammember
 
 
 --
--- TOC entry 2074 (class 2606 OID 33333)
 -- Name: useridfk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2042,8 +2094,6 @@ ALTER TABLE ONLY public.baninfo
 
 
 --
--- TOC entry 2251 (class 0 OID 0)
--- Dependencies: 6
 -- Name: SCHEMA public; Type: ACL; Schema: -; Owner: postgres
 --
 
@@ -2053,9 +2103,62 @@ GRANT ALL ON SCHEMA public TO postgres;
 GRANT ALL ON SCHEMA public TO PUBLIC;
 
 
--- Completed on 2018-05-22 16:11:14 WEST
+--
+-- PostgreSQL database dump complete
+--
+
+\connect template1
+
+SET default_transaction_read_only = off;
+
+--
+-- PostgreSQL database dump
+--
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+
+--
+-- Name: DATABASE template1; Type: COMMENT; Schema: -; Owner: postgres
+--
+
+COMMENT ON DATABASE template1 IS 'default template for new databases';
+
+
+--
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+--
+-- Name: SCHEMA public; Type: ACL; Schema: -; Owner: postgres
+--
+
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+REVOKE ALL ON SCHEMA public FROM postgres;
+GRANT ALL ON SCHEMA public TO postgres;
+GRANT ALL ON SCHEMA public TO PUBLIC;
+
 
 --
 -- PostgreSQL database dump complete
+--
+
+--
+-- PostgreSQL database cluster dump complete
 --
 

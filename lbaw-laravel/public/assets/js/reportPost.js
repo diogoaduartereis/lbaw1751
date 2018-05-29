@@ -7,6 +7,15 @@ function reportPost(event, postId)
     let messageTextInput = document.getElementById('message');
     let reportReason = messageTextInput.value;
 
+    if(reportReason.trim() == "")
+    {
+        let resultMessageElement = document.getElementById('resultMessage'); 
+        resultMessageElement.innerHTML = 'Message must be filled';
+        resultMessageElement.style.color = "red";
+        resultMessageElement.style.display = "block";
+        return;
+    }
+
     //get csrf token
     let csrfToken = document.getElementById("csrf-token").innerHTML;
 
@@ -35,6 +44,8 @@ function reponseArrived()
     {
         resultMessageElement.innerHTML = 'There has been an unknown error while trying to process your request, please try again later';
         resultMessageElement.style.color = "red";
+        resultMessageElement.style.display = "block";
+        return;
     }
     resultMessageElement.innerHTML += ' You will be automatically redirected to the page you were broswing before this page.'
     resultMessageElement.style.display = "block";
