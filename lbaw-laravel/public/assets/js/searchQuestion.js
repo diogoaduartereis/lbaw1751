@@ -6,9 +6,6 @@ function handleUserSearchInput(event)
 {
     let defaultContentDiv = document.getElementById('contentID');
     let searchedQuestionsDiv = document.getElementById('changedContentID');
-    console.log("begin");
-    console.log(searchedQuestionsDiv.innerHTML);
-    console.log("end");
     let userInputText = event.target.value.trim();
     if (userInputText == "")
     {
@@ -26,6 +23,8 @@ function handleUserSearchInput(event)
     let keywordsArr = userInputText.split(" ");
     //Get array with tags
     let tagsArr = userInputText.match(/#\S+/g);
+    if (tagsArr == null)
+        tagsArr = new Array();
 
     //Get array with keyword, i.e., everything except the tags
     for (let i = 0; i < tagsArr.length; i++)
@@ -33,13 +32,8 @@ function handleUserSearchInput(event)
 
     removeHashTagsFromBeggingOfEachTagOnArray(tagsArr);
 
-
-    //console.log(tagsArr);
-    //console.log(keywordsArr);
-
     let tagsArrEncoded = JSON.stringify(tagsArr);
     let keywordsArrEncoded = JSON.stringify(keywordsArr);
-    //console.log(JSON.parse(tagsArrEncoded));
 
     //get csrf token
     let csrfToken = document.getElementById("csrf-token").innerHTML;
@@ -71,11 +65,8 @@ function removeStringFromArray(arr, what)
 
 function searchResultsArrived()
 {
-    console.log("searchResultsArrived");
-    console.log(this.responseText);
     let searchedQuestionsDiv = document.getElementById('changedContentID');
     searchedQuestionsDiv.innerHTML = this.responseText;
-
 }
 
 function getElementInSearch(element, userInputText, endedSearchString)

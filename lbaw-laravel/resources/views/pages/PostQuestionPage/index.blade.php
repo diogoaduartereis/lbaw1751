@@ -28,7 +28,6 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.25.0/codemirror.min.css">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.6.0/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css" />
         <link href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.6.0/css/froala_style.min.css" rel="stylesheet" type="text/css" />
-        <script src="../assets/js/Froala HTML Editor.js"></script>
 
     </head>
 
@@ -76,13 +75,8 @@
                                                 <div class="col-md-12">
                                                     <div class="form-group">
                                                         <label for="description">Description *</label>
-                                                        <textarea name="content" id="froala-editor" class="form-control" rows="15" cols="25" required="required" placeholder="Message">
-                                                        </textarea>
-                                                        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-                                                        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.25.0/codemirror.min.js"></script>
-                                                        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.25.0/mode/xml/xml.min.js"></script>
-                                                        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.6.0//js/froala_editor.pkgd.min.js"></script>
-                                                    </div>
+                                                        <textarea style="overflow-y:auto;" name="content" class="form-control" rows="10" cols="32" 
+                                                        required="required" placeholder="Type question here" title="Type question here"> </textarea>                                                    </div>
                                                 </div>
                                                 <div class="col-md-12">
                                                     <button type="submit" class="btn btn-primary pull-right" id="btnSubmitQuestion">
