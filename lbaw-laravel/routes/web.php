@@ -134,6 +134,9 @@ Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail'
 Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.request');
 Route::post('password/reset/', 'Auth\ResetPasswordController@reset')->name('password.reset');
 
+//mark answer as correct
+Route::post('answer/{id}/correct','');
+
 // Password Reset Routes...
 //$this->get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm');
 //$this->post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail');

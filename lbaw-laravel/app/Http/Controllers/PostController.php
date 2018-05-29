@@ -473,6 +473,11 @@ class PostController extends Controller {
             return view('pages.index_questionsdiv', ['questions' => $questions_and_tags['questions']], ['questions_tags' => $questions_and_tags['questions_tags']]);
     }
 
+    public function markCorrect()
+    {
+
+    }
+
     //}
     /* $questions = DB::table('question')
       ->join('tagquestion', 'question.postid', '=', 'tagquestion.question_id')
