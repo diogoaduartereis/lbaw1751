@@ -64,7 +64,7 @@ class CustomPassword extends ResetPassword
     {
         return (new MailMessage)
             ->line('We are sending this email because we received a forgot password request.')
-            ->action('Reset Password', url(config('localhost') . route('password.reset', $this->token, false)))
+            ->action('Reset Password', url(config('localhost') . route('password.request', $this->token, false)))
             ->line('If you did not request a password reset, no further action is required. Please contact us if you did not submit this request.');
     }
 }

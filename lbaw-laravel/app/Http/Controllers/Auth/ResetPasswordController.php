@@ -44,7 +44,7 @@ class ResetPasswordController extends Controller
         return [
             'token' => 'required',
             'email' => 'required|email',
-            'pass_token' => 'required|confirmed|min:6',
+            'password' => 'required|confirmed|min:6',
         ];
     }
 
@@ -57,7 +57,7 @@ class ResetPasswordController extends Controller
     public function credentials(Request $request)
     {
         return $request->only(
-            'email', 'pass_token', 'pass_token_confirmation', 'token'
+            'email', 'password', 'password_confirmation', 'token'
         );
     }
     
@@ -65,8 +65,8 @@ class ResetPasswordController extends Controller
     {
         if (isset($this->passwordValidator)) {
             list($password, $confirm) = [
-                $credentials['pass_token'],
-                $credentials['pass_token_confirmation'],
+                $credentials['password'],
+                $credentials['password_confirmation'],
             ];
 
             return call_user_func(
@@ -80,8 +80,8 @@ class ResetPasswordController extends Controller
     protected function validatePasswordWithDefaults(array $credentials)
     {
         list($password, $confirm) = [
-            $credentials['pass_token'],
-            $credentials['pass_token_confirmation'],
+            $credentials['password'],
+            $credentials['password_confirmation'],
         ];
  
         return $password === $confirm && mb_strlen($password) >= 6;
