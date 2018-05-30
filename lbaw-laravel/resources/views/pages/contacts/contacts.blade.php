@@ -19,7 +19,16 @@ use \App\Http\Controllers\ContactsController;
         <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
         <link href="../assets/css/bars.css" rel="stylesheet">
         <link href="../assets/css/common.css" rel="stylesheet">
-        <link href="../assets/css/contacts/contacts.css" rel="stylesheet">
+        <link href="./assets/css/navbar/navbar.css" rel="stylesheet">
+        <link href="./assets/css/Homepage/styles.css" rel="stylesheet" >
+        <link href="./assets/css/Homepage/questions.css" rel="stylesheet">
+
+        @if(Auth::check())
+            <link href="../../assets/css/contactsLoggedIn.css" rel="stylesheet">
+        @else
+            <link href="../assets/css/contacts/contacts.css" rel="stylesheet">
+        @endif
+            
 
         <script src="../assets/js/jquery-1.11.1.min.js"></script>
         <script src="../assets/bootstrap/js/bootstrap.min.js"></script>

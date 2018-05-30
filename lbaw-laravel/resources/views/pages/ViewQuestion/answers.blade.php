@@ -133,8 +133,8 @@
                 @endif
 
             </div>
-    </div>
     @endif
+    </div>
 </section>
 
 
