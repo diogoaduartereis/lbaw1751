@@ -50,7 +50,6 @@
                                 <script src="/assets/js/encodeForAjax.js"></script>
                                 <script src="/assets/js/voteInPostOnQuestionPage.js"></script>
                                 <script src="/assets/js/deletePost.js"></script>
-                                <p id="csrf-token" style="display: none;" hidden>{{csrf_token()}}</p>
                                 <?php
                                 $questionVoteValue = "null";
                                 for ($j = 0; $j < sizeof($postVotes); $j++) {
@@ -100,15 +99,13 @@
                                 </button>
                             </div>
                         </form>
-                    @endif
-                </section>
+                @endif
             </div>
+            </section>
         </div>
     </div>
-</div>
-
-<!-- Bars -->
-<script src="../assets/js/bars.js"></script>
+    <!-- Bars -->
+    <script src="../assets/js/bars.js"></script>
 </body>
 
 </html>
