@@ -129,6 +129,7 @@ function searchResultsArrived()
     }
     else
         searchedQuestionsDiv.innerHTML = this.responseText;
+        
     let oldContentDiv = document.getElementById('oldContentID');
     if (oldContentDiv == null)
     {
