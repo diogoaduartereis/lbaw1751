@@ -1,7 +1,9 @@
 
 <div id="Questions">
 
-
+<script src="//unpkg.com/jscroll/dist/jquery.jscroll.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+        <script src="./assets/js/jquery.jscroll.min.js"></script>
     <div class ="infinite-scroll">
         @foreach ($questions as $question)
         <div id="question-{{$question->question_id}}" class="row">

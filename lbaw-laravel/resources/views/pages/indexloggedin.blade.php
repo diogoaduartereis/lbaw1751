@@ -24,9 +24,6 @@
         <script src="./assets/js/popper.min.js"></script>
         <script src="../assets/js/encodeForAjax.js"></script>
         <script src="./assets/js/homepageSearchBar.js"></script>
-        <script src="//unpkg.com/jscroll/dist/jquery.jscroll.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-        <script src="./assets/js/jquery.jscroll.min.js"></script>
 
         <!-- Google Login -->
         <meta name="google-signin-scope" content="profile email">

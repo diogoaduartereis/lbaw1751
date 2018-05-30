@@ -304,7 +304,7 @@ class PostController extends Controller {
                 ->orderBy('date', 'desc')
                 ->skip($firstQuestionOffset)
                 ->take($numberOfQuestions)
-                ->paginate(5);
+                ->paginate(3);
 
         return PostController::checkQuestionsReturn($questions);
     }
@@ -317,7 +317,7 @@ class PostController extends Controller {
                         ->where('isvisible', '=', 'true')
                         ->orderBy('post.points', 'desc')
                         ->orderBy('date', 'desc')
-                        ->take($numberOfQuestions)->paginate(5);
+                        ->take($numberOfQuestions)->paginate(3);
 
         return PostController::checkQuestionsReturn($questions);
     }
@@ -441,7 +441,7 @@ class PostController extends Controller {
                     return "No Questions to show";
                 $final_questions = DB::table(DB::raw("(" . $currentDBResults->toSql() . ") as res"))
                 ->mergeBindings($currentDBResults)
-                ->paginate(5);
+                ->paginate(3);
 
                 $questions_and_tags = PostController::checkQuestionsReturn($final_questions);
                 
