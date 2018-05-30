@@ -21,8 +21,12 @@ $teams = TeamController::getMapWithAllTeamsToMembers();
         <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
         <link href="../assets/css/bars.css" rel="stylesheet">
         <link href="../assets/css/common.css" rel="stylesheet">
-        <link href="../assets/css/about/about.css" rel="stylesheet">
 
+        @if(Auth::check())
+            <link href="../assets/css/about/aboutLoggedIn.css" rel="stylesheet">
+        @else
+            <link href="../assets/css/about/about.css" rel="stylesheet">
+        @endif
 
         <script src="../assets/js/jquery-1.11.1.min.js"></script>
         <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
@@ -54,13 +58,13 @@ $teams = TeamController::getMapWithAllTeamsToMembers();
 
         <div id="wrap" class="wrapper">
             @if(Auth::check())
-            @include('pages.sidebar')
+                @include('pages.sidebar')
             @endif
             <div id="content">
                 @if(Auth::check())
-                @include('pages.navbarloggedin')
+                    @include('pages.navbarloggedin')
                 @else
-                @include('pages.navbar')
+                    @include('pages.navbar')
                 @endif
 
                 <div id = "containerID">
