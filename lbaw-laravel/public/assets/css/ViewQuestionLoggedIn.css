@@ -716,7 +716,7 @@ figure
 
     .putScroll
     {
-        overflow:scroll;
+        overflow:auto;
     }
 
     #titleID.active
