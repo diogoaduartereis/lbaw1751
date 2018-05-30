@@ -44,8 +44,8 @@
                     <i class="fas fa-tag"></i> All Tags</a>
                 </li>
 
-                <li style="margin-top:8px; margin-left:15px;" class="nav-item">
-                    <form action="post" method="POST">
+                <li style="margin-top:8px; margin-left:15px;" class="nav-item searchBar">
+                    <form class="searchBar" action="post" method="POST">
 
                         {{ csrf_field() }}
                         <div id="questionSearch" class="btn-group">

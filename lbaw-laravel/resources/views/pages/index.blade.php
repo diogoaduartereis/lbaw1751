@@ -33,7 +33,7 @@
         <div id="wrap" class="wrapper">
             <div id="content">
                 @include("pages.navbar")
-                <div id="containerID">
+                <div id="containerID" class="smallWindowFix">
                     <div id="contentID">
                         @include('pages.index_questionsdiv')
                     </div>
