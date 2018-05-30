@@ -135,7 +135,7 @@ use AuthenticatesUsers;
                 if($timeRemaining == "permanent")
                     $message = $message . ". Permanent ban!";
                 else
-                    $message = $message . "! Time left: " . $timeRemaining . " days";
+                    $message = $message . "! Time left: " . intval(ceil($timeRemaining)) . " days";
                 
                 return Redirect('/login')->withErrors($message);
             }
