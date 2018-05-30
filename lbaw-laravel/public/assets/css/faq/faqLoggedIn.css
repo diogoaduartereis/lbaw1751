@@ -1,0 +1,96 @@
+@media (min-width: 1366px)
+{
+    #containerID.inactive
+    {
+        margin-left:-50px;
+        width:85%;
+    }
+
+    #sidebar
+    {
+        min-width:14.2vw;
+        max-width:14.2vw;
+        font-size:80%;
+    }
+
+    #contentID
+    {
+        width:92vw;
+    }
+
+    #containerID.inactive
+    {
+        margin-left:-12vw;
+        width:92vw;
+    }
+
+    #containerID.active
+    {
+        display:none;
+    }
+}
+
+.faqHeader {
+    font-size: 27px;
+    margin: 20px;
+}
+
+.card-header {
+    font-size: 115%;
+}
+
+.panel-heading [data-toggle="collapse"]:after {
+    font-family: 'Glyphicons Halflings';
+    content: "e072";
+    /* "play" icon */
+    float: right;
+    color: #F58723;
+    font-size: 18px;
+    line-height: 22px;
+    /* rotate "play" icon from > (right arrow) to down arrow */
+    -webkit-transform: rotate(-90deg);
+    -moz-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    -o-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+}
+
+.panel-heading [data-toggle="collapse"].collapsed:after {
+    /* rotate "play" icon from > (right arrow) to ^ (up arrow) */
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    transform: rotate(90deg);
+    color: #454444;
+}
+
+
+@media (max-width: 480px) {
+    #contentID
+    {
+        width:100%;
+        margin-left:10%;
+    }
+}
+
+@media (max-width:361px) 
+{
+    div#containerID
+    {
+        width:50vw;
+        margin-left:-95px;
+    }
+
+    div#classContainerID.container
+    {
+       width:30vw;
+    }
+
+    #jumbotronID
+    {
+        width:235px;
+        margin-left:-95px;
+    }
+    
+}
