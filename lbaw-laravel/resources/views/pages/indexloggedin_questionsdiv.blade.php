@@ -6,7 +6,7 @@
         <script src="/assets/js/jquery.jscroll.min.js"></script>
         <script src="/assets/js/indexloggedinJS/infiniteScrolling.js"></script>
         
-    <script src="./assets/js/deletePost.js"></script>
+    <script src="/assets/js/deletePost.js"></script>
     <div class ="infinite-scroll">
         @foreach ($questions as $question)
         <div  id="question-{{$question->question_id}}" class="row">
@@ -16,7 +16,7 @@
                         <div class="card-header border">
                             <div class="row">
                                 <div style="font-size:1.3em;" class="col-12">
-                                    <a href="./questions/{{$question->question_id}}"> <b> {{$question->title}} </b></a> 
+                                    <a href="/questions/{{$question->question_id}}"> <b> {{$question->title}} </b></a> 
                                     @include('pages.showQuestionPoints')
 
                                     <?php
@@ -64,8 +64,8 @@
                                 <div class="sticky-right">
                                     <h6 class="postBy">
                                         By: 
-                                        <a href="./users/{{$question->poster_id}}">{{$question->username}}</a> 
-                                        <a href="./users/{{$question->poster_id}}" class="postByPoints" id="post{{$question->question_id}}PosterPoints">({{$question->poster_points}} Points)</a>
+                                        <a href="/users/{{$question->poster_id}}">{{$question->username}}</a> 
+                                        <a href="/users/{{$question->poster_id}}" class="postByPoints" id="post{{$question->question_id}}PosterPoints">({{$question->poster_points}} Points)</a>
                                     </h6>
                                 </div>
                                 <br>

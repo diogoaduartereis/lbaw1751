@@ -74,15 +74,15 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="name">
-                                                            Description * </label>
+                                                            Description (*required) </label>
                                                         <textarea name="descriptionMessage" id="descriptionMessage" class="form-control" rows="7" cols="25" required="required" placeholder="Message" style="resize: none;"></textarea>
                                                     </div>
                                                 </div>
-                                                <div id="formBottom" class="col-md-12">
+                                                <div id="formBottom" class="col-md-12"> 
                                                     <button id="banUserButton" class="btn btn-danger pull-right" onclick="submitIfCorrect(event);">
                                                         Ban User
                                                     </button>
-                                                    <p style="font-size: 90%; color:black;"> * mandatory </p>
+                                                    <p id="BanPermanentOrHigherThan1Day" style="color:black;"> Ban must be either permanent or higher than 1 day</p>
                                                     <p id="errorParagraph" style="color:red;">
                                                         @if($errors -> has("msg"))
                                                             {{$errors -> first("msg")}}
@@ -119,7 +119,7 @@ function submitIfCorrect()
             if (errorParagraph.innerHTML != "")
                 errorParagraph.innerHTML.innerHTML = '';
 
-            errorParagraph.innerHTML = "Ban must be either permanent or higher than 1 day!";
+            document.getElementById("BanPermanentOrHigherThan1Day").style.color = "red";
             return;
         }
     }
@@ -130,6 +130,7 @@ function submitIfCorrect()
         if (errorParagraph.innerHTML != "")
             errorParagraph.innerHTML.innerHTML = '';
 
+        document.getElementById("BanPermanentOrHigherThan1Day").style.color = "black";
         errorParagraph.innerHTML = "Description must be filled!";
         return;
     }
