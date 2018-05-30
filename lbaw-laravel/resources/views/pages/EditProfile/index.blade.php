@@ -52,6 +52,7 @@
 
                                     <form class="form-horizontal" role="form" action="{{url('users/'.$user->id.'/edit')}}" method="post"  enctype="multipart/form-data">
                                         {!! csrf_field() !!}
+                                        <legend>Edit Profile:</legend>
                                         <div class="form-group">
                                             <div class="text-center">
                                                 <img src="../../assets/img/users/{{$user->img_path}}" class="avatar" alt="Profile Photo">

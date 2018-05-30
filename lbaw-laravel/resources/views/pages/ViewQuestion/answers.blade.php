@@ -84,6 +84,7 @@
                 @if(Auth::user()->type == "ADMIN" || Auth::user()->id==$answersElements->posterid)
                     <form method="post" action="{{url('answer/'.$answersElements[$i]->post_id.'/correct')}}">
                         {{csrf_field()}}
+                        <legend>Answer Question:</legend>
                         @if(!$answersElements[$i]->iscorrect)
                             <button style="font-size: 13px" type="submit" id="correctmarkButton" class="btn btn-outline-success col-md-12">
                                 <i class="fas fa-check-circle"></i>

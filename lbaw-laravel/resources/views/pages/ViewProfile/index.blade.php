@@ -72,6 +72,7 @@
                                         <form id="deleteForm" action="{{url('users/'.$user[0]->id.'/delete')}}"
                                             method="post">
                                             {{csrf_field()}}
+                                            <legend>delete user:</legend>
                                             <button style="margin:5px 5px;" class="btn btn-danger col-md-6"
                                                     onclick="confirmDelete(event)">Delete Profile
                                             </button>
@@ -130,6 +131,7 @@
                                                 <form id="goToQuestionForm"
                                                       action="{{url("questions/".$activePost->id."/close")}}"
                                                       method="POST">
+                                                    <legend>Go To Question:</legend>
                                                     {{ csrf_field() }}
                                                     <a href="#"
                                                        onclick="document.getElementById('goToQuestionForm').submit()"
