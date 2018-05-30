@@ -141,12 +141,10 @@
                 'picture': profile.getImageUrl()
             },
             complete: function (response) {
-                console.log(response);
                 if (response.responseText == 'valid') {
                     gapi.load('auth2', function () {
                         var auth2 = gapi.auth2.getAuthInstance();
                         auth2.signOut().then(function () {
-                            console.log('User signed out.');
                             document.getElementById('back').click();
                         });
                     });
