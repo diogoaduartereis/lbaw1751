@@ -63,6 +63,10 @@
                                     <div class="col-md-6">
                                         <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
 
+                                        <span class="help-block">
+                                                <strong id="logmsg"></strong>
+                                            </span>
+
                                         @if ($errors->has('password_confirmation'))
                                             <span class="help-block">
                                                 <strong>{{ $errors->first('password_confirmation') }}</strong>
@@ -73,17 +77,57 @@
 
                                 <div class="form-group">
                                     <div class="col-md-6 col-md-offset-4">
-                                        <button type="submit" class="btn btn-primary" style="background:#007bff;">
+                                        <button id="reset" class="btn btn-primary" style="background:#007bff;">
                                             Reset Password
                                         </button>
                                     </div>
                                 </div>
+
+                                <button id="resetsubmit" hidden="true" type="submit"></button>
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
+        <script>
+            let btn = document.getElementById('submitBtn');
+            if (btn != null) {
+                btn.onclick = function () {
+                    let password = document.getElementById('password').value;
+                    let passwrodConfirme = document.getElementById('confirm-password').value;
+                    var regexPW = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z!$%^&*_@#~?\\d]{8,72}$");
+                    if (username.length == 0) {
+                        let message = "You Must Have A Username";
+                        document.getElementById('logmsg').style.color = "red";
+                        document.getElementById('logmsg').innerText = message;
+                        return;
+                    }
+                    if (email.length == 0) {
+                        let message = "You Must Have A Email";
+                        document.getElementById('logmsg').style.color = "red";
+                        document.getElementById('logmsg').innerText = message;
+                        return;
+                    }
+                    if (!regexPW.test(password)) {
+                        let message = "Your password must contain a minimum of 8 characters, at least 1 uppercase letter, 1 lowercase letter and 1 one number";
+                        document.getElementById('logmsg').style.color = "red";
+                        document.getElementById('logmsg').innerText = message;
+                        return;
+                    }
+                    if (password != passwrodConfirme) {
+                        let message = "Passwords do not match";
+                        document.getElementById('logmsg').style.color = "red";
+                        document.getElementById('logmsg').innerText = message;
+                        return;
+                    }
+
+                    document.getElementById('resetsubmit').click();
+                }
+            }
+        </script>
+
         <script src="/assets/js/jquery-1.11.1.min.js "></script>
         <script src="/assets/js/jquery.backstretch.min.js "></script>
         <script src="/assets/js/scripts.js "></script>
