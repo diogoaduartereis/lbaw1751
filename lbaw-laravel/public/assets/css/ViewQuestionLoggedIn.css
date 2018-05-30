@@ -714,6 +714,11 @@ figure
 
 @media (max-width: 361px) {
 
+    .putScroll
+    {
+        overflow:auto;
+    }
+
     #titleID.active
     {
         margin-left:56px;
@@ -758,18 +763,6 @@ figure
     #jumbotronID
     {
         margin-left:-50px;
-    }
-
-    #contentID
-    {
-        width:70vw;
-    }
-
-    #classContainerID
-    {
-        width:100vw;
-        margin-left:-20px;
-        overflow:auto;
     }
 }
 

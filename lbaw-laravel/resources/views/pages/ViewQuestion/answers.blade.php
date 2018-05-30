@@ -27,7 +27,7 @@
                         @else
                             <img style="height:90%; width:80%; margin-left:15%; margin-right:13%; margin-top:9%;"
                                  class="img img-responsive circle"
-                                 src="../assets/img/users/{{$answersElements[$i]->img_path}}"
+                                 src="/assets/img/users/{{$answersElements[$i]->img_path}}"
                                  alt="{{$answersElements[$i]->username}}'s avatar">
                         @endif
                     </figure>
@@ -81,7 +81,7 @@
 
     </section>
 
-    <div style="margin-top: 20px; margin-bottom:-16px;" class="panel-footer border-bottom border-dark">
+    <div style="margin-top: 20px; margin-bottom:-16px;" class="panel-footer border-bottom border-dark putScroll">
         @if(Auth::check())
             <div>
                 <div class="btn-group btn-group-sm " role="group" aria-label="Basic example">

@@ -14,6 +14,9 @@
         <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
         <link href="/assets/css/bars.css" rel="stylesheet">
         <link href="/assets/css/common.css" rel="stylesheet">
+        <link href="../../assets/css/navbar/navbar.css" rel="stylesheet">
+        <link href="../../assets/css/editProfile/editProfile.css" rel="stylesheet">
+        
 
         <script src="/assets/js/jquery-1.11.1.min.js"></script>
         <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
@@ -53,7 +56,7 @@
                                         {!! csrf_field() !!}
                                         <div class="form-group">
                                             <div class="text-center">
-                                                <img src="../../assets/img/users/{{$user->img_path}}" class="avatar" alt="Profile Photo">
+                                                <img src="/assets/img/users/{{$user->img_path}}" class="avatar" alt="Profile Photo">
                                                 <input type="file" id="profilePhotoInput" class="hidden" name="fileToUpload" id="fileToUpload">
                                                 <br><br>
                                                 <h4><a href="#" onclick="uploadProfilePhoto(event)">Upload a different photo</a><h4>
@@ -65,38 +68,38 @@
                                                         </div>
                                                         <div class="form-group">
                                                             <label class="col-sm-3 control-label">Username:</label>
-                                                            <div class="col-sm-8">
+                                                            <div class="col-sm-8 adminTable">
                                                                 <input class="form-control" type="text" name="form-username" value="{{$user->username}}" required>
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
-                                                            <label class="col-sm-3 control-label">Email:</label>
-                                                            <div class="col-sm-8">
+                                                            <label class="col-sm-3 control-label ">Email:</label>
+                                                            <div class="col-sm-8 adminTable">
                                                                 <input class="form-control" type="text" name="form-email" value="{{$user->email}}" required>
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
-                                                            <label class="col-sm-3 control-label">Description:</label>
-                                                            <div class="col-sm-8">
+                                                            <label class="col-sm-3 control-label ">Description:</label>
+                                                            <div class="col-sm-8 adminTable">
                                                                 <textarea name="form-about-yourself" placeholder="Description" class="form-about-yourself form-control" id="form-about-yourself"
                                                                           style="resize: none" required>{{$user->description}} </textarea>
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
-                                                            <label class="col-sm-3 control-label">New password:</label>
-                                                            <div class="col-sm-8">
+                                                            <label class="col-sm-3 control-label ">New password:</label>
+                                                            <div class="col-sm-8 adminTable">
                                                                 <input class="form-control" name="form-password" type="password" placeholder="New Password" >
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
-                                                            <label class="col-sm-3 control-label">Confirm new password:</label>
-                                                            <div class="col-sm-8">
+                                                            <label class="col-sm-3 control-label ">Confirm new password:</label>
+                                                            <div class="col-sm-8 adminTable">
                                                                 <input class="form-control" name="form-password-confirm" type="password" placeholder="New Password">
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
-                                                            <label class="col-sm-3 control-label"></label>
-                                                            <div class="col-sm-8">
+                                                            <label class="col-sm-3 control-label "></label>
+                                                            <div class="col-sm-8 adminTable">
                                                                 <input type="submit" class="btn btn-primary" value="Save Changes">
                                                                 <span></span>
                                                                 <a class="btn btn-default" href="./">Cancel</a>
