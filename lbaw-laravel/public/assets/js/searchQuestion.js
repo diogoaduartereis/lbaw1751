@@ -94,15 +94,11 @@ function handleUserSearchInput()
     let tagsArrEncoded = JSON.stringify(tagsArr);
     let keywordsArrEncoded = JSON.stringify(keywordsArr);
 
-    //get csrf token
-    let csrfToken = document.getElementById("csrf-token").innerHTML;
-
     let ajaxRequest = new XMLHttpRequest();
     ajaxRequest.addEventListener("load", searchResultsArrived);
     ajaxRequest.open("GET", "/search/question?" +
     encodeForAjax({tags: tagsArrEncoded, keywords: keywordsArrEncoded}), true);
     ajaxRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    ajaxRequest.setRequestHeader("X-CSRF-Token", csrfToken);
     ajaxRequest.send();
 }
 
