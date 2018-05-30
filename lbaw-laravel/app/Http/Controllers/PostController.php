@@ -441,7 +441,8 @@ class PostController extends Controller {
                     return "No Questions to show";
                 $final_questions = DB::table(DB::raw("(" . $currentDBResults->toSql() . ") as res"))
                 ->mergeBindings($currentDBResults)
-                ->paginate(3);
+                ->take(20)
+                ->paginate(20);
 
                 $questions_and_tags = PostController::checkQuestionsReturn($final_questions);
                 

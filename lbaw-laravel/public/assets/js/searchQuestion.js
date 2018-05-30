@@ -145,6 +145,9 @@ function searchResultsArrived()
     {
         oldContentDiv.parentElement.removeChild(oldContentDiv);
     }
+    let pagination = document.querySelector('ul.pagination');
+    pagination.parentElement.removeChild(pagination);
+    
 }
 
 function getElementInSearch(element, userInputText, endedSearchString)
