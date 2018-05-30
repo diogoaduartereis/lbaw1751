@@ -418,18 +418,17 @@ class PostController extends Controller {
 
                 $final_results = $final_results;
 
-                $final_questions = DB::table(DB::raw("(" . $final_results->toSql() . ") as res3"))
+                $final_results = DB::table(DB::raw("(" . $final_results->toSql() . ") as res3"))
                 ->mergeBindings($final_results)
                 ->select(DB::raw('SUM(relevance) as relevance'), 'question_id')
                 ->orderBy('relevance')
                 ->groupBy('question_id')
                 ->get();
-
-                echo $final_questions;
-                return;
-
-                foreach ($questions_ids as $question_id)
+                
+                $currentDBResults = null;
+                foreach ($final_results as $final_result)
                 {
+                    $question_id = $final_result->question_id;
                     $retFromDB = DB::table('question')
                     ->join('post', 'question.postid', '=', 'post.id')
                     ->join('users', 'post.posterid', '=', 'users.id')
@@ -440,6 +439,9 @@ class PostController extends Controller {
                     else
                         $currentDBResults = $currentDBResults->unionAll($retFromDB);
                 }
+                $final_questions = $currentDBResults->get();
+                echo $final_questions;
+                return;
                 if ($currentDBResults == null)
                     return "No Questions to show";
                 $final_questions = DB::table(DB::raw("(" . $currentDBResults->toSql() . ") as res"))
