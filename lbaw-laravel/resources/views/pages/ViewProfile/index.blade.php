@@ -28,11 +28,16 @@
 
 <body>
 
-<div id="wrap" class="wrapper">
-    @include('pages.sidebar')
-    <div id="content">
-
-        @include('pages.navbarloggedin')
+    <div id="wrap" class="wrapper">
+        @if(Auth::check())
+            @include('pages.sidebar')
+        @endif
+        <div id="content">
+            @if(Auth::check())
+                @include('pages.navbarloggedin')
+            @else
+                @include('pages.navbar')
+            @endif
 
         <p id="csrf-token" style="display: none" hidden>{{csrf_token()}}</p>
         <div id="containerID">
@@ -63,7 +68,8 @@
 
                             @if($user[0]->state != "INACTIVE")
                                 @if($user != null && count($user) > 0)
-                                    @if(Auth::user()->id == $user[0]->id || Auth::user()->type == "ADMIN")
+                                    @if(Auth::check()) 
+                                        @if(Auth::user()->id == $user[0]->id || Auth::user()->type == "ADMIN")
                                         <a href="{{url('users/'.$user[0]->id.'/edit')}}">
                                             <button style="background:#007bff; margin:5px 5px;"
                                                     class="btn btn-primary col-md-6">Edit Profile
@@ -76,22 +82,23 @@
                                                     onclick="confirmDelete(event)">Delete Profile
                                             </button>
                                         </form>
-                                    @endif
-                                    @if(Auth::user()->type == "ADMIN")
-                                        @if($user[0]->state == "BANNED" && $user[0]->id != Auth::user()->id)
-                                            <button id="unbanButton" style="margin:5px 5px;"
-                                                    class="btn btn-success col-md-6"
-                                                    onclick="confirmUnban(event, {{$user[0]->id}});">Unban user
-                                            </button>
-                                        @elseif($user[0]->id != Auth::user()->id)
-                                            <button style="margin:5px 5px;" class="btn btn-danger col-md-6"
-                                                    onclick="goToBanForm(event, {{$user[0]->id}})">Ban user
-                                            </button>
                                         @endif
-                                    @endif
-                                    @if(Auth::user()->type == "ADMIN")
-                                        <a id="reportsButton" style="margin:5px 5px;" href="{{url('users/'.$user[0]->id.'/reports')}}" class="btn btn-danger col-md-6 text-white">
-                                        Reports Against User Posts</a>
+                                        @if(Auth::user()->type == "ADMIN")
+                                            @if($user[0]->state == "BANNED" && $user[0]->id != Auth::user()->id)
+                                                <button id="unbanButton" style="margin:5px 5px;"
+                                                        class="btn btn-success col-md-6"
+                                                        onclick="confirmUnban(event, {{$user[0]->id}});">Unban user
+                                                </button>
+                                            @elseif($user[0]->id != Auth::user()->id)
+                                                <button style="margin:5px 5px;" class="btn btn-danger col-md-6"
+                                                        onclick="goToBanForm(event, {{$user[0]->id}})">Ban user
+                                                </button>
+                                            @endif
+                                        @endif
+                                        @if(Auth::user()->type == "ADMIN")
+                                            <a id="reportsButton" style="margin:5px 5px;" href="{{url('users/'.$user[0]->id.'/reports')}}" class="btn btn-danger col-md-6 text-white">
+                                            Reports Against User Posts</a>
+                                        @endif
                                     @endif
                                 @endif
                             @endif
@@ -126,15 +133,17 @@
                                             ?>
                                         </td>
                                         <td>
-                                            @if(Auth::user()->id == $user[0]->id || DB::select('SELECT type FROM users WHERE id=:id', ['id' => Auth::user()->id])[0]->type == "ADMIN")
-                                                <form id="goToQuestionForm"
-                                                      action="{{url("questions/".$activePost->id."/close")}}"
-                                                      method="POST">
-                                                    {{ csrf_field() }}
-                                                    <a href="#"
-                                                       onclick="document.getElementById('goToQuestionForm').submit()"
-                                                       style="font-weight: 650;">Close Question</a>
-                                                </form>
+                                            @if(Auth::check())
+                                                @if(Auth::user()->id == $user[0]->id || DB::select('SELECT type FROM users WHERE id=:id', ['id' => Auth::user()->id])[0]->type == "ADMIN")
+                                                    <form id="goToQuestionForm"
+                                                        action="{{url("questions/".$activePost->id."/close")}}"
+                                                        method="POST">
+                                                        {{ csrf_field() }}
+                                                        <a href="#"
+                                                        onclick="document.getElementById('goToQuestionForm').submit()"
+                                                        style="font-weight: 650;">Close Question</a>
+                                                    </form>
+                                                @endif
                                             @endif
                                         </td>
                                     </tr>

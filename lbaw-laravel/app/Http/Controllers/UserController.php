@@ -244,8 +244,6 @@ class UserController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function show($id) {
-        if (!Auth::check())
-            return redirect('/');
 
         $user = \App\User::where('id', $id)->get();
         if ($user == null || count($user) != 0) {
