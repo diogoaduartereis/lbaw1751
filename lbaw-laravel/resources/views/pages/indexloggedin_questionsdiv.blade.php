@@ -77,11 +77,14 @@
                     </div>
                     <div class="card-footer">
                         <div class="btn-group btn-group-sm " role="group" aria-label="Basic example">
-                            <form style="display: inline" action="{{url('/questions/'.$question->question_id)}}#replyDiv" method="get">
-                                <button type="submit" class="btn btn-outline-primary">
-                                    <i class="fas fa-comment"></i> Reply 
-                                </button>
-                            </form>
+                            
+                            @if($question->isclosed == false)
+                                <form style="display: inline" action="{{url('/questions/'.$question->question_id)}}#replyDiv" method="get">
+                                    <button type="submit" class="btn btn-outline-primary">
+                                        <i class="fas fa-comment"></i> Reply 
+                                    </button>
+                                </form>
+                            @endif
 
                             <form style="display: inline" action="/report/post/{{$question->question_id}}" method="get">
                                 <input hidden type="text" name="last_url" value = window.location.href>
