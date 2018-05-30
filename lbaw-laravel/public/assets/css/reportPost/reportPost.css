@@ -1,0 +1,36 @@
+@media (min-width: 1366px)
+{
+    ul.pagination
+    {
+        margin-left:25.8vw;
+    }
+
+    #classContainerID
+    {
+        margin-left:7vw;
+    }
+
+    #sidebar
+    {
+        min-width:17.2vw;
+        max-width:17.2vw;
+        font-size:90%;
+    }
+}
+
+@media (min-width: 768px) and (max-width:1366px) 
+{
+    #sidebar
+    {
+        min-width:17.2vw;
+        max-width:17.2vw;
+        font-size:90%;
+    }
+
+    .adminTable
+    {
+        max-width:77vw;
+        overflow:auto;
+        margin-left:0px;
+    }
+}

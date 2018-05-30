@@ -14,6 +14,8 @@
     <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
     <link href="/assets/css/bars.css" rel="stylesheet">
     <link href="/assets/css/common.css" rel="stylesheet">
+    <link href="./assets/css/navbar/navbar.css" rel="stylesheet">
+    <link href="./assets/css/Homepage/styles.css" rel="stylesheet" >
 
     <script src="/assets/js/jquery-1.11.1.min.js"></script>
     <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
@@ -55,6 +57,7 @@
 
         <div id="containerID">
             @if(count($reports) == 0)
+           
                 <div id = "contentID">
                     <div id ="jumbotronID" class="jumbotron jumbotron-sm">
                             <div class="container">
@@ -72,6 +75,7 @@
                     </div>
                 </div>
             @endif 
+            <br>
             <?php $i = 0 ?>
             @foreach($reports as $report)
                 <?php $i++ ?>

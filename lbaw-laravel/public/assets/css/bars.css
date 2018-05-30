@@ -167,13 +167,13 @@ a, a:hover, a:focus {
 
 #sidebar {
     margin-top:60px;
-    min-width: 18.2vw;
-    max-width: 18.2vw;
+    min-width: 17.2vw;
+    max-width: 17.2vw;
     min-height: 100vh;
     background: #7386D5;
     color: #fff;
     transition: all 0.3s;
-    font-size: 75%; }
+    font-size: 90%; }
 
 @media (max-width: 768px) {
     .input-group {

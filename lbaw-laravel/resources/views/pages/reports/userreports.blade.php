@@ -15,6 +15,8 @@
     <link href="/assets/css/bars.css" rel="stylesheet">
     <link href="/assets/css/common.css" rel="stylesheet">
     <link href="/assets/css/about.css" rel="stylesheet">
+    <link href="./assets/css/navbar/navbar.css" rel="stylesheet">
+    <link href="./assets/css/Homepage/styles.css" rel="stylesheet" >
 
 
     <script src="/assets/js/jquery-1.11.1.min.js"></script>
