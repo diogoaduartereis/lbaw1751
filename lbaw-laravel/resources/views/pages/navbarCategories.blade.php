@@ -67,7 +67,7 @@
                 Post New Question
             </a>
         @else
-            <a type="submit" href="./" id="postQuestionButton" class="btn btn-primary">
+            <a type="submit" href="./postNewQuestion" id="postQuestionButton" class="btn btn-primary">
                 Post New Question
             </a>
         @endif
