@@ -58,7 +58,7 @@
     </div>
 
     @if(Auth::check())
-        <a type="submit" href="/postNewQuestion" id="postQuestionButton" class="btn btn-primary">
+        <a  href="/postNewQuestion" id="postQuestionButton" class="btn btn-primary">
             Post New Question
         </a>
     @endif

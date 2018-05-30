@@ -58,10 +58,14 @@
 
                 <div id = "containerID">
                     <div class="row">
-                        <div class="col-12 d-flex justify-content-center">
-                            @foreach($tags as $tag)
-                            <a class="badge badge-pill badge-primary text-white" style="margin-left: 2px;margin-right: 2px;">{{$tag->name}}</a >
-                            @endforeach
+                        <div class="col-12 justify-content-center">
+                            <div class ="infinite-scroll">
+                                @foreach($tags as $tag)
+                                <div>
+                                    <a class="badge badge-pill badge-primary text-white" style="margin-left: 2px;margin-right: 2px;">{{$tag->name}}</a>
+                                </div>
+                                @endforeach
+                            </div>
                         </div>
                     </div>
                 </div>

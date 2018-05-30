@@ -98,17 +98,17 @@
                     </button>
                     <?php endif; ?>
 
-                    @if(Auth::user()->type == "ADMIN" || Auth::user()->id==$answersElements->posterid)
+                    @if(Auth::user()->type == "ADMIN" || Auth::user()->id==$answersElements[$i]->posterid)
                         <form method="post" action="{{url('answer/'.$answersElements[$i]->post_id.'/correct')}}">
                             {{csrf_field()}}
                             @if(!$answersElements[$i]->iscorrect)
-                                <button style="font-size: 13px" type="submit" id="correctmarkButton"
+                                <button style="font-size: 13px" type="submit"
                                         class="btn btn-outline-success col-md-12">
                                     <i class="fas fa-check-circle"></i>
                                     Mark as Correct
                                 </button>
                             @else
-                                <button style="font-size: 13px" type="submit" id="correctmarkButton"
+                                <button style="font-size: 13px" type="submit"
                                         class="btn btn-outline-danger col-md-12">
                                     <i class="fas fa-times-circle"></i>
                                     Mark as Incorrect
@@ -118,7 +118,7 @@
                     @endif
 
                     @if(Auth::user()->type == "ADMIN")
-                        <a style="font-size: 13px" id="reportsButton"
+                        <a style="font-size: 13px" 
                            href="{{url('post/'.$answersElements[$i]->post_id.'/reports')}}"
                            class="btn btn-danger col-md-12 text-white">View Reports</a>
                     @endif
@@ -127,7 +127,7 @@
 
                 @if($answersElements[$i]->iscorrect)
                     <h4 style="font-size: 18px" class="bold pull-right text-success">
-                        <i class="fas fa-check-circle " placeholder="correct"></i>
+                        <i class="fas fa-check-circle "></i>
                         Correct Answer
                     </h4>
                 @endif

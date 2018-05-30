@@ -381,11 +381,11 @@ class PostController extends Controller {
                     else
                         $currentDBResults = $currentDBResults->unionAll($retFromDB);
                 }
-                $tags_matches;
+                $tags_matches = null;
                 if ($currentDBResults != null)
-                    $tags_matches = $currentDBResults->take(10)->get();
-                else
-                    $tags_matches = array();
+                    $tags_matches = DB::table(DB::raw("(" . $currentDBResults->toSql() . ") as res"))
+                    ->mergeBindings($currentDBResults)
+                    ->select(DB::raw('question_id, tag_count * 3 as relevance'));
 
                 $currentDBResults = null;
                 foreach ($keywordsArray as $keyword) {
@@ -400,69 +400,35 @@ class PostController extends Controller {
                     else
                         $currentDBResults = $currentDBResults->unionAll($retFromDB);
                 }
-                $keyword_matches;
+                $keywords_matches = null;
                 if ($currentDBResults != null)
-                    $keyword_matches = $currentDBResults->take(10)->get();
+                    $keywords_matches = DB::table(DB::raw("(" . $currentDBResults->toSql() . ") as res2"))
+                ->mergeBindings($currentDBResults)
+                ->select(DB::raw('question_id, keyword_count * 2 as relevance'));
+
+                $final_results;
+                if ($tags_matches == null && $keywords_matches == null)
+                    return "No Questions to show";
+                else if ($tags_matches == null)
+                    $final_results = $keywords_matches;
+                else if ($keywords_matches == null)
+                    $final_results = $tags_matches;
                 else
-                    $keyword_matches = array();
+                    $final_results = $tags_matches->unionAll($keywords_matches);
 
-                $final_results = array();
-                foreach ($tags_matches as $result1)
-                {
-                    $found = false;
-                    foreach ($keyword_matches as $result2)
-                    {
-                        if ($result1->question_id == $result2->question_id)
-                        {
-                            $found = true;
-                            array_push($final_results, array($result1->question_id, $result1->tag_count * 3 + $result2->keyword_count * 2));
-                        }
-                    }
-                    if (!$found)
-                        array_push($final_results, array($result1->question_id, $result1->tag_count * 3));
-                }
+                $final_results = $final_results;
+
+                $final_results = DB::table(DB::raw("(" . $final_results->toSql() . ") as res3"))
+                ->mergeBindings($final_results)
+                ->select(DB::raw('SUM(relevance) as relevance'), 'question_id')
+                ->orderBy('relevance', 'desc')
+                ->groupBy('question_id')
+                ->paginate(5);
                 
-                foreach ($keyword_matches as $result1)
-                {
-                    $found = false;
-                    foreach ($tags_matches as $result2)
-                    {
-                        if ($result1->question_id == $result2->question_id)
-                        {
-                            $found = true;
-                        }
-                    }
-                    if (!$found)
-                        array_push($final_results, array($result1->question_id, $result1->keyword_count * 2));
-                }
-
-                $sorted = false;
-                while (!$sorted)
-                {
-                    $sorted = true;
-                    foreach ($final_results as $i=>$result)
-                    {
-                        if ($i == count($final_results) - 1)
-                            break;
-                        if ($result[1] < $final_results[$i + 1][1])
-                        {
-                            $temp = $final_results[$i];
-                            $final_results[$i] = $final_results[$i + 1];
-                            $final_results[$i + 1] = $temp;
-                            $sorted = false;
-                        }
-                    }
-                }
-
-                $questions_ids = array();
-                foreach ($final_results as $result)
-                {
-                    array_push($questions_ids, $result[0]);
-                }
-
                 $currentDBResults = null;
-                foreach ($questions_ids as $question_id)
+                foreach ($final_results as $final_result)
                 {
+                    $question_id = $final_result->question_id;
                     $retFromDB = DB::table('question')
                     ->join('post', 'question.postid', '=', 'post.id')
                     ->join('users', 'post.posterid', '=', 'users.id')
@@ -477,7 +443,7 @@ class PostController extends Controller {
                     return "No Questions to show";
                 $final_questions = DB::table(DB::raw("(" . $currentDBResults->toSql() . ") as res"))
                 ->mergeBindings($currentDBResults)
-                ->paginate(10);
+                ->paginate(5);
 
                 $questions_and_tags = PostController::checkQuestionsReturn($final_questions);
                 

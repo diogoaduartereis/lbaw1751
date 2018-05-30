@@ -99,9 +99,13 @@
                                 </button>
                             </div>
                         </form>
-                @endif
+                    @endif
+                    </section>
+                </div>
             </div>
-            </section>
+            
+                            
+                           
         </div>
     </div>
     <!-- Bars -->
