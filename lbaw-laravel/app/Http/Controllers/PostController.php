@@ -373,8 +373,9 @@ class PostController extends Controller {
                     $retFromDB = DB::table('question')
                             ->join('tagquestion', 'question.postid', '=', 'tagquestion.question_id')
                             ->join('tag', 'tagquestion.tag_id', '=', 'tag.id')
+                            ->join('users', 'post.posterid', '=', 'users.id')
                             ->where('tag.name', '=', $tag)
-                            ->select(DB::raw('count(postid) as tag_count'), 'question.postid as question_id')
+                            ->select(DB::raw('count(postid) as tag_count'), 'question.postid as question_id', 'title', 'content', 'post.posterid as poster_id', 'post.points as question_points', 'users.points as poster_points', 'username')
                             ->groupBy('question.postid');
                     if ($currentDBResults == null)
                         $currentDBResults = $retFromDB;
@@ -391,9 +392,10 @@ class PostController extends Controller {
                 foreach ($keywordsArray as $keyword) {
                     $retFromDB = DB::table('question')
                             ->join('post', 'question.postid', '=', 'post.id')
+                            ->join('users', 'post.posterid', '=', 'users.id')
                             ->where('question.title', 'ilike', '%' . $keyword . '%')
                             ->orwhere('post.content', 'ilike', '%' . $keyword . '%')
-                            ->select(DB::raw('count(question.postid) as keyword_count, question.postid as question_id'))
+                            ->select(DB::raw('count(question.postid) as keyword_count'), 'question.postid as question_id', 'title', 'content', 'post.posterid as poster_id', 'post.points as question_points', 'users.points as poster_points', 'username')
                             ->groupBy('question.postid');
                     if ($currentDBResults == null)
                         $currentDBResults = $retFromDB;
@@ -402,7 +404,7 @@ class PostController extends Controller {
                 }
                 $keywords_matches = null;
                 if ($currentDBResults != null)
-                    $keywords_matches = DB::table(DB::raw("(" . $currentDBResults->toSql() . ") as res"))
+                    $keywords_matches = DB::table(DB::raw("(" . $currentDBResults->toSql() . ") as res2"))
                 ->mergeBindings($currentDBResults)
                 ->select(DB::raw('question_id, keyword_count * 2 as relevance'));
 
@@ -418,6 +420,17 @@ class PostController extends Controller {
 
                 $final_results = $final_results->orderBy('relevance', 'desc');
 
+                $final_questions = DB::table(DB::raw("(" . $final_results->toSql() . ") as res3"))
+                ->mergeBindings($final_results)
+                ->join('question', 'question_id', '=', 'question.postid')
+                ->join('post', 'question_id', '=', 'post.id')
+                ->join('users', 'post.posterid', '=', 'users.id')
+                ->where('question_id', '=', 'question.postid')
+                ->select('question.postid as question_id', 'title', 'content', 'post.posterid as poster_id', 'post.points as question_points', 'users.points as poster_points', 'username')
+                ->get();
+
+                echo $final_questions;
+                return;
 
                 foreach ($questions_ids as $question_id)
                 {
