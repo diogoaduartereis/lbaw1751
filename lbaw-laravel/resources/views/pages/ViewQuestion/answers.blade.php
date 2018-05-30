@@ -98,7 +98,7 @@
                     </button>
                     <?php endif; ?>
 
-                    @if(Auth::user()->type == "ADMIN" || Auth::user()->id==$answersElements->posterid)
+                    @if(Auth::user()->type == "ADMIN" || Auth::user()->id==$answersElements[$i]->posterid)
                         <form method="post" action="{{url('answer/'.$answersElements[$i]->post_id.'/correct')}}">
                             {{csrf_field()}}
                             @if(!$answersElements[$i]->iscorrect)
