@@ -4,6 +4,8 @@
         <h2 hidden> Nothing </h2>
         <p>
             {{$answersElements[$i]->content}}
+            @if($answersElements[$i]->iscorrect)
+            @endif
         </p>
     </section>
     <section class="col-md-3 user-description">
@@ -82,7 +84,23 @@
                 @if(Auth::user()->type == "ADMIN")
                     <a id="reportsButton" href="{{url('post/'.$answersElements[$i]->post_id.'/reports')}}" class="btn btn-danger col-md-6 text-white">View Reports</a>
                 @endif
+
+                @if(Auth::user()->type == "ADMIN" || Auth::user()->id==$answersElements->posterid)
+                    <form method="post" action="{{url('answer/'.$answersElements[$i]->post_id.'/correct')}}">
+                        {{csrf_field()}}
+                        @if(!$answersElements[$i]->iscorrect)
+                            <button type="submit" id="correctmarkButton" class="btn btn-success col-md-12 text-white">Mark as Correct</button>
+                        @else
+                            <button type="submit" id="correctmarkButton" class="btn btn-danger col-md-12 text-white">Mark as Incorrect</button>
+                        @endif
+                    </form>
+                @endif
             </div>
+
+            @if($answersElements[$i]->iscorrect)
+                <h4 class="bold pull-right text-success"><i class="fas fa-check-circle " placeholder="correct"></i> Correct Answer</h4>
+            @endif
+
         </div>
     </div>
     @endif

@@ -59,6 +59,7 @@ Route::post('users/{id}/unban', 'UserController@unbanUserAction');
 //Posts
 Route::get('post/{id}', 'PostController@index');
 Route::post('poster', 'PostController@test');
+Route::post('post/{id}/close', 'PostController@test');
 
 //Delete Posts
 Route::post('post/{id}/delete', 'PostController@delete');
@@ -83,6 +84,9 @@ Route::post('postNewAnswer/{id}', 'PostController@postAnswer');
 
 //Close Question
 Route::post('questions/{id}/close', 'PostController@closeQuestion');
+
+//Open Question
+Route::post('questions/{id}/open', 'PostController@openQuestion');
 
 //Post Vote
 Route::post('post/{id}/vote', 'PostController@postVote');
@@ -132,6 +136,9 @@ Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail'
 // Password reset routes...
 Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.request');
 Route::post('password/reset/', 'Auth\ResetPasswordController@reset')->name('password.reset');
+
+//mark answer as correct
+Route::post('answer/{id}/correct','PostController@markCorrect');
 
 // Password Reset Routes...
 //$this->get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm');

@@ -63,28 +63,46 @@
         </div>
     </section>
     @if(Auth::check())
+    <p id="csrf-token" style="display: none" hidden >{{csrf_token()}}</p> 
     <div style="margin-top: 20px; margin-bottom:-20px;" class="panel-footer border-dark">
 
         <div>
             <div class="btn-group btn-group-sm " role="group" aria-label="Basic example">
 
-                <button id="replyButton" type="button" class="btn btn-outline-primary">
-                    <i class="fas fa-comment"></i> Reply</button>
+                @if($questionElements->isclosed == false)
+                    <button id="replyButton" type="button" class="btn btn-outline-primary">
+                        <i class="fas fa-comment"></i> Reply
+                    </button>
+                @endif
 
                 <button onclick="window.location.href='/report/post/{{$questionElements->post_id}}?last_URL = ' + window.location.href" type="button" class="btn btn-outline-danger">
                     <i class="fas fa-flag"></i> Report
                 </button>
 
-                <?php if ((Auth::check() && Auth::user()->id == $questionElements->posterid) || Auth::user()->type == "ADMIN"): ?>
+                <?php if (Auth::user()->id == $questionElements->posterid || Auth::user()->type == "ADMIN"): ?>
                     <button id="deleteQuestionButton-{{$questionElements->post_id}}" type="button" onclick="return deleteQuestionInQuestionPage(event);" class="btn btn-outline-danger">
                         <i class="fas fa-trash"></i> Remove
                     </button>
                 <?php endif; ?>
 
+                @if($questionElements->isclosed == false)
+                    <button onclick="return closeQuestion({{$questionElements->post_id}});" type="button" class="btn btn-success" >
+                        Close Question
+                    </button>
+                @else
+                    <button onclick="return openQuestion({{$questionElements->post_id}});" type="button" class="btn btn-success" >
+                        Open Question
+                    </button>
+                @endif
+
                 @if(Auth::user()->type == "ADMIN")
                     <a id="reportsButton" href="{{url('post/'.$questionElements->post_id.'/reports')}}" class="btn btn-danger col-md-6 text-white">View Reports</a>
                 @endif
             </div>
+
+            @if($questionElements->isclosed)
+                <h4 class="bold pull-right text-success"><i class="fas fa-check-circle " placeholder="correct"></i> Closed Question</h4>
+            @endif
         </div>
     </div>
     @endif
@@ -98,4 +116,43 @@
         </section>
     </section>
 </div>
+
+ <script type="text/javascript">
+
+    function closeQuestion(postId) 
+    {
+        //get csrf token
+        let csrfToken = document.getElementById("csrf-token").innerHTML;
+
+        //add the new item to the database using AJAX
+        let ajaxRequest = new XMLHttpRequest();
+        ajaxRequest.addEventListener("load", responseArrived);
+        ajaxRequest.open("POST", "/questions/" + postId + "/close", true);
+        ajaxRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        ajaxRequest.setRequestHeader("X-CSRF-Token", csrfToken);
+        ajaxRequest.send();
+    }
+
+    function openQuestion(postId) 
+    {
+        //get csrf token
+        let csrfToken = document.getElementById("csrf-token").innerHTML;
+
+        //add the new item to the database using AJAX
+        let ajaxRequest = new XMLHttpRequest();
+        ajaxRequest.addEventListener("load", responseArrived);
+        ajaxRequest.open("POST", "/questions/" + postId + "/open", true);
+        ajaxRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        ajaxRequest.setRequestHeader("X-CSRF-Token", csrfToken);
+        ajaxRequest.send();
+    }
+
+    function responseArrived() 
+    {
+        document.open();
+        document.write(this.responseText);
+        document.close();
+    }
+
+</script>
 <br>

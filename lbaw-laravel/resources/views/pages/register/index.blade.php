@@ -202,7 +202,6 @@
             document.getElementById('submitform').click();
         }
     }
-}
 </script>
 
     <script src="../assets/js/jquery.backstretch.min.js "></script>

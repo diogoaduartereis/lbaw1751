@@ -92,7 +92,8 @@ class PostController extends Controller {
     }
 
     public function showQuestionPage($id) {
-        $questionElements = DB::table('post')->select('users.points as userPoints', 'users.*', 'post.id as post_id', 'post.posterid', 'post.content', 'post.date', 'post.isvisible', 'post.points', 'question.*')
+        $questionElements = DB::table('post')
+                ->select('users.points as userPoints', 'users.*', 'post.id as post_id', 'post.posterid', 'post.content', 'post.date', 'post.isvisible', 'post.points', 'question.*')
                 ->join('users', DB::raw('post.posterid'), '=', DB::raw('users.id'))
                 ->join('question', DB::raw('post.id'), '=', DB::raw('question.postid'))
                 ->where(DB::raw('post.isvisible'), '=', TRUE)
@@ -101,11 +102,13 @@ class PostController extends Controller {
         if (!$questionElements || count($questionElements) == 0)
             return redirect('/404');
 
-        $answersElements = DB::table('post')->select('users.*', 'post.id as post_id', 'post.posterid', 'post.content', 'post.date as post_date', 'post.isvisible', 'post.points', 'answer.*')
+        $answersElements = DB::table('post')->select('users.*', 'post.id as post_id', 'post.posterid', 'post.content', 'post.date as post_date', 'post.isvisible', 'post.points', 'answer.*', 'answer.iscorrect')
                 ->join('users', DB::raw('post.posterid'), '=', DB::raw('users.id'))
                 ->join('answer', DB::raw('post.id'), '=', DB::raw('answer.postid'))
                 ->where(DB::raw('post.isvisible'), '=', TRUE)
                 ->where(DB::raw('answer.questionid'), '=', $id)
+                ->orderBy('answer.iscorrect')
+                ->orderBy('post.date')
                 ->orderBy('post_date', 'asc')
                 ->get();
         if (!$answersElements)
@@ -167,30 +170,41 @@ class PostController extends Controller {
             return redirect('questions/' . $post_id);
     }
 
-    public function closeQuestion($id) {
-        if (Auth::check()) {
-            $logged_user_id = Auth::user()->id;
-            $user = \App\User::where('id', $logged_user_id)->first();
-            if ($user == null)
-                return redirect("/");
-
-            $posterId = DB::select('SELECT posterID FROM Post WHERE id=:id', ['id' => $id])[0]->posterid;
-
-            $validAccess = false;
-            if ($user->type == "ADMIN")
-                $validAccess = true;
-            else if ($posterId == $logged_user_id)
-                $validAccess = true;
-
-            if ($validAccess == false)
-                return redirect("users/" . $posterId);
-
-            DB::table("question")->where('postid', $id)->update(array('isclosed' => true));
-            return redirect("users/" . $posterId);
-        }
-
-        return redirect("/");
+    public function closeQuestion($id) 
+    {
+        return PostController::setIsQuestionAsClosed($id, true);
     }
+
+    public function openQuestion($id) 
+    {
+        return PostController::setIsQuestionAsClosed($id, false);
+    }
+
+    public static function setIsQuestionAsClosed($id, $value) 
+    {
+        if (!Auth::check()) 
+            return redirect("/login");
+        
+        $logged_user_id = Auth::user()->id;
+        $user = \App\User::where('id', $logged_user_id)->first();
+        if ($user == null)
+            return redirect("/login");
+
+        $posterId = DB::select('SELECT posterID FROM Post WHERE id=:id', ['id' => $id])[0]->posterid;
+
+        $validAccess = false;
+        if ($user->type == "ADMIN")
+            $validAccess = true;
+        else if ($posterId == $logged_user_id)
+            $validAccess = true;
+
+        if ($validAccess == false)
+            return redirect("questions/" . $id);
+
+        DB::table("question")->where('postid', $id)->update(array('isclosed' => $value));
+        return redirect("questions/" . $id);
+    }
+
 
     public function postVote(Request $request, $postId) {
         if (Auth::check()) {
@@ -377,8 +391,8 @@ class PostController extends Controller {
                 foreach ($keywordsArray as $keyword) {
                     $retFromDB = DB::table('question')
                             ->join('post', 'question.postid', '=', 'post.id')
-                            ->where('question.title', 'like', '%' . $keyword . '%')
-                            ->orwhere('post.content', 'like', '%' . $keyword . '%')
+                            ->where('question.title', 'ilike', '%' . $keyword . '%')
+                            ->orwhere('post.content', 'ilike', '%' . $keyword . '%')
                             ->select(DB::raw('count(question.postid) as keyword_count, question.postid as question_id'))
                             ->groupBy('question.postid');
                     if ($currentDBResults == null)
@@ -471,6 +485,23 @@ class PostController extends Controller {
             return view('pages.indexloggedin_questionsdiv', ['questions' => $questions_and_tags['questions']], ['questions_tags' => $questions_and_tags['questions_tags'], 'postVotes' => $questions_and_tags['postVotes']]);
         else
             return view('pages.index_questionsdiv', ['questions' => $questions_and_tags['questions']], ['questions_tags' => $questions_and_tags['questions_tags']]);
+    }
+
+    public function markCorrect($id)
+    {
+        $ans = DB::table('answer')
+                ->where('postid',$id)->first();
+        if(Auth::user()->type=='ADMIN' || Auth::user()->id==$ans->id)
+        {
+            if(!$ans->iscorrect) {
+                DB::table('answer')
+                    ->where('postid', $id)->update(['iscorrect' => true]);
+            }else{
+                DB::table('answer')
+                    ->where('postid', $id)->update(['iscorrect' => false]);
+            }
+        }
+        return back();
     }
 
     //}

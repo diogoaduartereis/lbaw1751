@@ -35,4 +35,4 @@ $tags = TagController::getFirstXTags(10);
 </nav>
 
 
-<script src="./assets/js/searchQuestion.js"></script>
+<script src="/assets/js/searchQuestion.js"></script>
