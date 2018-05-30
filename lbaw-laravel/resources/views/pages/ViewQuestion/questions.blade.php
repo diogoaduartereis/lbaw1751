@@ -70,38 +70,38 @@
             <div class="btn-group btn-group-sm " role="group" aria-label="Basic example">
 
                 @if($questionElements->isclosed == false)
-                    <button id="replyButton" type="button" class="btn btn-outline-primary">
+                    <button style="font-size: 13px" id="replyButton" type="button" class="btn btn-outline-primary">
                         <i class="fas fa-comment"></i> Reply
                     </button>
                 @endif
 
-                <button onclick="window.location.href='/report/post/{{$questionElements->post_id}}?last_URL = ' + window.location.href" type="button" class="btn btn-outline-danger">
+                <button style="font-size: 13px" onclick="window.location.href='/report/post/{{$questionElements->post_id}}?last_URL = ' + window.location.href" type="button" class="btn btn-outline-danger">
                     <i class="fas fa-flag"></i> Report
                 </button>
 
                 <?php if (Auth::user()->id == $questionElements->posterid || Auth::user()->type == "ADMIN"): ?>
-                    <button id="deleteQuestionButton-{{$questionElements->post_id}}" type="button" onclick="return deleteQuestionInQuestionPage(event);" class="btn btn-outline-danger">
+                    <button style="font-size: 13px" id="deleteQuestionButton-{{$questionElements->post_id}}" type="button" onclick="return deleteQuestionInQuestionPage(event);" class="btn btn-outline-danger">
                         <i class="fas fa-trash"></i> Remove
                     </button>
                 <?php endif; ?>
 
                 @if($questionElements->isclosed == false)
-                    <button onclick="return closeQuestion({{$questionElements->post_id}});" type="button" class="btn btn-success" >
-                        Close Question
+                    <button style="font-size: 13px" onclick="return closeQuestion({{$questionElements->post_id}});" type="button" class="btn btn-outline-primary" >
+                        <i class="fas fa-window-close"></i> Close Question
                     </button>
                 @else
-                    <button onclick="return openQuestion({{$questionElements->post_id}});" type="button" class="btn btn-success" >
-                        Open Question
+                    <button style="font-size: 13px" onclick="return openQuestion({{$questionElements->post_id}});" type="button" class="btn btn-outline-primary" >
+                        <i class="fas fa-edit"></i>Reopen Question
                     </button>
                 @endif
 
                 @if(Auth::user()->type == "ADMIN")
-                    <a id="reportsButton" href="{{url('post/'.$questionElements->post_id.'/reports')}}" class="btn btn-danger col-md-6 text-white">View Reports</a>
+                    <a style="font-size: 13px" id="reportsButton" href="{{url('post/'.$questionElements->post_id.'/reports')}}" class="btn btn-danger col-md-6 text-white">View Reports</a>
                 @endif
             </div>
 
             @if($questionElements->isclosed)
-                <h4 class="bold pull-right text-success"><i class="fas fa-check-circle " placeholder="correct"></i> Closed Question</h4>
+                <h4 style="font-size: 18px" class="bold pull-right text-primary"> <i class="fas fa-window-close" style="padding-right:1px;"></i> Closed Question</h4>
             @endif
         </div>
     </div>
