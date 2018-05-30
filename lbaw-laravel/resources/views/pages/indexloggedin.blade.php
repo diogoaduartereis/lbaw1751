@@ -47,7 +47,7 @@
                     @include('pages.navbarloggedin')
                 <?php endif; ?>
                 
-                <div id="containerID">
+                <div id="containerID" class="smallWindowFixLoggedin">
                     <div id="contentID">
                             @include('pages.indexloggedin_questionsdiv')
                     </div>

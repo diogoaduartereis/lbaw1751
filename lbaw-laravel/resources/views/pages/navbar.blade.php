@@ -6,10 +6,10 @@ $tags = TagController::getFirstXTags(10);
 ?>
 
 <p id="csrf-token" style="display: none;" hidden >{{csrf_token()}}</p>
-<nav style="width:100%;" id="navbar" class="navbar rounded-0 navbar-expand-lg navbar-dark bg-dark sticky-top">
-    <a class="btn btn-md" style="color:white; margin-left:5px;" href="{{url('login')}}"> Sign In </a>
+<nav style="width:100%;" id="navbar" class="navbar rounded-0 navbar-expand-lg navbar-dark bg-dark sticky-top signInClass">
+    <a class="btn btn-md" style="color:white;" href="{{url('login')}}"> Sign In </a>
 
-<a href="{{url('register')}}" style="margin-left:15px; color:white; background-color:rgb(41, 157, 252);" class="btn btn-primary btn-md rounded"
+<a href="{{url('register')}}" style="color:white; background-color:rgb(41, 157, 252);" class="btn btn-primary btn-md rounded signUpClass"
    data-toggle="collapse" data-target="#sidebar" data-parent="#navbar" aria-expanded="false">
     Sign Up
 </a>
@@ -26,7 +26,7 @@ $tags = TagController::getFirstXTags(10);
 
 <button id="buttonTogglerCategories" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarPopularContent"
         aria-expanded="false" aria-label="Toggle navigation">
-    <b> Categories <i class="fas fa-angle-down"></i> </b>
+    <b> Questions <i class="fas fa-angle-down"></i> </b>
 </button>
 
 @include('pages.navbarCategories')

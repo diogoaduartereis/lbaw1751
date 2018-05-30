@@ -1,3 +1,14 @@
+.signInClass
+{
+    margin-left:5px;
+}
+
+signUpClass
+{
+    margin-left:15px;
+}
+
+
 
 @media (min-width: 1700px)
 {
@@ -23,6 +34,12 @@
         width:70%;
     }
 
+    #questionSearchBar
+    {
+        margin-left:0px;
+        width:30vw;
+    }
+
     #postQuestionButton
     {
         width:12%;
@@ -35,7 +52,7 @@
 {
     #postQuestionButton
     {
-        width:12%;
+        width:15%;
         font-size:110%;
     }
 
@@ -45,4 +62,97 @@
         width:70%;
     }
 
+    .searchBar
+    {
+        width:30%;
+    }
+
+}
+
+
+@media (max-width: 1200px)
+{
+    #postQuestionButton
+    {
+        width:15%;
+        font-size:110%;
+        margin-left:0px;
+    }
+
+    #navbar
+    {
+        font-size:90%;
+    }
+
+    .searchBar
+    {
+        width:30%;
+    }
+
+    #questionSearchBar
+    {
+        margin-left:0px;
+        width:12vw;
+    }
+}
+
+@media (max-width:361px) 
+{
+    #postQuestionButton
+    {
+        width:100vw;
+        font-size:110%;
+        margin-left:0px;
+        margin-top:5px;
+    }
+
+    .searchBar
+    {
+        width:123vw;
+    }
+
+    #navbar
+    {
+        font-size:100%;
+    }
+
+    #questionSearchBar
+    {
+        margin-left:-30px;
+        width:123vw;
+        margin-bottom:5px;
+    }
+
+    #sidebar
+    {
+        margin-top:100px;
+        min-height:1040px;
+    }
+
+    #usernameSec
+    {
+        margin-bottom:10px;
+    }
+
+
+    .smallWindowFixLoggedin
+    {
+        margin-left:-50px;
+        margin-top:-10px;
+    }
+
+    .smallWindowFix
+    {
+        margin-top:-30px;
+    }
+
+    .signInClass
+    {
+        
+    }
+
+    signUpClass
+    {
+        margin-left:-20px;
+    }
 }

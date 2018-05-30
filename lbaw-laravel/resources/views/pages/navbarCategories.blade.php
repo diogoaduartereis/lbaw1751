@@ -44,8 +44,8 @@
                     <i class="fas fa-tag"></i> All Tags</a>
                 </li>
 
-                <li style="margin-top:8px; margin-left:15px;" class="nav-item">
-                    <form action="post" method="POST">
+                <li style="margin-top:8px; margin-left:15px;" class="nav-item searchBar">
+                    <form class="searchBar" action="post" method="POST">
 
                         {{ csrf_field() }}
                         <div id="questionSearch" class="btn-group">
@@ -67,7 +67,7 @@
                 Post New Question
             </a>
         @else
-            <a type="submit" href="./" id="postQuestionButton" class="btn btn-primary">
+            <a type="submit" href="./postNewQuestion" id="postQuestionButton" class="btn btn-primary">
                 Post New Question
             </a>
         @endif

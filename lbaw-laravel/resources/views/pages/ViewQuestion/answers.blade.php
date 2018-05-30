@@ -72,33 +72,40 @@
         @if(Auth::check())
         <div>
             <div class="btn-group btn-group-sm " role="group" aria-label="Basic example">
-                <button onclick="window.location.href='/report/post/{{$answersElements[$i]->post_id}}?last_URL=' + window.location.href" type="button" class="btn btn-outline-danger">
+                <button style="font-size: 13px" onclick="window.location.href='/report/post/{{$answersElements[$i]->post_id}}?last_URL=' + window.location.href" type="button" class="btn btn-outline-danger">
                     <i class="fas fa-flag"></i> Report
                 </button>
 
                 <?php if ((Auth::check() && Auth::user()->id == $answersElements[$i]->posterid) || Auth::user()->type == "ADMIN"): ?>
-                    <button id="deleteAnswerButton-{{$answersElements[$i]->post_id}}" type="button" onclick="return deleteAnswer(event);" class="btn btn-outline-danger">
+                    <button style="font-size: 13px" id="deleteAnswerButton-{{$answersElements[$i]->post_id}}" type="button" onclick="return deleteAnswer(event);" class="btn btn-outline-danger">
                         <i class="fas fa-trash"></i> Remove</button>
-                    <?php endif; ?>
-
-                @if(Auth::user()->type == "ADMIN")
-                    <a id="reportsButton" href="{{url('post/'.$answersElements[$i]->post_id.'/reports')}}" class="btn btn-danger col-md-6 text-white">View Reports</a>
-                @endif
+                <?php endif; ?>
 
                 @if(Auth::user()->type == "ADMIN" || Auth::user()->id==$answersElements->posterid)
                     <form method="post" action="{{url('answer/'.$answersElements[$i]->post_id.'/correct')}}">
                         {{csrf_field()}}
                         @if(!$answersElements[$i]->iscorrect)
-                            <button type="submit" id="correctmarkButton" class="btn btn-success col-md-12 text-white">Mark as Correct</button>
+                            <button style="font-size: 13px" type="submit" id="correctmarkButton" class="btn btn-outline-success col-md-12">
+                                <i class="fas fa-check-circle"></i>
+                                Mark as Correct
+                            </button>
                         @else
-                            <button type="submit" id="correctmarkButton" class="btn btn-danger col-md-12 text-white">Mark as Incorrect</button>
+                            <button style="font-size: 13px" type="submit" id="correctmarkButton" class="btn btn-outline-danger col-md-12">
+                                <i class="fas fa-times-circle"></i>
+                                Mark as Incorrect
+                            </button>
                         @endif
                     </form>
                 @endif
+
+                @if(Auth::user()->type == "ADMIN")
+                    <a style="font-size: 13px" id="reportsButton" href="{{url('post/'.$answersElements[$i]->post_id.'/reports')}}" class="btn btn-danger col-md-12 text-white">View Reports</a>
+                @endif
+
             </div>
 
             @if($answersElements[$i]->iscorrect)
-                <h4 class="bold pull-right text-success"><i class="fas fa-check-circle " placeholder="correct"></i> Correct Answer</h4>
+                <h4 style="font-size: 18px" class="bold pull-right text-success"><i class="fas fa-check-circle " placeholder="correct"></i> Correct Answer</h4>
             @endif
 
         </div>

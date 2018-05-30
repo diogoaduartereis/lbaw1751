@@ -28,7 +28,7 @@ $tags = TagController::getFirstXTags(10);
 
     <button id="buttonTogglerCategories" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarPopularContent"
             aria-expanded="false" aria-label="Toggle navigation">
-        <b> Categories <i class="fas fa-angle-down"></i> </b>
+        <b> Questions <i class="fas fa-angle-down"></i> </b>
     </button>
 
     @include('pages.navbarCategories')
