@@ -33,7 +33,6 @@
 
                             <form class="form-horizontal" method="POST" action="{{ url('password/email') }}">
                                 {{ csrf_field() }}
-                                <legends>Email:</legends>
                                 <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                                     <label for="email" class="col-md-4 control-label">E-Mail Address</label>
 

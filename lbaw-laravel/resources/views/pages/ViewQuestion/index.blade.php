@@ -85,7 +85,6 @@
                             @if(Auth::check() && $questionElements->isclosed != true)
                             <form action="{{url('postNewAnswer/' . $questionElements->post_id)}}" method="post">
                                 {!! csrf_field() !!}
-                                <legend>Post New Answer:</legend>
                                 <div id="replyDiv" class="col-md-12">
                                     <div class="form-group">
                                         <label style="font-size: 150%">

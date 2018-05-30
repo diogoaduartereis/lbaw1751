@@ -114,7 +114,6 @@ else
             </a>
 
             <form id="logout-form" action="/logout" method="POST" style="display: none;">
-                <legend>Logout:</legend>
                 {{ csrf_field() }}
                 <button hidden type="submit"></button>
             </form>
