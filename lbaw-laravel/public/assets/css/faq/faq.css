@@ -76,20 +76,20 @@
 
 @media (max-width:361px) 
 {
-    div#containerID
+    #containerID
     {
-        width:50vw;
-        margin-left:-95px;
+        width:80vw;
+        margin-left:-10px;
     }
 
     div#classContainerID.container
     {
-       width:30vw;
+       width:90vw;
     }
 
     #jumbotronID
     {
-        width:235px;
+        width:435px;
         margin-left:-95px;
     }
     
