@@ -172,6 +172,16 @@ class PostController extends Controller {
 
     public function closeQuestion($id) 
     {
+        return PostController::setIsQuestionAsClosed($id, true);
+    }
+
+    public function openQuestion($id) 
+    {
+        return PostController::setIsQuestionAsClosed($id, false);
+    }
+
+    public static function setIsQuestionAsClosed($id, $value) 
+    {
         if (!Auth::check()) 
             return redirect("/login");
         
@@ -191,9 +201,10 @@ class PostController extends Controller {
         if ($validAccess == false)
             return redirect("questions/" . $id);
 
-        DB::table("question")->where('postid', $id)->update(array('isclosed' => true));
+        DB::table("question")->where('postid', $id)->update(array('isclosed' => $value));
         return redirect("questions/" . $id);
     }
+
 
     public function postVote(Request $request, $postId) {
         if (Auth::check()) {
@@ -478,7 +489,19 @@ class PostController extends Controller {
 
     public function markCorrect($id)
     {
-        return 'hi';
+        $ans = DB::table('answer')
+                ->where('postid',$id)->first();
+        if(Auth::user()->type=='ADMIN' || Auth::user()->id==$ans->id)
+        {
+            if(!$ans->iscorrect) {
+                DB::table('answer')
+                    ->where('postid', $id)->update(['iscorrect' => true]);
+            }else{
+                DB::table('answer')
+                    ->where('postid', $id)->update(['iscorrect' => false]);
+            }
+        }
+        return back();
     }
 
     //}

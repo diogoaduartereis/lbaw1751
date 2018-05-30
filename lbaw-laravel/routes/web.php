@@ -85,6 +85,9 @@ Route::post('postNewAnswer/{id}', 'PostController@postAnswer');
 //Close Question
 Route::post('questions/{id}/close', 'PostController@closeQuestion');
 
+//Open Question
+Route::post('questions/{id}/open', 'PostController@openQuestion');
+
 //Post Vote
 Route::post('post/{id}/vote', 'PostController@postVote');
 
