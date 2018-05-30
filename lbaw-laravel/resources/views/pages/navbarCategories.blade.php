@@ -62,15 +62,9 @@
     </div>
 
     @if(Auth::check())
-        @if(Request::is('postNewQuestion'))
-            <a type="submit" href="./" id="postQuestionButton" class="btn btn-primary">
-                Post New Question
-            </a>
-        @else
-            <a type="submit" href="./postNewQuestion" id="postQuestionButton" class="btn btn-primary">
-                Post New Question
-            </a>
-        @endif
+        <a type="submit" href="/postNewQuestion" id="postQuestionButton" class="btn btn-primary">
+            Post New Question
+        </a>
     @endif
 
     <div class="collapse navbar-collapse justify-content-end" id="navbarAsideContent">
