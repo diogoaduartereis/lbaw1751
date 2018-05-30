@@ -14,6 +14,9 @@
         <link href="./assets/css/bars.css" rel="stylesheet">
         <link href="./assets/css/common.css" rel="stylesheet">
         <link href="./assets/css/Homepage/styles.css" rel="stylesheet">
+        <link href="./assets/css/HomepageLoggedIn/indexVote.css" rel="stylesheet">
+        <link href="./assets/css/HomepageLoggedIn/indexloggedin.css" rel="stylesheet">
+        <link href="./assets/css/navbar/navbar.css" rel="stylesheet">
 
         <script src="./assets/js/jquery-1.11.1.min.js"></script>
         <script src="./assets/bootstrap/js/bootstrap.min.js"></script>
@@ -21,6 +24,9 @@
         <script src="./assets/js/popper.min.js"></script>
         <script src="../assets/js/encodeForAjax.js"></script>
         <script src="./assets/js/homepageSearchBar.js"></script>
+        <script src="//unpkg.com/jscroll/dist/jquery.jscroll.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+        <script src="./assets/js/jquery.jscroll.min.js"></script>
 
         <!-- Google Login -->
         <meta name="google-signin-scope" content="profile email">
@@ -31,15 +37,15 @@
     <body>
 
         <div id="wrap" class="wrapper">
-            <?php if (Auth::check()): ?>
+            @if(Auth::check())
                 @include('pages.sidebar')
-            <?php endif; ?>
+            @endif
             <div id="content">
-                <?php if (Auth::check()): ?>
+                @if(Auth::check())
                     @include('pages.navbarloggedin')
-                <?php else: ?>
+                @else
                     @include('pages.navbar')
-                <?php endif; ?>
+                @endif
                 <div id="containerID">
                     <div id="contentID">
                         <div id="jumbotronID" class="jumbotron jumbotron-sm">
@@ -62,6 +68,7 @@
                                 @endif
                                 <script src="./assets/js/markContactAsProcessed.js"></script>
                                 <p id="csrf-token" style="display: none" hidden >{{csrf_token()}}</p>  
+                                <div class ="infinite-scroll">
                                 @foreach ($contacts as $contact)
                                 <div id="contact-{{$contact->id}}" class="row contactsDiv">
                                     <div class="col-12">
@@ -105,6 +112,8 @@
                                     </div>
                                 </div>
                                 @endforeach
+                                </div>
+                                {{$contacts->links()}}
 
                                 <script src="./assets/js/bars.js"></script>
                                 </body>

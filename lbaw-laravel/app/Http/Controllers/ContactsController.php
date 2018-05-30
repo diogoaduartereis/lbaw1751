@@ -76,7 +76,7 @@ class ContactsController extends Controller {
                             ->join('subject', 'contact.subjectid', '=', 'subject.subjectid')
                             ->select('contact.id', 'username', 'message', 'date', 'userid', 'subject.name as subject')
                             ->where('processed', '=', 'false')
-                            ->orderBy('date', 'asc')->take(5)->get();
+                            ->orderBy('date', 'asc')->paginate(5);
             return view('pages.contacts.contactsList', ['contacts' => $contacts]);
         } else
             return redirect()->back();

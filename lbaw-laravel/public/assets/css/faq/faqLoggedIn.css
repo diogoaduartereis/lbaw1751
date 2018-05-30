@@ -73,24 +73,3 @@
         margin-left:10%;
     }
 }
-
-@media (max-width:361px) 
-{
-    #containerID
-    {
-        width:80vw;
-        margin-left:-10px;
-    }
-
-    div#classContainerID.container
-    {
-       width:90vw;
-    }
-
-    #jumbotronID
-    {
-        width:435px;
-        margin-left:-95px;
-    }
-    
-}

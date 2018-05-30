@@ -37,16 +37,14 @@
     <body>
         <div id="wrap" class="wrapper">
             
-            <?php if (Auth::check()): ?>
+            @if(Auth::check())
                 @include('pages.sidebar')
-            <?php endif; ?>
+            @endif
 
             <div id="content">
-        
-                <?php if (Auth::check()): ?>
+                @if(Auth::check())
                     @include('pages.navbarloggedin')
-                <?php endif; ?>
-                
+                @endif
                 <div id="containerID" class="smallWindowFixLoggedin">
                     <div id="contentID">
                             @include('pages.indexloggedin_questionsdiv')
