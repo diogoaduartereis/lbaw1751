@@ -14,6 +14,9 @@
         <link href="./assets/css/bars.css" rel="stylesheet">
         <link href="./assets/css/common.css" rel="stylesheet">
         <link href="./assets/css/Homepage/styles.css" rel="stylesheet">
+        <link href="./assets/css/HomepageLoggedIn/indexVote.css" rel="stylesheet">
+        <link href="./assets/css/HomepageLoggedIn/indexloggedin.css" rel="stylesheet">
+        <link href="./assets/css/navbar/navbar.css" rel="stylesheet">
 
         <script src="./assets/js/jquery-1.11.1.min.js"></script>
         <script src="./assets/bootstrap/js/bootstrap.min.js"></script>
@@ -31,15 +34,15 @@
     <body>
 
         <div id="wrap" class="wrapper">
-            <?php if (Auth::check()): ?>
+            @if(Auth::check())
                 @include('pages.sidebar')
-            <?php endif; ?>
+            @endif
             <div id="content">
-                <?php if (Auth::check()): ?>
+                @if(Auth::check())
                     @include('pages.navbarloggedin')
-                <?php else: ?>
+                @else
                     @include('pages.navbar')
-                <?php endif; ?>
+                @endif
                 <div id="containerID">
                     <div id="contentID">
                         <div id="jumbotronID" class="jumbotron jumbotron-sm">
