@@ -14,6 +14,7 @@
     <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
     <link href="../assets/css/bars.css" rel="stylesheet">
     <link href="../assets/css/common.css" rel="stylesheet">
+    <link href="../assets/css/navbar/navbar.css" rel="stylesheet">
     
 
     @if(Auth::check())
