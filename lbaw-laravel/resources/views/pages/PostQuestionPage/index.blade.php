@@ -18,8 +18,8 @@
         <link href="./assets/css/Homepage/styles.css" rel="stylesheet" >
 
         @if(Auth::check())
-            <link href="../assets/css/faq/faqLoggedIn.css" rel="stylesheet">
-            <link href="./assets/css/HomepageLoggedIn/questions.css" rel="stylesheet">
+            <link href="/assets/css/faq/faqLoggedIn.css" rel="stylesheet">
+            <link href="/assets/css/HomepageLoggedIn/questions.css" rel="stylesheet">
         @endif
 
         <script src="/assets/js/jquery-1.11.1.min.js"></script>
@@ -77,12 +77,16 @@
                                                     <div class="form-group">
                                                         <label for="description">Description *</label>
                                                         <textarea style="overflow-y:auto; resize:none;" name="content" class="form-control" rows="10" cols="32" 
-                                                        required="required" placeholder="Type question here" title="Type question here"> </textarea>                                                    </div>
+                                                        required placeholder="Type question here" title="Type question here"> </textarea> </div>
                                                 </div>
                                                 <div class="col-md-12">
                                                     <button type="submit" class="btn btn-primary pull-right" id="btnSubmitQuestion">
                                                         Submit Question</button>
-                                                    <p style="font-size: 90%; color:black;"> * mandatory </p>
+                                                    @if($errors->any())
+                                                        <p style="color: red;">{{$errors->first()}}</p>
+                                                    @else
+                                                        <p style="font-size: 90%; color:black;"> * mandatory </p>
+                                                    @endif
                                                 </div>
                                             </div>
                                         </form>

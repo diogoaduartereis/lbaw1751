@@ -1,8 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use Intervention\Image\ImageManagerStatic as Image;
 use Illuminate\Http\Request;
 use Redirect;
 use Hash;
@@ -305,11 +303,9 @@ class UserController extends Controller {
         if($request->hasFile('fileToUpload')) 
         {
             $image = $request->file('fileToUpload');
-            $imageResized = Image::make($image->getRealPath());              
-            $imageResized->resize(300, 300);
             $name = $user_id . ".png";
             $destinationPath = public_path('/assets/img/users');
-            $imageResized->move($destinationPath, $name);
+            $image->move($destinationPath, $name);
         }
 
         if (empty($username) || empty($email) || empty($description))

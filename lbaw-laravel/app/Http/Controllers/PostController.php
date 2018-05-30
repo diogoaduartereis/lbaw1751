@@ -51,9 +51,17 @@ class PostController extends Controller {
             return redirect()->action('PagesController@frontpageHotQuestion');
     }
 
-    public function postQuestion(Request $request) {
+    public function postQuestion(Request $request) 
+    {
         if (Auth::check() == false)
             return redirect("/");
+
+        $title = $request->input('title');
+        $tagsString = trim($request->input('tags'));
+        $content = $request->input('content');
+
+        if($title == "" || $tagsString == "" || $content == "" )
+            return back()->withErrors(['All fields must be empty']);
 
         $postID = DB::transaction(function() use($request) {
                     $newPost = DB::table('post')->insertGetId([
@@ -360,13 +368,6 @@ class PostController extends Controller {
         $keywords = $request->input('keywords');
         $tagsArray = json_decode($tags);
         $keywordsArray = json_decode($keywords);
-        /*
-          $tagsArray = array();
-          $tagsArray[0] = 'Java';
-          $tagsArray[1] = 'C++';
-          $tagsArray[2] = 'JS';
-
-         */
 
                 $currentDBResults = null;
                 foreach ($tagsArray as $tag) {
@@ -469,13 +470,6 @@ class PostController extends Controller {
         return back();
     }
 
-    //}
-    /* $questions = DB::table('question')
-      ->join('tagquestion', 'question.postid', '=', 'tagquestion.question_id')
-      ->join('tag', 'tagquestion.tag_id', '=', 'tag.id')
-      ->whereIn('tag.name', $tags); */
-
-    //todo: end
 
     /**
      * Show the form for creating a new resource.

@@ -24,14 +24,7 @@ Route::get('404', 'PagesController@error404');
 //Get First X questions (used for viewing more questions using infinite scrolling)
 Route::get('getMostRecentPosts', 'PostController@getXMostRecentQuestionsAsHTML');
 
-/* //Register
-  Route::get('register','PagesController@register');
-  Route::post('register','UserController@register');
-  Route::get('logout','UserController@logout');
-  Route::post('logout','UserController@logout');
-
-  //Login */
-//Route::post('login','UserController@login');
+//Login
 Route::get('login', 'PagesController@login');
 
 Route::get('register', 'PagesController@register');
@@ -121,13 +114,10 @@ Route::get('contactsList', 'ContactsController@contactsList');
 Route::post('contacts/{id}/markAsProcessed', 'ContactsController@markContactAsProcessed');
 
 //Auth::routes();
-//auth routes
-//$this->get('login', 'Auth\LoginController@showLoginForm')->name('login');
 $this->post('login', 'Auth\LoginController@login');
 $this->post('logout', 'Auth\LoginController@logout')->name('logout');
 
 // Registration Routes...
-//$this->get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
 $this->post('register', 'Auth\RegisterController@register');
 
 Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.email');
@@ -139,9 +129,3 @@ Route::post('password/reset/', 'Auth\ResetPasswordController@reset')->name('pass
 
 //mark answer as correct
 Route::post('answer/{id}/correct','PostController@markCorrect');
-
-// Password Reset Routes...
-//$this->get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm');
-//$this->post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail');
-//$this->get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm');
-//$this->post('password/reset', 'Auth\ResetPasswordController@reset');
