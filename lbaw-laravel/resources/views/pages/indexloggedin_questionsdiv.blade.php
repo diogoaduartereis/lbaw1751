@@ -88,9 +88,10 @@
 
                             <form style="display: inline" action="/report/post/{{$question->question_id}}" method="get">
                                 <input hidden type="text" name="last_url" value = window.location.href>
-                                <button type="submit" class="btn btn-outline-danger">
-                                    <i class="fas fa-flag"></i> Report
-                                </button>
+                                
+                                <button onclick="window.location.href='/report/post/{{$question->question_id}}?last_URL=' + window.location.href" type="button" class="btn btn-outline-danger">
+                                <i class="fas fa-flag"></i> Report
+                            </button>
                             </form>
                         
                             @if(Auth::user()->type == "ADMIN" || Auth::user()->id == $question->poster_id)

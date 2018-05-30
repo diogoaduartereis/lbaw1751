@@ -75,7 +75,7 @@
                     </button>
                 @endif
 
-                <button onclick="window.location.href='/report/post/{{$questionElements->post_id}}?last_URL = ' + window.location.href" type="button" class="btn btn-outline-danger">
+                <button onclick="window.location.href='/report/post/{{$questionElements->post_id}}?last_URL=' + window.location.href" type="button" class="btn btn-outline-danger">
                     <i class="fas fa-flag"></i> Report
                 </button>
 

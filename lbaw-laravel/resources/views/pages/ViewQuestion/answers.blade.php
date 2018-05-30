@@ -72,7 +72,7 @@
         @if(Auth::check())
         <div>
             <div class="btn-group btn-group-sm " role="group" aria-label="Basic example">
-                <button onclick="window.location.href='/report/post/{{$answersElements[$i]->post_id}}?last_URL = ' + window.location.href" type="button" class="btn btn-outline-danger">
+                <button onclick="window.location.href='/report/post/{{$answersElements[$i]->post_id}}?last_URL=' + window.location.href" type="button" class="btn btn-outline-danger">
                     <i class="fas fa-flag"></i> Report
                 </button>
 
