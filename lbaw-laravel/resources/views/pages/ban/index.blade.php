@@ -55,6 +55,7 @@
                                     <div class="well well-sm">
                                         <form id="banForm" action="/users/{{$user->id}}/ban" method="post">
                                             {{csrf_field()}}
+                                            <legends>Ban:</legends>
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
