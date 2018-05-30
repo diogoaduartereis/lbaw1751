@@ -1,4 +1,5 @@
-﻿<html class="no-js" lang="en">
+﻿<!DOCTYPE html>
+<html class="no-js" lang="en">
 
     <head>
         <title>CodeHome - List Of Contacts</title>

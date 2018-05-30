@@ -98,6 +98,11 @@ signUpClass
 
 @media (max-width:361px) 
 {
+    #navbarDropdown + div > a
+    {
+        background-color:white;
+    }
+
     #postQuestionButton
     {
         width:100vw;
