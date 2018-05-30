@@ -111,7 +111,7 @@
                     @endif
 
                     @if(Auth::user()->type == "ADMIN")
-                        <a style="font-size: 13px" id="reportsButton"
+                        <a style="font-size: 13px" 
                            href="{{url('post/'.$questionElements->post_id.'/reports')}}"
                            class="btn btn-danger col-md-6 text-white">View Reports</a>
                     @endif
