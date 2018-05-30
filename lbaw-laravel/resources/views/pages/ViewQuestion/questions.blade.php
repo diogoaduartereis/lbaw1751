@@ -73,7 +73,7 @@
         </div>
     </section>
     @if(Auth::check())
-        <div style="margin-top: 20px; margin-bottom:-20px;" class="panel-footer border-dark">
+        <div style="margin-top: 20px; margin-bottom:-20px;" class="panel-footer border-dark putScroll">
 
             <div>
                 <div class="btn-group btn-group-sm " role="group" aria-label="Basic example">

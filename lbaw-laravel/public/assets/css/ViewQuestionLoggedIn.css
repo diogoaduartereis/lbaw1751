@@ -714,9 +714,9 @@ figure
 
 @media (max-width: 361px) {
 
-    div.panel-footer
+    .putScroll
     {
-        overflow:auto;
+        overflow:scroll;
     }
 
     #titleID.active
