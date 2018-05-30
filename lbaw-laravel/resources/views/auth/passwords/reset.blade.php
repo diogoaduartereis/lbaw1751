@@ -77,9 +77,9 @@
 
                                 <div class="form-group">
                                     <div class="col-md-6 col-md-offset-4">
-                                        <button id="reset" class="btn btn-primary" style="background:#007bff;">
+                                        <a id="reset" class="btn btn-primary" style="background:#007bff;">
                                             Reset Password
-                                        </button>
+                                        </a>
                                     </div>
                                 </div>
 
@@ -96,9 +96,17 @@
             if (btn != null) {
                 btn.onclick = function () {
                     let password = document.getElementById('password').value;
+                    let confirm = document.getElementById('password-confirm').value;
                     var regexPW = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z!$%^&*_@#~?\\d]{8,72}$");
                     if (!regexPW.test(password)) {
                         let message = "Your password must contain a minimum of 8 characters, at least 1 uppercase letter, 1 lowercase letter and 1 one number";
+                        document.getElementById('logmsg').style.color = "red";
+                        document.getElementById('logmsg').innerText = message;
+                        return;
+                    }
+                    if(confirm!=password)
+                    {
+                        let message = "Password Must Match";
                         document.getElementById('logmsg').style.color = "red";
                         document.getElementById('logmsg').innerText = message;
                         return;
