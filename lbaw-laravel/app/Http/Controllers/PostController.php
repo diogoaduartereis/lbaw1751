@@ -406,7 +406,17 @@ class PostController extends Controller {
                 ->mergeBindings($currentDBResults)
                 ->select(DB::raw('question_id, keyword_count * 2 as points'));
 
-                $final_results = $tags_matches->unionAll($keywords_matches);
+                $final_results;
+                if ($tags_matches == null && $keywords_matches == null)
+                    return "No Questions to show";
+                else if ($tags_matches == null)
+                    $final_results = $keywords_matches;
+                else if ($keywords_matches == null)
+                    $final_results = $tags_matches;
+                else
+                    $final_results = $tags_matches->unionAll($keywords_matches);
+
+
 
                 foreach ($questions_ids as $question_id)
                 {
