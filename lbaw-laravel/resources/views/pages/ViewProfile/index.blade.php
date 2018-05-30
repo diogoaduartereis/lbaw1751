@@ -17,6 +17,13 @@
     <link href="../../assets/css/bars.css" rel="stylesheet">
     <link href="../../assets/css/common.css" rel="stylesheet">
     <link href="../../assets/css/profile.css" rel="stylesheet">
+    <link href="../../assets/css/navbar/navbar.css" rel="stylesheet">
+
+    @if(Auth::check())
+        <link href="../../assets/css/profileLoggedIn.css" rel="stylesheet">
+    @else
+        <link href="../../assets/css/profile.css" rel="stylesheet">
+    @endif
 
     <script src="../../assets/js/jquery-1.11.1.min.js"></script>
     <script src="../../assets/bootstrap/js/bootstrap.min.js"></script>
@@ -54,7 +61,7 @@
                                 <img class="img-fluid rounded-circle" src="../assets/img/users/{{$user[0]->img_path}}" alt="Profile photo">
                             @endif
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-6 userArea">
                             <br>
                             <br>
                             <br>
@@ -108,7 +115,7 @@
                     <br>
                     <br>
                     <br>
-                    <section class="row pb-3">
+                    <section class="row pb-3 activeQuestion">
                         <div class="col-md-6">
                             <h3>Active Questions</h3>
                             <table class="table">
@@ -122,7 +129,7 @@
                                 <tbody>
                                 @foreach ($userActivePosts as $activePost)
                                     <tr>
-                                        <td>
+                                        <td class="questioName">
                                             <a href= {{"/questions/".$activePost->id}}> {{$activePost->title}} </a>
                                         </td>
                                         <td>
@@ -164,7 +171,7 @@
                                 <tbody>
                                 @foreach ($userClosedPosts as $closedPost)
                                     <tr>
-                                        <td>
+                                        <td class="questioName">
                                             <a href= {{"/questions/".$closedPost->id}}> {{$closedPost->title}} </a>
                                         </td>
                                         <td>
