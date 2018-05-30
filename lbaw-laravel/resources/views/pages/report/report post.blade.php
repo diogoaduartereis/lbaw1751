@@ -8,21 +8,20 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>CodeHome - Report</title>
 
-        <link href="../../assets/css/admin.css" rel="stylesheet">
-        <link href="../../assets/bootstrap/css/bootstrap.min.css" rel="stylesheet"> 
-        <link href="../../assets/css/bootstrap.css" rel="stylesheet">
+        <link href="/assets/css/admin.css" rel="stylesheet">
+        <link href="/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet"> 
+        <link href="/assets/css/bootstrap.css" rel="stylesheet">
         <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
-        <link href="../../assets/css/bars.css" rel="stylesheet">
-        <link href="../../assets/css/common.css" rel="stylesheet">
-        <link href="../../assets/css/contacts.css" rel="stylesheet">
+        <link href="/assets/css/bars.css" rel="stylesheet">
+        <link href="/assets/css/common.css" rel="stylesheet">
 
-        <script src="../../assets/js/jquery-1.11.1.min.js"></script>
-        <script src="../../assets/bootstrap/js/bootstrap.min.js"></script>
-        <script src="../../assets/js/jquery.min.js"></script>
-        <script src="../../assets/js/popper.min.js"></script>
+        <script src="/assets/js/jquery-1.11.1.min.js"></script>
+        <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
+        <script src="/assets/js/jquery.min.js"></script>
+        <script src="/assets/js/popper.min.js"></script>
 
-        <script src="../../assets/js/encodeForAjax.js"></script>
-        <script src="../../assets/js/reportPost.js"></script>
+        <script src="/assets/js/encodeForAjax.js"></script>
+        <script src="/assets/js/reportPost.js"></script>
     </head>
 
     <body>
@@ -80,7 +79,7 @@
                     </div>
                 </div>
 
-                <script src="../../assets/js/bars.js"></script>
+                <script src="/assets/js/bars.js"></script>
 
 
                 </body>
