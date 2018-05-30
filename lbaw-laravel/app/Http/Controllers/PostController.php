@@ -421,7 +421,7 @@ class PostController extends Controller {
                 $final_results = DB::table(DB::raw("(" . $final_results->toSql() . ") as res3"))
                 ->mergeBindings($final_results)
                 ->select(DB::raw('SUM(relevance) as relevance'), 'question_id')
-                ->orderBy('relevance')
+                ->orderBy('relevance', 'desc')
                 ->groupBy('question_id')
                 ->paginate(5);
                 
