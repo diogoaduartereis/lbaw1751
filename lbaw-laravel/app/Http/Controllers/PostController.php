@@ -475,7 +475,19 @@ class PostController extends Controller {
 
     public function markCorrect($id)
     {
-        return 'hi';
+        $ans = DB::table('answer')
+                ->where('postid',$id)->first();
+        if(Auth::user()->type=='ADMIN' || Auth::user()->id==$ans->id)
+        {
+            if(!$ans->iscorrect) {
+                DB::table('answer')
+                    ->where('postid', $id)->update(['iscorrect' => true]);
+            }else{
+                DB::table('answer')
+                    ->where('postid', $id)->update(['iscorrect' => false]);
+            }
+        }
+        return back();
     }
 
     //}

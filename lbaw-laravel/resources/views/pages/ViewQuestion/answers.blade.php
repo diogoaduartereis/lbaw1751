@@ -86,8 +86,13 @@
                 @endif
 
                 @if(Auth::user()->type == "ADMIN" || Auth::user()->id==$answersElements->posterid)
-                    <form action="{{url('answer/'.$answersElements[$i]->post_id.'/correct')}}">
-                        <a id="correctmarkButton" class="btn btn-success col-md-6 text-white">Mark as Correct</a>
+                    <form method="post" action="{{url('answer/'.$answersElements[$i]->post_id.'/correct')}}">
+                        {{csrf_field()}}
+                        @if(!$answersElements[$i]->iscorrect)
+                            <button type="submit" id="correctmarkButton" class="btn btn-success col-md-12 text-white">Mark as Correct</button>
+                        @else
+                            <button type="submit" id="correctmarkButton" class="btn btn-danger col-md-12 text-white">Mark as Incorrect</button>
+                        @endif
                     </form>
                 @endif
             </div>
