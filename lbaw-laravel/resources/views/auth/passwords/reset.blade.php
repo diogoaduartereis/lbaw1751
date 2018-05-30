@@ -27,7 +27,7 @@
                         <div class="panel-body">
                             <form class="form-horizontal" method="POST" action="{{ route('password.reset') }}">
                                 {{ csrf_field() }}
-
+                                <legends>Reset Password:</legends>
                                 <input type="hidden" name="token" value="{{ $token }}">
 
                                 <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
