@@ -92,7 +92,7 @@
         </div>
 
         <script>
-            let btn = document.getElementById('submitBtn');
+            let btn = document.getElementById('reset');
             if (btn != null) {
                 btn.onclick = function () {
                     let password = document.getElementById('password').value;
