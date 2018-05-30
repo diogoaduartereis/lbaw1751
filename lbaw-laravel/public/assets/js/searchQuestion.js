@@ -1,5 +1,18 @@
 'use strict'
 
+//get search results
+let searchDiv = document.getElementById("questionSearch");
+searchDiv.addEventListener('keypress', handleEnterPress);
+function handleEnterPress(event)
+{
+    let key = event.which || event.keyCode;
+    if (key !== 13) // 13 is enter
+        return;
+
+    handleUserSearchInput();
+}
+
+
 // Get the input box
 var textInput = document.getElementById("questionSearchBar");
 // Init a timeout variable to be used below
@@ -18,7 +31,7 @@ textInput.onkeyup = function (e)
     timeout = setTimeout(function () 
     {
         handleUserSearchInput();
-    }, 500);
+    }, 400);
 };
 
 function insertAfter(el, referenceNode)
@@ -129,7 +142,7 @@ function searchResultsArrived()
     }
     else
         searchedQuestionsDiv.innerHTML = this.responseText;
-        
+
     let oldContentDiv = document.getElementById('oldContentID');
     if (oldContentDiv == null)
     {
