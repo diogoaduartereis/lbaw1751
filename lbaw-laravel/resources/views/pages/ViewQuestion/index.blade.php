@@ -15,6 +15,15 @@
     <link href="../assets/css/bars.css" rel="stylesheet">
     <link href="../assets/css/common.css" rel="stylesheet">
     <link href="./assets/css/navbar/navbar.css" rel="stylesheet">
+    
+
+    @if(Auth::check())
+        <link href="../../assets/css/ViewQuestionLoggedIn.css" rel="stylesheet">
+        <link href="./assets/css/HomepageLoggedIn/questions.css" rel="stylesheet">
+    @else
+        <link href="../../assets/css/ViewQuestion.css" rel="stylesheet">
+        <link href="./assets/css/Homepage/questions.css" rel="stylesheet">
+    @endif
 
     <script src="../assets/js/jquery-1.11.1.min.js"></script>
     <script src="../assets/bootstrap/js/bootstrap.min.js"></script>

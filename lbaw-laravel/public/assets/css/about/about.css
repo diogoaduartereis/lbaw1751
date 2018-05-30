@@ -126,6 +126,11 @@
 
 @media (max-width:361px) 
 {
+    #containerID
+    {
+        width:80vw;
+        margin-left:27px;
+    }
     #postQuestionButton
     {
         width:100vw;
@@ -170,11 +175,6 @@
     signUpClass
     {
         margin-left:0px;
-    }
-
-    #containerID
-    {
-        margin-left:-45px;
     }
 
     h2

@@ -1,0 +1,36 @@
+@media (max-width: 361px) 
+{
+    input#userName.form-control + div
+    {
+        z-index:0;
+    }
+
+    input#userName.form-control
+    {
+        max-width:90vw;
+        margin-left:90px;
+        z-index:0;
+    }
+
+    .adminTable
+    {
+        max-width:80vw;
+        overflow:auto;
+        margin-left:80px;
+    }
+
+    ul.pagination
+    {
+        margin-left:60px;
+    }
+
+    h3
+    {
+        margin-left:60px;
+    }
+
+    label.col-sm-3
+    {
+        margin-left:60px;
+    }
+}

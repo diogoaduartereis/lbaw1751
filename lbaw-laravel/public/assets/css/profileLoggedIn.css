@@ -29,3 +29,10 @@
         font-size:90%;
     }
 }
+
+@media (max-width: 361px) {
+    .profileButtons
+    {
+        width:60vw;
+    }
+}
