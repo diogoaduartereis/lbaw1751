@@ -24,8 +24,10 @@ $teams = TeamController::getMapWithAllTeamsToMembers();
 
         @if(Auth::check())
             <link href="../assets/css/about/aboutLoggedIn.css" rel="stylesheet">
+            <link href="./assets/css/HomepageLoggedIn/questions.css" rel="stylesheet">
         @else
             <link href="../assets/css/about/about.css" rel="stylesheet">
+            <link href="./assets/css/Homepage/questions.css" rel="stylesheet">
         @endif
 
         <script src="../assets/js/jquery-1.11.1.min.js"></script>

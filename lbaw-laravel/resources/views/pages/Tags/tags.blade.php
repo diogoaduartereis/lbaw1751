@@ -15,6 +15,16 @@
         <link href="../assets/css/bars.css" rel="stylesheet">
         <link href="../assets/css/common.css" rel="stylesheet">
         <link href="../assets/css/about.css" rel="stylesheet">
+        <link href="./assets/css/navbar/navbar.css" rel="stylesheet">
+        <link href="./assets/css/Homepage/styles.css" rel="stylesheet" >
+
+        @if(Auth::check())
+            <link href="../../assets/css/contactsLoggedIn.css" rel="stylesheet">
+            <link href="./assets/css/HomepageLoggedIn/questions.css" rel="stylesheet">
+        @else
+            <link href="../assets/css/contacts/contacts.css" rel="stylesheet">
+            <link href="./assets/css/Homepage/questions.css" rel="stylesheet">
+        @endif
 
 
         <script src="../assets/js/jquery-1.11.1.min.js"></script>
@@ -58,7 +68,7 @@
 
                 <div id = "containerID">
                     <div class="row">
-                        <div class="col-12 justify-content-center">
+                        <div class="col-12 justify-content-center allTags">
                             <div class ="infinite-scroll">
                                 @foreach($tags as $tag)
                                 <div>

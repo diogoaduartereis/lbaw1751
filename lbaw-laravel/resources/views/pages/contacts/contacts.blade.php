@@ -21,12 +21,13 @@ use \App\Http\Controllers\ContactsController;
         <link href="../assets/css/common.css" rel="stylesheet">
         <link href="./assets/css/navbar/navbar.css" rel="stylesheet">
         <link href="./assets/css/Homepage/styles.css" rel="stylesheet" >
-        <link href="./assets/css/Homepage/questions.css" rel="stylesheet">
 
         @if(Auth::check())
             <link href="../../assets/css/contactsLoggedIn.css" rel="stylesheet">
+            <link href="./assets/css/HomepageLoggedIn/questions.css" rel="stylesheet">
         @else
             <link href="../assets/css/contacts/contacts.css" rel="stylesheet">
+            <link href="./assets/css/Homepage/questions.css" rel="stylesheet">
         @endif
             
 

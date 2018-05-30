@@ -26,12 +26,14 @@ $i = 0; //this counter will be used to give ids to the collapsable divs so that 
         <link href="../assets/css/common.css" rel="stylesheet">
         <link href="./assets/css/navbar/navbar.css" rel="stylesheet">
         <link href="./assets/css/Homepage/styles.css" rel="stylesheet" >
-        <link href="./assets/css/Homepage/questions.css" rel="stylesheet">
+        
 
         @if(Auth::check())
             <link href="../assets/css/faq/faqLoggedIn.css" rel="stylesheet">
+            <link href="./assets/css/HomepageLoggedIn/questions.css" rel="stylesheet">
         @else
             <link href="../assets/css/faq/faq.css" rel="stylesheet">
+            <link href="./assets/css/Homepage/questions.css" rel="stylesheet">
         @endif
 
         <script src="../assets/js/jquery-1.11.1.min.js"></script>
