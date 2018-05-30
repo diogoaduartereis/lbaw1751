@@ -78,12 +78,14 @@
                     <div class="card-footer">
                         <div class="btn-group btn-group-sm " role="group" aria-label="Basic example">
                             <form style="display: inline" action="{{url('/questions/'.$question->question_id)}}#replyDiv" method="get">
+                                <legend>Go To Question:</legend>
                                 <button type="submit" class="btn btn-outline-primary">
                                     <i class="fas fa-comment"></i> Reply 
                                 </button>
                             </form>
 
                             <form style="display: inline" action="/report/post/{{$question->question_id}}" method="get">
+                                <legend>Report Question:</legend>
                                 <input hidden type="text" name="last_url" value = window.location.href>
                                 
                                 <button onclick="window.location.href='/report/post/{{$question->question_id}}?last_URL=' + window.location.href" type="button" class="btn btn-outline-danger">
@@ -93,6 +95,7 @@
                         
                             @if(Auth::user()->type == "ADMIN" || Auth::user()->id == $question->poster_id)
                             <form id="deleteQuestionButton-{{$question->question_id}}" style="display: inline" onsubmit="return deleteQuestion(event);" method="get">
+                                <legend>Delete Question:</legend>
                                 <button type="submit" class="btn btn-outline-danger">
                                     <i class="fas fa-trash"></i> Remove
                                 </button>

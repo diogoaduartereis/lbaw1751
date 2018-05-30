@@ -57,6 +57,7 @@
                             <form action="/register" method="POST">
                                 {!! csrf_field() !!}
                                 <legend>Register:</legend>
+                                <legend>Register:</legend>
                                 <div class="form-group">
                                     <label class="sr-only" for="form-username">First name</label>
                                     <input type="text" name="username" placeholder="Username..."

@@ -37,18 +37,6 @@
 }
 
 
-#contentID
-{
-    width:100vw;
-    margin-left:0px;
-}
-
-#jumbotronID
-{
-    margin-left:-50px;
-}
-
-
 @media (min-width: 768px) and (max-width:1366px) {
     #containerID.inactive
     {
@@ -124,56 +112,15 @@
     }
 }
 
-@media (max-width:361px) 
-{
-    #postQuestionButton
+@media (max-width: 340px) {
+    #containerID.inactive
     {
-        width:100vw;
-        font-size:110%;
-        margin-left:0px;
-        margin-top:5px;
+        width:80vw;
+        margin-left:-40px;
     }
 
-    .searchBar
+    #contentID
     {
-        width:123vw;
-    }
-
-    #navbar
-    {
-        font-size:100%;
-    }
-
-    #questionSearchBar
-    {
-        margin-left:-30px;
-        width:123vw;
-        margin-bottom:5px;
-    }
-
-    .smallWindowFixLoggedin
-    {
-        margin-left:-50px;
-        margin-top:-10px;
-    }
-
-    .smallWindowFix
-    {
-        margin-top:-10px;
-    }
-
-    .signInClass
-    {
-        margin-left:-10px;
-    }
-
-    signUpClass
-    {
-        margin-left:0px;
-    }
-
-    #containerID
-    {
-        margin-left:-20px;
+        width:92vw;
     }
 }
