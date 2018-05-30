@@ -431,7 +431,7 @@ class PostController extends Controller {
                     ->join('post', 'question.postid', '=', 'post.id')
                     ->join('users', 'post.posterid', '=', 'users.id')
                     ->where('question.postid', '=', $question_id)
-                    ->select('question.postid as question_id', 'title', 'content', 'post.posterid as poster_id', 'post.points as question_points', 'users.points as poster_points', 'username');
+                    ->select('question.postid as question_id', 'title', 'content', 'post.posterid as poster_id', 'post.points as question_points', 'users.points as poster_points', 'username', 'isclosed');
                     if ($currentDBResults == null)
                         $currentDBResults = $retFromDB;
                     else
