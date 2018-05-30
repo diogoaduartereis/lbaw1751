@@ -217,6 +217,7 @@ function updatePostPoints(postId, voteValue)
     let oldPoints = document.getElementById("upvoteCount-" + postId).innerHTML;
     let oldPointsValue = Number(oldPoints.substring(0, oldPoints.indexOf('Points')));
     let newPointsInnerHTML = oldPointsValue + voteValue + " Points";
+    console.log(newPointsInnerHTML);
     document.getElementById("upvoteCount-" + postId).innerHTML = newPointsInnerHTML;
 }
 
@@ -224,7 +225,7 @@ function updateUserPoints(postId, voteValue)
 {
     let currUserPoints = Number(document.getElementById("post" + postId + "PosterPoints").innerHTML);
     let newUserPoints = currUserPoints + voteValue;
-    document.getElementById("post" + postId + "PosterPoints").innerHTML;
+    document.getElementById("post" + postId + "PosterPoints").innerHTML=newUserPoints;
     let sidebarUsername = document.getElementById("sidebarUsername").innerHTML;
     let cleanSidebarUsername = sidebarUsername.replace(/\s/g, '');
     let postUsername = document.getElementById("post" + postId + "Username").innerHTML;
