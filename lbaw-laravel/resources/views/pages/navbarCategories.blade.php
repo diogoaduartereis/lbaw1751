@@ -46,7 +46,7 @@
 
                 <li style="margin-top:8px; margin-left:15px;" class="nav-item searchBar">
                     <form class="searchBar" action="post" method="POST">
-
+                        <legend>Search:</legend>
                         {{ csrf_field() }}
                         <div id="questionSearch" class="btn-group">
                             <input placeholder="Type to search questions..." id="questionSearchBar" type="text" class="form-control border-dark rounded-0" aria-label="Text input with segmented dropdown button" data-toggle="tooltip"
