@@ -107,8 +107,8 @@ class PostController extends Controller {
                 ->join('answer', DB::raw('post.id'), '=', DB::raw('answer.postid'))
                 ->where(DB::raw('post.isvisible'), '=', TRUE)
                 ->where(DB::raw('answer.questionid'), '=', $id)
-                ->orderBy('answer.iscorrect')
-                ->orderBy('post.date')
+                ->orderBy('answer.iscorrect', 'desc')
+                ->orderBy('post.points', 'desc')
                 ->orderBy('post_date', 'asc')
                 ->get();
         if (!$answersElements)
