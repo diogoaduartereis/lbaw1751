@@ -416,15 +416,13 @@ class PostController extends Controller {
                 else
                     $final_results = $tags_matches->unionAll($keywords_matches);
 
-                $final_results = $final_results;
-
-                $final_results = DB::table(DB::raw("(" . $final_results->toSql() . ") as res3"))
-                ->mergeBindings($final_results)
-                ->select(DB::raw('SUM(relevance) as relevance'), 'question_id')
-                ->orderBy('relevance', 'desc')
-                ->groupBy('question_id')
-                ->get();
-                
+                    $final_results = DB::table(DB::raw("(" . $final_results->toSql() . ") as res3"))
+                    ->mergeBindings($final_results)
+                    ->select(DB::raw('SUM(relevance) as relevance'), 'question_id')
+                    ->orderBy('relevance', 'desc')
+                    ->groupBy('question_id')
+                    ->get();
+                                    
                 $currentDBResults = null;
                 foreach ($final_results as $final_result)
                 {
