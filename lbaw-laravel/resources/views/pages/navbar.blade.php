@@ -31,3 +31,6 @@ $tags = TagController::getFirstXTags(10);
 
 @include('pages.navbarCategories')
 </nav>
+
+
+<script src="/assets/js/searchQuestion.js"></script>
