@@ -23,6 +23,8 @@
         <script src="./assets/js/jquery.min.js"></script>
         <script src="./assets/js/popper.min.js"></script>
         <script src="./assets/js/homepageSearchBar.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+        <script src="./assets/js/jquery.jscroll.min.js"></script>
 
         <meta name="google-site-verification" content="a30N-kL6X9vHRm5MlZ_OE720T-Vl8rKeKqC8x2_8AmM" />
     </head>

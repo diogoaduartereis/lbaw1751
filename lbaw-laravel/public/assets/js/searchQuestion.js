@@ -99,10 +99,11 @@ function handleUserSearchInput()
 
     let ajaxRequest = new XMLHttpRequest();
     ajaxRequest.addEventListener("load", searchResultsArrived);
-    ajaxRequest.open("POST", "/search/question", true);
+    ajaxRequest.open("GET", "/search/question?" +
+    encodeForAjax({tags: tagsArrEncoded, keywords: keywordsArrEncoded}), true);
     ajaxRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     ajaxRequest.setRequestHeader("X-CSRF-Token", csrfToken);
-    ajaxRequest.send(encodeForAjax({tags: tagsArrEncoded, keywords: keywordsArrEncoded}));
+    ajaxRequest.send();
 }
 
 function removeHashTagsFromBeggingOfEachTagOnArray(tags)

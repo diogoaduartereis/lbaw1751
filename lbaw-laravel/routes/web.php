@@ -70,7 +70,7 @@ Route::post('postNewQuestion', 'PostController@postQuestion');
 
 //Search
 Route::post('tags/searchForTag', 'TagController@searchForTag');
-Route::post('search/question', 'PostController@searchForQuestion');
+Route::get('search/question', 'PostController@searchForQuestion');
 
 //View Administration page searching for user
 Route::get('admin', 'UserController@searchForUser');
