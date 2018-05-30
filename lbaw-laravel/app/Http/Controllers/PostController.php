@@ -423,7 +423,7 @@ class PostController extends Controller {
                 ->select(DB::raw('SUM(relevance) as relevance'), 'question_id')
                 ->orderBy('relevance')
                 ->groupBy('question_id')
-                ->get();
+                ->paginate(10);
                 
                 $currentDBResults = null;
                 foreach ($final_results as $final_result)
@@ -439,9 +439,6 @@ class PostController extends Controller {
                     else
                         $currentDBResults = $currentDBResults->unionAll($retFromDB);
                 }
-                $final_questions = $currentDBResults->get();
-                echo $final_questions;
-                return;
                 if ($currentDBResults == null)
                     return "No Questions to show";
                 $final_questions = DB::table(DB::raw("(" . $currentDBResults->toSql() . ") as res"))
