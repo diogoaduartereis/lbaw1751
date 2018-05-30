@@ -386,7 +386,7 @@ class PostController extends Controller {
                 if ($currentDBResults != null)
                     $tags_matches = DB::table(DB::raw("(" . $currentDBResults->toSql() . ") as res"))
                     ->mergeBindings($currentDBResults)
-                    ->select(DB::raw('question_id, tag_count * 3 as relevance'));
+                    ->select(DB::raw('question_id, tag_count * 3 as relevance, title, content, post.posterid as poster_id, post.points as question_points, users.points as poster_points, username'));
 
                 $currentDBResults = null;
                 foreach ($keywordsArray as $keyword) {
@@ -406,7 +406,7 @@ class PostController extends Controller {
                 if ($currentDBResults != null)
                     $keywords_matches = DB::table(DB::raw("(" . $currentDBResults->toSql() . ") as res2"))
                 ->mergeBindings($currentDBResults)
-                ->select(DB::raw('question_id, keyword_count * 2 as relevance'));
+                ->select(DB::raw('question_id, keyword_count * 2 as relevance, title, content, post.posterid as poster_id, post.points as question_points, users.points as poster_points, username'));
 
                 $final_results;
                 if ($tags_matches == null && $keywords_matches == null)
@@ -418,7 +418,10 @@ class PostController extends Controller {
                 else
                     $final_results = $tags_matches->unionAll($keywords_matches);
 
-                $final_results = $final_results->orderBy('relevance', 'desc');
+                $final_results = $final_results->orderBy('relevance', 'desc')->get();
+
+                echo $final_questions;
+                return;
 
                 $final_questions = DB::table(DB::raw("(" . $final_results->toSql() . ") as res3"))
                 ->mergeBindings($final_results)
@@ -429,8 +432,7 @@ class PostController extends Controller {
                 ->select('question.postid as question_id', 'title', 'content', 'post.posterid as poster_id', 'post.points as question_points', 'users.points as poster_points', 'username')
                 ->get();
 
-                echo $final_questions;
-                return;
+         
 
                 foreach ($questions_ids as $question_id)
                 {
