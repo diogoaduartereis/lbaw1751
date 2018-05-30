@@ -143,16 +143,16 @@ signUpClass
 
     .smallWindowFix
     {
-        margin-top:-30px;
+        margin-top:-10px;
     }
 
     .signInClass
     {
-        
+        margin-left:-10px;
     }
 
     signUpClass
     {
-        margin-left:-20px;
+        margin-left:0px;
     }
 }

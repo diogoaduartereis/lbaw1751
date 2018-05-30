@@ -6,8 +6,8 @@ $tags = TagController::getFirstXTags(10);
 ?>
 
 <p id="csrf-token" style="display: none;" hidden >{{csrf_token()}}</p>
-<nav style="width:100%;" id="navbar" class="navbar rounded-0 navbar-expand-lg navbar-dark bg-dark sticky-top signInClass">
-    <a class="btn btn-md" style="color:white;" href="{{url('login')}}"> Sign In </a>
+<nav style="width:100%;" id="navbar" class="navbar rounded-0 navbar-expand-lg navbar-dark bg-dark sticky-top">
+    <a class="btn btn-md signInClass" style="color:white;" href="{{url('login')}}"> Sign In </a>
 
 <a href="{{url('register')}}" style="color:white; background-color:rgb(41, 157, 252);" class="btn btn-primary btn-md rounded signUpClass"
    data-toggle="collapse" data-target="#sidebar" data-parent="#navbar" aria-expanded="false">

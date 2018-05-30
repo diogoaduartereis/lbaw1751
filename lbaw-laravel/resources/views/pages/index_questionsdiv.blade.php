@@ -1,8 +1,6 @@
 
 <div id="Questions">
 
-    <p id="csrf-token" style="display: none;" hidden >{{csrf_token()}}</p>      
-    <br>
 
     <div class ="infinite-scroll">
         @foreach ($questions as $question)

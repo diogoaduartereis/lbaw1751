@@ -1,9 +1,6 @@
 
 <div id="Questions">
 
-    <p id="csrf-token" style="display: none" hidden >{{csrf_token()}}</p>      
-    <br>
-
     <script src="./assets/js/deletePost.js"></script>
     <div class ="infinite-scroll">
         @foreach ($questions as $question)
