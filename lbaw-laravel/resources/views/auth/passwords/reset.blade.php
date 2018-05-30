@@ -96,28 +96,9 @@
             if (btn != null) {
                 btn.onclick = function () {
                     let password = document.getElementById('password').value;
-                    let passwrodConfirme = document.getElementById('confirm-password').value;
                     var regexPW = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z!$%^&*_@#~?\\d]{8,72}$");
-                    if (username.length == 0) {
-                        let message = "You Must Have A Username";
-                        document.getElementById('logmsg').style.color = "red";
-                        document.getElementById('logmsg').innerText = message;
-                        return;
-                    }
-                    if (email.length == 0) {
-                        let message = "You Must Have A Email";
-                        document.getElementById('logmsg').style.color = "red";
-                        document.getElementById('logmsg').innerText = message;
-                        return;
-                    }
                     if (!regexPW.test(password)) {
                         let message = "Your password must contain a minimum of 8 characters, at least 1 uppercase letter, 1 lowercase letter and 1 one number";
-                        document.getElementById('logmsg').style.color = "red";
-                        document.getElementById('logmsg').innerText = message;
-                        return;
-                    }
-                    if (password != passwrodConfirme) {
-                        let message = "Passwords do not match";
                         document.getElementById('logmsg').style.color = "red";
                         document.getElementById('logmsg').innerText = message;
                         return;
