@@ -111,7 +111,7 @@
                                 <button style="font-size: 13px" type="submit"
                                         class="btn btn-outline-danger col-md-12">
                                     <i class="fas fa-times-circle"></i>
-                                    Mark as Incorrect
+                                    Cancel Correct Status
                                 </button>
                             @endif
                         </form>
