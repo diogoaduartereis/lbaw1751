@@ -8,18 +8,18 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>CodeHome - Administration</title>
 
-        <link href="../assets/css/admin.css" rel="stylesheet">
-        <link href="../assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-        <link href="../assets/css/bootstrap.css" rel="stylesheet">
+        <link href="/assets/css/admin.css" rel="stylesheet">
+        <link href="/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="/assets/css/bootstrap.css" rel="stylesheet">
         <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
-        <link href="../assets/css/bars.css" rel="stylesheet">
-        <link href="../assets/css/common.css" rel="stylesheet">
-        <link href="../assets/css/administration/admin.css" rel="stylesheet">
+        <link href="/assets/css/bars.css" rel="stylesheet">
+        <link href="/assets/css/common.css" rel="stylesheet">
+        <link href="/assets/css/administration/admin.css" rel="stylesheet">
 
-        <script src="../assets/js/jquery-1.11.1.min.js"></script>
-        <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
-        <script src="../assets/js/jquery.min.js"></script>
-        <script src="../assets/js/popper.min.js"></script>
+        <script src="/assets/js/jquery-1.11.1.min.js"></script>
+        <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
+        <script src="/assets/js/jquery.min.js"></script>
+        <script src="/assets/js/popper.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 
 
@@ -89,7 +89,7 @@
                                             <th scope="row"><a href ="/users/{{$user->id}}">{{$user->id}}</a></th>
                                             <td><a href ="/users/{{$user->id}}">{{$user->username}} </a></td>
                                             <td><a href ="/users/{{$user->id}}">{{$user->email}}</a></td>
-                                            <td>                                                         
+                                            <td id="actions-{{$user->id}}">                                                         
                                                 @if($user->state == "ACTIVE")
                                                 <button class="btn btn-danger" title="Ban User" onclick="return gotoBanPage({{$user->id}})" type="submit">
                                                     <i class="fas fa-ban"></i>
@@ -115,8 +115,8 @@
                 </div>
             </div>
         </div>
-    <script src="../assets/js/bars.js"></script>
-    <script src="../assets/js/administration/admin.js"> </script>
+    <script src="/assets/js/bars.js"></script>
+    <script src="/assets/js/administration.js"> </script>
     </body>
 
 </html>
