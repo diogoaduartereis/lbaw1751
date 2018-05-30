@@ -34,3 +34,4 @@ $tags = TagController::getFirstXTags(10);
 
 
 <script src="/assets/js/searchQuestion.js"></script>
+<script src="/assets/js/homepageSearchBar.js"></script>
