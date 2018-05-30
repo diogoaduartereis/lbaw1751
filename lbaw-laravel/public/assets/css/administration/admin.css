@@ -10,3 +10,20 @@
         margin-left:7vw;
     }
 }
+
+@media (min-width: 768px) and (max-width:1366px) 
+{
+    #sidebar
+    {
+        min-width:17.2vw;
+        max-width:17.2vw;
+        font-size:90%;
+    }
+
+    .adminTable
+    {
+        max-width:77vw;
+        overflow:auto;
+        margin-left:0px;
+    }
+}
