@@ -423,7 +423,7 @@ class PostController extends Controller {
                 ->select(DB::raw('SUM(relevance) as relevance'), 'question_id')
                 ->orderBy('relevance')
                 ->groupBy('question_id')
-                ->paginate(10);
+                ->paginate(5);
                 
                 $currentDBResults = null;
                 foreach ($final_results as $final_result)
@@ -443,7 +443,7 @@ class PostController extends Controller {
                     return "No Questions to show";
                 $final_questions = DB::table(DB::raw("(" . $currentDBResults->toSql() . ") as res"))
                 ->mergeBindings($currentDBResults)
-                ->paginate(10);
+                ->paginate(5);
 
                 $questions_and_tags = PostController::checkQuestionsReturn($final_questions);
                 
