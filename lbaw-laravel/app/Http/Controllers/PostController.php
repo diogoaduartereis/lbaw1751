@@ -423,7 +423,7 @@ class PostController extends Controller {
                 ->select(DB::raw('SUM(relevance) as relevance'), 'question_id')
                 ->orderBy('relevance', 'desc')
                 ->groupBy('question_id')
-                ->paginate(5);
+                ->get();
                 
                 $currentDBResults = null;
                 foreach ($final_results as $final_result)
