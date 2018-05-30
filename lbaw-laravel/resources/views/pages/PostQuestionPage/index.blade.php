@@ -57,6 +57,7 @@
                                     <div class="well well-sm">
                                         <form action="{{url('postNewQuestion')}}" method="post">
                                             {!! csrf_field() !!}
+                                            <legend>Post Question:</legend>
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
