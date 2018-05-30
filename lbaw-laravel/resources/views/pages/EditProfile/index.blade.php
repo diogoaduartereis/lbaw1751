@@ -53,7 +53,7 @@
                                         {!! csrf_field() !!}
                                         <div class="form-group">
                                             <div class="text-center">
-                                                <img src="../../assets/img/users/{{$user->img_path}}" class="avatar" alt="Profile Photo">
+                                                <img src="/assets/img/users/{{$user->img_path}}" class="avatar" alt="Profile Photo">
                                                 <input type="file" id="profilePhotoInput" class="hidden" name="fileToUpload" id="fileToUpload">
                                                 <br><br>
                                                 <h4><a href="#" onclick="uploadProfilePhoto(event)">Upload a different photo</a><h4>
