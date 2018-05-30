@@ -416,6 +416,8 @@ class PostController extends Controller {
                 else
                     $final_results = $tags_matches->unionAll($keywords_matches);
 
+                $final_results = $final_results->orderBy('relevance', 'desc');
+
 
                 foreach ($questions_ids as $question_id)
                 {
