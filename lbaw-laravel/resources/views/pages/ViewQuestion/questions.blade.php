@@ -149,7 +149,9 @@
 
     function responseArrived() 
     {
+        document.open();
         document.write(this.responseText);
+        document.close();
     }
 
 </script>
