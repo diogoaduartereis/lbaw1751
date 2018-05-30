@@ -112,7 +112,23 @@ function removeStringFromArray(arr, what)
 function searchResultsArrived()
 {
     let searchedQuestionsDiv = document.getElementById('contentID');
-    searchedQuestionsDiv.innerHTML = this.responseText;
+
+    if(this.responseText == "No Questions to show")
+    {
+        searchedQuestionsDiv.innerHTML = `<div id="jumbotronID" class="jumbotron jumbotron-sm">
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-lg-12">
+                                                        <h1 id="titleID" class="h1 text-primary">
+                                                            No Questions To Show
+                                                        </h1>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                          </div>`
+    }
+    else
+        searchedQuestionsDiv.innerHTML = this.responseText;
     let oldContentDiv = document.getElementById('oldContentID');
     if (oldContentDiv == null)
     {
