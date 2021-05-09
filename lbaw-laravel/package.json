@@ -15,7 +15,7 @@
     "browser-sync-webpack-plugin": "^2.2.2",
     "cross-env": "^5.1",
     "laravel-mix": "^1.0",
-    "lodash": "^4.17.4"
+    "lodash": "^4.17.21"
   },
   "name": "lbaw-laravel",
   "description": "This README describes how to setup the development environemnt for LBAW using Ubuntu 17.10. Some of the instructions bellow might not work in other operating systems or Ubuntu versions. The recommended way to procceed is to setup a virtual machine using virtualbox and an instance of Ubuntu 17.10.",
